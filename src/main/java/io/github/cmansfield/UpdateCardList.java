@@ -6,6 +6,7 @@ import com.sun.jersey.api.client.UniformInterfaceException;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.Client;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.Validate;
 
 import java.io.*;
@@ -153,12 +154,7 @@ public final class UpdateCardList {
         return;
       }
       finally {
-        try {
-          fileWriter.close();
-        }
-        catch (Exception e) {
-          throw new RuntimeException(e);
-        }
+        IOUtils.closeQuietly(fileWriter);
       }
     }
   }
