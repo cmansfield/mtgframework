@@ -37,7 +37,6 @@ out/
 *.sbr
 *.sdf
 *.pyc
-*.xml
 *.config
 *.csproj
 *.vcxproj
