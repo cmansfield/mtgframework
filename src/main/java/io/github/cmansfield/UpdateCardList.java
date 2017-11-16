@@ -5,18 +5,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jersey.api.client.UniformInterfaceException;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.Client;
+import org.apache.commons.httpclient.methods.ExpectContinueMethod;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.Validate;
 
 import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.rmi.server.ExportException;
 
 
 public final class UpdateCardList {
+  private static final String GET_CARD_LIST_URL = "https://mtgjson.com/json/AllCards.json.zip";
   private static final String GET_VER_URL = "https://mtgjson.com/json/version-full.json";
-  private static final String VERSION_FILE_NAME = "cardListVersion.txt";
+  private static final String VERSION_FILE_NAME = "cardListVersion.json";
   private static final String VERSION_KEY = "version";
-
   private UpdateCardList() {}
 
   public static void checkForUpdates() {
@@ -40,15 +44,17 @@ public final class UpdateCardList {
       return;
     }
 
-    if(!UpdateCardList.promptUserToUpdate()) {
+    try {
+      // if not then call downloadLatestCardList
+      UpdateCardList.downloadLatestCardList();
+
+      // saveNewVersion
+      UpdateCardList.saveNewVersion(currentVersionJson);
+    }
+    catch(Exception e) {
+      System.out.printf("Unable to update at this time%n%s%n", e.getMessage());
       return;
     }
-
-    // if not then call downloadLatestCardList
-    UpdateCardList.downloadLatestCardList();
-
-    // saveNewVersion
-    UpdateCardList.saveNewVersion(currentVersionJson);
 
     System.out.println("Updated to version: " + currentVersion);
   }
@@ -100,62 +106,52 @@ public final class UpdateCardList {
       version = jsonNode.get(VERSION_KEY).asText();
     }
     catch(Exception e) {
-      System.out.printf("Unable to read the json version at this time%n%s%n", e.getMessage());
+      System.out.printf("Unable to read the json version at this time%n%s%n", e.getMessage() == null ? "" : e.getMessage());
       return "";
     }
 
     return version;
   }
 
-  // TODO
-  private static void downloadLatestCardList() {
+  private static void downloadLatestCardList() throws IOException {
+    final int TIMEOUT = 500;
+    File file = new File(CardListConstants.CARD_LIST_FILE_NAME);
+    URL url = null;
 
-
+    try {
+      url = new URL(GET_CARD_LIST_URL);
+      FileUtils.copyURLToFile(url, file, TIMEOUT, TIMEOUT);
+    }
+    catch(MalformedURLException e) {
+      System.out.printf("Unable create URL object with url: %s%n", GET_CARD_LIST_URL);
+      throw e;
+    }
+    catch(IOException e) {
+      System.out.printf("Unable to save '%s' to file '%s'%n", url.getPath(), CardListConstants.CARD_LIST_FILE_NAME);
+      throw e;
+    }
   }
 
-  private static boolean promptUserToUpdate() {
-    final String VALID_POSITIVE_INPUT = "yes";
-    final String VALID_NEGATIVE_INPUT = "no";
-    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    String input = "";
-
-    System.out.println("Looks like there is a new card list available");
-    System.out.println("Would you like to download it now?");
-
-    do {
-      System.out.printf("Please enter '%s' or '%s'%n", VALID_POSITIVE_INPUT, VALID_NEGATIVE_INPUT);
-
-      try {
-        input = br.readLine();
-      } catch (Exception e) { }
-    } while(!input.equalsIgnoreCase(VALID_POSITIVE_INPUT) && !input.equalsIgnoreCase(VALID_NEGATIVE_INPUT));
-
-    return input.equalsIgnoreCase(VALID_POSITIVE_INPUT);
-  }
-
-  private static void saveNewVersion(final String version) {
+  private static void saveNewVersion(final String version) throws IOException {
     File file = new File(VERSION_FILE_NAME);
     FileWriter fileWriter = null;
 
     Validate.notEmpty(version);
 
-    if(!file.exists()) {
-      try {
-        if(!file.createNewFile()) {
-          throw new IOException();
-        }
+    try {
+      file.createNewFile();
 
-        fileWriter = new FileWriter(file);
-        fileWriter.write(version);
-        fileWriter.flush();
-      }
-      catch (IOException e) {
-        System.out.printf("Unable to create/save file '%s' at this time", VERSION_FILE_NAME);
-        return;
-      }
-      finally {
-        IOUtils.closeQuietly(fileWriter);
-      }
+      fileWriter = new FileWriter(file);
+      fileWriter.write(version);
+      fileWriter.flush();
+    }
+    catch (IOException e) {
+      System.out.printf("Unable to create/save file '%s' at this time%n", VERSION_FILE_NAME);
+      System.out.println(e);
+      throw e;
+    }
+    finally {
+      IOUtils.closeQuietly(fileWriter);
     }
   }
 }
