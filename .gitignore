@@ -62,5 +62,5 @@ _ReSharper*/
 #Subversion files
 .svn
 
-#UVSChess Framework
-Supplemental_Files/*
+#MTG Framework
+*.zip
