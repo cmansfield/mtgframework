@@ -2,6 +2,7 @@ package io.github.cmansfield.Card;
 
 import java.io.Serializable;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 
 public class Card implements Serializable {
@@ -17,59 +18,67 @@ public class Card implements Serializable {
   }
 
   public String getName() {
-
-    if(cardPojo.containsKey(CardConstants.NAME)) {
-      return (String)cardPojo.get(CardConstants.NAME);
-    }
-
-    return "";
+    return getFromPojo(CardConstants.NAME);
   }
 
-//  public String getLayout() {
-//    return this.layout;
-//  }
-//
-//  public String getManaCost() {
-//    return this.manaCost;
-//  }
-//
-//  public int getCmc() {
-//    return this.cmc;
-//  }
-//
-//  public List<String> getColors() {
-//    return this.colors;
-//  }
-//
-//  public String getType() {
-//    return this.type;
-//  }
-//
-//  public List<String> getTypes() {
-//    return this.types;
-//  }
-//
-//  public List<String> getSubTypes() {
-//    return this.subTypes;
-//  }
-//
-//  public String getText() {
-//    return this.text;
-//  }
-//
-//  public String getPower() {
-//    return this.power;
-//  }
-//
-//  public String getToughness() {
-//    return this.toughness;
-//  }
-//
-//  public String getImageName() {
-//    return this.imageName;
-//  }
-//
-//  public List<String> getColorIdentity() {
-//    return this.colorIdentity;
-//  }
+  public String getLayout() {
+    return getFromPojo(CardConstants.LAYOUT);
+  }
+
+  public String getManaCost() {
+    return getFromPojo(CardConstants.MANA_COST);
+  }
+
+  public Integer getCmc() {
+    return getFromPojo(CardConstants.CMC);
+  }
+
+  public List<String> getColors() {
+    return getFromPojo(CardConstants.COLORS);
+  }
+
+  public String getType() {
+    return getFromPojo(CardConstants.TYPE);
+  }
+
+  public List<String> getTypes() {
+    return getFromPojo(CardConstants.TYPES);
+  }
+
+  public List<String> getSubTypes() {
+    return getFromPojo(CardConstants.SUB_TYPES);
+  }
+
+  public String getText() {
+    return getFromPojo(CardConstants.TEXT);
+  }
+
+  public String getPower() {
+    return getFromPojo(CardConstants.POWER);
+  }
+
+  public String getToughness() {
+    return getFromPojo(CardConstants.TOUGHNESS);
+  }
+
+  public String getImageName() {
+    return getFromPojo(CardConstants.IMAGE_NAME);
+  }
+
+  public List<String> getColorIdentity() {
+    return getFromPojo(CardConstants.COLOR_IDENTITY);
+  }
+
+  private <T> T getFromPojo(String key) {
+    if(cardPojo.containsKey(key)) {
+      return (T)cardPojo.get(key);
+    }
+
+    return null;
+  }
+
+  @Override
+  public String toString() {
+    return cardPojo.toString();
+  }
 }

@@ -20,13 +20,9 @@ public class LoadCardList {
     InputStream inputStream = zip.getInputStream(zip.getEntry(CardListConstants.ALL_CARDS_FILE_NAME));
     Scanner scanner = new Scanner(inputStream);
 
-
     ObjectMapper mapper = new ObjectMapper();
     Map<String, Object> jsonMap = mapper.readValue(inputStream, Map.class);
     cards = jsonMap.values().stream().map(v -> new Card(v)).collect(Collectors.toList());
-
-    System.out.println(cards.get(0).getName());
-
 
     return cards;
   }
