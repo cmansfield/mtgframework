@@ -1,0 +1,67 @@
+{
+  "Atinlay Igpay": {
+    "layout": "normal",
+    "name": "Atinlay Igpay",
+    "manaCost": "{5}{W}",
+    "cmc": 6,
+    "colors": [
+      "White"
+    ],
+    "type": "Eaturecray — Igpay",
+    "types": [
+      "Eaturecray"
+    ],
+    "subtypes": [
+      "Igpay"
+    ],
+    "text": "Oubleday ikestray\nEneverwhay Atinlay Igpay's ontrollercay eaksspay ay onnay-Igpay-Atinlay ordway, acrificesay Atinlay Igpay.",
+    "power": "3",
+    "toughness": "3",
+    "imageName": "atinlay igpay",
+    "colorIdentity": [
+      "W"
+    ]
+  },
+  "AWOL": {
+    "layout": "normal",
+    "name": "AWOL",
+    "manaCost": "{2}{W}",
+    "cmc": 3,
+    "colors": [
+      "White"
+    ],
+    "type": "Instant",
+    "types": [
+      "Instant"
+    ],
+    "text": "Remove target attacking creature from the game. Then remove it from the removed-from-game zone and put it into the absolutely-removed-from-the-freaking-game-forever zone.",
+    "imageName": "awol",
+    "colorIdentity": [
+      "W"
+    ]
+  },
+  "Bosom Buddy": {
+    "layout": "normal",
+    "name": "Bosom Buddy",
+    "manaCost": "{3}{W}",
+    "cmc": 4,
+    "colors": [
+      "White"
+    ],
+    "type": "Creature — Elephant Townsfolk",
+    "types": [
+      "Creature"
+    ],
+    "subtypes": [
+      "Elephant",
+      "Townsfolk"
+    ],
+    "text": "Whenever you play a spell, you may gain ½ life for each word in that spell's name.",
+    "power": "1",
+    "toughness": "4",
+    "imageName": "bosom buddy",
+    "colorIdentity": [
+      "W"
+    ]
+  }
+}

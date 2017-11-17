@@ -1,19 +1,17 @@
 package io.github.cmansfield;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jersey.api.client.UniformInterfaceException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.Client;
-import org.apache.commons.httpclient.methods.ExpectContinueMethod;
+import org.apache.commons.lang.Validate;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.Validate;
 
-import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.rmi.server.ExportException;
+import java.io.*;
 
 
 public final class UpdateCardList {
