@@ -1,7 +1,7 @@
 package io.github.cmansfield.io;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.cmansfield.Card.Card;
+import io.github.cmansfield.card.Card;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -18,11 +18,14 @@ public class LoadCardList {
 
     ZipFile zip = new ZipFile(CardListConstants.CARD_LIST_FILE_NAME);
     InputStream inputStream = zip.getInputStream(zip.getEntry(CardListConstants.ALL_CARDS_FILE_NAME));
-    Scanner scanner = new Scanner(inputStream);
 
     ObjectMapper mapper = new ObjectMapper();
     Map<String, Object> jsonMap = mapper.readValue(inputStream, Map.class);
-    cards = jsonMap.values().stream().map(v -> new Card(v)).collect(Collectors.toList());
+    cards = jsonMap
+            .values()
+            .stream()
+            .map(v -> new Card(v))
+            .collect(Collectors.toList());
 
     return cards;
   }

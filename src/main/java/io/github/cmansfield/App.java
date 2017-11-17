@@ -1,10 +1,13 @@
 package io.github.cmansfield;
 
-import io.github.cmansfield.Card.Card;
+import io.github.cmansfield.card.Card;
 import io.github.cmansfield.io.CardListConstants;
 import io.github.cmansfield.io.LoadCardList;
 import io.github.cmansfield.io.UpdateCardList;
+import io.github.cmansfield.validater.Validater;
 
+import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -25,18 +28,17 @@ public class App {
       }
     }
 
-    List<Card> test;
+    List<Card> cards;
 
     try {
-      test = LoadCardList.loadCards();
+      cards = LoadCardList.loadCards();
     }
     catch (Exception e) {
       System.out.printf("Unable to load card list from file '%s'%n", CardListConstants.ALL_CARDS_FILE_NAME);
       return;
     }
 
-    System.out.println(test.get(0).getName());
-    System.out.println(test.get(0).getCmc());
-    System.out.println(test.get(0).getColors());
+    List<Card> incompleteCards = Validater.getListOfIncompleteCards(cards);
+    incompleteCards.forEach(card -> System.out.println(card.getName()));
   }
 }
