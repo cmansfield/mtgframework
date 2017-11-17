@@ -1,4 +1,4 @@
-package io.github.cmansfield;
+package io.github.cmansfield.io;
 
 import com.sun.jersey.api.client.UniformInterfaceException;
 import com.fasterxml.jackson.databind.ObjectMapper;
