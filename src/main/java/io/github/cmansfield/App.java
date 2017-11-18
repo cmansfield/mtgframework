@@ -8,7 +8,9 @@ import io.github.cmansfield.io.UpdateCardList;
 import io.github.cmansfield.validater.Validater;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class App {
@@ -43,14 +45,21 @@ public class App {
 //            .colors(Collections.singletonList("White"))
 //            .superTypes(Collections.singletonList("Legendary"))
 //            .build();
+
+//    Map<String,String> legal = new HashMap<>();
+//    legal.put("format", "Commander");
+//    legal.put("legality", "Legal");
+//
 //    CardFilter cardFilter = new CardFilter
 //            .CardBuilder()
-//            .manaCost("{1}{U}{U}")
-//            .layout("normal")
+//            .legalities(Collections.singletonList(legal))
+//            .subTypes(Collections.singletonList("Angel"))
 //            .build();
-
+//
 //    List<Card> filteredCards = CardFilter.filter(cards, cardFilter);
-//    System.out.println(filteredCards);
+//    filteredCards.forEach(card -> {
+//      System.out.println(card.getName());
+//    });
 
     List<Card> incompleteCards = Validater.getListOfIncompleteCards(cards);
     incompleteCards.forEach(c -> {

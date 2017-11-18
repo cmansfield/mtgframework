@@ -1,4 +1,4 @@
-package io.github.cmansfield.card;
+package io.github.cmansfield.card.constants;
 
 public enum CardConstants {
   LAYOUT("layout"),
@@ -16,9 +16,13 @@ public enum CardConstants {
   TOUGHNESS("toughness"),
   LOYALTY("loyalty"),
   IMAGE_NAME("imageName"),
+  RULINGS("rulings"),
   HAND("hand"),
   LIFE("life"),
   STARTER("starter"),
+  PRINTINGS("printings"),
+  SOURCE("source"),
+  LEGALITIES("legalities"),
   COLOR_IDENTITY("colorIdentity");
 
   private final String key;

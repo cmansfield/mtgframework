@@ -1,7 +1,7 @@
 package io.github.cmansfield.card.filter;
 
 import io.github.cmansfield.card.Card;
-import io.github.cmansfield.card.CardConstants;
+import io.github.cmansfield.card.constants.CardConstants;
 import javafx.util.Pair;
 
 import java.util.*;
@@ -25,9 +25,13 @@ public class CardFilter {
   private String toughness;
   private Integer loyalty;
   private String imageName;
+  private List<Map<String,String>> rulings;
   private Integer hand;
   private Integer life;
   private Boolean starter;
+  private List<String> printings;
+  private String source;
+  private List<Map<String,String>> legalities;
   private List<String> colorIdentity;
   private Card card;
 
@@ -48,9 +52,13 @@ public class CardFilter {
     private String _toughness;
     private Integer _loyalty;
     private String _imageName;
+    private List<Map<String,String>> _rulings;
     private Integer _hand;
     private Integer _life;
     private Boolean _starter;
+    private List<String> _printings;
+    private String _source;
+    private List<Map<String,String>> _legalities;
     private List<String> _colorIdentity;
     private Card _card;
 
@@ -129,6 +137,11 @@ public class CardFilter {
       return this;
     }
 
+    public CardBuilder rulings(List<Map<String,String>> rulings) {
+      this._rulings = rulings;
+      return this;
+    }
+
     public CardBuilder hand(Integer hand) {
       this._hand = hand;
       return this;
@@ -141,6 +154,21 @@ public class CardFilter {
 
     public CardBuilder starter(Boolean starter) {
       this._starter = starter;
+      return this;
+    }
+
+    public CardBuilder printings(List<String> printings) {
+      this._printings = printings;
+      return this;
+    }
+
+    public CardBuilder source(String source) {
+      this._source = source;
+      return this;
+    }
+
+    public CardBuilder legalities(List<Map<String,String>> legalities) {
+      this._legalities = legalities;
       return this;
     }
 
@@ -175,9 +203,13 @@ public class CardFilter {
     this.toughness = cardBuilder._toughness;
     this.loyalty = cardBuilder._loyalty;
     this.imageName = cardBuilder._imageName;
+    this.rulings = cardBuilder._rulings;
     this.hand = cardBuilder._hand;
     this.life = cardBuilder._life;
     this.starter = cardBuilder._starter;
+    this.printings = cardBuilder._printings;
+    this.source = cardBuilder._source;
+    this.legalities = cardBuilder._legalities;
     this.colorIdentity = cardBuilder._colorIdentity;
   }
 
@@ -241,6 +273,10 @@ public class CardFilter {
     return this.card == null ? this.imageName : this.card.getImageName();
   }
 
+  public List<Map<String,String>> getRulings() {
+    return this.card == null ? this.rulings : this.card.getRulings();
+  }
+
   public Integer getHand() {
     return this.card == null ? this.hand : this.card.getHand();
   }
@@ -251,6 +287,18 @@ public class CardFilter {
 
   public Boolean getStarter() {
     return this.card == null ? this.starter : this.card.getStarter();
+  }
+
+  public List<String> getPrintings() {
+    return this.card == null ? this.printings : this.card.getPrintings();
+  }
+
+  public String getSource() {
+    return this.card == null ? this.source : this.card.getSource();
+  }
+
+  public List<Map<String,String>> getLegalities() {
+    return this.card == null ? this.legalities : this.card.getLegalities();
   }
 
   public List<String> getColorIdentity() {
@@ -276,6 +324,12 @@ public class CardFilter {
     return filteredCards;
   }
 
+  private static boolean allMatchMap(Map<String,String> lhs, Map<String,String> rhs) {
+
+
+    return true;
+  }
+
   private static Map<CardConstants, Pair<Supplier,Function>> generateFilterMap(CardFilter filter) {
     final Map<CardConstants, Pair<Supplier,Function>> getterMethodMap = new EnumMap<CardConstants, Pair<Supplier,Function>>(CardConstants.class);
     if(filter.getLayout() != null) getterMethodMap.put(CardConstants.LAYOUT, new Pair<Supplier,Function>(filter::getLayout, c -> ((Card)c).getLayout()));
@@ -293,9 +347,13 @@ public class CardFilter {
     if(filter.getToughness() != null) getterMethodMap.put(CardConstants.TOUGHNESS, new Pair<Supplier,Function>(filter::getToughness, c -> ((Card)c).getToughness()));
     if(filter.getLoyalty() != null) getterMethodMap.put(CardConstants.LOYALTY, new Pair<Supplier,Function>(filter::getLoyalty, c -> ((Card)c).getLoyalty()));
     if(filter.getImageName() != null) getterMethodMap.put(CardConstants.IMAGE_NAME, new Pair<Supplier,Function>(filter::getImageName, c -> ((Card)c).getImageName()));
+    if(filter.getRulings() != null) getterMethodMap.put(CardConstants.RULINGS, new Pair<Supplier,Function>(filter::getRulings, c -> ((Card)c).getRulings()));
     if(filter.getHand() != null) getterMethodMap.put(CardConstants.HAND, new Pair<Supplier,Function>(filter::getHand, c -> ((Card)c).getHand()));
     if(filter.getLife() != null) getterMethodMap.put(CardConstants.LIFE, new Pair<Supplier,Function>(filter::getLife, c -> ((Card)c).getLife()));
     if(filter.getStarter() != null) getterMethodMap.put(CardConstants.STARTER, new Pair<Supplier,Function>(filter::getStarter, c -> ((Card)c).getStarter()));
+    if(filter.getPrintings() != null) getterMethodMap.put(CardConstants.PRINTINGS, new Pair<Supplier,Function>(filter::getPrintings, c -> ((Card)c).getPrintings()));
+    if(filter.getSource() != null) getterMethodMap.put(CardConstants.SOURCE, new Pair<Supplier,Function>(filter::getSource, c -> ((Card)c).getSource()));
+    if(filter.getLegalities() != null) getterMethodMap.put(CardConstants.LEGALITIES, new Pair<Supplier,Function>(filter::getLegalities, c -> ((Card)c).getLegalities()));
     if(filter.getColorIdentity() != null) getterMethodMap.put(CardConstants.COLOR_IDENTITY, new Pair<Supplier,Function>(filter::getColorIdentity, c -> ((Card)c).getColorIdentity()));
 
     return getterMethodMap;

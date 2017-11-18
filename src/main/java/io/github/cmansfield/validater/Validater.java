@@ -1,7 +1,7 @@
 package io.github.cmansfield.validater;
 
 import io.github.cmansfield.card.Card;
-import io.github.cmansfield.card.CardConstants;
+import io.github.cmansfield.card.constants.CardConstants;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

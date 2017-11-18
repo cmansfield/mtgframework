@@ -1,8 +1,11 @@
 package io.github.cmansfield.card;
 
+import io.github.cmansfield.card.constants.CardConstants;
+
 import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class Card implements Serializable {
@@ -81,6 +84,10 @@ public class Card implements Serializable {
     return getFromPojo(CardConstants.IMAGE_NAME.key());
   }
 
+  public List<Map<String,String>> getRulings() {
+    return getFromPojo(CardConstants.RULINGS.key());
+  }
+
   public Integer getHand() {
     return getFromPojo(CardConstants.HAND.key());
   }
@@ -91,6 +98,18 @@ public class Card implements Serializable {
 
   public Boolean getStarter() {
     return getFromPojo(CardConstants.STARTER.key());
+  }
+
+  public List<String> getPrintings() {
+    return getFromPojo(CardConstants.PRINTINGS.key());
+  }
+
+  public String getSource() {
+    return getFromPojo(CardConstants.SOURCE.key());
+  }
+
+  public List<Map<String,String>> getLegalities() {
+    return getFromPojo(CardConstants.LEGALITIES.key());
   }
 
   public List<String> getColorIdentity() {
