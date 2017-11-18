@@ -2,7 +2,7 @@ package io.github.cmansfield.io;
 
 public final class CardListConstants {
   static final String CARD_LIST_FILE_NAME = "cardList.zip";
-  public static final String ALL_CARDS_FILE_NAME = "AllCards.json";
+  public static final String ALL_CARDS_FILE_NAME = "AllCards-x.json";
 
   private CardListConstants() {}
 }

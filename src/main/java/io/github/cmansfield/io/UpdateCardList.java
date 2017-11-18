@@ -15,7 +15,7 @@ import java.io.*;
 
 
 public final class UpdateCardList {
-  private static final String GET_CARD_LIST_URL = "https://mtgjson.com/json/AllCards.json.zip";
+  private static final String GET_CARD_LIST_URL = "https://mtgjson.com/json/AllCards-x.json.zip";
   private static final String GET_VER_URL = "https://mtgjson.com/json/version-full.json";
   private static final String VERSION_FILE_NAME = "cardListVersion.json";
   private static final String VERSION_KEY = "version";
