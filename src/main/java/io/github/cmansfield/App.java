@@ -1,13 +1,13 @@
 package io.github.cmansfield;
 
 import io.github.cmansfield.card.Card;
+import io.github.cmansfield.card.filter.CardFilter;
 import io.github.cmansfield.io.CardListConstants;
 import io.github.cmansfield.io.LoadCardList;
 import io.github.cmansfield.io.UpdateCardList;
-import io.github.cmansfield.validater.Validater;
 
-import java.lang.reflect.Field;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -38,7 +38,18 @@ public class App {
       return;
     }
 
-    List<Card> incompleteCards = Validater.getListOfIncompleteCards(cards);
-    incompleteCards.forEach(card -> System.out.println(card.getName()));
+    CardFilter cardFilter = new CardFilter
+            .CardBuilder()
+            .colors(Collections.singletonList("White"))
+            .superTypes(Collections.singletonList("Legendary"))
+            .build();
+//    CardFilter cardFilter = new CardFilter
+//            .CardBuilder()
+//            .manaCost("{1}{U}{U}")
+//            .layout("normal")
+//            .build();
+
+    List<Card> filteredCards = CardFilter.filter(cards, cardFilter);
+    System.out.println(filteredCards);
   }
 }

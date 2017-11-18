@@ -37,7 +37,7 @@ public class Card implements Serializable {
     return getFromPojo(CardConstants.MANA_COST.key());
   }
 
-  public Integer getCmc() {
+  public Double getCmc() {
     return getFromPojo(CardConstants.CMC.key());
   }
 
