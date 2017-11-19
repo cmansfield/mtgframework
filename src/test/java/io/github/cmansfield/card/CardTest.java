@@ -17,7 +17,7 @@ public class CardTest {
   public void test_getFromPojo() {
     List<String> colors = Collections.singletonList("White");
     String name = "TestCardName";
-    Map<String,Object> pojo = new LinkedHashMap<String,Object>();
+    Map<String,Object> pojo = new LinkedHashMap<>();
     pojo.put(CardConstants.NAME.key(), name);
     pojo.put(CardConstants.COLORS.key(), colors);
 

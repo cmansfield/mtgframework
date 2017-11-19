@@ -1,14 +1,14 @@
-package io.github.cmansfield.validater;
+package io.github.cmansfield.validator;
 
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.card.constants.CardConstants;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public final class CardValidater {
+public final class CardValidator {
+  private CardValidator() {}
 
   public static List<Card> getListOfIncompleteCards(List<Card> cards) {
     List<Card> incompleteCards = new ArrayList<>();
