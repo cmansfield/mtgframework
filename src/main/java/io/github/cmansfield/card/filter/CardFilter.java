@@ -316,7 +316,7 @@ public class CardFilter {
             return allMatchList(e.getValue().getKey().get(), e.getValue().getValue().apply(c));
           }
 
-          // This pulls the Supplier from the entry's key, and the Function from the
+          // This pulls the Supplier from the entry's toString, and the Function from the
           // entry's value, and then compares the values of the two
           return e.getValue().getKey().get().equals(e.getValue().getValue().apply(c));
         })

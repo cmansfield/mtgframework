@@ -18,8 +18,8 @@ public class CardTest {
     List<String> colors = Collections.singletonList("White");
     String name = "TestCardName";
     Map<String,Object> pojo = new LinkedHashMap<>();
-    pojo.put(CardConstants.NAME.key(), name);
-    pojo.put(CardConstants.COLORS.key(), colors);
+    pojo.put(CardConstants.NAME.toString(), name);
+    pojo.put(CardConstants.COLORS.toString(), colors);
 
     Card card = new Card(pojo);
     assertEquals(card.getName(), name);

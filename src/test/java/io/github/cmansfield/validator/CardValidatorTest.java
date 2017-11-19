@@ -18,13 +18,13 @@ public class CardValidatorTest {
     List<String> colors = Collections.singletonList("White");
     String name = "TestCardName";
     Map<String,Object> pojo = new LinkedHashMap<>();
-    pojo.put(CardConstants.NAME.key(), name);
-    pojo.put(CardConstants.COLORS.key(), colors);
+    pojo.put(CardConstants.NAME.toString(), name);
+    pojo.put(CardConstants.COLORS.toString(), colors);
     Card goodCard = new Card(pojo);
 
     Map<String,Object> pojoBad = new LinkedHashMap<>();
-    pojoBad.put(CardConstants.NAME.key(), name);
-    pojoBad.put(CardConstants.COLORS.key(), colors);
+    pojoBad.put(CardConstants.NAME.toString(), name);
+    pojoBad.put(CardConstants.COLORS.toString(), colors);
     pojoBad.put("ThisIsNotARealKey", "Garbage data");
     Card badCard = new Card(pojoBad);
 

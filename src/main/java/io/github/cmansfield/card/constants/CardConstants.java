@@ -1,6 +1,6 @@
 package io.github.cmansfield.card.constants;
 
-public enum CardConstants {
+public enum CardConstants implements Constant<CardConstants> {
   LAYOUT("layout"),
   NAME("name"),
   NAMES("names"),
@@ -25,23 +25,28 @@ public enum CardConstants {
   LEGALITIES("legalities"),
   COLOR_IDENTITY("colorIdentity");
 
-  private final String key;
+  private final String value;
 
-  private CardConstants(String key) {
-    this.key = key;
+  CardConstants(String value) {
+    this.value = value;
   }
 
-  public String key() {
-    return this.key;
+  public static boolean contains(final String value) {
+    return Constant.contains(CardConstants.class, value);
   }
 
-  public static CardConstants getConstant(String cardConstant) {
+  public static CardConstants find(String cardConstant) {
     for(CardConstants constant : CardConstants.values()) {
-      if(constant.key.equalsIgnoreCase(cardConstant)) {
+      if(constant.value.equalsIgnoreCase(cardConstant)) {
         return constant;
       }
     }
 
     return null;
+  }
+
+  @Override
+  public String toString() {
+    return this.value;
   }
 }

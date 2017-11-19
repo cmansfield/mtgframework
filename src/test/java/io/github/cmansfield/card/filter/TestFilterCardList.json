@@ -1,0 +1,427 @@
+{
+  "Cromat": {
+    "layout": "normal",
+    "name": "Cromat",
+    "manaCost": "{W}{U}{B}{R}{G}",
+    "cmc": 5,
+    "colors": [
+      "White",
+      "Blue",
+      "Black",
+      "Red",
+      "Green"
+    ],
+    "type": "Legendary Creature — Illusion",
+    "supertypes": [
+      "Legendary"
+    ],
+    "types": [
+      "Creature"
+    ],
+    "subtypes": [
+      "Illusion"
+    ],
+    "text": "{W}{B}: Destroy target creature blocking or blocked by Cromat.\n{U}{R}: Cromat gains flying until end of turn.\n{B}{G}: Regenerate Cromat.\n{R}{W}: Cromat gets +1/+1 until end of turn.\n{G}{U}: Put Cromat on top of its owner's library.",
+    "power": "5",
+    "toughness": "5",
+    "imageName": "cromat",
+    "printings": [
+      "APC"
+    ],
+    "legalities": [
+      {
+        "format": "Commander",
+        "legality": "Legal"
+      },
+      {
+        "format": "Invasion Block",
+        "legality": "Legal"
+      },
+      {
+        "format": "Legacy",
+        "legality": "Legal"
+      },
+      {
+        "format": "Vintage",
+        "legality": "Legal"
+      }
+    ],
+    "colorIdentity": [
+      "W",
+      "U",
+      "B",
+      "R",
+      "G"
+    ]
+  },
+  "Ebony Treefolk": {
+    "layout": "normal",
+    "name": "Ebony Treefolk",
+    "manaCost": "{1}{B}{G}",
+    "cmc": 3,
+    "colors": [
+      "Black",
+      "Green"
+    ],
+    "type": "Creature — Treefolk",
+    "types": [
+      "Creature"
+    ],
+    "subtypes": [
+      "Treefolk"
+    ],
+    "text": "{B}{G}: Ebony Treefolk gets +1/+1 until end of turn.",
+    "power": "3",
+    "toughness": "3",
+    "imageName": "ebony treefolk",
+    "printings": [
+      "APC"
+    ],
+    "legalities": [
+      {
+        "format": "Commander",
+        "legality": "Legal"
+      },
+      {
+        "format": "Invasion Block",
+        "legality": "Legal"
+      },
+      {
+        "format": "Legacy",
+        "legality": "Legal"
+      },
+      {
+        "format": "Vintage",
+        "legality": "Legal"
+      }
+    ],
+    "colorIdentity": [
+      "B",
+      "G"
+    ]
+  },
+  "Fervent Charge": {
+    "layout": "normal",
+    "name": "Fervent Charge",
+    "manaCost": "{1}{W}{B}{R}",
+    "cmc": 4,
+    "colors": [
+      "White",
+      "Black",
+      "Red"
+    ],
+    "type": "Enchantment",
+    "types": [
+      "Enchantment"
+    ],
+    "text": "Whenever a creature you control attacks, it gets +2/+2 until end of turn.",
+    "imageName": "fervent charge",
+    "printings": [
+      "APC"
+    ],
+    "legalities": [
+      {
+        "format": "Commander",
+        "legality": "Legal"
+      },
+      {
+        "format": "Invasion Block",
+        "legality": "Legal"
+      },
+      {
+        "format": "Legacy",
+        "legality": "Legal"
+      },
+      {
+        "format": "Vintage",
+        "legality": "Legal"
+      }
+    ],
+    "colorIdentity": [
+      "W",
+      "B",
+      "R"
+    ]
+  },
+  "Flowstone Charger": {
+    "layout": "normal",
+    "name": "Flowstone Charger",
+    "manaCost": "{2}{R}{W}",
+    "cmc": 4,
+    "colors": [
+      "White",
+      "Red"
+    ],
+    "type": "Creature — Beast",
+    "types": [
+      "Creature"
+    ],
+    "subtypes": [
+      "Beast"
+    ],
+    "text": "Whenever Flowstone Charger attacks, it gets +3/-3 until end of turn.",
+    "power": "2",
+    "toughness": "5",
+    "imageName": "flowstone charger",
+    "printings": [
+      "APC"
+    ],
+    "legalities": [
+      {
+        "format": "Commander",
+        "legality": "Legal"
+      },
+      {
+        "format": "Invasion Block",
+        "legality": "Legal"
+      },
+      {
+        "format": "Legacy",
+        "legality": "Legal"
+      },
+      {
+        "format": "Vintage",
+        "legality": "Legal"
+      }
+    ],
+    "colorIdentity": [
+      "W",
+      "R"
+    ]
+  },
+  "Gaea's Skyfolk": {
+    "layout": "normal",
+    "name": "Gaea's Skyfolk",
+    "manaCost": "{G}{U}",
+    "cmc": 2,
+    "colors": [
+      "Blue",
+      "Green"
+    ],
+    "type": "Creature — Elf Merfolk",
+    "types": [
+      "Creature"
+    ],
+    "subtypes": [
+      "Elf",
+      "Merfolk"
+    ],
+    "text": "Flying",
+    "power": "2",
+    "toughness": "2",
+    "imageName": "gaea's skyfolk",
+    "printings": [
+      "APC"
+    ],
+    "legalities": [
+      {
+        "format": "Commander",
+        "legality": "Legal"
+      },
+      {
+        "format": "Invasion Block",
+        "legality": "Legal"
+      },
+      {
+        "format": "Legacy",
+        "legality": "Legal"
+      },
+      {
+        "format": "Vintage",
+        "legality": "Legal"
+      }
+    ],
+    "colorIdentity": [
+      "U",
+      "G"
+    ]
+  },
+  "Guided Passage": {
+    "layout": "normal",
+    "name": "Guided Passage",
+    "manaCost": "{U}{R}{G}",
+    "cmc": 3,
+    "colors": [
+      "Blue",
+      "Red",
+      "Green"
+    ],
+    "type": "Sorcery",
+    "types": [
+      "Sorcery"
+    ],
+    "text": "Reveal the cards in your library. An opponent chooses from among them a creature card, a land card, and a noncreature, nonland card. You put the chosen cards into your hand. Then shuffle your library.",
+    "imageName": "guided passage",
+    "rulings": [
+      {
+        "date": "2004-10-04",
+        "text": "If you have no cards of any of the specified card types, then ignore those types and the opponent only selects cards of the types you do have."
+      },
+      {
+        "date": "2004-10-04",
+        "text": "Yes, your opponents get to look at all the cards in your library."
+      }
+    ],
+    "printings": [
+      "APC"
+    ],
+    "legalities": [
+      {
+        "format": "Commander",
+        "legality": "Legal"
+      },
+      {
+        "format": "Invasion Block",
+        "legality": "Legal"
+      },
+      {
+        "format": "Legacy",
+        "legality": "Legal"
+      },
+      {
+        "format": "Vintage",
+        "legality": "Legal"
+      }
+    ],
+    "colorIdentity": [
+      "U",
+      "R",
+      "G"
+    ]
+  },
+  "Llanowar Dead": {
+    "layout": "normal",
+    "name": "Llanowar Dead",
+    "manaCost": "{B}{G}",
+    "cmc": 2,
+    "colors": [
+      "Black",
+      "Green"
+    ],
+    "type": "Creature — Zombie Elf",
+    "types": [
+      "Creature"
+    ],
+    "subtypes": [
+      "Zombie",
+      "Elf"
+    ],
+    "text": "{T}: Add {B} to your mana pool.",
+    "power": "2",
+    "toughness": "2",
+    "imageName": "llanowar dead",
+    "printings": [
+      "APC"
+    ],
+    "legalities": [
+      {
+        "format": "Commander",
+        "legality": "Legal"
+      },
+      {
+        "format": "Invasion Block",
+        "legality": "Legal"
+      },
+      {
+        "format": "Legacy",
+        "legality": "Legal"
+      },
+      {
+        "format": "Vintage",
+        "legality": "Legal"
+      }
+    ],
+    "colorIdentity": [
+      "B",
+      "G"
+    ]
+  },
+  "Martyrs' Tomb": {
+    "layout": "normal",
+    "name": "Martyrs' Tomb",
+    "manaCost": "{2}{W}{B}",
+    "cmc": 4,
+    "colors": [
+      "White",
+      "Black"
+    ],
+    "type": "Enchantment",
+    "types": [
+      "Enchantment"
+    ],
+    "text": "Pay 2 life: Prevent the next 1 damage that would be dealt to target creature this turn.",
+    "imageName": "martyrs' tomb",
+    "printings": [
+      "APC"
+    ],
+    "legalities": [
+      {
+        "format": "Commander",
+        "legality": "Legal"
+      },
+      {
+        "format": "Invasion Block",
+        "legality": "Legal"
+      },
+      {
+        "format": "Legacy",
+        "legality": "Legal"
+      },
+      {
+        "format": "Vintage",
+        "legality": "Legal"
+      }
+    ],
+    "colorIdentity": [
+      "W",
+      "B"
+    ]
+  },
+  "Minotaur Illusionist": {
+    "layout": "normal",
+    "name": "Minotaur Illusionist",
+    "manaCost": "{3}{U}{R}",
+    "cmc": 5,
+    "colors": [
+      "Blue",
+      "Red"
+    ],
+    "type": "Creature — Minotaur Wizard",
+    "types": [
+      "Creature"
+    ],
+    "subtypes": [
+      "Minotaur",
+      "Wizard"
+    ],
+    "text": "{1}{U}: Minotaur Illusionist gains shroud until end of turn. (It can't be the target of spells or abilities.)\n{R}, Sacrifice Minotaur Illusionist: Minotaur Illusionist deals damage equal to its power to target creature.",
+    "power": "3",
+    "toughness": "4",
+    "imageName": "minotaur illusionist",
+    "printings": [
+      "APC"
+    ],
+    "legalities": [
+      {
+        "format": "Commander",
+        "legality": "Legal"
+      },
+      {
+        "format": "Invasion Block",
+        "legality": "Legal"
+      },
+      {
+        "format": "Legacy",
+        "legality": "Legal"
+      },
+      {
+        "format": "Vintage",
+        "legality": "Legal"
+      }
+    ],
+    "colorIdentity": [
+      "U",
+      "R"
+    ]
+  }
+}

@@ -24,7 +24,7 @@ public final class CardValidator {
 
   private static boolean isCardClassComplete(Map cardPojo) {
     for(Object key : cardPojo.keySet()) {
-        if(CardConstants.getConstant((String)key) == null) {
+        if(CardConstants.find((String)key) == null) {
           return false;
         }
     }
