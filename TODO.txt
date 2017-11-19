@@ -5,17 +5,20 @@ Filtering
 	Add static method to CardFilter class that will generate container for a 
 		passed legality
 	Add a static method to filter by NOT this CardFilter
+	Ability to search card text as a 'contains'
 	
 Testing
 	Add integration tests
-	Add unit tests
+	Add unit tests (Mockito)
 
 IO
 	Ability to create new card lists from just a list of card names
+	Option to save a blank/default card.json template
 
 Other
 	Add additional exception handling
 	Add Other CardConstants (enums)
 	Add more program args
+	Add method headers
 
 

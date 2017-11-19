@@ -9,7 +9,7 @@ import java.util.Map;
 
 
 public class Card implements Serializable {
-  private LinkedHashMap cardPojo;
+  private Map cardPojo;
 
   public Card(Object cardPojo) {
     if(cardPojo instanceof LinkedHashMap) {
@@ -20,7 +20,7 @@ public class Card implements Serializable {
     }
   }
 
-  public LinkedHashMap getCardPojo() {
+  public Map getCardPojo() {
     return cardPojo;
   }
 

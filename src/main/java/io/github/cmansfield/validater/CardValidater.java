@@ -6,6 +6,7 @@ import io.github.cmansfield.card.constants.CardConstants;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public final class CardValidater {
 
@@ -21,7 +22,7 @@ public final class CardValidater {
     return incompleteCards;
   }
 
-  private static boolean isCardClassComplete(LinkedHashMap cardPojo) {
+  private static boolean isCardClassComplete(Map cardPojo) {
     for(Object key : cardPojo.keySet()) {
         if(CardConstants.getConstant((String)key) == null) {
           return false;
