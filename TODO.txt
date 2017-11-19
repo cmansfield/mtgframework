@@ -1,0 +1,21 @@
+
+Mtg Framework TODO list
+
+Filtering
+	Add static method to CardFilter class that will generate container for a 
+		passed legality
+	Add a static method to filter by NOT this CardFilter
+	
+Testing
+	Add integration tests
+	Add unit tests
+
+IO
+	Ability to create new card lists from just a list of card names
+
+Other
+	Add additional exception handling
+	Add Other CardConstants (enums)
+	Add more program args
+
+
