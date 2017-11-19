@@ -46,24 +46,25 @@ public class App {
 //            .superTypes(Collections.singletonList("Legendary"))
 //            .build();
 
-//    Map<String,String> legal = new HashMap<>();
-//    legal.put("format", "Commander");
-//    legal.put("legality", "Legal");
-//
-//    CardFilter cardFilter = new CardFilter
-//            .CardBuilder()
-//            .legalities(Collections.singletonList(legal))
-//            .subTypes(Collections.singletonList("Angel"))
-//            .build();
-//
-//    List<Card> filteredCards = CardFilter.filter(cards, cardFilter);
-//    filteredCards.forEach(card -> {
-//      System.out.println(card.getName());
-//    });
+    Map<String,String> legal = new HashMap<>();
+    legal.put("format", "Commander");
+    legal.put("legality", "Legal");
 
-    List<Card> incompleteCards = Validater.getListOfIncompleteCards(cards);
-    incompleteCards.forEach(c -> {
-      System.out.println(c.getName());
+    CardFilter cardFilter = new CardFilter
+            .CardBuilder()
+            .legalities(Collections.singletonList(legal))
+            .subTypes(Collections.singletonList("Angel"))
+            .build();
+
+    List<Card> filteredCards = CardFilter.filter(cards, cardFilter);
+    filteredCards.forEach(card -> {
+      System.out.println(card.getName());
     });
+    System.out.println(filteredCards.size());
+
+//    List<Card> incompleteCards = Validater.getListOfIncompleteCards(cards);
+//    incompleteCards.forEach(c -> {
+//      System.out.println(c.getName());
+//    });
   }
 }

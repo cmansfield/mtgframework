@@ -312,6 +312,10 @@ public class CardFilter {
     cards.forEach(c -> {
       if (getterMethodMap.entrySet().stream()
         .allMatch(e -> {
+          if(e.getValue().getKey().get() instanceof List) {
+            return allMatchList(e.getValue().getKey().get(), e.getValue().getValue().apply(c));
+          }
+
           // This pulls the Supplier from the entry's key, and the Function from the
           // entry's value, and then compares the values of the two
           return e.getValue().getKey().get().equals(e.getValue().getValue().apply(c));
@@ -324,10 +328,58 @@ public class CardFilter {
     return filteredCards;
   }
 
-  private static boolean allMatchMap(Map<String,String> lhs, Map<String,String> rhs) {
+  private static boolean allMatchList(Object lhs, Object rhs) {
 
+    if(lhs == null || rhs == null) {
+      return false;
+    }
 
-    return true;
+    if(!(lhs instanceof List)) {
+      throw new IllegalArgumentException("Expecting List Object");
+    }
+    if(!(rhs instanceof List)) {
+      throw new IllegalArgumentException("Expecting List Object");
+    }
+
+    List listFilter = (List)lhs;
+    List listCard = (List)rhs;
+
+    return listFilter.stream().allMatch(item -> {
+      if(item instanceof Map) {
+        if(listCard.contains(item)) {
+          return allMatchMap(item, listCard.get(listCard.indexOf(item)));
+        }
+      }
+
+      return listCard.contains(item);
+    });
+  }
+
+  private static boolean allMatchMap(Object lhs, Object rhs) {
+
+    if(lhs == null || rhs == null) {
+      return false;
+    }
+
+    if(!(lhs instanceof Map)) {
+      throw new IllegalArgumentException("Expecting Map Object");
+    }
+    if(!(rhs instanceof Map)) {
+      throw new IllegalArgumentException("Expecting Map Object");
+    }
+
+    Map<Object, Object> mapFilter = (Map)lhs;
+    Map<Object, Object> mapCard = (Map)rhs;
+
+    return mapFilter.entrySet().stream().allMatch(e -> {
+      if(e.getValue() instanceof List) {
+        if(((List)mapCard.get(e.getKey())).contains(e.getValue())) {
+          return allMatchList(e.getValue(), (List)mapCard.get(e.getKey()));
+        }
+      }
+
+      return mapCard.get(e.getKey()).equals(e.getValue());
+    });
   }
 
   private static Map<CardConstants, Pair<Supplier,Function>> generateFilterMap(CardFilter filter) {
