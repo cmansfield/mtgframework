@@ -12,6 +12,7 @@ import org.apache.commons.io.IOUtils;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 
 public final class UpdateCardList {
@@ -85,7 +86,7 @@ public final class UpdateCardList {
     }
 
     try {
-      myVersion = FileUtils.readFileToString(file, "UTF-8");
+      myVersion = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
     }
     catch(IOException e) {
       System.out.printf("Unable to read from file %s%n%s%n", VERSION_FILE_NAME, e.getMessage());
@@ -113,7 +114,7 @@ public final class UpdateCardList {
 
   private static void downloadLatestCardList() throws IOException {
     final int TIMEOUT = 500;
-    File file = new File(CardListConstants.CARD_LIST_FILE_NAME);
+    File file = new File(IoConstants.CARD_LIST_FILE_NAME);
     URL url = null;
 
     try {
@@ -125,7 +126,7 @@ public final class UpdateCardList {
       throw e;
     }
     catch(IOException e) {
-      System.out.printf("Unable to save '%s' to file '%s'%n", url.getPath(), CardListConstants.CARD_LIST_FILE_NAME);
+      System.out.printf("Unable to save '%s' to file '%s'%n", url.getPath(), IoConstants.CARD_LIST_FILE_NAME);
       throw e;
     }
   }

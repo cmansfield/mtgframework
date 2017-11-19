@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-public final class Validater {
+public final class CardValidater {
 
   public static List<Card> getListOfIncompleteCards(List<Card> cards) {
     List<Card> incompleteCards = new ArrayList<>();
