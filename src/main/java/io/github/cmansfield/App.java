@@ -61,8 +61,9 @@ public class App {
 //    String fileName = SaveCardList.saveCards(filteredCards);
 
 
-    List<Card> myDeck = LoadCardList.loadCards("inputRaw.txt");
+    List<Card> myDeck = LoadCardList.loadCards("src\\test\\resources\\inputRaw.txt");
     printCards(myDeck);
+    SaveCardList.saveCards(myDeck);
   }
 
   private static void printCards(List<Card> cards) {
