@@ -2,6 +2,7 @@ package io.github.cmansfield.card.filter;
 
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.card.constants.Colors;
+import io.github.cmansfield.card.constants.Legality;
 import io.github.cmansfield.io.LoadCardList;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -73,8 +74,8 @@ public class CardFilterTest {
     validCardNames.add("Llanowar Dead");
 
     Map<String,String> legal = new HashMap<>();
-    legal.put("format", "Commander");
-    legal.put("legality", "Legal");
+    legal.put(Legality.FORMAT.toString(), "Commander");
+    legal.put(Legality.LEGALITY.toString(), "Legal");
 
     assertNotNull(cards);
     CardFilter cardFilter = new CardFilter

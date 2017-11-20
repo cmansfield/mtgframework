@@ -35,14 +35,8 @@ public enum CardConstants implements Constant<CardConstants> {
     return Constant.contains(CardConstants.class, value);
   }
 
-  public static CardConstants find(String cardConstant) {
-    for(CardConstants constant : CardConstants.values()) {
-      if(constant.value.equalsIgnoreCase(cardConstant)) {
-        return constant;
-      }
-    }
-
-    return null;
+  public static CardConstants find(String value) {
+    return Constant.find(CardConstants.class, value);
   }
 
   @Override
