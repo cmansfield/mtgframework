@@ -57,7 +57,12 @@ public class App {
 //    printCards(testCards);
 
     Set<String> legalities = CardValidator.getListOfLegalities(cards);
-    System.out.println(legalities);
+    legalities.forEach(legal -> {
+      System.out.printf(
+              "%s(\"%s\"),%n",
+              String.format("%s", legal.toUpperCase().replace(' ', '_')),
+              legal);
+    });
   }
 
   private static void printCards(List<Card> cards) {

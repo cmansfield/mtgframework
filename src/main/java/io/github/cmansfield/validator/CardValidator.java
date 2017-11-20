@@ -33,6 +33,10 @@ public final class CardValidator {
   public static Set<String> getListOfLegalities(List<Card> cards) {
     Set<String> legalities = new HashSet<>();
 
+    if(cards == null) {
+      return null;
+    }
+
     cards.forEach(card -> {
       List<Map<String,String>> listOfLegalities = card.getLegalities();
 
