@@ -1,6 +1,8 @@
 package io.github.cmansfield;
 
 import io.github.cmansfield.card.Card;
+import io.github.cmansfield.card.constants.Legality;
+import io.github.cmansfield.card.filter.CardFilter;
 import io.github.cmansfield.deck.Deck;
 import io.github.cmansfield.io.IoConstants;
 import io.github.cmansfield.io.LoadCards;
@@ -38,21 +40,27 @@ public class App {
       return;
     }
 
-//    CardFilter cardFilter = new CardFilter
-//            .CardBuilder()
-//            .text("Indestructible")
-//            .build();
+    Map<String,String> legalities = new HashMap<>();
+    legalities.put(Legality.FORMAT.toString(), "Commander");
+    legalities.put(Legality.LEGALITY.toString(), "Legal");
+
+    CardFilter cardFilter = new CardFilter
+            .CardBuilder()
+            .legalities(Collections.singletonList(legalities))
+            .text("Indestructible")
+            .build();
+
+    List<Card> filteredCards = CardFilter.filter(cards, cardFilter);
+    printCards(filteredCards);
+    System.out.println(filteredCards.size());
+    //    String fileName = SaveCards.saveCards(filteredCards);
+
+//    Deck deck = LoadCards.loadDeck("src\\test\\resources\\inputRaw.txt");
 //
-//    List<Card> filteredCards = CardFilter.filter(cards, cardFilter);
-//    printCards(filteredCards);
-//    String fileName = SaveCards.saveCards(filteredCards);
-
-    Deck deck = LoadCards.loadDeck("src\\test\\resources\\inputRaw.txt");
-
-    String fileName = SaveCards.saveDeck(deck);
-
-    Deck deck2 = LoadCards.loadDeck(fileName);
-    System.out.println(deck2.toString());
+//    String fileName = SaveCards.saveDeck(deck);
+//
+//    Deck deck2 = LoadCards.loadDeck(fileName);
+//    System.out.println(deck2.toString());
   }
 
   private static void printCards(List<Card> cards) {

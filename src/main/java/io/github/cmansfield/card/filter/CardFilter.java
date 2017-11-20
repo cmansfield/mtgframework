@@ -323,6 +323,19 @@ public class CardFilter {
             return allMatchList(e.getValue().getKey().get(), e.getValue().getValue().apply(c));
           }
 
+          // We don't want filters on Text to be a literal match
+          // but more of a 'contains' match
+          if(e.getKey().toString().equalsIgnoreCase(CardConstants.TEXT.toString())) {
+
+            String cardText = (String)e.getValue().getValue().apply(c);
+
+            if(cardText == null) {
+              return false;
+            }
+
+            return cardText.contains((String)e.getValue().getKey().get());
+          }
+
           // This pulls the Supplier from the entry's toString, and the Function from the
           // entry's value, and then compares the values of the two
           return e.getValue().getKey().get().equals(e.getValue().getValue().apply(c));
