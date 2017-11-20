@@ -85,6 +85,13 @@ public final class SaveCards {
   }
 
   /**
+   * Saves an empty json card template to a predetermined file
+   */
+  public static void saveCardJsonTemplate() {
+
+  }
+
+  /**
    * Creates the predetermined save directory
    *
    * @return - Returns a File object of the newly created directory
