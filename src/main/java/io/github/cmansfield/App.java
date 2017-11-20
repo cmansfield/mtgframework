@@ -38,18 +38,8 @@ public class App {
       return;
     }
 
-//    Map<String,String> legal = new HashMap<>();
-//    legal.put(Legality.FORMAT.toString(), "Commander");
-//    legal.put(Legality.LEGALITY.toString(), "Legal");
-//
-//    List<String> colors = new ArrayList<>();
-//    colors.add(Colors.WHITE.toString());
-//    colors.add(Colors.BLACK.toString());
-//    colors.add(Colors.RED.toString());
-//
 //    CardFilter cardFilter = new CardFilter
 //            .CardBuilder()
-//            .legalities(Collections.singletonList(legal))
 //            .text("Indestructible")
 //            .build();
 //
@@ -57,12 +47,11 @@ public class App {
 //    printCards(filteredCards);
 //    String fileName = SaveCards.saveCards(filteredCards);
 
-
     Deck deck = LoadCards.loadDeck("src\\test\\resources\\inputRaw.txt");
 
-    SaveCards.saveDeck(deck);
+    String fileName = SaveCards.saveDeck(deck);
 
-    Deck deck2 = LoadCards.loadDeck(String.format("%s\\%s", IoConstants.SAVE_DIR, "Deck0.json"));
+    Deck deck2 = LoadCards.loadDeck(fileName);
     System.out.println(deck2.toString());
   }
 
