@@ -2,6 +2,7 @@ package io.github.cmansfield.io;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cmansfield.card.Card;
+import io.github.cmansfield.deck.Deck;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 
@@ -69,6 +70,10 @@ public final class LoadCardList {
     }
 
     return cards;
+  }
+
+  public static Deck loadDeck(final String fileName) throws IOException {
+    return new Deck(loadCards(fileName));
   }
 
   public static List<Card> loadCardsFromString(final String cardsStr) throws IOException {

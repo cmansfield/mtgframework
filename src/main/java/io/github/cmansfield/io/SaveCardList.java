@@ -30,7 +30,6 @@ public final class SaveCardList {
 
     try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(saveFileName), StandardCharsets.UTF_8);) {
 
-      // TODO - Make it so multiple copies of a card can be added to this map
       Map<String, Object> cardMap = cards.stream()
               .collect(Collectors.toMap(Card::getName, card -> card.getCardPojo()));
 

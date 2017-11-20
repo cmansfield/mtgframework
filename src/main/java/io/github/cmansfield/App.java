@@ -4,6 +4,7 @@ import io.github.cmansfield.card.Card;
 import io.github.cmansfield.card.constants.Colors;
 import io.github.cmansfield.card.constants.Legality;
 import io.github.cmansfield.card.filter.CardFilter;
+import io.github.cmansfield.deck.Deck;
 import io.github.cmansfield.io.IoConstants;
 import io.github.cmansfield.io.LoadCardList;
 import io.github.cmansfield.io.SaveCardList;
@@ -61,9 +62,10 @@ public class App {
 //    String fileName = SaveCardList.saveCards(filteredCards);
 
 
-    List<Card> myDeck = LoadCardList.loadCards("src\\test\\resources\\inputRaw.txt");
-    printCards(myDeck);
-    SaveCardList.saveCards(myDeck);
+    Deck deck = LoadCardList.loadDeck("src\\test\\resources\\inputRaw.txt");
+    System.out.println(deck);
+
+//    SaveCardList.saveCards(new Deck(myDeck));
   }
 
   private static void printCards(List<Card> cards) {

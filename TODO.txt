@@ -17,7 +17,7 @@ IO
 	Option to save a blank/default card.json template
 	preLoadedAllCards an immutable list
 	Once Cards are immutable, stop copying the card list
-	Ability to save deck lists with multiple copies of a card
+	Ability to save deck
 	Ability to load deck lists with multiple copies of a card
 
 Card
