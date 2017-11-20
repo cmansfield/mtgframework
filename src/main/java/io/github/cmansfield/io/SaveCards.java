@@ -15,6 +15,13 @@ import java.io.*;
 public final class SaveCards {
   private SaveCards() {}
 
+  /**
+   * Saves a list of card objects to a predefined output location
+   *
+   * @param cards - List of cards to save as a json file
+   * @return      - Returns a string with the filepath and filename
+   * @throws IOException
+   */
   public static String saveCards(List<Card> cards) throws IOException {
     final String CARD_LIST_SAVE_NAME = "CardList%d.json";
     ObjectMapper mapper = new ObjectMapper();
@@ -40,6 +47,13 @@ public final class SaveCards {
     return saveFileName;
   }
 
+  /**
+   * Saves a Deck object as a json file
+   *
+   * @param deck  - The Deck object to be saved as a json file
+   * @return      - Returns a string with the filepath and filename
+   * @throws IOException
+   */
   public static String saveDeck(Deck deck) throws IOException {
     final String DECK_SAVE_NAME = "Deck%d.json";
     ObjectMapper mapper = new ObjectMapper();
@@ -70,6 +84,11 @@ public final class SaveCards {
     return saveFileName;
   }
 
+  /**
+   * Creates the predetermined save directory
+   *
+   * @return - Returns a File object of the newly created directory
+   */
   private static File createSaveDir() {
     File saveFolder = new File(IoConstants.SAVE_DIR);
 

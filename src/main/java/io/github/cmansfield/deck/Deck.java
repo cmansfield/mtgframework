@@ -12,6 +12,13 @@ public final class Deck {
   private Map<String,Integer> quantity = new HashMap<>();
   private List<Card> cards;
 
+  /**
+   * Constructor that will remove duplicates from the card list
+   * and keep track of the number of copies of a card in the
+   * quantity map
+   *
+   * @param cards - List of cards to create the deck with
+   */
   public Deck(List<Card> cards) {
     this.cards = cards.stream().filter(card -> {
       String key = card.getName();
@@ -30,6 +37,12 @@ public final class Deck {
     return this.cards;
   }
 
+  /**
+   * Returns the number of copies of a card stored in the deck
+   *
+   * @param key - Card name to get quantity for
+   * @return    - The number of copies of a card
+   */
   public Integer getQuantity(final String key) {
     if(!this.quantity.containsKey(key)) {
       return 0;
@@ -45,3 +58,5 @@ public final class Deck {
             .collect(Collectors.joining(", "));
   }
 }
+
+

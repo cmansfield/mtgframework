@@ -8,6 +8,8 @@ Filtering
 	Ability to search card text as a 'contains'
 	
 Testing
+    Add integration tests
+        Deck
 	Add unit tests (Mockito)
 		LoadCards
 		SaveCards
@@ -25,4 +27,3 @@ Card
 Other
 	Add additional exception handling
 	Add more program args
-	Add method headers

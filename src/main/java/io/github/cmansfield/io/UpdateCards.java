@@ -22,6 +22,9 @@ public final class UpdateCards {
   private static final String VERSION_KEY = "version";
   private UpdateCards() {}
 
+  /**
+   * Checks for a new card list from the web
+   */
   public static void checkForUpdates() {
     String currentVersionJson;
     String currentVersion;
@@ -58,10 +61,20 @@ public final class UpdateCards {
     System.out.println("Updated to version: " + currentVersion);
   }
 
+  /**
+   * Gets the latest version number from the web
+   *
+   * @return - String of the latest card list version
+   */
   private static String getCurrentVersion() {
     return UpdateCards.parseVersionFromJson(UpdateCards.getCurrentVersionJson());
   }
 
+  /**
+   * Gets the latest version number from the web
+   *
+   * @return - String of the latest card list version
+   */
   private static String getCurrentVersionJson() {
     Client client = Client.create();
     String response;
@@ -77,6 +90,11 @@ public final class UpdateCards {
     return response;
   }
 
+  /**
+   * Gets the version of the card list that the program has stored
+   *
+   * @return - String of the card list version the program currently has
+   */
   private static String getMyVersion() {
     File file = new File(VERSION_FILE_NAME);
     String myVersion;
@@ -96,6 +114,12 @@ public final class UpdateCards {
     return UpdateCards.parseVersionFromJson(myVersion);
   }
 
+  /**
+   * Gets a version number from a json string
+   *
+   * @param json  - A json string that contains a version number
+   * @return      - String of the card list version pulled from the json supplied
+   */
   private static String parseVersionFromJson(final String json) {
     ObjectMapper objectMapper = new ObjectMapper();
     String version;
@@ -112,6 +136,11 @@ public final class UpdateCards {
     return version;
   }
 
+  /**
+   * Downloads the latest card list from mtgjson.com
+   *
+   * @throws IOException
+   */
   private static void downloadLatestCardList() throws IOException {
     final int TIMEOUT = 500;
     File file = new File(IoConstants.CARD_LIST_FILE_NAME);
@@ -131,6 +160,12 @@ public final class UpdateCards {
     }
   }
 
+  /**
+   * Saves a supplied version to a json file
+   *
+   * @param version - Version to save to a json file
+   * @throws IOException
+   */
   private static void saveNewVersion(final String version) throws IOException {
     File file = new File(VERSION_FILE_NAME);
     FileWriter fileWriter = null;

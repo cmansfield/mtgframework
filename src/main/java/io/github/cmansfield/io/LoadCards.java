@@ -23,6 +23,12 @@ public final class LoadCards {
 
   private LoadCards() {}
 
+  /**
+   * Loads a list of cards into a List object
+   *
+   * @return - Returns a List of card objects from the loaded file
+   * @throws IOException
+   */
   public static List<Card> loadCards() throws IOException {
     List<Card> cards;
 
@@ -48,6 +54,13 @@ public final class LoadCards {
     return cards;
   }
 
+  /**
+   * Loads a list of cards from the specified file
+   *
+   * @param fileName  - The filename of the file to load
+   * @return          - Returns a List of card objects from the loaded file
+   * @throws IOException
+   */
   public static List<Card> loadCards(final String fileName) throws IOException {
     final String JSON_EXT = "json";
     final String TXT_EXT = "txt";
@@ -72,6 +85,13 @@ public final class LoadCards {
     return cards;
   }
 
+  /**
+   * Loads a json file into a Deck object
+   *
+   * @param fileName  - The filename of the file to load
+   * @return          - Returns a Deck object loaded with cards from the specified file
+   * @throws IOException
+   */
   public static Deck loadDeck(final String fileName) throws IOException {
     return new Deck(loadCards(fileName));
   }
@@ -109,6 +129,12 @@ public final class LoadCards {
     return cards;
   }
 
+  /**
+   * Copies one card list into another list
+   *
+   * @param cards - A list of cards to be copied
+   * @return      - The newly created list
+   */
   public static List<Card> copyCardList(List<Card> cards) {
     List<Card> newCardList = new ArrayList<>();
 
@@ -117,6 +143,13 @@ public final class LoadCards {
     return newCardList;
   }
 
+  /**
+   * Creates a list of cards from an inputstream
+   *
+   * @param inputStream - An inputstream that will supply a buffer for json input
+   * @return            - Returns a list of card objects
+   * @throws IOException
+   */
   private static List<Card> loadCards(InputStream inputStream) throws IOException {
     List<Card> cards = null;
 

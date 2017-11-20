@@ -305,6 +305,13 @@ public class CardFilter {
     return this.card == null ? this.colorIdentity : this.card.getColorIdentity();
   }
 
+  /**
+   * Returns a list of cards that meet the filter criteria
+   *
+   * @param cards   - List of cards to filter down
+   * @param filter  - A filter object that will be used as the filter criteria
+   * @return        - A List of cards that met the filter criteria
+   */
   public static List<Card> filter(List<Card> cards, CardFilter filter) {
     final Map<CardConstants, Pair<Supplier,Function>> getterMethodMap = generateFilterMap(filter);
     List<Card> filteredCards = new ArrayList<>();
@@ -328,6 +335,16 @@ public class CardFilter {
     return filteredCards;
   }
 
+  /**
+   * Checks to make sure the second param list meets the criteria in
+   * the first list
+   *
+   * @param lhs - List to be used to see if the second list contains
+   *            the elements of this list
+   * @param rhs - The list of the card to check
+   * @return    - Returns true if the second list contains the elements
+   *            of the first list
+   */
   private static boolean allMatchList(Object lhs, Object rhs) {
 
     if(lhs == null || rhs == null) {
@@ -355,6 +372,16 @@ public class CardFilter {
     });
   }
 
+  /**
+   * Checks to make sure the second param map meets the criteria in
+   * the first map
+   *
+   * @param lhs - List to be used to see if the second map contains
+   *            the elements of this map
+   * @param rhs - The map of the card to check
+   * @return    - Returns true if the second map contains the elements
+   *            of the first map
+   */
   private static boolean allMatchMap(Object lhs, Object rhs) {
 
     if(lhs == null || rhs == null) {
@@ -382,6 +409,13 @@ public class CardFilter {
     });
   }
 
+  /**
+   * Returns a Map of all of the function references that were found in the
+   * filter object
+   *
+   * @param filter  - Filter object that contain the filter criteria
+   * @return        - Returns a map of functions that were found in the filter object
+   */
   private static Map<CardConstants, Pair<Supplier,Function>> generateFilterMap(CardFilter filter) {
     final Map<CardConstants, Pair<Supplier,Function>> getterMethodMap = new EnumMap<CardConstants, Pair<Supplier,Function>>(CardConstants.class);
     if(filter.getLayout() != null) getterMethodMap.put(CardConstants.LAYOUT, new Pair<Supplier,Function>(filter::getLayout, c -> ((Card)c).getLayout()));
