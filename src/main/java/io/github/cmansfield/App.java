@@ -39,30 +39,41 @@ public class App {
       return;
     }
 
-//    Map<String,String> legal = new HashMap<>();
-//    legal.put("format", "Commander");
-//    legal.put("legality", "Legal");
-//
-//    CardFilter cardFilter = new CardFilter
-//            .CardBuilder()
-//            .legalities(Collections.singletonList(legal))
-//            .superTypes(Collections.singletonList("Legendary"))
-//            .subTypes(Collections.singletonList("Angel"))
-//            .build();
-//
-//    List<Card> filteredCards = CardFilter.filter(cards, cardFilter);
+    Map<String,String> legal = new HashMap<>();
+    legal.put("format", "Commander");
+    legal.put("legality", "Legal");
+
+    List<String> colors = new ArrayList<>();
+    colors.add("White");
+    colors.add("Black");
+    colors.add("Red");
+
+    CardFilter cardFilter = new CardFilter
+            .CardBuilder()
+            .legalities(Collections.singletonList(legal))
+            .text("Indestructible")
+            .build();
+
+    List<Card> filteredCards = CardFilter.filter(cards, cardFilter);
+//    printCards(filteredCards);
 //    String fileName = SaveCardList.saveCards(filteredCards);
-//
+
 //    List<Card> testCards = LoadCardList.loadCards(fileName);
 //    printCards(testCards);
 
-    Set<String> legalities = CardValidator.getListOfLegalities(cards);
-    legalities.forEach(legal -> {
-      System.out.printf(
-              "%s(\"%s\"),%n",
-              String.format("%s", legal.toUpperCase().replace(' ', '_')),
-              legal);
-    });
+//    String cardsRaw = "1x Abzan Beastmaster\n" +
+//            "1x Ambition's Cost\n" +
+//            "1x Animate Wall\n" +
+//            "1x Assault Formation\n" +
+//            "1x Axebane Guardian\n" +
+//            "1x Behind the Scenes\n" +
+//            "1x Belbe's Armor\n" +
+//            "1x Blossoming Sands\n" +
+//            "1x Brave the Sands\n" +
+//            "1x Chromatic Lantern";
+//
+//    List<Card> myDeck = LoadCardList.loadCardsFromString(cardsRaw);
+//    printCards(myDeck);
   }
 
   private static void printCards(List<Card> cards) {

@@ -5,6 +5,8 @@ import io.github.cmansfield.card.Card;
 
 import java.io.FileInputStream;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.zip.ZipFile;
 import java.io.IOException;
@@ -39,6 +41,25 @@ public final class LoadCardList {
     catch (Exception e) {
       System.out.printf("Unable to load file %s%n", fileName);
       throw new IOException(e);
+    }
+
+    return cards;
+  }
+
+  public static List<Card> loadCardsFromString(final String cardsStr) throws IOException {
+    List<Card> cards = loadCards();
+    List<String> cardsRaw = Arrays.asList(cardsStr.split("\n"));
+    Map<String,Integer> cardsToFind = new HashMap<>();
+
+    Pattern rawPattern = Pattern.compile("^(?:(\\d+)x\\s*(.*))");
+    Matcher matcher;
+
+    for(String card : cardsRaw) {
+      matcher = rawPattern.matcher(card);
+
+      System.out.println(matcher.group(0));
+
+//      String test = card.
     }
 
     return cards;

@@ -8,8 +8,10 @@ Filtering
 	Ability to search card text as a 'contains'
 	
 Testing
-	Add integration tests
 	Add unit tests (Mockito)
+		LoadCardList
+		SaveCardList
+		UpdateCardList
 
 IO
 	Ability to create new card lists from just a list of card names
@@ -17,8 +19,6 @@ IO
 
 Other
 	Add additional exception handling
-	Add Other CardConstants (enums)
 	Add more program args
 	Add method headers
-
 

@@ -9,10 +9,10 @@ import org.apache.commons.lang.Validate;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
+import java.nio.charset.StandardCharsets;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 
 
 public final class UpdateCardList {
