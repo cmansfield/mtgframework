@@ -4,6 +4,7 @@ import io.github.cmansfield.card.Card;
 import io.github.cmansfield.card.constants.CardConstants;
 import io.github.cmansfield.card.constants.Formats;
 import io.github.cmansfield.io.LoadCardList;
+import io.github.cmansfield.io.UpdateCardList;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -42,6 +43,7 @@ public class CardValidatorTest {
     assertFalse(incompleteCards.contains(goodCard));
   }
 
+  // TODO - This test fails when there is no pre-existing cardList to load
   @Test
   public void test_getListOfLegalities() throws IOException {
     List<Card> cards = LoadCardList.loadCards();
