@@ -17,17 +17,17 @@ import java.io.IOException;
 import java.io.InputStream;
 
 
-public final class LoadCardList {
+public final class LoadCards {
 
   private static List<Card> preLoadedAllCards;
 
-  private LoadCardList() {}
+  private LoadCards() {}
 
   public static List<Card> loadCards() throws IOException {
     List<Card> cards;
 
-    if(LoadCardList.preLoadedAllCards != null) {
-      return copyCardList(LoadCardList.preLoadedAllCards);
+    if(LoadCards.preLoadedAllCards != null) {
+      return copyCardList(LoadCards.preLoadedAllCards);
     }
 
     ZipFile zip = new ZipFile(IoConstants.CARD_LIST_FILE_NAME);
@@ -43,7 +43,7 @@ public final class LoadCardList {
       zip.close();
     }
 
-    LoadCardList.preLoadedAllCards = copyCardList(cards);
+    LoadCards.preLoadedAllCards = copyCardList(cards);
 
     return cards;
   }

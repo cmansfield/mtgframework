@@ -3,7 +3,7 @@ package io.github.cmansfield.card.filter;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.card.constants.Colors;
 import io.github.cmansfield.card.constants.Legality;
-import io.github.cmansfield.io.LoadCardList;
+import io.github.cmansfield.io.LoadCards;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -23,7 +23,7 @@ public class CardFilterTest {
   @BeforeClass
   public void setUp() throws IOException {
     File file = new File(getClass().getClassLoader().getResource(TEST_CARD_LIST_NAME).getFile());
-    cards = LoadCardList.loadCards(file.getAbsolutePath());
+    cards = LoadCards.loadCards(file.getAbsolutePath());
   }
 
   @Test

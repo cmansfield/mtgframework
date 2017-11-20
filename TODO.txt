@@ -9,16 +9,14 @@ Filtering
 	
 Testing
 	Add unit tests (Mockito)
-		LoadCardList
-		SaveCardList
-		UpdateCardList
+		LoadCards
+		SaveCards
+		UpdateCards
 
 IO
 	Option to save a blank/default card.json template
 	preLoadedAllCards an immutable list
 	Once Cards are immutable, stop copying the card list
-	Ability to save deck
-	Ability to load deck lists with multiple copies of a card
 
 Card
     Create deep copy of cardPojo when creating a new Card

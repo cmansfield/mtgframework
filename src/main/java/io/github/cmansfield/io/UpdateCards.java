@@ -15,12 +15,12 @@ import java.net.URL;
 import java.io.*;
 
 
-public final class UpdateCardList {
+public final class UpdateCards {
   private static final String GET_CARD_LIST_URL = "https://mtgjson.com/json/AllCards-x.json.zip";
   private static final String GET_VER_URL = "https://mtgjson.com/json/version-full.json";
   private static final String VERSION_FILE_NAME = "cardListVersion.json";
   private static final String VERSION_KEY = "version";
-  private UpdateCardList() {}
+  private UpdateCards() {}
 
   public static void checkForUpdates() {
     String currentVersionJson;
@@ -28,9 +28,9 @@ public final class UpdateCardList {
     String myVersion;
 
     try {
-      currentVersionJson = UpdateCardList.getCurrentVersionJson();
-      currentVersion = UpdateCardList.parseVersionFromJson(currentVersionJson);
-      myVersion = UpdateCardList.getMyVersion();
+      currentVersionJson = UpdateCards.getCurrentVersionJson();
+      currentVersion = UpdateCards.parseVersionFromJson(currentVersionJson);
+      myVersion = UpdateCards.getMyVersion();
     }
     catch (Exception e) {
       System.out.println(e.toString());
@@ -45,10 +45,10 @@ public final class UpdateCardList {
 
     try {
       // if not then call downloadLatestCardList
-      UpdateCardList.downloadLatestCardList();
+      UpdateCards.downloadLatestCardList();
 
       // saveNewVersion
-      UpdateCardList.saveNewVersion(currentVersionJson);
+      UpdateCards.saveNewVersion(currentVersionJson);
     }
     catch(Exception e) {
       System.out.printf("Unable to update at this time%n%s%n", e.getMessage());
@@ -59,7 +59,7 @@ public final class UpdateCardList {
   }
 
   private static String getCurrentVersion() {
-    return UpdateCardList.parseVersionFromJson(UpdateCardList.getCurrentVersionJson());
+    return UpdateCards.parseVersionFromJson(UpdateCards.getCurrentVersionJson());
   }
 
   private static String getCurrentVersionJson() {
@@ -93,7 +93,7 @@ public final class UpdateCardList {
       return "";
     }
 
-    return UpdateCardList.parseVersionFromJson(myVersion);
+    return UpdateCards.parseVersionFromJson(myVersion);
   }
 
   private static String parseVersionFromJson(final String json) {

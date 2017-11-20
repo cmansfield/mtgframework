@@ -1,15 +1,11 @@
 package io.github.cmansfield;
 
 import io.github.cmansfield.card.Card;
-import io.github.cmansfield.card.constants.Colors;
-import io.github.cmansfield.card.constants.Legality;
-import io.github.cmansfield.card.filter.CardFilter;
 import io.github.cmansfield.deck.Deck;
 import io.github.cmansfield.io.IoConstants;
-import io.github.cmansfield.io.LoadCardList;
-import io.github.cmansfield.io.SaveCardList;
-import io.github.cmansfield.io.UpdateCardList;
-import io.github.cmansfield.validator.CardValidator;
+import io.github.cmansfield.io.LoadCards;
+import io.github.cmansfield.io.SaveCards;
+import io.github.cmansfield.io.UpdateCards;
 
 import java.io.IOException;
 import java.util.*;
@@ -25,7 +21,7 @@ public class App {
 
     if(args.length > 0) {
       if(args[0].equals("-u") || args[0].equals("--update")) {
-        UpdateCardList.checkForUpdates();
+        UpdateCards.checkForUpdates();
       }
       else {
         usage();
@@ -35,7 +31,7 @@ public class App {
     List<Card> cards;
 
     try {
-      cards = LoadCardList.loadCards();
+      cards = LoadCards.loadCards();
     }
     catch (Exception e) {
       System.out.printf("Unable to load card list from file '%s'%n", IoConstants.ALL_CARDS_FILE_NAME);
@@ -59,13 +55,15 @@ public class App {
 //
 //    List<Card> filteredCards = CardFilter.filter(cards, cardFilter);
 //    printCards(filteredCards);
-//    String fileName = SaveCardList.saveCards(filteredCards);
+//    String fileName = SaveCards.saveCards(filteredCards);
 
 
-    Deck deck = LoadCardList.loadDeck("src\\test\\resources\\inputRaw.txt");
-    System.out.println(deck);
+    Deck deck = LoadCards.loadDeck("src\\test\\resources\\inputRaw.txt");
 
-//    SaveCardList.saveCards(new Deck(myDeck));
+    SaveCards.saveDeck(deck);
+
+    Deck deck2 = LoadCards.loadDeck(String.format("%s\\%s", IoConstants.SAVE_DIR, "Deck0.json"));
+    System.out.println(deck2.toString());
   }
 
   private static void printCards(List<Card> cards) {

@@ -3,8 +3,7 @@ package io.github.cmansfield.validator;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.card.constants.CardConstants;
 import io.github.cmansfield.card.constants.Formats;
-import io.github.cmansfield.io.LoadCardList;
-import io.github.cmansfield.io.UpdateCardList;
+import io.github.cmansfield.io.LoadCards;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -46,7 +45,7 @@ public class CardValidatorTest {
   // TODO - This test fails when there is no pre-existing cardList to load
   @Test (enabled = false)
   public void test_getListOfLegalities() throws IOException {
-    List<Card> cards = LoadCardList.loadCards();
+    List<Card> cards = LoadCards.loadCards();
 
     Set<String> legalities = CardValidator.getListOfLegalities(cards);
 

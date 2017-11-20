@@ -26,6 +26,18 @@ public final class Deck {
     }).collect(Collectors.toList());
   }
 
+  public List<Card> getCards() {
+    return this.cards;
+  }
+
+  public Integer getQuantity(final String key) {
+    if(!this.quantity.containsKey(key)) {
+      return 0;
+    }
+
+    return this.quantity.get(key);
+  }
+
   @Override
   public String toString() {
     return this.cards.stream()
