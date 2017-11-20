@@ -3,11 +3,11 @@ package io.github.cmansfield.io;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cmansfield.card.Card;
 
-import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.stream.Collectors;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
+import java.io.*;
 
 
 public final class SaveCardList {

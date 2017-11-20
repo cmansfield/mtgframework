@@ -11,6 +11,7 @@ import java.util.Map;
 public class Card implements Serializable {
   private Map cardPojo;
 
+  // TODO - Make deep copy of cardPojo
   public Card(Object cardPojo) {
     if(cardPojo instanceof LinkedHashMap) {
       this.cardPojo = (LinkedHashMap) cardPojo;
