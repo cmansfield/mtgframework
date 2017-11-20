@@ -2,8 +2,11 @@ package io.github.cmansfield.io;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cmansfield.card.Card;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
 
 import java.io.FileInputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -45,10 +48,20 @@ public final class LoadCardList {
   }
 
   public static List<Card> loadCards(final String fileName) throws IOException {
-    List<Card> cards;
+    final String JSON_EXT = "json";
+    final String TXT_EXT = "txt";
+    List<Card> cards = null;
+
+    String extension = FilenameUtils.getExtension(fileName);
 
     try(InputStream inputstream = new FileInputStream(fileName)) {
-      cards = loadCards(inputstream);
+      if(extension.equalsIgnoreCase(JSON_EXT)) {
+        cards = loadCards(inputstream);
+      }
+      if(extension.equalsIgnoreCase(TXT_EXT)) {
+        String cardListRaw = IOUtils.toString(inputstream, StandardCharsets.UTF_8);
+        cards = loadCardsFromString(cardListRaw);
+      }
     }
     catch (Exception e) {
       System.out.printf("Unable to load file %s%n", fileName);

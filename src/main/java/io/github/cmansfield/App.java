@@ -60,21 +60,8 @@ public class App {
 //    printCards(filteredCards);
 //    String fileName = SaveCardList.saveCards(filteredCards);
 
-//    List<Card> testCards = LoadCardList.loadCards(fileName);
-//    printCards(testCards);
 
-    String cardsRaw = "1x Abzan Beastmaster\n" +
-            "1x Ambition's Cost\n" +
-            "1x Animate Wall\n" +
-            "1x Assault Formation\n" +
-            "1x Axebane Guardian\n" +
-            "5x Behind the Scenes\n" +
-            "1x Belbe's Armor\n" +
-            "1x Blossoming Sands\n" +
-            "1x Brave the Sands\n" +
-            "2x Chromatic Lantern";
-
-    List<Card> myDeck = LoadCardList.loadCardsFromString(cardsRaw);
+    List<Card> myDeck = LoadCardList.loadCards("inputRaw.txt");
     printCards(myDeck);
   }
 

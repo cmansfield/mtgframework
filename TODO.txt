@@ -15,9 +15,14 @@ Testing
 
 IO
 	Option to save a blank/default card.json template
+	preLoadedAllCards an immutable list
+	Once Cards are immutable, stop copying the card list
+
+Card
+    Create deep copy of cardPojo when creating a new Card
+    Make the Card class immutable
 
 Other
 	Add additional exception handling
 	Add more program args
 	Add method headers
-    Create deep copy of cardPojo when creating a new Card
