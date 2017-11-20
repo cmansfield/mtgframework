@@ -79,10 +79,6 @@
     ],
     "legalities": [
       {
-        "format": "Commander",
-        "legality": "Legal"
-      },
-      {
         "format": "Invasion Block",
         "legality": "Legal"
       },
@@ -122,10 +118,6 @@
     "legalities": [
       {
         "format": "Commander",
-        "legality": "Legal"
-      },
-      {
-        "format": "Invasion Block",
         "legality": "Legal"
       },
       {
@@ -176,10 +168,6 @@
         "legality": "Legal"
       },
       {
-        "format": "Legacy",
-        "legality": "Legal"
-      },
-      {
         "format": "Vintage",
         "legality": "Legal"
       }
@@ -225,10 +213,6 @@
       {
         "format": "Legacy",
         "legality": "Legal"
-      },
-      {
-        "format": "Vintage",
-        "legality": "Legal"
       }
     ],
     "colorIdentity": [
@@ -264,24 +248,6 @@
     ],
     "printings": [
       "APC"
-    ],
-    "legalities": [
-      {
-        "format": "Commander",
-        "legality": "Legal"
-      },
-      {
-        "format": "Invasion Block",
-        "legality": "Legal"
-      },
-      {
-        "format": "Legacy",
-        "legality": "Legal"
-      },
-      {
-        "format": "Vintage",
-        "legality": "Legal"
-      }
     ],
     "colorIdentity": [
       "U",

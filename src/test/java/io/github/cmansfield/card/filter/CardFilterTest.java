@@ -3,14 +3,12 @@ package io.github.cmansfield.card.filter;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.card.constants.Colors;
 import io.github.cmansfield.io.LoadCardList;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
@@ -21,19 +19,20 @@ public class CardFilterTest {
   private final String TEST_CARD_LIST_NAME = "TestFilterCardList.json";
   private List<Card> cards;
 
-  @BeforeMethod
+  @BeforeClass
   public void setUp() throws IOException {
     File file = new File(getClass().getClassLoader().getResource(TEST_CARD_LIST_NAME).getFile());
     cards = LoadCardList.loadCards(file.getAbsolutePath());
   }
 
   @Test
-  public void test_cardFilterTest1() throws IOException {
+  public void test_cardFilter_colorFilter() throws IOException {
     List<String> validCardNames = new ArrayList<>();
     validCardNames.add("Cromat");
     validCardNames.add("Fervent Charge");
     validCardNames.add("Flowstone Charger");
     validCardNames.add("Martyrs' Tomb");
+
 
     assertNotNull(cards);
     CardFilter cardFilter = new CardFilter
@@ -44,6 +43,50 @@ public class CardFilterTest {
     List<Card> filteredCards = CardFilter.filter(cards, cardFilter);
 
     assertEquals(filteredCards.size(), 4);
+    filteredCards.forEach(card -> {
+      assertTrue(validCardNames.contains(card.getName()));
+    });
+  }
+
+  @Test
+  public void test_cardFilter_legendaryFilter() throws IOException {
+    List<String> validCardNames = Collections.singletonList("Cromat");
+
+    assertNotNull(cards);
+    CardFilter cardFilter = new CardFilter
+            .CardBuilder()
+            .superTypes(Collections.singletonList("Legendary"))
+            .build();
+
+    List<Card> filteredCards = CardFilter.filter(cards, cardFilter);
+
+    assertEquals(filteredCards.size(), 1);
+    filteredCards.forEach(card -> {
+      assertTrue(validCardNames.contains(card.getName()));
+    });
+  }
+
+  @Test
+  public void test_cardFilter_complex() throws IOException {
+    List<String> validCardNames = new ArrayList<>();
+    validCardNames.add("Cromat");
+    validCardNames.add("Llanowar Dead");
+
+    Map<String,String> legal = new HashMap<>();
+    legal.put("format", "Commander");
+    legal.put("legality", "Legal");
+
+    assertNotNull(cards);
+    CardFilter cardFilter = new CardFilter
+            .CardBuilder()
+            .colors(Collections.singletonList(Colors.BLACK.toString()))
+            .legalities(Collections.singletonList(legal))
+            .types(Collections.singletonList("Creature"))
+            .build();
+
+    List<Card> filteredCards = CardFilter.filter(cards, cardFilter);
+
+    assertEquals(filteredCards.size(), 2);
     filteredCards.forEach(card -> {
       assertTrue(validCardNames.contains(card.getName()));
     });

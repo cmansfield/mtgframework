@@ -79,10 +79,6 @@
     ],
     "legalities": [
       {
-        "format": "Commander",
-        "legality": "Legal"
-      },
-      {
         "format": "Invasion Block",
         "legality": "Legal"
       },

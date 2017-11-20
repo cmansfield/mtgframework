@@ -3,9 +3,7 @@ package io.github.cmansfield.validator;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.card.constants.CardConstants;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public final class CardValidator {
   private CardValidator() {}
@@ -30,5 +28,26 @@ public final class CardValidator {
     }
 
     return true;
+  }
+
+  public static Set<String> getListOfLegalities(List<Card> cards) {
+    Set<String> legalities = new HashSet<>();
+
+    cards.forEach(card -> {
+      List<Map<String,String>> listOfLegalities = card.getLegalities();
+
+      if(listOfLegalities == null) {
+        return;
+      }
+
+      listOfLegalities.forEach(legalMap -> {
+        String format = legalMap.get("format");
+        if(!legalities.contains(format)) {
+          legalities.add(format);
+        }
+      });
+    });
+
+    return legalities;
   }
 }

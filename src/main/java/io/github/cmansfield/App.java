@@ -6,12 +6,10 @@ import io.github.cmansfield.io.IoConstants;
 import io.github.cmansfield.io.LoadCardList;
 import io.github.cmansfield.io.SaveCardList;
 import io.github.cmansfield.io.UpdateCardList;
+import io.github.cmansfield.validator.CardValidator;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class App {
@@ -41,22 +39,25 @@ public class App {
       return;
     }
 
-    Map<String,String> legal = new HashMap<>();
-    legal.put("format", "Commander");
-    legal.put("legality", "Legal");
+//    Map<String,String> legal = new HashMap<>();
+//    legal.put("format", "Commander");
+//    legal.put("legality", "Legal");
+//
+//    CardFilter cardFilter = new CardFilter
+//            .CardBuilder()
+//            .legalities(Collections.singletonList(legal))
+//            .superTypes(Collections.singletonList("Legendary"))
+//            .subTypes(Collections.singletonList("Angel"))
+//            .build();
+//
+//    List<Card> filteredCards = CardFilter.filter(cards, cardFilter);
+//    String fileName = SaveCardList.saveCards(filteredCards);
+//
+//    List<Card> testCards = LoadCardList.loadCards(fileName);
+//    printCards(testCards);
 
-    CardFilter cardFilter = new CardFilter
-            .CardBuilder()
-            .legalities(Collections.singletonList(legal))
-            .superTypes(Collections.singletonList("Legendary"))
-            .subTypes(Collections.singletonList("Angel"))
-            .build();
-
-    List<Card> filteredCards = CardFilter.filter(cards, cardFilter);
-    String fileName = SaveCardList.saveCards(filteredCards);
-
-    List<Card> testCards = LoadCardList.loadCards(fileName);
-    printCards(testCards);
+    Set<String> legalities = CardValidator.getListOfLegalities(cards);
+    System.out.println(legalities);
   }
 
   private static void printCards(List<Card> cards) {
