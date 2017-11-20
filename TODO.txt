@@ -14,11 +14,10 @@ Testing
 		UpdateCardList
 
 IO
-	Ability to create new card lists from just a list of card names
 	Option to save a blank/default card.json template
 
 Other
 	Add additional exception handling
 	Add more program args
 	Add method headers
-
+    Create deep copy of cardPojo when creating a new Card

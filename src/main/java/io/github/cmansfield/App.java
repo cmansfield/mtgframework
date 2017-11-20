@@ -1,6 +1,8 @@
 package io.github.cmansfield;
 
 import io.github.cmansfield.card.Card;
+import io.github.cmansfield.card.constants.Colors;
+import io.github.cmansfield.card.constants.Legality;
 import io.github.cmansfield.card.filter.CardFilter;
 import io.github.cmansfield.io.IoConstants;
 import io.github.cmansfield.io.LoadCardList;
@@ -39,41 +41,41 @@ public class App {
       return;
     }
 
-    Map<String,String> legal = new HashMap<>();
-    legal.put("format", "Commander");
-    legal.put("legality", "Legal");
-
-    List<String> colors = new ArrayList<>();
-    colors.add("White");
-    colors.add("Black");
-    colors.add("Red");
-
-    CardFilter cardFilter = new CardFilter
-            .CardBuilder()
-            .legalities(Collections.singletonList(legal))
-            .text("Indestructible")
-            .build();
-
-    List<Card> filteredCards = CardFilter.filter(cards, cardFilter);
+//    Map<String,String> legal = new HashMap<>();
+//    legal.put(Legality.FORMAT.toString(), "Commander");
+//    legal.put(Legality.LEGALITY.toString(), "Legal");
+//
+//    List<String> colors = new ArrayList<>();
+//    colors.add(Colors.WHITE.toString());
+//    colors.add(Colors.BLACK.toString());
+//    colors.add(Colors.RED.toString());
+//
+//    CardFilter cardFilter = new CardFilter
+//            .CardBuilder()
+//            .legalities(Collections.singletonList(legal))
+//            .text("Indestructible")
+//            .build();
+//
+//    List<Card> filteredCards = CardFilter.filter(cards, cardFilter);
 //    printCards(filteredCards);
 //    String fileName = SaveCardList.saveCards(filteredCards);
 
 //    List<Card> testCards = LoadCardList.loadCards(fileName);
 //    printCards(testCards);
 
-//    String cardsRaw = "1x Abzan Beastmaster\n" +
-//            "1x Ambition's Cost\n" +
-//            "1x Animate Wall\n" +
-//            "1x Assault Formation\n" +
-//            "1x Axebane Guardian\n" +
-//            "1x Behind the Scenes\n" +
-//            "1x Belbe's Armor\n" +
-//            "1x Blossoming Sands\n" +
-//            "1x Brave the Sands\n" +
-//            "1x Chromatic Lantern";
-//
-//    List<Card> myDeck = LoadCardList.loadCardsFromString(cardsRaw);
-//    printCards(myDeck);
+    String cardsRaw = "1x Abzan Beastmaster\n" +
+            "1x Ambition's Cost\n" +
+            "1x Animate Wall\n" +
+            "1x Assault Formation\n" +
+            "1x Axebane Guardian\n" +
+            "5x Behind the Scenes\n" +
+            "1x Belbe's Armor\n" +
+            "1x Blossoming Sands\n" +
+            "1x Brave the Sands\n" +
+            "2x Chromatic Lantern";
+
+    List<Card> myDeck = LoadCardList.loadCardsFromString(cardsRaw);
+    printCards(myDeck);
   }
 
   private static void printCards(List<Card> cards) {
