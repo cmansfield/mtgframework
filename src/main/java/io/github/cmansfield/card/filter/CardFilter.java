@@ -9,302 +9,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 
-public class CardFilter {
-  private String layout;
-  private String name;
-  private List<String> names;
-  private String manaCost;
-  private Double cmc;
-  private List<String> colors;
-  private String type;
-  private List<String> superTypes;
-  private List<String> types;
-  private List<String> subTypes;
-  private String text;
-  private String power;
-  private String toughness;
-  private Integer loyalty;
-  private String imageName;
-  private List<Map<String,String>> rulings;
-  private Integer hand;
-  private Integer life;
-  private Boolean starter;
-  private List<String> printings;
-  private String source;
-  private List<Map<String,String>> legalities;
-  private List<String> colorIdentity;
-  private Card card;
-
-
-  public static class CardBuilder {
-    private String _layout;
-    private String _name;
-    private List<String> _names;
-    private String _manaCost;
-    private Double _cmc;
-    private List<String> _colors;
-    private String _type;
-    private List<String> _superTypes;
-    private List<String> _types;
-    private List<String> _subTypes;
-    private String _text;
-    private String _power;
-    private String _toughness;
-    private Integer _loyalty;
-    private String _imageName;
-    private List<Map<String,String>> _rulings;
-    private Integer _hand;
-    private Integer _life;
-    private Boolean _starter;
-    private List<String> _printings;
-    private String _source;
-    private List<Map<String,String>> _legalities;
-    private List<String> _colorIdentity;
-    private Card _card;
-
-    public CardBuilder() {}
-    public CardBuilder(LinkedHashMap cardPojo) {
-      this._card = new Card(cardPojo);
-    }
-
-    public CardBuilder name(String key) {
-      this._name = key;
-      return this;
-    }
-
-    public CardBuilder layout(String layout) {
-      this._layout = layout;
-      return this;
-    }
-
-    public CardBuilder manaCost(String manaCost) {
-      this._manaCost = manaCost;
-      return this;
-    }
-
-    public CardBuilder cmc(Double cmc) {
-      this._cmc = cmc;
-      return this;
-    }
-
-    public CardBuilder colors(List<String> colors) {
-      this._colors = colors;
-      return this;
-    }
-
-    public CardBuilder type(String type) {
-      this._type = type;
-      return this;
-    }
-
-    public CardBuilder superTypes(List<String> superTypes) {
-      this._superTypes = superTypes;
-      return this;
-    }
-
-    public CardBuilder types(List<String> types) {
-      this._types = types;
-      return this;
-    }
-
-    public CardBuilder subTypes(List<String> subTypes) {
-      this._subTypes = subTypes;
-      return this;
-    }
-
-    public CardBuilder text(String text) {
-      this._text = text;
-      return this;
-    }
-
-    public CardBuilder power(String power) {
-      this._power = power;
-      return this;
-    }
-
-    public CardBuilder toughness(String toughness) {
-      this._toughness = toughness;
-      return this;
-    }
-
-    public CardBuilder loyalty(Integer loyalty) {
-      this._loyalty = loyalty;
-      return this;
-    }
-
-    public CardBuilder imageName(String imageName) {
-      this._imageName = imageName;
-      return this;
-    }
-
-    public CardBuilder rulings(List<Map<String,String>> rulings) {
-      this._rulings = rulings;
-      return this;
-    }
-
-    public CardBuilder hand(Integer hand) {
-      this._hand = hand;
-      return this;
-    }
-
-    public CardBuilder life(Integer life) {
-      this._life = life;
-      return this;
-    }
-
-    public CardBuilder starter(Boolean starter) {
-      this._starter = starter;
-      return this;
-    }
-
-    public CardBuilder printings(List<String> printings) {
-      this._printings = printings;
-      return this;
-    }
-
-    public CardBuilder source(String source) {
-      this._source = source;
-      return this;
-    }
-
-    public CardBuilder legalities(List<Map<String,String>> legalities) {
-      this._legalities = legalities;
-      return this;
-    }
-
-    public CardBuilder colorIdentity(List<String> colorIdentity) {
-      this._colorIdentity = colorIdentity;
-      return this;
-    }
-
-    public CardFilter build() {
-      return new CardFilter(this);
-    }
-  }
-
-  private CardFilter(CardBuilder cardBuilder) {
-    if(cardBuilder._card != null) {
-      this.card = cardBuilder._card;
-      return;
-    }
-
-    this.layout = cardBuilder._layout;
-    this.name = cardBuilder._name;
-    this.names = cardBuilder._names;
-    this.manaCost = cardBuilder._manaCost;
-    this.cmc = cardBuilder._cmc;
-    this.colors = cardBuilder._colors;
-    this.type = cardBuilder._type;
-    this.superTypes = cardBuilder._superTypes;
-    this.types = cardBuilder._types;
-    this.subTypes = cardBuilder._subTypes;
-    this.text = cardBuilder._text;
-    this.power = cardBuilder._power;
-    this.toughness = cardBuilder._toughness;
-    this.loyalty = cardBuilder._loyalty;
-    this.imageName = cardBuilder._imageName;
-    this.rulings = cardBuilder._rulings;
-    this.hand = cardBuilder._hand;
-    this.life = cardBuilder._life;
-    this.starter = cardBuilder._starter;
-    this.printings = cardBuilder._printings;
-    this.source = cardBuilder._source;
-    this.legalities = cardBuilder._legalities;
-    this.colorIdentity = cardBuilder._colorIdentity;
-  }
-
-  public String getLayout() {
-    return this.card == null ? this.layout : this.card.getLayout();
-  }
-
-  public String getName() {
-    return this.card == null ? this.name : this.card.getName();
-  }
-
-  public List<String> getNames() {
-    return this.card == null ? this.names : this.card.getNames();
-  }
-
-  public String getManaCost() {
-    return this.card == null ? this.manaCost : this.card.getManaCost();
-  }
-
-  public Double getCmc() {
-    return this.card == null ? this.cmc : this.card.getCmc();
-  }
-
-  public List<String> getColors() {
-    return this.card == null ? this.colors : this.card.getColors();
-  }
-
-  public String getType() {
-    return this.card == null ? this.type : this.card.getType();
-  }
-
-  public List<String> getSuperTypes() {
-    return this.card == null ? this.superTypes : this.card.getSuperTypes();
-  }
-
-  public List<String> getTypes() {
-    return this.card == null ? this.types : this.card.getTypes();
-  }
-
-  public List<String> getSubTypes() {
-    return this.card == null ? this.subTypes : this.card.getSubTypes();
-  }
-
-  public String getText() {
-    return this.card == null ? this.text : this.card.getText();
-  }
-
-  public String getPower() {
-    return this.card == null ? this.power : this.card.getPower();
-  }
-
-  public String getToughness() {
-    return this.card == null ? this.toughness : this.card.getToughness();
-  }
-
-  public Integer getLoyalty() {
-    return this.card == null ? this.loyalty : this.card.getLoyalty();
-  }
-
-  public String getImageName() {
-    return this.card == null ? this.imageName : this.card.getImageName();
-  }
-
-  public List<Map<String,String>> getRulings() {
-    return this.card == null ? this.rulings : this.card.getRulings();
-  }
-
-  public Integer getHand() {
-    return this.card == null ? this.hand : this.card.getHand();
-  }
-
-  public Integer getLife() {
-    return this.card == null ? this.life : this.card.getLife();
-  }
-
-  public Boolean getStarter() {
-    return this.card == null ? this.starter : this.card.getStarter();
-  }
-
-  public List<String> getPrintings() {
-    return this.card == null ? this.printings : this.card.getPrintings();
-  }
-
-  public String getSource() {
-    return this.card == null ? this.source : this.card.getSource();
-  }
-
-  public List<Map<String,String>> getLegalities() {
-    return this.card == null ? this.legalities : this.card.getLegalities();
-  }
-
-  public List<String> getColorIdentity() {
-    return this.card == null ? this.colorIdentity : this.card.getColorIdentity();
-  }
-
+public final class CardFilter {
   /**
    * Returns a list of cards that do not match anything in the filters supplied
    *
@@ -312,7 +17,7 @@ public class CardFilter {
    * @param filters - A list of filters that will be used as the filter criteria
    * @return        - A list of cards that met the filter criteria
    */
-  public static List<Card> filterNot(List<Card> cards, List<CardFilter> filters) {
+  public static List<Card> filterNot(List<Card> cards, List<Card> filters) {
     List<Card> allFilteredNotCards = new ArrayList<>();
 
     filters.forEach(filter -> {
@@ -329,7 +34,7 @@ public class CardFilter {
    * @param filter  - A filter that will be used as the filter criteria
    * @return        - A List of cards that met the filter criteria
    */
-  public static List<Card> filterNot(List<Card> cards, CardFilter filter) {
+  public static List<Card> filterNot(List<Card> cards, Card filter) {
     return filterTemplateMethod(cards, filter, true);
   }
 
@@ -340,7 +45,7 @@ public class CardFilter {
    * @param filters - A list of filters that will be used as the filter criteria
    * @return        - A list of cards that met the filter criteria
    */
-  public static List<Card> filter(List<Card> cards, List<CardFilter> filters) {
+  public static List<Card> filter(List<Card> cards, List<Card> filters) {
     List<Card> allFilteredCards = new ArrayList<>();
 
     filters.forEach(filter -> {
@@ -357,7 +62,7 @@ public class CardFilter {
    * @param filter  - A filter that will be used as the filter criteria
    * @return        - A List of cards that met the filter criteria
    */
-  public static List<Card> filter(List<Card> cards, CardFilter filter) {
+  public static List<Card> filter(List<Card> cards, Card filter) {
     return filterTemplateMethod(cards, filter, false);
   }
 
@@ -371,7 +76,7 @@ public class CardFilter {
    * @param isNot   - A boolean to filter for matching or non-matching cards
    * @return        - A List of cards that met the filter criteria
    */
-  private static List<Card> filterTemplateMethod(List<Card> cards, CardFilter filter, boolean isNot) {
+  private static List<Card> filterTemplateMethod(List<Card> cards, Card filter, boolean isNot) {
     final Map<CardConstants, Pair<Supplier,Function>> getterMethodMap = generateFilterMap(filter);
     List<Card> filteredCards = new ArrayList<>();
 
@@ -492,7 +197,7 @@ public class CardFilter {
    * @param filter  - Filter object that contains the filter criteria
    * @return        - Returns a map of functions that were found in the filters object
    */
-  private static Map<CardConstants, Pair<Supplier,Function>> generateFilterMap(CardFilter filter) {
+  private static Map<CardConstants, Pair<Supplier,Function>> generateFilterMap(Card filter) {
     final Map<CardConstants, Pair<Supplier,Function>> getterMethodMap = new EnumMap<CardConstants, Pair<Supplier,Function>>(CardConstants.class);
 
     if(filter.getLayout() != null) getterMethodMap.put(CardConstants.LAYOUT, new Pair<Supplier,Function>(filter::getLayout, c -> ((Card)c).getLayout()));

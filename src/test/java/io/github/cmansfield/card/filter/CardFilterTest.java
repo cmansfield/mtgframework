@@ -38,7 +38,7 @@ public class CardFilterTest {
 
 
     assertNotNull(cards);
-    CardFilter cardFilter = new CardFilter
+    Card cardFilter = new Card
             .CardBuilder()
             .colors(Collections.singletonList(Colors.WHITE.toString()))
             .build();
@@ -56,7 +56,7 @@ public class CardFilterTest {
     List<String> validCardNames = Collections.singletonList("Cromat");
 
     assertNotNull(cards);
-    CardFilter cardFilter = new CardFilter
+    Card cardFilter = new Card
             .CardBuilder()
             .superTypes(Collections.singletonList("Legendary"))
             .build();
@@ -80,7 +80,7 @@ public class CardFilterTest {
     legal.put(Legality.LEGALITY.toString(), "Legal");
 
     assertNotNull(cards);
-    CardFilter cardFilter = new CardFilter
+    Card cardFilter = new Card
             .CardBuilder()
             .colors(Collections.singletonList(Colors.BLACK.toString()))
             .legalities(Collections.singletonList(legal))
@@ -101,17 +101,17 @@ public class CardFilterTest {
     validCardNames.add("Cromat");
     validCardNames.add("Flowstone Charger");
 
-    CardFilter cardFilter1 = new CardFilter
+    Card cardFilter1 = new Card
             .CardBuilder()
             .subTypes(Collections.singletonList("Illusion"))
             .build();
 
-    CardFilter cardFilter2 = new CardFilter
+    Card cardFilter2 = new Card
             .CardBuilder()
             .subTypes(Collections.singletonList("Beast"))
             .build();
 
-    List<CardFilter> filters = new ArrayList<>();
+    List<Card> filters = new ArrayList<>();
     filters.add(cardFilter1);
     filters.add(cardFilter2);
 
@@ -131,7 +131,7 @@ public class CardFilterTest {
     validCardNames.add("Martyrs' Tomb");
     validCardNames.add("Minotaur Illusionist");
 
-    CardFilter cardFilterNot = new CardFilter
+    Card cardFilterNot = new Card
             .CardBuilder()
             .colors(Collections.singletonList(Colors.GREEN.toString()))
             .build();
@@ -152,7 +152,7 @@ public class CardFilterTest {
             .format(Formats.COMMANDER)
             .build();
 
-    CardFilter cardFilterNot = new CardFilter
+    Card cardFilterNot = new Card
             .CardBuilder()
             .legalities(legalities)
             .types(Collections.singletonList("Sorcery"))

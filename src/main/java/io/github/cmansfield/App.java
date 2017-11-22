@@ -11,7 +11,6 @@ import io.github.cmansfield.io.IoConstants;
 import io.github.cmansfield.io.LoadCards;
 import io.github.cmansfield.io.SaveCards;
 import io.github.cmansfield.io.UpdateCards;
-import org.omg.IOP.CodecPackage.FormatMismatch;
 
 import java.io.IOException;
 import java.util.*;
@@ -50,7 +49,7 @@ public class App {
 //            .format(Formats.BATTLE_FOR_ZENDIKAR_BLOCK)
             .build();
 
-    CardFilter cardFilter = new CardFilter
+    Card cardFilter = new Card
             .CardBuilder()
             .legalities(legalities)
             .text("Indestructible")
@@ -58,7 +57,7 @@ public class App {
 
     List<Card> filteredCards = CardFilter.filter(cards, Collections.singletonList(cardFilter));
 
-    CardFilter cardFilterNot = new CardFilter
+    Card cardFilterNot = new Card
             .CardBuilder()
             .colors(Collections.singletonList(Colors.GREEN.toString()))
             .build();

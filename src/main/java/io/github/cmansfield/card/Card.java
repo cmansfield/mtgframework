@@ -3,6 +3,7 @@ package io.github.cmansfield.card;
 import io.github.cmansfield.card.constants.CardConstants;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -128,5 +129,127 @@ public class Card implements Serializable {
   @Override
   public String toString() {
     return cardPojo.toString();
+  }
+
+  public static class CardBuilder {
+    private Map<String,Object> _cardPojo;
+
+    public CardBuilder() {
+      this._cardPojo = new LinkedHashMap<>();
+    }
+
+    public Card.CardBuilder name(String key) {
+      this._cardPojo.put(CardConstants.NAME.toString(), key);
+      return this;
+    }
+
+    public Card.CardBuilder layout(String layout) {
+      this._cardPojo.put(CardConstants.LAYOUT.toString(), layout);
+      return this;
+    }
+
+    public Card.CardBuilder manaCost(String manaCost) {
+      this._cardPojo.put(CardConstants.MANA_COST.toString(), manaCost);
+      return this;
+    }
+
+    public Card.CardBuilder cmc(Double cmc) {
+      this._cardPojo.put(CardConstants.CMC.toString(), cmc);
+      return this;
+    }
+
+    public Card.CardBuilder colors(List<String> colors) {
+      this._cardPojo.put(CardConstants.COLORS.toString(), colors);
+      return this;
+    }
+
+    public Card.CardBuilder type(String type) {
+      this._cardPojo.put(CardConstants.TYPE.toString(), type);
+      return this;
+    }
+
+    public Card.CardBuilder superTypes(List<String> superTypes) {
+      this._cardPojo.put(CardConstants.SUPER_TYPES.toString(), superTypes);
+      return this;
+    }
+
+    public Card.CardBuilder types(List<String > types) {
+      this._cardPojo.put(CardConstants.TYPES.toString(), types);
+      return this;
+    }
+
+    public Card.CardBuilder subTypes(List<String> subTypes) {
+      this._cardPojo.put(CardConstants.SUB_TYPES.toString(), subTypes);
+      return this;
+    }
+
+    public Card.CardBuilder text(String text) {
+      this._cardPojo.put(CardConstants.TEXT.toString(), text);
+      return this;
+    }
+
+    public Card.CardBuilder power(String power) {
+      this._cardPojo.put(CardConstants.POWER.toString(), power);
+      return this;
+    }
+
+    public Card.CardBuilder toughness(String toughness) {
+      this._cardPojo.put(CardConstants.TOUGHNESS.toString(), toughness);
+      return this;
+    }
+
+    public Card.CardBuilder loyalty(Integer loyalty) {
+      this._cardPojo.put(CardConstants.LOYALTY.toString(), loyalty);
+      return this;
+    }
+
+    public Card.CardBuilder imageName(String imageName) {
+      this._cardPojo.put(CardConstants.IMAGE_NAME.toString(), imageName);
+      return this;
+    }
+
+    public Card.CardBuilder rulings(List<Map<String,String>> rulings) {
+      this._cardPojo.put(CardConstants.RULINGS.toString(), rulings);
+      return this;
+    }
+
+    public Card.CardBuilder hand(Integer hand) {
+      this._cardPojo.put(CardConstants.HAND.toString(), hand);
+      return this;
+    }
+
+    public Card.CardBuilder life(Integer life) {
+      this._cardPojo.put(CardConstants.LIFE.toString(), life);
+      return this;
+    }
+
+    public Card.CardBuilder starter(Boolean starter) {
+      this._cardPojo.put(CardConstants.STARTER.toString(), starter);
+      return this;
+    }
+
+    public Card.CardBuilder printings(List<String> printings) {
+      this._cardPojo.put(CardConstants.PRINTINGS.toString(), printings);
+      return this;
+    }
+
+    public Card.CardBuilder source(String source) {
+      this._cardPojo.put(CardConstants.SOURCE.toString(), source);
+      return this;
+    }
+
+    public Card.CardBuilder legalities(List<Map<String,String>> legalities) {
+      this._cardPojo.put(CardConstants.LEGALITIES.toString(), legalities);
+      return this;
+    }
+
+    public Card.CardBuilder colorIdentity(List<String> colorIdentity) {
+      this._cardPojo.put(CardConstants.COLOR_IDENTITY.toString(), colorIdentity);
+      return this;
+    }
+
+    public Card build() {
+      return new Card(this._cardPojo);
+    }
   }
 }
