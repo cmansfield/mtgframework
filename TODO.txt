@@ -7,8 +7,6 @@ Filtering
 	Add a static method to filter by NOT this CardFilter
 	
 Testing
-    Add integration tests
-        Deck
 	Add unit tests (Mockito)
 		LoadCards
 		SaveCards

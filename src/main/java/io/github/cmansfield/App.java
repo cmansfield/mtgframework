@@ -41,33 +41,33 @@ public class App {
       return;
     }
 
-    Map<String,String> legalities = new HashMap<>();
-    legalities.put(Legality.FORMAT.toString(), "Commander");
-    legalities.put(Legality.LEGALITY.toString(), "Legal");
+//    Map<String,String> legalities = new HashMap<>();
+//    legalities.put(Legality.FORMAT.toString(), "Commander");
+//    legalities.put(Legality.LEGALITY.toString(), "Legal");
+//
+//    CardFilter cardFilter = new CardFilter
+//            .CardBuilder()
+//            .legalities(Collections.singletonList(legalities))
+//            .text("Indestructible")
+//            .build();
+//
+//    CardFilter cardFilter2 = new CardFilter
+//            .CardBuilder()
+//            .colors(Collections.singletonList(Colors.RED.toString()))
+//            .build();
+//
+//    List<CardFilter> filters = new ArrayList<>();
+//    filters.add(cardFilter);
+//    filters.add(cardFilter2);
+//
+//    List<Card> filteredCards = CardFilter.filter(cards, filters);
+//    printCards(filteredCards);
+//    System.out.println(filteredCards.size());
+//    String fileName = SaveCards.saveCards(filteredCards);
 
-    CardFilter cardFilter = new CardFilter
-            .CardBuilder()
-            .legalities(Collections.singletonList(legalities))
-            .text("Indestructible")
-            .build();
-
-    CardFilter cardFilter2 = new CardFilter
-            .CardBuilder()
-            .colors(Collections.singletonList(Colors.RED.toString()))
-            .build();
-
-    List<CardFilter> filters = new ArrayList<>();
-    filters.add(cardFilter);
-    filters.add(cardFilter2);
-
-    List<Card> filteredCards = CardFilter.filter(cards, filters);
-    printCards(filteredCards);
-    System.out.println(filteredCards.size());
-    String fileName = SaveCards.saveCards(filteredCards);
-
-//    Deck deck = LoadCards.loadDeck("src\\test\\resources\\inputRaw.txt");
+    Deck deck = LoadCards.loadDeck("src\\test\\resources\\inputRaw.txt");
 //    Deck deck = LoadCards.loadDeck("EldraziDeck.txt");
-//    SaveCards.saveDeck(deck);
+    SaveCards.saveDeck(deck);
 //    System.out.println(deck.toString());
   }
 

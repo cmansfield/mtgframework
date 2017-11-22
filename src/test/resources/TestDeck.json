@@ -1,0 +1,493 @@
+{
+  "Assault Formation0" : {
+    "layout" : "normal",
+    "name" : "Assault Formation",
+    "manaCost" : "{1}{G}",
+    "cmc" : 2,
+    "colors" : [ "Green" ],
+    "type" : "Enchantment",
+    "types" : [ "Enchantment" ],
+    "text" : "Each creature you control assigns combat damage equal to its toughness rather than its power.\n{G}: Target creature with defender can attack this turn as though it didn't have defender.\n{2}{G}: Creatures you control get +0/+1 until end of turn.",
+    "imageName" : "assault formation",
+    "rulings" : [ {
+      "date" : "2017-11-17",
+      "text" : "For example, a 2/3 creature will assign 3 combat damage rather than 2."
+    }, {
+      "date" : "2017-11-17",
+      "text" : "Assault Formation's first ability doesn't actually change any creature's power. It changes only the amount of combat damage it assigns. All other rules and effects that check power or toughness use the real values. For example, Hunt the Weak won't cause a creature to fight with its toughness."
+    } ],
+    "printings" : [ "DTK", "IMA" ],
+    "legalities" : [ {
+      "format" : "Commander",
+      "legality" : "Legal"
+    }, {
+      "format" : "Khans of Tarkir Block",
+      "legality" : "Legal"
+    }, {
+      "format" : "Legacy",
+      "legality" : "Legal"
+    }, {
+      "format" : "Modern",
+      "legality" : "Legal"
+    }, {
+      "format" : "Vintage",
+      "legality" : "Legal"
+    } ],
+    "colorIdentity" : [ "G" ]
+  },
+  "Chromatic Lantern0" : {
+    "layout" : "normal",
+    "name" : "Chromatic Lantern",
+    "manaCost" : "{3}",
+    "cmc" : 3,
+    "type" : "Artifact",
+    "types" : [ "Artifact" ],
+    "text" : "Lands you control have \"{T}: Add one mana of any color to your mana pool.\"\n{T}: Add one mana of any color to your mana pool.",
+    "imageName" : "chromatic lantern",
+    "rulings" : [ {
+      "date" : "2012-10-01",
+      "text" : "Lands you control won't lose any other abilities they had. They also won't gain or lose any land types."
+    } ],
+    "printings" : [ "RTR", "MPS", "C16" ],
+    "legalities" : [ {
+      "format" : "Commander",
+      "legality" : "Legal"
+    }, {
+      "format" : "Legacy",
+      "legality" : "Legal"
+    }, {
+      "format" : "Modern",
+      "legality" : "Legal"
+    }, {
+      "format" : "Return to Ravnica Block",
+      "legality" : "Legal"
+    }, {
+      "format" : "Vintage",
+      "legality" : "Legal"
+    } ]
+  },
+  "Chromatic Lantern1" : {
+    "layout" : "normal",
+    "name" : "Chromatic Lantern",
+    "manaCost" : "{3}",
+    "cmc" : 3,
+    "type" : "Artifact",
+    "types" : [ "Artifact" ],
+    "text" : "Lands you control have \"{T}: Add one mana of any color to your mana pool.\"\n{T}: Add one mana of any color to your mana pool.",
+    "imageName" : "chromatic lantern",
+    "rulings" : [ {
+      "date" : "2012-10-01",
+      "text" : "Lands you control won't lose any other abilities they had. They also won't gain or lose any land types."
+    } ],
+    "printings" : [ "RTR", "MPS", "C16" ],
+    "legalities" : [ {
+      "format" : "Commander",
+      "legality" : "Legal"
+    }, {
+      "format" : "Legacy",
+      "legality" : "Legal"
+    }, {
+      "format" : "Modern",
+      "legality" : "Legal"
+    }, {
+      "format" : "Return to Ravnica Block",
+      "legality" : "Legal"
+    }, {
+      "format" : "Vintage",
+      "legality" : "Legal"
+    } ]
+  },
+  "Animate Wall0" : {
+    "layout" : "normal",
+    "name" : "Animate Wall",
+    "manaCost" : "{W}",
+    "cmc" : 1,
+    "colors" : [ "White" ],
+    "type" : "Enchantment — Aura",
+    "types" : [ "Enchantment" ],
+    "subtypes" : [ "Aura" ],
+    "text" : "Enchant Wall\nEnchanted Wall can attack as though it didn't have defender.",
+    "imageName" : "animate wall",
+    "rulings" : [ {
+      "date" : "2007-09-16",
+      "text" : "This is a change from the most recent wording. As was the case in the past, Animate Wall can now enchant only a Wall."
+    } ],
+    "printings" : [ "LEA", "LEB", "2ED", "CED", "CEI", "3ED", "4ED", "5ED", "6ED", "MED" ],
+    "legalities" : [ {
+      "format" : "Commander",
+      "legality" : "Legal"
+    }, {
+      "format" : "Legacy",
+      "legality" : "Legal"
+    }, {
+      "format" : "Vintage",
+      "legality" : "Legal"
+    } ],
+    "colorIdentity" : [ "W" ]
+  },
+  "Belbe's Armor0" : {
+    "layout" : "normal",
+    "name" : "Belbe's Armor",
+    "manaCost" : "{3}",
+    "cmc" : 3,
+    "type" : "Artifact",
+    "types" : [ "Artifact" ],
+    "text" : "{X}, {T}: Target creature gets -X/+X until end of turn.",
+    "imageName" : "belbe's armor",
+    "printings" : [ "NMS" ],
+    "legalities" : [ {
+      "format" : "Commander",
+      "legality" : "Legal"
+    }, {
+      "format" : "Legacy",
+      "legality" : "Legal"
+    }, {
+      "format" : "Masques Block",
+      "legality" : "Legal"
+    }, {
+      "format" : "Vintage",
+      "legality" : "Legal"
+    } ]
+  },
+  "Behind the Scenes1" : {
+    "layout" : "normal",
+    "name" : "Behind the Scenes",
+    "manaCost" : "{2}{B}",
+    "cmc" : 3,
+    "colors" : [ "Black" ],
+    "type" : "Enchantment",
+    "types" : [ "Enchantment" ],
+    "text" : "Creatures you control have skulk. (They can't be blocked by creatures with greater power.)\n{4}{W}: Creatures you control get +1/+1 until end of turn.",
+    "imageName" : "behind the scenes",
+    "rulings" : [ {
+      "date" : "2016-04-08",
+      "text" : "Skulk matters only as blockers are chosen. Modifying either creature's power after blockers are chosen won't cause the attacking creature to become unblocked."
+    }, {
+      "date" : "2016-04-08",
+      "text" : "If you cause a creature to have 0 power or less, use the actual value (which may be negative) to determine whether it can block or be blocked. A creature with skulk and 0 or less power most likely won't be blocked, but it won't deal combat damage and won't trigger any abilities that trigger when combat damage is dealt."
+    } ],
+    "printings" : [ "SOI" ],
+    "legalities" : [ {
+      "format" : "Commander",
+      "legality" : "Legal"
+    }, {
+      "format" : "Legacy",
+      "legality" : "Legal"
+    }, {
+      "format" : "Modern",
+      "legality" : "Legal"
+    }, {
+      "format" : "Shadows over Innistrad Block",
+      "legality" : "Legal"
+    }, {
+      "format" : "Vintage",
+      "legality" : "Legal"
+    } ],
+    "colorIdentity" : [ "B", "W" ]
+  },
+  "Behind the Scenes0" : {
+    "layout" : "normal",
+    "name" : "Behind the Scenes",
+    "manaCost" : "{2}{B}",
+    "cmc" : 3,
+    "colors" : [ "Black" ],
+    "type" : "Enchantment",
+    "types" : [ "Enchantment" ],
+    "text" : "Creatures you control have skulk. (They can't be blocked by creatures with greater power.)\n{4}{W}: Creatures you control get +1/+1 until end of turn.",
+    "imageName" : "behind the scenes",
+    "rulings" : [ {
+      "date" : "2016-04-08",
+      "text" : "Skulk matters only as blockers are chosen. Modifying either creature's power after blockers are chosen won't cause the attacking creature to become unblocked."
+    }, {
+      "date" : "2016-04-08",
+      "text" : "If you cause a creature to have 0 power or less, use the actual value (which may be negative) to determine whether it can block or be blocked. A creature with skulk and 0 or less power most likely won't be blocked, but it won't deal combat damage and won't trigger any abilities that trigger when combat damage is dealt."
+    } ],
+    "printings" : [ "SOI" ],
+    "legalities" : [ {
+      "format" : "Commander",
+      "legality" : "Legal"
+    }, {
+      "format" : "Legacy",
+      "legality" : "Legal"
+    }, {
+      "format" : "Modern",
+      "legality" : "Legal"
+    }, {
+      "format" : "Shadows over Innistrad Block",
+      "legality" : "Legal"
+    }, {
+      "format" : "Vintage",
+      "legality" : "Legal"
+    } ],
+    "colorIdentity" : [ "B", "W" ]
+  },
+  "Blossoming Sands0" : {
+    "layout" : "normal",
+    "name" : "Blossoming Sands",
+    "cmc" : 0,
+    "type" : "Land",
+    "types" : [ "Land" ],
+    "text" : "Blossoming Sands enters the battlefield tapped.\nWhen Blossoming Sands enters the battlefield, you gain 1 life.\n{T}: Add {G} or {W} to your mana pool.",
+    "imageName" : "blossoming sands",
+    "printings" : [ "KTK", "FRF", "EMA", "C17" ],
+    "legalities" : [ {
+      "format" : "Commander",
+      "legality" : "Legal"
+    }, {
+      "format" : "Khans of Tarkir Block",
+      "legality" : "Legal"
+    }, {
+      "format" : "Legacy",
+      "legality" : "Legal"
+    }, {
+      "format" : "Modern",
+      "legality" : "Legal"
+    }, {
+      "format" : "Vintage",
+      "legality" : "Legal"
+    } ],
+    "colorIdentity" : [ "G", "W" ]
+  },
+  "Behind the Scenes3" : {
+    "layout" : "normal",
+    "name" : "Behind the Scenes",
+    "manaCost" : "{2}{B}",
+    "cmc" : 3,
+    "colors" : [ "Black" ],
+    "type" : "Enchantment",
+    "types" : [ "Enchantment" ],
+    "text" : "Creatures you control have skulk. (They can't be blocked by creatures with greater power.)\n{4}{W}: Creatures you control get +1/+1 until end of turn.",
+    "imageName" : "behind the scenes",
+    "rulings" : [ {
+      "date" : "2016-04-08",
+      "text" : "Skulk matters only as blockers are chosen. Modifying either creature's power after blockers are chosen won't cause the attacking creature to become unblocked."
+    }, {
+      "date" : "2016-04-08",
+      "text" : "If you cause a creature to have 0 power or less, use the actual value (which may be negative) to determine whether it can block or be blocked. A creature with skulk and 0 or less power most likely won't be blocked, but it won't deal combat damage and won't trigger any abilities that trigger when combat damage is dealt."
+    } ],
+    "printings" : [ "SOI" ],
+    "legalities" : [ {
+      "format" : "Commander",
+      "legality" : "Legal"
+    }, {
+      "format" : "Legacy",
+      "legality" : "Legal"
+    }, {
+      "format" : "Modern",
+      "legality" : "Legal"
+    }, {
+      "format" : "Shadows over Innistrad Block",
+      "legality" : "Legal"
+    }, {
+      "format" : "Vintage",
+      "legality" : "Legal"
+    } ],
+    "colorIdentity" : [ "B", "W" ]
+  },
+  "Behind the Scenes2" : {
+    "layout" : "normal",
+    "name" : "Behind the Scenes",
+    "manaCost" : "{2}{B}",
+    "cmc" : 3,
+    "colors" : [ "Black" ],
+    "type" : "Enchantment",
+    "types" : [ "Enchantment" ],
+    "text" : "Creatures you control have skulk. (They can't be blocked by creatures with greater power.)\n{4}{W}: Creatures you control get +1/+1 until end of turn.",
+    "imageName" : "behind the scenes",
+    "rulings" : [ {
+      "date" : "2016-04-08",
+      "text" : "Skulk matters only as blockers are chosen. Modifying either creature's power after blockers are chosen won't cause the attacking creature to become unblocked."
+    }, {
+      "date" : "2016-04-08",
+      "text" : "If you cause a creature to have 0 power or less, use the actual value (which may be negative) to determine whether it can block or be blocked. A creature with skulk and 0 or less power most likely won't be blocked, but it won't deal combat damage and won't trigger any abilities that trigger when combat damage is dealt."
+    } ],
+    "printings" : [ "SOI" ],
+    "legalities" : [ {
+      "format" : "Commander",
+      "legality" : "Legal"
+    }, {
+      "format" : "Legacy",
+      "legality" : "Legal"
+    }, {
+      "format" : "Modern",
+      "legality" : "Legal"
+    }, {
+      "format" : "Shadows over Innistrad Block",
+      "legality" : "Legal"
+    }, {
+      "format" : "Vintage",
+      "legality" : "Legal"
+    } ],
+    "colorIdentity" : [ "B", "W" ]
+  },
+  "Abzan Beastmaster0" : {
+    "layout" : "normal",
+    "name" : "Abzan Beastmaster",
+    "manaCost" : "{2}{G}",
+    "cmc" : 3,
+    "colors" : [ "Green" ],
+    "type" : "Creature — Hound Shaman",
+    "types" : [ "Creature" ],
+    "subtypes" : [ "Hound", "Shaman" ],
+    "text" : "At the beginning of your upkeep, draw a card if you control the creature with the greatest toughness or tied for the greatest toughness.",
+    "power" : "2",
+    "toughness" : "1",
+    "imageName" : "abzan beastmaster",
+    "rulings" : [ {
+      "date" : "2014-11-24",
+      "text" : "The ability checks the creatures on the battlefield as it resolves to determine if you will draw a card."
+    }, {
+      "date" : "2014-11-24",
+      "text" : "You'll draw a maximum of one card, even if you control multiple creatures tied for the greatest toughness."
+    } ],
+    "printings" : [ "pFNM", "FRF" ],
+    "legalities" : [ {
+      "format" : "Commander",
+      "legality" : "Legal"
+    }, {
+      "format" : "Khans of Tarkir Block",
+      "legality" : "Legal"
+    }, {
+      "format" : "Legacy",
+      "legality" : "Legal"
+    }, {
+      "format" : "Modern",
+      "legality" : "Legal"
+    }, {
+      "format" : "Vintage",
+      "legality" : "Legal"
+    } ],
+    "colorIdentity" : [ "G" ]
+  },
+  "Ambition's Cost0" : {
+    "layout" : "normal",
+    "name" : "Ambition's Cost",
+    "manaCost" : "{3}{B}",
+    "cmc" : 4,
+    "colors" : [ "Black" ],
+    "type" : "Sorcery",
+    "types" : [ "Sorcery" ],
+    "text" : "You draw three cards and you lose 3 life.",
+    "imageName" : "ambition's cost",
+    "printings" : [ "PTK", "8ED", "C15", "DDR", "CMA", "C17" ],
+    "legalities" : [ {
+      "format" : "Commander",
+      "legality" : "Legal"
+    }, {
+      "format" : "Legacy",
+      "legality" : "Legal"
+    }, {
+      "format" : "Modern",
+      "legality" : "Legal"
+    }, {
+      "format" : "Vintage",
+      "legality" : "Legal"
+    } ],
+    "colorIdentity" : [ "B" ]
+  },
+  "Brave the Sands0" : {
+    "layout" : "normal",
+    "name" : "Brave the Sands",
+    "manaCost" : "{1}{W}",
+    "cmc" : 2,
+    "colors" : [ "White" ],
+    "type" : "Enchantment",
+    "types" : [ "Enchantment" ],
+    "text" : "Creatures you control have vigilance.\nEach creature you control can block an additional creature each combat.",
+    "imageName" : "brave the sands",
+    "rulings" : [ {
+      "date" : "2014-09-20",
+      "text" : "The last ability is cumulative. If you control an additional Brave the Sands, your creatures will each be able to block three creatures, and so on."
+    } ],
+    "printings" : [ "KTK", "C16" ],
+    "legalities" : [ {
+      "format" : "Commander",
+      "legality" : "Legal"
+    }, {
+      "format" : "Khans of Tarkir Block",
+      "legality" : "Legal"
+    }, {
+      "format" : "Legacy",
+      "legality" : "Legal"
+    }, {
+      "format" : "Modern",
+      "legality" : "Legal"
+    }, {
+      "format" : "Vintage",
+      "legality" : "Legal"
+    } ],
+    "colorIdentity" : [ "W" ]
+  },
+  "Axebane Guardian0" : {
+    "layout" : "normal",
+    "name" : "Axebane Guardian",
+    "manaCost" : "{2}{G}",
+    "cmc" : 3,
+    "colors" : [ "Green" ],
+    "type" : "Creature — Human Druid",
+    "types" : [ "Creature" ],
+    "subtypes" : [ "Human", "Druid" ],
+    "text" : "Defender\n{T}: Add X mana in any combination of colors to your mana pool, where X is the number of creatures with defender you control.",
+    "power" : "0",
+    "toughness" : "3",
+    "imageName" : "axebane guardian",
+    "rulings" : [ {
+      "date" : "2012-10-01",
+      "text" : "Axebane Guardian's activated ability is a mana ability. It doesn't use the stack and can't be responded to. The number of creatures with defender you control is counted, and the color(s) of mana produced chosen, immediately after the ability is activated when the ability resolves."
+    } ],
+    "printings" : [ "RTR" ],
+    "legalities" : [ {
+      "format" : "Commander",
+      "legality" : "Legal"
+    }, {
+      "format" : "Legacy",
+      "legality" : "Legal"
+    }, {
+      "format" : "Modern",
+      "legality" : "Legal"
+    }, {
+      "format" : "Return to Ravnica Block",
+      "legality" : "Legal"
+    }, {
+      "format" : "Vintage",
+      "legality" : "Legal"
+    } ],
+    "colorIdentity" : [ "G" ]
+  },
+  "Behind the Scenes4" : {
+    "layout" : "normal",
+    "name" : "Behind the Scenes",
+    "manaCost" : "{2}{B}",
+    "cmc" : 3,
+    "colors" : [ "Black" ],
+    "type" : "Enchantment",
+    "types" : [ "Enchantment" ],
+    "text" : "Creatures you control have skulk. (They can't be blocked by creatures with greater power.)\n{4}{W}: Creatures you control get +1/+1 until end of turn.",
+    "imageName" : "behind the scenes",
+    "rulings" : [ {
+      "date" : "2016-04-08",
+      "text" : "Skulk matters only as blockers are chosen. Modifying either creature's power after blockers are chosen won't cause the attacking creature to become unblocked."
+    }, {
+      "date" : "2016-04-08",
+      "text" : "If you cause a creature to have 0 power or less, use the actual value (which may be negative) to determine whether it can block or be blocked. A creature with skulk and 0 or less power most likely won't be blocked, but it won't deal combat damage and won't trigger any abilities that trigger when combat damage is dealt."
+    } ],
+    "printings" : [ "SOI" ],
+    "legalities" : [ {
+      "format" : "Commander",
+      "legality" : "Legal"
+    }, {
+      "format" : "Legacy",
+      "legality" : "Legal"
+    }, {
+      "format" : "Modern",
+      "legality" : "Legal"
+    }, {
+      "format" : "Shadows over Innistrad Block",
+      "legality" : "Legal"
+    }, {
+      "format" : "Vintage",
+      "legality" : "Legal"
+    } ],
+    "colorIdentity" : [ "B", "W" ]
+  }
+}

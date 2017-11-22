@@ -92,4 +92,32 @@ public class CardFilterTest {
       assertTrue(validCardNames.contains(card.getName()));
     });
   }
+
+  @Test
+  public void test_multipleFilters() {
+    List<String> validCardNames = new ArrayList<>();
+    validCardNames.add("Cromat");
+    validCardNames.add("Flowstone Charger");
+
+    CardFilter cardFilter1 = new CardFilter
+            .CardBuilder()
+            .subTypes(Collections.singletonList("Illusion"))
+            .build();
+
+    CardFilter cardFilter2 = new CardFilter
+            .CardBuilder()
+            .subTypes(Collections.singletonList("Beast"))
+            .build();
+
+    List<CardFilter> filters = new ArrayList<>();
+    filters.add(cardFilter1);
+    filters.add(cardFilter2);
+
+    List<Card> filteredCards = CardFilter.filter(cards, filters);
+
+    assertEquals(filteredCards.size(), 2);
+    filteredCards.forEach(card -> {
+      assertTrue(validCardNames.contains(card.getName()));
+    });
+  }
 }
