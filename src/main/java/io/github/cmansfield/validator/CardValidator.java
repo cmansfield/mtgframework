@@ -44,35 +44,4 @@ public final class CardValidator {
 
     return true;
   }
-
-  /**
-   * Returns a Set of all of all of the found legalities found in all cards supplied
-   *
-   * @param cards - A list of cards that will be iterated over
-   * @return      - Returns a Set of all of the found legalities
-   */
-  public static Set<String> getListOfLegalities(List<Card> cards) {
-    Set<String> legalities = new HashSet<>();
-
-    if(cards == null) {
-      return null;
-    }
-
-    cards.forEach(card -> {
-      List<Map<String,String>> listOfLegalities = card.getLegalities();
-
-      if(listOfLegalities == null) {
-        return;
-      }
-
-      listOfLegalities.forEach(legalMap -> {
-        String format = legalMap.get("format");
-        if(!legalities.contains(format)) {
-          legalities.add(format);
-        }
-      });
-    });
-
-    return legalities;
-  }
 }

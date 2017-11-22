@@ -1,7 +1,9 @@
 package io.github.cmansfield;
 
 import io.github.cmansfield.card.Card;
+import io.github.cmansfield.card.CardUtils;
 import io.github.cmansfield.card.constants.Colors;
+import io.github.cmansfield.card.constants.Formats;
 import io.github.cmansfield.card.constants.Legality;
 import io.github.cmansfield.card.filter.CardFilter;
 import io.github.cmansfield.deck.Deck;
@@ -9,6 +11,7 @@ import io.github.cmansfield.io.IoConstants;
 import io.github.cmansfield.io.LoadCards;
 import io.github.cmansfield.io.SaveCards;
 import io.github.cmansfield.io.UpdateCards;
+import org.omg.IOP.CodecPackage.FormatMismatch;
 
 import java.io.IOException;
 import java.util.*;
@@ -41,33 +44,26 @@ public class App {
       return;
     }
 
-//    Map<String,String> legalities = new HashMap<>();
-//    legalities.put(Legality.FORMAT.toString(), "Commander");
-//    legalities.put(Legality.LEGALITY.toString(), "Legal");
-//
-//    CardFilter cardFilter = new CardFilter
-//            .CardBuilder()
-//            .legalities(Collections.singletonList(legalities))
+    List<Map<String,String>> legalities = new CardUtils
+            .LegalitiesBuilder()
+            .format(Formats.COMMANDER)
+            .format(Formats.BATTLE_FOR_ZENDIKAR_BLOCK)
+            .build();
+
+    CardFilter cardFilter = new CardFilter
+            .CardBuilder()
+            .legalities(legalities)
 //            .text("Indestructible")
-//            .build();
-//
-//    CardFilter cardFilter2 = new CardFilter
-//            .CardBuilder()
-//            .colors(Collections.singletonList(Colors.RED.toString()))
-//            .build();
-//
-//    List<CardFilter> filters = new ArrayList<>();
-//    filters.add(cardFilter);
-//    filters.add(cardFilter2);
-//
-//    List<Card> filteredCards = CardFilter.filter(cards, filters);
-//    printCards(filteredCards);
-//    System.out.println(filteredCards.size());
+            .build();
+
+    List<Card> filteredCards = CardFilter.filter(cards, Collections.singletonList(cardFilter));
+    printCards(filteredCards);
+    System.out.println(filteredCards.size());
 //    String fileName = SaveCards.saveCards(filteredCards);
 
-    Deck deck = LoadCards.loadDeck("src\\test\\resources\\inputRaw.txt");
+//    Deck deck = LoadCards.loadDeck("src\\test\\resources\\inputRaw.txt");
 //    Deck deck = LoadCards.loadDeck("EldraziDeck.txt");
-    SaveCards.saveDeck(deck);
+//    SaveCards.saveDeck(deck);
 //    System.out.println(deck.toString());
   }
 
