@@ -2,8 +2,6 @@
 Mtg Framework TODO list
 
 Testing
-    Add integration tests
-        CardFilter::filterNot
 	Add unit tests (Mockito)
 		LoadCards
 		SaveCards

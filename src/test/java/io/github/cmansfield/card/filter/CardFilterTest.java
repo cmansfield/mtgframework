@@ -1,7 +1,9 @@
 package io.github.cmansfield.card.filter;
 
 import io.github.cmansfield.card.Card;
+import io.github.cmansfield.card.CardUtils;
 import io.github.cmansfield.card.constants.Colors;
+import io.github.cmansfield.card.constants.Formats;
 import io.github.cmansfield.card.constants.Legality;
 import io.github.cmansfield.io.LoadCards;
 import org.testng.annotations.BeforeClass;
@@ -119,5 +121,47 @@ public class CardFilterTest {
     filteredCards.forEach(card -> {
       assertTrue(validCardNames.contains(card.getName()));
     });
+  }
+
+  @Test
+  public void test_filterNot() {
+    List<String> validCardNames = new ArrayList<>();
+    validCardNames.add("Fervent Charge");
+    validCardNames.add("Flowstone Charger");
+    validCardNames.add("Martyrs' Tomb");
+    validCardNames.add("Minotaur Illusionist");
+
+    CardFilter cardFilterNot = new CardFilter
+            .CardBuilder()
+            .colors(Collections.singletonList(Colors.GREEN.toString()))
+            .build();
+
+    List<Card> filteredCards = CardFilter.filterNot(cards, cardFilterNot);
+
+    assertNotNull(filteredCards);
+    assertEquals(filteredCards.size(), 4);
+    filteredCards.forEach(card -> {
+      assertTrue(validCardNames.contains(card.getName()));
+    });
+  }
+
+  @Test
+  public void test_filterNot_complex() {
+    List<Map<String,String>> legalities = new CardUtils
+            .LegalitiesBuilder()
+            .format(Formats.COMMANDER)
+            .build();
+
+    CardFilter cardFilterNot = new CardFilter
+            .CardBuilder()
+            .legalities(legalities)
+            .types(Collections.singletonList("Sorcery"))
+            .build();
+
+    List<Card> filteredCards = CardFilter.filterNot(cards, cardFilterNot);
+
+    assertNotNull(filteredCards);
+    assertEquals(filteredCards.size(), 1);
+    assertEquals(filteredCards.get(0).getName(), "Ebony Treefolk");
   }
 }
