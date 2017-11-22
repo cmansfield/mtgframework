@@ -362,12 +362,14 @@ public class CardFilter {
   }
 
   /**
+   * This method does most of the filtering. With the isNot boolean the filters can be
+   * set to find only cards that match the filters or if set to true, remove cards that
+   * match what is in the filters.
    *
-   *
-   * @param cards
-   * @param filter
-   * @param isNot
-   * @return
+   * @param cards   - List of cards to filter down
+   * @param filter  - A list of filters that will be used as the filter criteria
+   * @param isNot   - A boolean to filter for matching or non-matching cards
+   * @return        - A List of cards that met the filter criteria
    */
   private static List<Card> filterTemplateMethod(List<Card> cards, CardFilter filter, boolean isNot) {
     final Map<CardConstants, Pair<Supplier,Function>> getterMethodMap = generateFilterMap(filter);
@@ -379,7 +381,7 @@ public class CardFilter {
                 boolean isMatch;
                 if(e.getValue().getKey().get() instanceof List) {
                   isMatch = allMatchList(e.getValue().getKey().get(), e.getValue().getValue().apply(c));
-                  return isNot ? !isMatch : isMatch;
+                  return isNot != isMatch;
                 }
 
                 // We don't want filters on Text to be a literal match
@@ -393,13 +395,13 @@ public class CardFilter {
                   }
 
                   isMatch = cardText.contains((String)e.getValue().getKey().get());
-                  return isNot ? !isMatch : isMatch;
+                  return isNot != isMatch;
                 }
 
                 // This pulls the Supplier from the entry's toString, and the Function from the
                 // entry's value, and then compares the values of the two
                 isMatch = e.getValue().getKey().get().equals(e.getValue().getValue().apply(c));
-                return isNot ? !isMatch : isMatch;
+                return isNot != isMatch;
               })
               ) {
         filteredCards.add(c);
