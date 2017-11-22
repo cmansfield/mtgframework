@@ -87,8 +87,9 @@ public final class SaveCards {
   /**
    * Saves an empty json card template to a predetermined file
    */
+  // TODO - Complete this method
   public static void saveCardJsonTemplate() {
-
+    throw new UnsupportedOperationException("This method is not yet implemented");
   }
 
   /**

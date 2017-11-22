@@ -1,10 +1,9 @@
 
 Mtg Framework TODO list
 
-Filtering
-	Add a static method to filter by NOT this CardFilter
-	
 Testing
+    Add integration tests
+        CardFilter::filterNot
 	Add unit tests (Mockito)
 		LoadCards
 		SaveCards

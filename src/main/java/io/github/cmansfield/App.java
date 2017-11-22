@@ -47,19 +47,27 @@ public class App {
     List<Map<String,String>> legalities = new CardUtils
             .LegalitiesBuilder()
             .format(Formats.COMMANDER)
-            .format(Formats.BATTLE_FOR_ZENDIKAR_BLOCK)
+//            .format(Formats.BATTLE_FOR_ZENDIKAR_BLOCK)
             .build();
 
     CardFilter cardFilter = new CardFilter
             .CardBuilder()
             .legalities(legalities)
-//            .text("Indestructible")
+            .text("Indestructible")
             .build();
 
     List<Card> filteredCards = CardFilter.filter(cards, Collections.singletonList(cardFilter));
+
+    CardFilter cardFilterNot = new CardFilter
+            .CardBuilder()
+            .colors(Collections.singletonList(Colors.GREEN.toString()))
+            .build();
+
+    filteredCards = CardFilter.filterNot(filteredCards, cardFilterNot);
+
     printCards(filteredCards);
     System.out.println(filteredCards.size());
-//    String fileName = SaveCards.saveCards(filteredCards);
+    String fileName = SaveCards.saveCards(filteredCards);
 
 //    Deck deck = LoadCards.loadDeck("src\\test\\resources\\inputRaw.txt");
 //    Deck deck = LoadCards.loadDeck("EldraziDeck.txt");

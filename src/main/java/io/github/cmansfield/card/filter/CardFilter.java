@@ -306,6 +306,34 @@ public class CardFilter {
   }
 
   /**
+   * Returns a list of cards that do not match anything in the filters supplied
+   *
+   * @param cards   - List of cards to filter down
+   * @param filters - A list of filters that will be used as the filter criteria
+   * @return        - A list of cards that met the filter criteria
+   */
+  public static List<Card> filterNot(List<Card> cards, List<CardFilter> filters) {
+    List<Card> allFilteredNotCards = new ArrayList<>();
+
+    filters.forEach(filter -> {
+      allFilteredNotCards.addAll(CardFilter.filter(cards, filter));
+    });
+
+    return allFilteredNotCards;
+  }
+
+  /**
+   * Returns a list of cards that do not match anything in the filter supplied
+   *
+   * @param cards   - List of cards to filter down
+   * @param filter  - A filter that will be used as the filter criteria
+   * @return        - A List of cards that met the filter criteria
+   */
+  public static List<Card> filterNot(List<Card> cards, CardFilter filter) {
+    return filterTemplateMethod(cards, filter, true);
+  }
+
+  /**
    * Returns a list of cards that meet the filter criteria
    *
    * @param cards   - List of cards to filter down
@@ -330,34 +358,50 @@ public class CardFilter {
    * @return        - A List of cards that met the filter criteria
    */
   public static List<Card> filter(List<Card> cards, CardFilter filter) {
+    return filterTemplateMethod(cards, filter, false);
+  }
+
+  /**
+   *
+   *
+   * @param cards
+   * @param filter
+   * @param isNot
+   * @return
+   */
+  private static List<Card> filterTemplateMethod(List<Card> cards, CardFilter filter, boolean isNot) {
     final Map<CardConstants, Pair<Supplier,Function>> getterMethodMap = generateFilterMap(filter);
     List<Card> filteredCards = new ArrayList<>();
 
     cards.forEach(c -> {
       if (getterMethodMap.entrySet().stream()
-        .allMatch(e -> {
-          if(e.getValue().getKey().get() instanceof List) {
-            return allMatchList(e.getValue().getKey().get(), e.getValue().getValue().apply(c));
-          }
+              .allMatch(e -> {
+                boolean isMatch;
+                if(e.getValue().getKey().get() instanceof List) {
+                  isMatch = allMatchList(e.getValue().getKey().get(), e.getValue().getValue().apply(c));
+                  return isNot ? !isMatch : isMatch;
+                }
 
-          // We don't want filters on Text to be a literal match
-          // but more of a 'contains' match
-          if(e.getKey().toString().equalsIgnoreCase(CardConstants.TEXT.toString())) {
+                // We don't want filters on Text to be a literal match
+                // but more of a 'contains' match
+                if(e.getKey().toString().equalsIgnoreCase(CardConstants.TEXT.toString())) {
 
-            String cardText = (String)e.getValue().getValue().apply(c);
+                  String cardText = (String)e.getValue().getValue().apply(c);
 
-            if(cardText == null) {
-              return false;
-            }
+                  if(cardText == null) {
+                    return isNot;
+                  }
 
-            return cardText.contains((String)e.getValue().getKey().get());
-          }
+                  isMatch = cardText.contains((String)e.getValue().getKey().get());
+                  return isNot ? !isMatch : isMatch;
+                }
 
-          // This pulls the Supplier from the entry's toString, and the Function from the
-          // entry's value, and then compares the values of the two
-          return e.getValue().getKey().get().equals(e.getValue().getValue().apply(c));
-        })
-      ) {
+                // This pulls the Supplier from the entry's toString, and the Function from the
+                // entry's value, and then compares the values of the two
+                isMatch = e.getValue().getKey().get().equals(e.getValue().getValue().apply(c));
+                return isNot ? !isMatch : isMatch;
+              })
+              ) {
         filteredCards.add(c);
       }
     });
