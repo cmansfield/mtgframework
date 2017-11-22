@@ -14,7 +14,7 @@ public final class CardFilter {
    * Returns a list of cards that do not match anything in the filters supplied
    *
    * @param cards   - List of cards to filter down
-   * @param filters - A list of filters that will be used as the filter criteria
+   * @param filters - A list of Cards that will be used as the filter criteria
    * @return        - A list of cards that met the filter criteria
    */
   public static List<Card> filterNot(List<Card> cards, List<Card> filters) {
@@ -31,7 +31,7 @@ public final class CardFilter {
    * Returns a list of cards that do not match anything in the filter supplied
    *
    * @param cards   - List of cards to filter down
-   * @param filter  - A filter that will be used as the filter criteria
+   * @param filter  - A Card that will be used as the filter criteria
    * @return        - A List of cards that met the filter criteria
    */
   public static List<Card> filterNot(List<Card> cards, Card filter) {
@@ -42,7 +42,7 @@ public final class CardFilter {
    * Returns a list of cards that meet the filter criteria
    *
    * @param cards   - List of cards to filter down
-   * @param filters - A list of filters that will be used as the filter criteria
+   * @param filters - A list of Cards that will be used as the filter criteria
    * @return        - A list of cards that met the filter criteria
    */
   public static List<Card> filter(List<Card> cards, List<Card> filters) {
@@ -59,7 +59,7 @@ public final class CardFilter {
    * Returns a list of cards that meet the filter criteria
    *
    * @param cards   - List of cards to filter down
-   * @param filter  - A filter that will be used as the filter criteria
+   * @param filter  - A Card that will be used as the filter criteria
    * @return        - A List of cards that met the filter criteria
    */
   public static List<Card> filter(List<Card> cards, Card filter) {
@@ -72,7 +72,7 @@ public final class CardFilter {
    * match what is in the filters.
    *
    * @param cards   - List of cards to filter down
-   * @param filter  - A list of filters that will be used as the filter criteria
+   * @param filter  - A list of Cards that will be used as the filter criteria
    * @param isNot   - A boolean to filter for matching or non-matching cards
    * @return        - A List of cards that met the filter criteria
    */
@@ -194,7 +194,7 @@ public final class CardFilter {
    * Returns a Map of all of the function references that were found in the
    * filter object
    *
-   * @param filter  - Filter object that contains the filter criteria
+   * @param filter  - Card object that contains the filter criteria
    * @return        - Returns a map of functions that were found in the filters object
    */
   private static Map<CardConstants, Pair<Supplier,Function>> generateFilterMap(Card filter) {

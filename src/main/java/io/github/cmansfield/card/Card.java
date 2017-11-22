@@ -3,7 +3,6 @@ package io.github.cmansfield.card;
 import io.github.cmansfield.card.constants.CardConstants;
 
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
