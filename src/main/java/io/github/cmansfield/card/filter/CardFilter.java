@@ -324,7 +324,7 @@ public class CardFilter {
    * @return        - A List of cards that met the filter criteria
    */
   public static List<Card> filter(List<Card> cards, List<CardFilter> filters) {
-    final Map<CardConstants, Pair<Supplier,Function>> getterMethodMap = generateFilterMap(filters.get(0));
+    final Map<CardConstants, Pair<Supplier,Function>> getterMethodMap = generateFilterMap(filters);
     List<Card> filteredCards = new ArrayList<>();
 
     cards.forEach(c -> {
@@ -435,36 +435,39 @@ public class CardFilter {
 
   /**
    * Returns a Map of all of the function references that were found in the
-   * filter object
+   * filters object
    *
-   * @param filter  - Filter object that contain the filter criteria
-   * @return        - Returns a map of functions that were found in the filter object
+   * @param filters - List of Filter objects that contain the filter criteria
+   * @return        - Returns a map of functions that were found in the filters object
    */
-  private static Map<CardConstants, Pair<Supplier,Function>> generateFilterMap(CardFilter filter) {
+  private static Map<CardConstants, Pair<Supplier,Function>> generateFilterMap(List<CardFilter> filters) {
     final Map<CardConstants, Pair<Supplier,Function>> getterMethodMap = new EnumMap<CardConstants, Pair<Supplier,Function>>(CardConstants.class);
-    if(filter.getLayout() != null) getterMethodMap.put(CardConstants.LAYOUT, new Pair<Supplier,Function>(filter::getLayout, c -> ((Card)c).getLayout()));
-    if(filter.getName() != null) getterMethodMap.put(CardConstants.NAME, new Pair<Supplier,Function>(filter::getName, c -> ((Card)c).getName()));
-    if(filter.getNames() != null) getterMethodMap.put(CardConstants.NAMES, new Pair<Supplier,Function>(filter::getNames, c -> ((Card)c).getNames()));
-    if(filter.getManaCost() != null) getterMethodMap.put(CardConstants.MANA_COST, new Pair<Supplier,Function>(filter::getManaCost, c -> ((Card)c).getManaCost()));
-    if(filter.getCmc() != null) getterMethodMap.put(CardConstants.CMC, new Pair<Supplier,Function>(filter::getCmc, c -> ((Card)c).getCmc()));
-    if(filter.getColors() != null) getterMethodMap.put(CardConstants.COLORS, new Pair<Supplier,Function>(filter::getColors, c -> ((Card)c).getColors()));
-    if(filter.getType() != null) getterMethodMap.put(CardConstants.TYPE, new Pair<Supplier,Function>(filter::getType, c -> ((Card)c).getType()));
-    if(filter.getSuperTypes() != null) getterMethodMap.put(CardConstants.SUPER_TYPES, new Pair<Supplier,Function>(filter::getSuperTypes, c -> ((Card)c).getSuperTypes()));
-    if(filter.getTypes() != null) getterMethodMap.put(CardConstants.TYPES, new Pair<Supplier,Function>(filter::getTypes, c -> ((Card)c).getTypes()));
-    if(filter.getSubTypes() != null) getterMethodMap.put(CardConstants.SUB_TYPES, new Pair<Supplier,Function>(filter::getSubTypes, c -> ((Card)c).getSubTypes()));
-    if(filter.getText() != null) getterMethodMap.put(CardConstants.TEXT, new Pair<Supplier,Function>(filter::getText, c -> ((Card)c).getText()));
-    if(filter.getPower() != null) getterMethodMap.put(CardConstants.POWER, new Pair<Supplier,Function>(filter::getPower, c -> ((Card)c).getPower()));
-    if(filter.getToughness() != null) getterMethodMap.put(CardConstants.TOUGHNESS, new Pair<Supplier,Function>(filter::getToughness, c -> ((Card)c).getToughness()));
-    if(filter.getLoyalty() != null) getterMethodMap.put(CardConstants.LOYALTY, new Pair<Supplier,Function>(filter::getLoyalty, c -> ((Card)c).getLoyalty()));
-    if(filter.getImageName() != null) getterMethodMap.put(CardConstants.IMAGE_NAME, new Pair<Supplier,Function>(filter::getImageName, c -> ((Card)c).getImageName()));
-    if(filter.getRulings() != null) getterMethodMap.put(CardConstants.RULINGS, new Pair<Supplier,Function>(filter::getRulings, c -> ((Card)c).getRulings()));
-    if(filter.getHand() != null) getterMethodMap.put(CardConstants.HAND, new Pair<Supplier,Function>(filter::getHand, c -> ((Card)c).getHand()));
-    if(filter.getLife() != null) getterMethodMap.put(CardConstants.LIFE, new Pair<Supplier,Function>(filter::getLife, c -> ((Card)c).getLife()));
-    if(filter.getStarter() != null) getterMethodMap.put(CardConstants.STARTER, new Pair<Supplier,Function>(filter::getStarter, c -> ((Card)c).getStarter()));
-    if(filter.getPrintings() != null) getterMethodMap.put(CardConstants.PRINTINGS, new Pair<Supplier,Function>(filter::getPrintings, c -> ((Card)c).getPrintings()));
-    if(filter.getSource() != null) getterMethodMap.put(CardConstants.SOURCE, new Pair<Supplier,Function>(filter::getSource, c -> ((Card)c).getSource()));
-    if(filter.getLegalities() != null) getterMethodMap.put(CardConstants.LEGALITIES, new Pair<Supplier,Function>(filter::getLegalities, c -> ((Card)c).getLegalities()));
-    if(filter.getColorIdentity() != null) getterMethodMap.put(CardConstants.COLOR_IDENTITY, new Pair<Supplier,Function>(filter::getColorIdentity, c -> ((Card)c).getColorIdentity()));
+
+    filters.forEach(filter -> {
+      if(filter.getLayout() != null) getterMethodMap.put(CardConstants.LAYOUT, new Pair<Supplier,Function>(filter::getLayout, c -> ((Card)c).getLayout()));
+      if(filter.getName() != null) getterMethodMap.put(CardConstants.NAME, new Pair<Supplier,Function>(filter::getName, c -> ((Card)c).getName()));
+      if(filter.getNames() != null) getterMethodMap.put(CardConstants.NAMES, new Pair<Supplier,Function>(filter::getNames, c -> ((Card)c).getNames()));
+      if(filter.getManaCost() != null) getterMethodMap.put(CardConstants.MANA_COST, new Pair<Supplier,Function>(filter::getManaCost, c -> ((Card)c).getManaCost()));
+      if(filter.getCmc() != null) getterMethodMap.put(CardConstants.CMC, new Pair<Supplier,Function>(filter::getCmc, c -> ((Card)c).getCmc()));
+      if(filter.getColors() != null) getterMethodMap.put(CardConstants.COLORS, new Pair<Supplier,Function>(filter::getColors, c -> ((Card)c).getColors()));
+      if(filter.getType() != null) getterMethodMap.put(CardConstants.TYPE, new Pair<Supplier,Function>(filter::getType, c -> ((Card)c).getType()));
+      if(filter.getSuperTypes() != null) getterMethodMap.put(CardConstants.SUPER_TYPES, new Pair<Supplier,Function>(filter::getSuperTypes, c -> ((Card)c).getSuperTypes()));
+      if(filter.getTypes() != null) getterMethodMap.put(CardConstants.TYPES, new Pair<Supplier,Function>(filter::getTypes, c -> ((Card)c).getTypes()));
+      if(filter.getSubTypes() != null) getterMethodMap.put(CardConstants.SUB_TYPES, new Pair<Supplier,Function>(filter::getSubTypes, c -> ((Card)c).getSubTypes()));
+      if(filter.getText() != null) getterMethodMap.put(CardConstants.TEXT, new Pair<Supplier,Function>(filter::getText, c -> ((Card)c).getText()));
+      if(filter.getPower() != null) getterMethodMap.put(CardConstants.POWER, new Pair<Supplier,Function>(filter::getPower, c -> ((Card)c).getPower()));
+      if(filter.getToughness() != null) getterMethodMap.put(CardConstants.TOUGHNESS, new Pair<Supplier,Function>(filter::getToughness, c -> ((Card)c).getToughness()));
+      if(filter.getLoyalty() != null) getterMethodMap.put(CardConstants.LOYALTY, new Pair<Supplier,Function>(filter::getLoyalty, c -> ((Card)c).getLoyalty()));
+      if(filter.getImageName() != null) getterMethodMap.put(CardConstants.IMAGE_NAME, new Pair<Supplier,Function>(filter::getImageName, c -> ((Card)c).getImageName()));
+      if(filter.getRulings() != null) getterMethodMap.put(CardConstants.RULINGS, new Pair<Supplier,Function>(filter::getRulings, c -> ((Card)c).getRulings()));
+      if(filter.getHand() != null) getterMethodMap.put(CardConstants.HAND, new Pair<Supplier,Function>(filter::getHand, c -> ((Card)c).getHand()));
+      if(filter.getLife() != null) getterMethodMap.put(CardConstants.LIFE, new Pair<Supplier,Function>(filter::getLife, c -> ((Card)c).getLife()));
+      if(filter.getStarter() != null) getterMethodMap.put(CardConstants.STARTER, new Pair<Supplier,Function>(filter::getStarter, c -> ((Card)c).getStarter()));
+      if(filter.getPrintings() != null) getterMethodMap.put(CardConstants.PRINTINGS, new Pair<Supplier,Function>(filter::getPrintings, c -> ((Card)c).getPrintings()));
+      if(filter.getSource() != null) getterMethodMap.put(CardConstants.SOURCE, new Pair<Supplier,Function>(filter::getSource, c -> ((Card)c).getSource()));
+      if(filter.getLegalities() != null) getterMethodMap.put(CardConstants.LEGALITIES, new Pair<Supplier,Function>(filter::getLegalities, c -> ((Card)c).getLegalities()));
+      if(filter.getColorIdentity() != null) getterMethodMap.put(CardConstants.COLOR_IDENTITY, new Pair<Supplier,Function>(filter::getColorIdentity, c -> ((Card)c).getColorIdentity()));
+    });
 
     return getterMethodMap;
   }
