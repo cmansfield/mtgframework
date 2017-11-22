@@ -309,11 +309,22 @@ public class CardFilter {
    * Returns a list of cards that meet the filter criteria
    *
    * @param cards   - List of cards to filter down
-   * @param filter  - A filter object that will be used as the filter criteria
-   * @return        - A List of cards that met the filter criteria
+   * @param filter  - A filter that will be used as the filter criteria
+   * @return        - A list of cards that met the filter criteria
    */
   public static List<Card> filter(List<Card> cards, CardFilter filter) {
-    final Map<CardConstants, Pair<Supplier,Function>> getterMethodMap = generateFilterMap(filter);
+    return CardFilter.filter(cards, Collections.singletonList(filter));
+  }
+
+  /**
+   * Returns a list of cards that meet the filter criteria
+   *
+   * @param cards   - List of cards to filter down
+   * @param filters - A filter list that will be used as the filter criteria
+   * @return        - A List of cards that met the filter criteria
+   */
+  public static List<Card> filter(List<Card> cards, List<CardFilter> filters) {
+    final Map<CardConstants, Pair<Supplier,Function>> getterMethodMap = generateFilterMap(filters.get(0));
     List<Card> filteredCards = new ArrayList<>();
 
     cards.forEach(c -> {

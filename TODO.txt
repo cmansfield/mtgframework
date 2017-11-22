@@ -5,6 +5,7 @@ Filtering
 	Add static method to CardFilter class that will generate container for a 
 		passed legality
 	Add a static method to filter by NOT this CardFilter
+	Able to take a list of filters to be used for the filter criteria
 	
 Testing
     Add integration tests
