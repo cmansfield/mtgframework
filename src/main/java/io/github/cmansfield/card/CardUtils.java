@@ -1,5 +1,6 @@
 package io.github.cmansfield.card;
 
+import io.github.cmansfield.card.constants.Colors;
 import io.github.cmansfield.card.constants.Formats;
 import io.github.cmansfield.card.constants.Legality;
 
@@ -70,5 +71,63 @@ public final class CardUtils {
     });
 
     return legalities;
+  }
+
+  /**
+   * This generates a simple template card that contains all of the card formats
+   *
+   * @return - Returns a template card
+   */
+  public static Card generateTemplateCard() {
+    List<String> names = new ArrayList<>();
+    names.add("Card Name");
+    names.add("AKA Card Name");
+
+    List<String> colors = new ArrayList<>();
+    colors.add(Colors.WHITE.toString());
+    colors.add(Colors.BLUE.toString());
+    colors.add(Colors.BLACK.toString());
+    colors.add(Colors.RED.toString());
+    colors.add(Colors.GREEN.toString());
+
+    List<Map<String,String>> rulings = new ArrayList<>();
+    Map<String,String> rule = new HashMap<>();
+    rule.put("date", "2004-10-04");
+    rule.put("text", "This is a rule. It must be followed");
+    rulings.add(rule);
+
+    List<String> colorIdentity = new ArrayList<>();
+    colorIdentity.add("W");
+    colorIdentity.add("U");
+    colorIdentity.add("B");
+    colorIdentity.add("R");
+    colorIdentity.add("G");
+
+    return new Card
+            .CardBuilder()
+            .name("Card Name")
+            .layout("normal")
+            .names(names)
+            .manaCost("{3}{W}{U}{B}{R}{G}")
+            .cmc(8.0)
+            .colors(colors)
+            .type("Artifact — Creature")
+            .superTypes(Collections.singletonList("Legendary"))
+            .types(Collections.singletonList("Artifact"))
+            .subTypes(Collections.singletonList("Creature"))
+            .text("Indestructible\nThis is a card template")
+            .power("25")
+            .toughness("7.5")
+            .loyalty(4)
+            .imageName("Image Name")
+            .rulings(rulings)
+            .hand(5)
+            .life(8)
+            .starter(false)
+            .printings(Collections.singletonList("TBA"))
+            .source("Template Theme Deck")
+            .legalities(new CardUtils.LegalitiesBuilder().format(Formats.COMMANDER).build())
+            .colorIdentity(colorIdentity)
+            .build();
   }
 }

@@ -147,6 +147,11 @@ public class Card implements Serializable {
       return this;
     }
 
+    public Card.CardBuilder names(List<String> names) {
+      this._cardPojo.put(CardConstants.NAMES.toString(), names);
+      return this;
+    }
+
     public Card.CardBuilder manaCost(String manaCost) {
       this._cardPojo.put(CardConstants.MANA_COST.toString(), manaCost);
       return this;

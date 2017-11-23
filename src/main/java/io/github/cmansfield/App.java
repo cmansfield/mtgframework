@@ -2,11 +2,6 @@ package io.github.cmansfield;
 
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.card.CardUtils;
-import io.github.cmansfield.card.constants.Colors;
-import io.github.cmansfield.card.constants.Formats;
-import io.github.cmansfield.card.constants.Legality;
-import io.github.cmansfield.card.filter.CardFilter;
-import io.github.cmansfield.deck.Deck;
 import io.github.cmansfield.io.IoConstants;
 import io.github.cmansfield.io.LoadCards;
 import io.github.cmansfield.io.SaveCards;
@@ -43,35 +38,8 @@ public class App {
       return;
     }
 
-    List<Map<String,String>> legalities = new CardUtils
-            .LegalitiesBuilder()
-            .format(Formats.COMMANDER)
-//            .format(Formats.BATTLE_FOR_ZENDIKAR_BLOCK)
-            .build();
-
-    Card cardFilter = new Card
-            .CardBuilder()
-            .legalities(legalities)
-            .text("Indestructible")
-            .build();
-
-    List<Card> filteredCards = CardFilter.filter(cards, Collections.singletonList(cardFilter));
-
-    Card cardFilterNot = new Card
-            .CardBuilder()
-            .colors(Collections.singletonList(Colors.GREEN.toString()))
-            .build();
-
-    filteredCards = CardFilter.filterNot(filteredCards, cardFilterNot);
-
-    printCards(filteredCards);
-    System.out.println(filteredCards.size());
-    String fileName = SaveCards.saveCards(filteredCards);
-
-//    Deck deck = LoadCards.loadDeck("src\\test\\resources\\inputRaw.txt");
-//    Deck deck = LoadCards.loadDeck("EldraziDeck.txt");
-//    SaveCards.saveDeck(deck);
-//    System.out.println(deck.toString());
+    Card templateCard = CardUtils.generateTemplateCard();
+    SaveCards.saveCards(Collections.singletonList(templateCard));
   }
 
   private static void printCards(List<Card> cards) {

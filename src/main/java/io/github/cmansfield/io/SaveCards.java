@@ -2,13 +2,14 @@ package io.github.cmansfield.io;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cmansfield.card.Card;
+import io.github.cmansfield.card.CardUtils;
+import io.github.cmansfield.card.constants.Colors;
+import io.github.cmansfield.card.constants.Formats;
 import io.github.cmansfield.deck.Deck;
 
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.List;
-import java.util.Map;
 import java.io.*;
 
 
@@ -82,14 +83,6 @@ public final class SaveCards {
     }
 
     return saveFileName;
-  }
-
-  /**
-   * Saves an empty json card template to a predetermined file
-   */
-  // TODO - Complete this method
-  public static void saveCardJsonTemplate() {
-    throw new UnsupportedOperationException("This method is not yet implemented");
   }
 
   /**
