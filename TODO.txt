@@ -1,12 +1,6 @@
 
 Mtg Framework TODO list
 
-Testing
-	Add unit tests (Mockito)
-		LoadCards
-		SaveCards
-		UpdateCards
-
 IO
 	preLoadedAllCards an immutable list
 	Once Cards are immutable, stop copying the card list
