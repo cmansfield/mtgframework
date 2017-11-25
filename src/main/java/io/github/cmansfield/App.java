@@ -38,8 +38,8 @@ public class App {
       return;
     }
 
-    Card templateCard = CardUtils.generateTemplateCard();
-    SaveCards.saveCards(Collections.singletonList(templateCard));
+    List<Card> ghaveCards = LoadCards.loadCards("Ghave-TheFlood.txt");
+    printCards(ghaveCards);
   }
 
   private static void printCards(List<Card> cards) {

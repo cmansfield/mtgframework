@@ -3,10 +3,7 @@ package io.github.cmansfield.deck;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.card.constants.Colors;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -51,7 +48,7 @@ public final class Deck {
   }
 
   public List<Card> getCards() {
-    return this.cards;
+    return new ArrayList<>(this.cards);
   }
 
   public List<Colors> getDeckColors() {

@@ -102,7 +102,7 @@ public final class LoadCards {
     List<Card> cards = new ArrayList<>();
     List<Card> allCards = loadCards();
 
-    Pattern rawPattern = Pattern.compile("^(?:(\\d+)x\\s*(.*))");
+    Pattern rawPattern = Pattern.compile("^(?:(\\d+)x?\\s*(.*))");
     Matcher matcher;
 
     try {
