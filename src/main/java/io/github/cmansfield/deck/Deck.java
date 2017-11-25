@@ -73,7 +73,7 @@ public final class Deck {
   public String toString() {
     return this.cards.stream()
             .map(card -> String.format("%dx %s", this.quantity.get(card.getName()), card.getName()))
-            .collect(Collectors.joining(", "));
+            .collect(Collectors.joining("\r\n"));
   }
 }
 

@@ -1,0 +1,89 @@
+1 Abzan Beastmaster
+1 Accorder's Shield
+1 Aligned Hedron Network
+1 Assault Formation
+1 Awakening Zone
+1 Axebane Guardian
+1 Behind the Scenes
+1 Belbe's Armor
+1 Blossoming Sands
+1 Brave the Sands
+1 Cathar's Shield
+1 Chromatic Lantern
+1 Command Tower
+1 Condemn
+1 Congregation at Dawn
+1 Crossbow Ambush
+1 Cultivate
+1 Darksteel Ingot
+1 Dawn
+1 Doran, the Siege Tower
+1 Dragonlord Dromoka
+1 Eladamri's Call
+1 Elfhame Palace
+1 Elspeth, Sun's Champion
+1 Ensouled Scimitar
+1 Evolving Wilds
+1 Fell the Mighty
+6 Forest
+1 Fortified Rampart
+1 Foul Renewal
+1 Golgari Rot Farm
+1 Grizzled Leotau
+1 Guiltfeeder
+1 Harmonize
+1 Hero's Resolve
+1 Holy Armor
+1 Indomitable Ancients
+1 Jungle Hollow
+1 Karametra, God of Harvests
+1 Khalni Garden
+1 Lightning Greaves
+1 Mind's Eye
+1 Nissa, Voice of Zendikar
+1 Nyx-Fleece Ram
+1 Oathsworn Giant
+1 Ornithopter
+1 Overgrown Battlement
+1 Perimeter Captain
+8 Plains
+1 Primordial Sage
+1 Rampant Growth
+1 Reliquary Tower
+1 Return to Dust
+1 Sandsteppe Citadel
+1 Sidar Kondo of Jamuraa
+1 Silklash Spider
+1 Slagwurm Armor
+1 Sol Ring
+1 Soul of the Harvest
+1 Spidersilk Armor
+1 Stalwart Shield-Bearers
+1 Sterling Grove
+1 Stirring Wildwood
+2 Swamp
+1 Swords to Plowshares
+1 Task Force
+1 Temple of the False God
+1 Terramorphic Expanse
+1 Thallid Shell-Dweller
+1 Thawing Glaciers
+1 Tower Defense
+1 Traproot Kami
+1 Tree of Perdition
+1 Trostani, Selesnya's Voice
+1 Vanguard's Shield
+1 Vivid Grove
+1 Vivid Marsh
+1 Vivid Meadow
+1 Wakestone Gargoyle
+1 Wall of Blossoms
+1 Wall of Omens
+1 Wall of Tanglecord
+1 Warmonger's Chariot
+1 Wave of Reckoning
+1 Whispersilk Cloak
+1 Worldly Tutor
+1 Commander's Sphere
+1 Path of Ancestry
+\\ Sideboard

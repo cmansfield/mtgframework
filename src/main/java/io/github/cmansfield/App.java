@@ -2,6 +2,7 @@ package io.github.cmansfield;
 
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.card.CardUtils;
+import io.github.cmansfield.deck.Deck;
 import io.github.cmansfield.io.IoConstants;
 import io.github.cmansfield.io.LoadCards;
 import io.github.cmansfield.io.SaveCards;
@@ -38,8 +39,9 @@ public class App {
       return;
     }
 
-    List<Card> ghaveCards = LoadCards.loadCards("Ghave-TheFlood.txt");
-    printCards(ghaveCards);
+    Deck doranDeck = new Deck(LoadCards.loadCards("Ents-Awakening.txt"));
+    System.out.println(doranDeck);
+    String fileName = SaveCards.saveDeckRaw(doranDeck);
   }
 
   private static void printCards(List<Card> cards) {
