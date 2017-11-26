@@ -1,10 +1,11 @@
-package io.github.cmansfield.io;
+package io.github.cmansfield.io.web;
 
 import com.sun.jersey.api.client.UniformInterfaceException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.Client;
+import io.github.cmansfield.io.IoConstants;
 import org.apache.commons.lang.Validate;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -15,12 +16,12 @@ import java.net.URL;
 import java.io.*;
 
 
-public final class UpdateCards {
+public final class GetUpdates {
   private static final String GET_CARD_LIST_URL = "https://mtgjson.com/json/AllCards-x.json.zip";
   private static final String GET_VER_URL = "https://mtgjson.com/json/version-full.json";
   private static final String VERSION_FILE_NAME = "cardListVersion.json";
   private static final String VERSION_KEY = "version";
-  private UpdateCards() {}
+  private GetUpdates() {}
 
   /**
    * Checks for a new card list from the web
@@ -31,9 +32,9 @@ public final class UpdateCards {
     String myVersion;
 
     try {
-      currentVersionJson = UpdateCards.getCurrentVersionJson();
-      currentVersion = UpdateCards.parseVersionFromJson(currentVersionJson);
-      myVersion = UpdateCards.getMyVersion();
+      currentVersionJson = GetUpdates.getCurrentVersionJson();
+      currentVersion = GetUpdates.parseVersionFromJson(currentVersionJson);
+      myVersion = GetUpdates.getMyVersion();
     }
     catch (Exception e) {
       System.out.println(e.toString());
@@ -48,10 +49,10 @@ public final class UpdateCards {
 
     try {
       // if not then call downloadLatestCardList
-      UpdateCards.downloadLatestCardList();
+      GetUpdates.downloadLatestCardList();
 
       // saveNewVersion
-      UpdateCards.saveNewVersion(currentVersionJson);
+      GetUpdates.saveNewVersion(currentVersionJson);
     }
     catch(Exception e) {
       System.out.printf("Unable to update at this time%n%s%n", e.getMessage());
@@ -67,7 +68,7 @@ public final class UpdateCards {
    * @return - String of the latest card list version
    */
   private static String getCurrentVersion() {
-    return UpdateCards.parseVersionFromJson(UpdateCards.getCurrentVersionJson());
+    return GetUpdates.parseVersionFromJson(GetUpdates.getCurrentVersionJson());
   }
 
   /**
@@ -111,7 +112,7 @@ public final class UpdateCards {
       return "";
     }
 
-    return UpdateCards.parseVersionFromJson(myVersion);
+    return GetUpdates.parseVersionFromJson(myVersion);
   }
 
   /**

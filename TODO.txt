@@ -2,7 +2,7 @@
 Mtg Framework TODO list
 
 IO
-	preLoadedAllCards an immutable list
+	LoadCards.cardMap an immutable map
 	Once Cards are immutable, stop copying the card list
 
 Card
@@ -10,5 +10,13 @@ Card
     Make the Card class immutable
 
 Other
-	Add additional exception handling
+	Add additional exception handling in main
 	Add more program args
+
+CardFilter
+    Search all of the text fields as contains
+
+Testing
+    Add integration tests
+        DeckCrawler
+        LoadCards::lookupCard

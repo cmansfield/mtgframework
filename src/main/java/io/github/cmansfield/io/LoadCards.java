@@ -18,8 +18,7 @@ import java.io.InputStream;
 
 
 public final class LoadCards {
-
-  private static List<Card> preLoadedAllCards;
+  private static Map<String, Card> cardMap;
 
   private LoadCards() {}
 
@@ -32,14 +31,14 @@ public final class LoadCards {
   public static List<Card> loadCards() throws IOException {
     List<Card> cards;
 
-    if(LoadCards.preLoadedAllCards != null) {
-      return copyCardList(LoadCards.preLoadedAllCards);
+    if(LoadCards.cardMap != null) {
+      return new ArrayList<Card>(LoadCards.cardMap.values());
     }
 
     ZipFile zip = new ZipFile(IoConstants.CARD_LIST_FILE_NAME);
 
     try(InputStream inputstream = zip.getInputStream(zip.getEntry(IoConstants.ALL_CARDS_FILE_NAME))) {
-      cards = loadCards(inputstream);
+      cards = loadCards(inputstream, true);
     }
     catch (Exception e) {
       System.out.printf("Unable to load file %s%n", IoConstants.ALL_CARDS_FILE_NAME);
@@ -48,8 +47,6 @@ public final class LoadCards {
     finally {
       zip.close();
     }
-
-    LoadCards.preLoadedAllCards = copyCardList(cards);
 
     return cards;
   }
@@ -70,7 +67,7 @@ public final class LoadCards {
 
     try(InputStream inputstream = new FileInputStream(fileName)) {
       if(extension.equalsIgnoreCase(JSON_EXT)) {
-        cards = loadCards(inputstream);
+        cards = loadCards(inputstream, false);
       }
       if(extension.equalsIgnoreCase(TXT_EXT)) {
         String cardListRaw = IOUtils.toString(inputstream, StandardCharsets.UTF_8);
@@ -96,11 +93,17 @@ public final class LoadCards {
     return new Deck(loadCards(fileName));
   }
 
-  public static List<Card> loadCardsFromString(final String cardsStr) throws IOException {
+  /**
+   * Loads a list of cards from a text file with a list of card names
+   *
+   * @param cardsStr  - The filename for the string of card names
+   * @return          - A list of cards produced from the file
+   * @throws IOException
+   */
+  private static List<Card> loadCardsFromString(final String cardsStr) throws IOException {
     List<String> cardsRaw = Arrays.asList(cardsStr.split("\n"));
     Map<String,Integer> cardsToFind = new HashMap<>();
     List<Card> cards = new ArrayList<>();
-    List<Card> allCards = loadCards();
 
     Pattern rawPattern = Pattern.compile("^(?:(\\d+)x?\\s*(.*))");
     Matcher matcher;
@@ -114,13 +117,19 @@ public final class LoadCards {
         }
       }
 
-      allCards.forEach(card -> {
-        if (cardsToFind.containsKey(card.getName())) {
+      cardsToFind
+        .entrySet()
+        .forEach(e -> {
+          Card card = lookupCard(e.getKey());
+
+          if(card == null) {
+            throw new RuntimeException(String.format("Unable to load card: %s", e.getKey()));
+          }
+
           for (int i = 0; i < cardsToFind.get(card.getName()); ++i) {
             cards.add(card);
           }
-        }
-      });
+        });
     }
     catch (Exception e) {
       throw new IOException("Unable to load cards from string provided", e);
@@ -144,23 +153,48 @@ public final class LoadCards {
   }
 
   /**
+   * This method is used to look up a single card from the complete
+   * collection of cards
+   *
+   * @param cardName  - The name of the card to be looked up
+   * @return          - The card object if found, null if not
+   */
+  public static Card lookupCard(final String cardName) {
+    Card card = null;
+
+    if(LoadCards.cardMap == null) {
+      throw new IllegalStateException("The complete list of cards have not been loaded yet");
+    }
+
+    if(LoadCards.cardMap.containsKey(cardName)) {
+      card = LoadCards.cardMap.get(cardName);
+    }
+
+    return card;
+  }
+
+  /**
    * Creates a list of cards from an inputstream
    *
    * @param inputStream - An inputstream that will supply a buffer for json input
+   * @param saveSource  - If true then store the jsonMap produced
    * @return            - Returns a list of card objects
    * @throws IOException
    */
-  private static List<Card> loadCards(InputStream inputStream) throws IOException {
-    List<Card> cards = null;
-
+  private static List<Card> loadCards(InputStream inputStream, boolean saveSource) throws IOException {
     ObjectMapper mapper = new ObjectMapper();
     Map<String, Object> jsonMap = mapper.readValue(inputStream, Map.class);
-    cards = jsonMap
-            .values()
-            .stream()
-            .map(v -> new Card(v))
-            .collect(Collectors.toList());
 
-    return cards;
+    Map<String, Card> cardMap = jsonMap
+            .entrySet()
+            .stream()
+            .collect(Collectors.toMap(
+                    Map.Entry::getKey,
+                    e -> new Card(e.getValue())
+            ));
+
+    LoadCards.cardMap = saveSource ? cardMap : LoadCards.cardMap;
+
+    return new ArrayList<Card>(cardMap.values());
   }
 }
