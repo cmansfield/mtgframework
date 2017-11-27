@@ -1,5 +1,7 @@
 package io.github.cmansfield.card.constants;
 
+import io.github.cmansfield.constants.Constant;
+
 public enum Formats implements Constant<Formats> {
   SCARS_OF_MIRRODIN_BLOCK("Scars of Mirrodin Block"),
   ICE_AGE_BLOCK("Ice Age Block"),

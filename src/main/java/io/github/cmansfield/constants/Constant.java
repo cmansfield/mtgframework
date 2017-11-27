@@ -1,4 +1,4 @@
-package io.github.cmansfield.card.constants;
+package io.github.cmansfield.constants;
 
 public interface Constant<T extends Enum<T>> {
   static <E extends Enum<E>> boolean contains(Class<E> enumClass, String val) {
