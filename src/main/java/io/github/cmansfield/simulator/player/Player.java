@@ -1,21 +1,26 @@
 package io.github.cmansfield.simulator.player;
 
-import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
 import io.github.cmansfield.simulator.constants.Zone;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class Player {
-  private Map<Zone,List<Card>> zones;
+  private Map<Zone,List<PlayerCard>> zones;
   private Deck deck;
 
   Player(Deck deck) {
     this.deck = deck;
 
-    this.zones = new EnumMap<Zone, List<Card>>(Zone.class);
-    this.zones.put(Zone.LIBRARY, this.deck.getOriginalCards());
+    this.zones = new EnumMap<>(Zone.class);
+    this.zones.put(
+            Zone.LIBRARY,
+            this.deck.getOriginalCards()
+                    .stream()
+                    .map(card -> new PlayerCard(card.getCardPojo(), this))
+                    .collect(Collectors.toList()));
     this.zones.put(Zone.HAND, new ArrayList<>());
     this.zones.put(Zone.BATTLEFIELD, new ArrayList<>());
     this.zones.put(Zone.GRAVEYARD, new ArrayList<>());
@@ -25,7 +30,7 @@ public class Player {
     this.zones.put(Zone.SCRAPYARD, new ArrayList<>());
   }
 
-  public List<Card> getZone(Zone zone) {
+  public List<PlayerCard> getZone(Zone zone) {
     if(!this.zones.containsKey(zone)) {
       throw new IllegalArgumentException(String.format("Player dones not contain zone '%s'", zone.toString()));
     }
@@ -38,8 +43,8 @@ public class Player {
   }
 
   public void draw(int drawAmount) {
-    List<Card> hand = this.zones.get(Zone.HAND);
-    List<Card> library = this.zones.get(Zone.LIBRARY);
+    List hand = this.zones.get(Zone.HAND);
+    List library = this.zones.get(Zone.LIBRARY);
 
     for(int x = 0; x < drawAmount; ++x) {
       if(library.isEmpty()) {
