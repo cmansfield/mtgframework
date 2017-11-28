@@ -101,9 +101,12 @@ public final class Deck {
 
   @Override
   public String toString() {
-    return this.cards.stream()
+    return String.format("%s%s%s",
+            this.format == null ? "" : String.format("Format: %s%n", this.format.toString()),
+            this.featuredCard == null ? "" : String.format("Featured Card: %s%n", this.featuredCard.getName()),
+            this.cards.stream()
             .map(card -> String.format("%dx %s", this.quantity.get(card.getName()), card.getName()))
-            .collect(Collectors.joining("\r\n"));
+            .collect(Collectors.joining("\r\n")));
   }
 }
 

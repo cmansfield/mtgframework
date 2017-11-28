@@ -55,11 +55,8 @@ public class App {
       return;
     }
 
-    Deck doranDeck = new Deck(LoadCards.loadCards("Ents-Awakening.txt"));
-    doranDeck.setFormat(Format.COMMANDER);
-    doranDeck.setFeaturedCard(LoadCards.lookupCard("Doran, the Siege Tower"));
-    String newFileName = SaveCards.saveDeck(doranDeck);
-    System.out.println(newFileName);
+//    Deck doranDeck = LoadCards.loadDeck("Deck2.json");
+//    System.out.println(doranDeck);
   }
 
   private static void printCards(List<Card> cards) {

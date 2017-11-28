@@ -3,6 +3,8 @@ package io.github.cmansfield.io;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
+import io.github.cmansfield.deck.constants.Format;
+import io.github.cmansfield.deck.constants.Legality;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 
@@ -18,6 +20,8 @@ import java.io.InputStream;
 
 
 public final class LoadCards {
+  private static final String JSON_EXT = "json";
+  private static final String TXT_EXT = "txt";
   private static Map<String, Card> cardMap;
 
   private LoadCards() {}
@@ -36,9 +40,11 @@ public final class LoadCards {
     }
 
     ZipFile zip = new ZipFile(IoConstants.CARD_LIST_FILE_NAME);
+    ObjectMapper mapper = new ObjectMapper();
 
     try(InputStream inputstream = zip.getInputStream(zip.getEntry(IoConstants.ALL_CARDS_FILE_NAME))) {
-      cards = loadCards(inputstream, true);
+      Map<String, Object> jsonMap = mapper.readValue(inputstream, Map.class);
+      cards = loadCards(jsonMap, true);
     }
     catch (Exception e) {
       System.out.printf("Unable to load file %s%n", IoConstants.ALL_CARDS_FILE_NAME);
@@ -59,15 +65,15 @@ public final class LoadCards {
    * @throws IOException
    */
   public static List<Card> loadCards(final String fileName) throws IOException {
-    final String JSON_EXT = "json";
-    final String TXT_EXT = "txt";
+    ObjectMapper mapper = new ObjectMapper();
     List<Card> cards = null;
 
     String extension = FilenameUtils.getExtension(fileName);
 
     try(InputStream inputstream = new FileInputStream(fileName)) {
       if(extension.equalsIgnoreCase(JSON_EXT)) {
-        cards = loadCards(inputstream, false);
+        Map<String, Object> jsonMap = mapper.readValue(inputstream, Map.class);
+        cards = loadCards(jsonMap, false);
       }
       if(extension.equalsIgnoreCase(TXT_EXT)) {
         String cardListRaw = IOUtils.toString(inputstream, StandardCharsets.UTF_8);
@@ -90,7 +96,40 @@ public final class LoadCards {
    * @throws IOException
    */
   public static Deck loadDeck(final String fileName) throws IOException {
-    return new Deck(loadCards(fileName));
+    ObjectMapper mapper = new ObjectMapper();
+    Deck deck = null;
+
+    String extension = FilenameUtils.getExtension(fileName);
+
+    if(extension.equalsIgnoreCase(TXT_EXT)) {
+      return new Deck(loadCards(fileName));
+    }
+
+    if(extension.equalsIgnoreCase(JSON_EXT)) {
+      try(InputStream inputstream = new FileInputStream(fileName)) {
+        Map<String, Object> jsonMap = mapper.readValue(inputstream, Map.class);
+
+        if(jsonMap.containsKey(IoConstants.CARDS_KEY)) {
+          deck = new Deck(loadCards((Map<String,Object>)jsonMap.get(IoConstants.CARDS_KEY), false));
+        }
+        else {
+          return new Deck(loadCards(fileName));
+        }
+
+        if(jsonMap.containsKey(IoConstants.FEATURED_KEY)) {
+          deck.setFeaturedCard(new Card(jsonMap.get(IoConstants.FEATURED_KEY)));
+        }
+        if(jsonMap.containsKey(Legality.FORMAT.toString())) {
+          deck.setFormat(Format.find((String)jsonMap.get(Legality.FORMAT.toString())));
+        }
+      }
+      catch(Exception e) {
+        System.out.printf("Unable to load file %s%n", fileName);
+        throw new IOException(e);
+      }
+    }
+
+    return deck;
   }
 
   /**
@@ -139,20 +178,6 @@ public final class LoadCards {
   }
 
   /**
-   * Copies one card list into another list
-   *
-   * @param cards - A list of cards to be copied
-   * @return      - The newly created list
-   */
-  public static List<Card> copyCardList(List<Card> cards) {
-    List<Card> newCardList = new ArrayList<>();
-
-    cards.forEach(card -> newCardList.add(new Card(card.getCardPojo())));
-
-    return newCardList;
-  }
-
-  /**
    * This method is used to look up a single card from the complete
    * collection of cards
    *
@@ -163,7 +188,7 @@ public final class LoadCards {
     Card card = null;
 
     if(LoadCards.cardMap == null) {
-      throw new IllegalStateException("The complete list of cards have not been loaded yet");
+      throw new IllegalStateException("The complete list of cards has not been loaded yet");
     }
 
     if(LoadCards.cardMap.containsKey(cardName)) {
@@ -176,15 +201,12 @@ public final class LoadCards {
   /**
    * Creates a list of cards from an inputstream
    *
-   * @param inputStream - An inputstream that will supply a buffer for json input
+   * @param jsonMap     - A json map that contains the card objects
    * @param saveSource  - If true then store the jsonMap produced
    * @return            - Returns a list of card objects
    * @throws IOException
    */
-  private static List<Card> loadCards(InputStream inputStream, boolean saveSource) throws IOException {
-    ObjectMapper mapper = new ObjectMapper();
-    Map<String, Object> jsonMap = mapper.readValue(inputStream, Map.class);
-
+  private static List<Card> loadCards(Map<String, Object> jsonMap, boolean saveSource) throws IOException {
     Map<String, Card> cardMap = jsonMap
             .entrySet()
             .stream()
@@ -195,6 +217,6 @@ public final class LoadCards {
 
     LoadCards.cardMap = saveSource ? cardMap : LoadCards.cardMap;
 
-    return new ArrayList<Card>(cardMap.values());
+    return new ArrayList<>(cardMap.values());
   }
 }

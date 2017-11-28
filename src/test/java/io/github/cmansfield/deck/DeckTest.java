@@ -35,7 +35,6 @@ public class DeckTest {
   public void test_checkDeckColors() throws IOException {
     final String TEST_DECK_FILE = "TestDeck.json";
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
-    List<Card> cards = LoadCards.loadCards(file.getAbsolutePath());
     Deck deck = LoadCards.loadDeck(file.getAbsolutePath());
 
     List<Color> deckColors = deck.getDeckColors();
