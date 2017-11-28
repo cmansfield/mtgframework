@@ -137,57 +137,6 @@
       } ],
       "colorIdentity" : [ "G" ]
     },
-    "Path of Ancestry0" : {
-      "layout" : "normal",
-      "name" : "Path of Ancestry",
-      "cmc" : 0,
-      "type" : "Land",
-      "types" : [ "Land" ],
-      "text" : "Path of Ancestry enters the battlefield tapped.\n{T}: Add to your mana pool one mana of any color in your commander's color identity. When that mana is spent to cast a creature spell that shares a creature type with your commander, scry 1.",
-      "imageName" : "path of ancestry",
-      "rulings" : [ {
-        "date" : "2017-08-25",
-        "text" : "The color identity of your commander is set before the game begins and doesn't change during the game, even if your commander is in a hidden zone (like the hand or library) or an effect changes your commander's color."
-      }, {
-        "date" : "2017-08-25",
-        "text" : "Your commander's creature types are checked immediately after you cast a creature spell spending mana from Path of Ancestry's last ability. They aren't set before the game begins, and they may not be the same types your commander had when you activated that ability."
-      }, {
-        "date" : "2017-08-25",
-        "text" : "If you cast your commander with mana from Path of Ancestry, and your commander hasn't somehow lost all of its creature types while on the stack, you'll scry 1."
-      }, {
-        "date" : "2017-08-25",
-        "text" : "If mana from Path of Ancestry is spent to cast a creature spell that shares a type with your commander, you'll scry 1 before that spell resolves."
-      }, {
-        "date" : "2017-08-25",
-        "text" : "If your commander is in a hidden zone (like the hand or library) or is phased out, it's considered to have no creature types."
-      }, {
-        "date" : "2017-08-25",
-        "text" : "If your commander has no creature types, it can't share a creature type with any spell that you cast."
-      }, {
-        "date" : "2017-08-25",
-        "text" : "If Path of Ancestry's last ability produces two mana (most likely due to Mana Reflection), you'll scry 1 twice if you spend those two mana to cast one creature spell that shares a type with your commander. You won't scry 2. You'll also scry 1 twice if you spend this mana to cast two creature spells that each share a type with your commander."
-      }, {
-        "date" : "2017-08-25",
-        "text" : "On the other hand, if an ability triggers when you tap Path of Ancestry for mana and produces more mana (such as that of Zendikar Resurgent or Mirari's Wake), you'll scry 1 only once when you spend those two mana."
-      }, {
-        "date" : "2017-08-25",
-        "text" : "If your commander is a card like Kozilek, Butcher of Truth that has no colors in its color identity, Path of Ancestry's last ability produces no mana."
-      }, {
-        "date" : "2017-08-25",
-        "text" : "In formats other than Commander, Path of Ancestry's last ability produces no mana."
-      } ],
-      "printings" : [ "C17" ],
-      "legalities" : [ {
-        "format" : "Commander",
-        "legality" : "Legal"
-      }, {
-        "format" : "Legacy",
-        "legality" : "Legal"
-      }, {
-        "format" : "Vintage",
-        "legality" : "Legal"
-      } ]
-    },
     "Worldly Tutor0" : {
       "layout" : "normal",
       "name" : "Worldly Tutor",

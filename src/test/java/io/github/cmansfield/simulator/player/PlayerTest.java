@@ -8,26 +8,41 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 
 public class PlayerTest {
 
   @Test
-  // TODO - Complete this test
-  public void test_shuffle() throws IOException {
+  public void test_draw() throws IOException {
     final String TEST_DECK_FILE = "CompleteCommanderDeck.json";
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
     Deck deck = LoadCards.loadDeck(file.getAbsolutePath());
 
+    assertNotNull(deck);
+
     Player player = new Player(deck);
-    System.out.println(player.getZone(Zone.LIBRARY).size());
-    System.out.println();
+    assertEquals(player.getZone(Zone.LIBRARY).size(), 100);
+    assertEquals(player.getZone(Zone.HAND).size(), 0);
+
     player.draw(7);
-    CardUtils.printCards(player.getZone(Zone.HAND));
-    player.shuffle(Zone.HAND);
-    System.out.println();
-    CardUtils.printCards(player.getZone(Zone.HAND));
-    System.out.println();
-    System.out.println(player.getZone(Zone.LIBRARY).size());
+    assertEquals(player.getZone(Zone.LIBRARY).size(), 93);
+    assertEquals(player.getZone(Zone.HAND).size(), 7);
+
+    List<Zone> unchangedZones = new ArrayList<>();
+    unchangedZones.add(Zone.BATTLEFIELD);
+    unchangedZones.add(Zone.GRAVEYARD);
+    unchangedZones.add(Zone.EXILE);
+    unchangedZones.add(Zone.COMMAND);
+    unchangedZones.add(Zone.ANTE);
+    unchangedZones.add(Zone.SCRAPYARD);
+
+    unchangedZones.forEach(zone -> {
+      assertEquals(player.getZone(zone).size(), 0);
+    });
   }
 }
