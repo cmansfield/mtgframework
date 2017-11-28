@@ -38,7 +38,8 @@ Testing
         DeckCrawler
         LoadCards::lookupCard
         Entire simulator package
-        Player::draw
         Player::shuffle
         Player::getZone
+        Player::moveZone
         Zone
+        DeckAppraiser::appraiseHandDraw

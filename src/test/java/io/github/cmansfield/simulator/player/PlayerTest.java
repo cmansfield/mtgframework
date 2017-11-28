@@ -26,18 +26,18 @@ public class PlayerTest {
     assertNotNull(deck);
 
     Player player = new Player(deck);
-    assertEquals(player.getZone(Zone.LIBRARY).size(), 100);
+    assertEquals(player.getZone(Zone.LIBRARY).size(), 99);
     assertEquals(player.getZone(Zone.HAND).size(), 0);
+    assertEquals(player.getZone(Zone.COMMAND).size(), 1);
 
     player.draw(7);
-    assertEquals(player.getZone(Zone.LIBRARY).size(), 93);
+    assertEquals(player.getZone(Zone.LIBRARY).size(), 92);
     assertEquals(player.getZone(Zone.HAND).size(), 7);
 
     List<Zone> unchangedZones = new ArrayList<>();
     unchangedZones.add(Zone.BATTLEFIELD);
     unchangedZones.add(Zone.GRAVEYARD);
     unchangedZones.add(Zone.EXILE);
-    unchangedZones.add(Zone.COMMAND);
     unchangedZones.add(Zone.ANTE);
     unchangedZones.add(Zone.SCRAPYARD);
 

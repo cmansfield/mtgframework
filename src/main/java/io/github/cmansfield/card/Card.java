@@ -2,13 +2,12 @@ package io.github.cmansfield.card;
 
 import io.github.cmansfield.card.constants.CardConstants;
 
-import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 
-public class Card implements Serializable {
+public class Card {
   private Map cardPojo;
 
   // TODO - Make deep copy of cardPojo

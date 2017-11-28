@@ -1,12 +1,16 @@
 package io.github.cmansfield;
 
 import io.github.cmansfield.card.Card;
+import io.github.cmansfield.card.filter.CardFilter;
 import io.github.cmansfield.deck.Deck;
+import io.github.cmansfield.deck.DeckAppraiser;
 import io.github.cmansfield.deck.constants.Format;
 import io.github.cmansfield.io.IoConstants;
 import io.github.cmansfield.io.LoadCards;
 import io.github.cmansfield.io.SaveCards;
 import io.github.cmansfield.io.web.GetUpdates;
+import io.github.cmansfield.simulator.constants.Zone;
+import io.github.cmansfield.simulator.player.Player;
 
 import java.io.IOException;
 import java.util.*;
@@ -55,7 +59,7 @@ public class App {
       return;
     }
 
-//    Deck doranDeck = LoadCards.loadDeck("Deck2.json");
-//    System.out.println(doranDeck);
+    Deck doranDeck = LoadCards.loadDeck("SavedCardLists/Deck2.json");
+    System.out.println(DeckAppraiser.appraiseHandDraw(doranDeck));
   }
 }

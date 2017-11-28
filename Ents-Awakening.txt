@@ -85,5 +85,4 @@
 1 Whispersilk Cloak
 1 Worldly Tutor
 1 Commander's Sphere
-1 Path of Ancestry
 \\ Sideboard

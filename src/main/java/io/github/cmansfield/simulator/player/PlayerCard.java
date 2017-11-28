@@ -12,6 +12,11 @@ public class PlayerCard extends Card {
 
   public PlayerCard(Map cardPojo, Player owner) {
     super(cardPojo);
+
+    if(owner == null) {
+      throw new IllegalArgumentException("An owner must be provided");
+    }
+
     this.owner = owner;
     this.controller = owner;
   }
