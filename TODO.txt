@@ -16,7 +16,11 @@ Other
 CardFilter
     Search all of the text fields as contains
 
+Simulator
+    Keep working on the state pattern for the different turn phases
+
 Testing
     Add integration tests
         DeckCrawler
         LoadCards::lookupCard
+        Entire simulator package
