@@ -2,6 +2,7 @@ package io.github.cmansfield.deck;
 
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.card.constants.Color;
+import io.github.cmansfield.deck.constants.Format;
 import io.github.cmansfield.io.LoadCards;
 import org.testng.annotations.Test;
 
@@ -22,13 +23,14 @@ public class DeckTest {
     final String TEST_DECK_FILE = "TestDeck.json";
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
     List<Card> cards = LoadCards.loadCards(file.getAbsolutePath());
-    Deck deck = LoadCards.loadDeck(file.getAbsolutePath());
+    Deck deck = new Deck(cards);
 
     assertNotNull(deck);
     assertEquals(cards.size(), 15);
     assertEquals(deck.getCards().size(), 10);
     assertEquals((int)deck.getQuantity("Behind the Scenes"), 5);
     assertEquals((int)deck.getQuantity("Chromatic Lantern"), 2);
+    assertEquals(cards.size(), deck.getOriginalCards().size());
   }
 
   @Test
@@ -48,5 +50,29 @@ public class DeckTest {
     colors.forEach(color -> {
       assertTrue(deckColors.contains(color));
     });
+  }
+
+  @Test
+  public void test_getFormat() throws IOException {
+    final String TEST_DECK_FILE = "CompleteCommanderDeck.json";
+    File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
+    Deck deck = LoadCards.loadDeck(file.getAbsolutePath());
+
+    Format format = deck.getFormat();
+
+    assertNotNull(format);
+    assertEquals(format.toString(), Format.COMMANDER.toString());
+  }
+
+  @Test
+  public void test_getFeaturedCard() throws IOException {
+    final String TEST_DECK_FILE = "CompleteCommanderDeck.json";
+    File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
+    Deck deck = LoadCards.loadDeck(file.getAbsolutePath());
+
+    Card featuredCard = deck.getFeaturedCard();
+
+    assertNotNull(featuredCard);
+    assertEquals(featuredCard.getName(), "Doran, the Siege Tower");
   }
 }

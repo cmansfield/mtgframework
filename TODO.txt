@@ -35,6 +35,4 @@ Testing
         LoadCards::lookupCard
         Entire simulator package
         Player
-        Deck::getFormat
-        Deck::getOriginalCards
         Zone
