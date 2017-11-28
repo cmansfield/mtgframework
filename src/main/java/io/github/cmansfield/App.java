@@ -58,10 +58,4 @@ public class App {
 //    Deck doranDeck = LoadCards.loadDeck("Deck2.json");
 //    System.out.println(doranDeck);
   }
-
-  private static void printCards(List<Card> cards) {
-    cards.forEach(card -> {
-      System.out.println(card.getName());
-    });
-  }
 }

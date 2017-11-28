@@ -29,10 +29,16 @@ DeckValidator
 LoadCards
     LoadCards::lookupCard - Make it so you can look up card name by contains
 
+Player
+    Load the featured card into the command zone, remove featured card from list
+    Overload the toString method
+
 Testing
     Add integration tests
         DeckCrawler
         LoadCards::lookupCard
         Entire simulator package
-        Player
+        Player::draw
+        Player::shuffle
+        Player::getZone
         Zone

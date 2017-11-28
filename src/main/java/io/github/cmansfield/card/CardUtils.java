@@ -132,4 +132,13 @@ public final class CardUtils {
             .colorIdentity(colorIdentity)
             .build();
   }
+
+  /**
+   * Prints out a simple list of cards
+   *
+   * @param cards - List of cards to print out to the console
+   */
+  public static void printCards(List<Card> cards) {
+    cards.forEach(card -> System.out.println(card.getName()));
+  }
 }
