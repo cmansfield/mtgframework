@@ -2,6 +2,7 @@ package io.github.cmansfield;
 
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
+import io.github.cmansfield.deck.constants.Format;
 import io.github.cmansfield.io.IoConstants;
 import io.github.cmansfield.io.LoadCards;
 import io.github.cmansfield.io.SaveCards;
@@ -54,9 +55,11 @@ public class App {
       return;
     }
 
-    Deck doranDeck = new Deck(LoadCards.loadCards("DeleteMe.txt"));
-//    String newFileName = SaveCards.saveDeck(doranDeck);
-//    System.out.println(newFileName);
+    Deck doranDeck = new Deck(LoadCards.loadCards("Ents-Awakening.txt"));
+    doranDeck.setFormat(Format.COMMANDER);
+    doranDeck.setFeaturedCard(LoadCards.lookupCard("Doran, the Siege Tower"));
+    String newFileName = SaveCards.saveDeck(doranDeck);
+    System.out.println(newFileName);
   }
 
   private static void printCards(List<Card> cards) {

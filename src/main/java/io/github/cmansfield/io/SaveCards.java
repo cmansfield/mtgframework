@@ -3,6 +3,7 @@ package io.github.cmansfield.io;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
+import io.github.cmansfield.deck.constants.Legality;
 
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -69,8 +70,17 @@ public final class SaveCards {
         }
       });
 
+      Map<String, Object> deckMap = new HashMap<>();
+      if(deck.getFeaturedCard() != null) {
+        deckMap.put(IoConstants.FEATURED_KEY, deck.getFeaturedCard().getCardPojo());
+      }
+      if(deck.getFormat() != null) {
+        deckMap.put(Legality.FORMAT.toString(), deck.getFormat().toString());
+      }
+      deckMap.put(IoConstants.CARDS_KEY, cardMap);
+
       String jsonCards = mapper.writerWithDefaultPrettyPrinter()
-              .writeValueAsString(cardMap);
+              .writeValueAsString(deckMap);
 
       writer.write(jsonCards);
     }

@@ -12,6 +12,7 @@ public final class Deck {
   private Map<String,Integer> quantity;
   private List<Card> originalCards;
   private List<Color> deckColors;
+  private Card featuredCard;
   private List<Card> cards;
   private Format format;
 
@@ -68,8 +69,16 @@ public final class Deck {
     return new ArrayList<>(this.deckColors);
   }
 
+  public Card getFeaturedCard() {
+    return this.featuredCard;
+  }
+
   public Format getFormat() {
     return this.format;
+  }
+
+  public void setFeaturedCard(Card card) {
+    this.featuredCard = card;
   }
 
   public void setFormat(Format format) {
