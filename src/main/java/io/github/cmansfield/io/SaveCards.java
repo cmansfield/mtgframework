@@ -2,9 +2,6 @@ package io.github.cmansfield.io;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cmansfield.card.Card;
-import io.github.cmansfield.card.CardUtils;
-import io.github.cmansfield.card.constants.Colors;
-import io.github.cmansfield.card.constants.Formats;
 import io.github.cmansfield.deck.Deck;
 
 import java.nio.charset.StandardCharsets;

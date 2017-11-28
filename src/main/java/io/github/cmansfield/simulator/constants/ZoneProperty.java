@@ -2,23 +2,23 @@ package io.github.cmansfield.simulator.constants;
 
 import io.github.cmansfield.constants.Constant;
 
-public enum ZoneProperties implements Constant<ZoneProperties> {
+public enum ZoneProperty implements Constant<ZoneProperty> {
   PUBLIC("Public"),
   SHARED("Shared"),
   ORDERED("Ordered");
 
   private final String value;
 
-  ZoneProperties(String value) {
+  ZoneProperty(String value) {
     this.value = value;
   }
 
   public static boolean contains(final String value) {
-    return Constant.contains(ZoneProperties.class, value);
+    return Constant.contains(ZoneProperty.class, value);
   }
 
-  public static ZoneProperties find(String value) {
-    return Constant.find(ZoneProperties.class, value);
+  public static ZoneProperty find(String value) {
+    return Constant.find(ZoneProperty.class, value);
   }
 
   @Override

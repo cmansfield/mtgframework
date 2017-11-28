@@ -54,8 +54,9 @@ public class App {
       return;
     }
 
-    Deck doranDeck = new Deck(LoadCards.loadCards("Ents-Awakening.txt"));
-    System.out.println(doranDeck);
+    Deck doranDeck = new Deck(LoadCards.loadCards("DeleteMe.txt"));
+//    String newFileName = SaveCards.saveDeck(doranDeck);
+//    System.out.println(newFileName);
   }
 
   private static void printCards(List<Card> cards) {

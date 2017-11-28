@@ -1,7 +1,7 @@
 package io.github.cmansfield.deck;
 
 import io.github.cmansfield.card.Card;
-import io.github.cmansfield.card.constants.Colors;
+import io.github.cmansfield.card.constants.Color;
 import io.github.cmansfield.io.LoadCards;
 import org.testng.annotations.Test;
 
@@ -38,12 +38,12 @@ public class DeckTest {
     List<Card> cards = LoadCards.loadCards(file.getAbsolutePath());
     Deck deck = LoadCards.loadDeck(file.getAbsolutePath());
 
-    List<Colors> deckColors = deck.getDeckColors();
+    List<Color> deckColors = deck.getDeckColors();
 
-    List<Colors> colors = new ArrayList<>();
-    colors.add(Colors.GREEN);
-    colors.add(Colors.WHITE);
-    colors.add(Colors.BLACK);
+    List<Color> colors = new ArrayList<>();
+    colors.add(Color.GREEN);
+    colors.add(Color.WHITE);
+    colors.add(Color.BLACK);
 
     assertEquals(deckColors.size(), 3);
     colors.forEach(color -> {

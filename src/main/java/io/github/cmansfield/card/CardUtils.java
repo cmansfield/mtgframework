@@ -1,8 +1,9 @@
 package io.github.cmansfield.card;
 
-import io.github.cmansfield.card.constants.Colors;
-import io.github.cmansfield.card.constants.Formats;
-import io.github.cmansfield.card.constants.Legality;
+import io.github.cmansfield.card.constants.Color;
+import io.github.cmansfield.deck.constants.Format;
+import io.github.cmansfield.deck.constants.Legality;
+import org.apache.commons.lang.ObjectUtils;
 
 import java.util.*;
 
@@ -10,7 +11,7 @@ import java.util.*;
 public final class CardUtils {
 
   public static class LegalitiesBuilder {
-    private List<Formats> formats = new ArrayList<>();
+    private List<Format> formats = new ArrayList<>();
 
     public LegalitiesBuilder() {}
 
@@ -18,7 +19,7 @@ public final class CardUtils {
      * @param format  - The game format that a card is legal to play in
      * @return        - A builder object to allow method chaining
      */
-    public LegalitiesBuilder format(Formats format) {
+    public LegalitiesBuilder format(Format format) {
       this.formats.add(format);
       return this;
     }
@@ -52,7 +53,7 @@ public final class CardUtils {
     Set<String> legalities = new HashSet<>();
 
     if(cards == null) {
-      return null;
+      throw new NullPointerException("Card list passed in was null");
     }
 
     cards.forEach(card -> {
@@ -63,8 +64,9 @@ public final class CardUtils {
       }
 
       listOfLegalities.forEach(legalMap -> {
-        String format = legalMap.get("format");
-        if(!legalities.contains(format)) {
+        String format = legalMap.get(Legality.FORMAT.toString());
+        String legality = legalMap.get(Legality.LEGALITY.toString());
+        if(legality.equalsIgnoreCase("Legal") && !legalities.contains(format)) {
           legalities.add(format);
         }
       });
@@ -84,11 +86,11 @@ public final class CardUtils {
     names.add("AKA Card Name");
 
     List<String> colors = new ArrayList<>();
-    colors.add(Colors.WHITE.toString());
-    colors.add(Colors.BLUE.toString());
-    colors.add(Colors.BLACK.toString());
-    colors.add(Colors.RED.toString());
-    colors.add(Colors.GREEN.toString());
+    colors.add(Color.WHITE.toString());
+    colors.add(Color.BLUE.toString());
+    colors.add(Color.BLACK.toString());
+    colors.add(Color.RED.toString());
+    colors.add(Color.GREEN.toString());
 
     List<Map<String,String>> rulings = new ArrayList<>();
     Map<String,String> rule = new HashMap<>();
@@ -126,7 +128,7 @@ public final class CardUtils {
             .starter(false)
             .printings(Collections.singletonList("TBA"))
             .source("Template Theme Deck")
-            .legalities(new CardUtils.LegalitiesBuilder().format(Formats.COMMANDER).build())
+            .legalities(new CardUtils.LegalitiesBuilder().format(Format.COMMANDER).build())
             .colorIdentity(colorIdentity)
             .build();
   }

@@ -2,9 +2,9 @@ package io.github.cmansfield.card.filter;
 
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.card.CardUtils;
-import io.github.cmansfield.card.constants.Colors;
-import io.github.cmansfield.card.constants.Formats;
-import io.github.cmansfield.card.constants.Legality;
+import io.github.cmansfield.card.constants.Color;
+import io.github.cmansfield.deck.constants.Format;
+import io.github.cmansfield.deck.constants.Legality;
 import io.github.cmansfield.io.LoadCards;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -40,7 +40,7 @@ public class CardFilterTest {
     assertNotNull(cards);
     Card cardFilter = new Card
             .CardBuilder()
-            .colors(Collections.singletonList(Colors.WHITE.toString()))
+            .colors(Collections.singletonList(Color.WHITE.toString()))
             .build();
 
     List<Card> filteredCards = CardFilter.filter(cards, cardFilter);
@@ -82,7 +82,7 @@ public class CardFilterTest {
     assertNotNull(cards);
     Card cardFilter = new Card
             .CardBuilder()
-            .colors(Collections.singletonList(Colors.BLACK.toString()))
+            .colors(Collections.singletonList(Color.BLACK.toString()))
             .legalities(Collections.singletonList(legal))
             .types(Collections.singletonList("Creature"))
             .build();
@@ -133,7 +133,7 @@ public class CardFilterTest {
 
     Card cardFilterNot = new Card
             .CardBuilder()
-            .colors(Collections.singletonList(Colors.GREEN.toString()))
+            .colors(Collections.singletonList(Color.GREEN.toString()))
             .build();
 
     List<Card> filteredCards = CardFilter.filterNot(cards, cardFilterNot);
@@ -149,7 +149,7 @@ public class CardFilterTest {
   public void test_filterNot_complex() {
     List<Map<String,String>> legalities = new CardUtils
             .LegalitiesBuilder()
-            .format(Formats.COMMANDER)
+            .format(Format.COMMANDER)
             .build();
 
     Card cardFilterNot = new Card

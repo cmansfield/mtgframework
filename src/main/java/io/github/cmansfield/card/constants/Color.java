@@ -2,7 +2,7 @@ package io.github.cmansfield.card.constants;
 
 import io.github.cmansfield.constants.Constant;
 
-public enum Colors implements Constant<Colors> {
+public enum Color implements Constant<Color> {
   WHITE("White"),
   BLACK("Black"),
   RED("Red"),
@@ -12,23 +12,23 @@ public enum Colors implements Constant<Colors> {
 
   private final String value;
 
-  Colors(String value) {
+  Color(String value) {
     this.value = value;
   }
 
-  private static Colors shortHand(final String val) {
+  private static Color shortHand(final String val) {
 
     switch (val.toUpperCase()) {
       case "W":
-        return Colors.WHITE;
+        return Color.WHITE;
       case "R":
-        return Colors.RED;
+        return Color.RED;
       case "B":
-        return Colors.BLACK;
+        return Color.BLACK;
       case "U":
-        return Colors.BLUE;
+        return Color.BLUE;
       case "G":
-        return Colors.GREEN;
+        return Color.GREEN;
       default:
         try {
           Integer.parseInt(val);
@@ -37,18 +37,18 @@ public enum Colors implements Constant<Colors> {
         }
     }
 
-    return Colors.COLORLESS;
+    return Color.COLORLESS;
   }
 
   public static boolean contains(final String value) {
-    return Constant.contains(Colors.class, value)
-            || Colors.shortHand(value) != null;
+    return Constant.contains(Color.class, value)
+            || Color.shortHand(value) != null;
   }
 
-  public static Colors find(final String value) {
+  public static Color find(final String value) {
 
-    Colors color = Constant.find(Colors.class, value);
-    if(color == null) color = Colors.shortHand(value);
+    Color color = Constant.find(Color.class, value);
+    if(color == null) color = Color.shortHand(value);
 
     return color;
   }

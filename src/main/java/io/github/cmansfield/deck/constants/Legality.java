@@ -1,4 +1,4 @@
-package io.github.cmansfield.card.constants;
+package io.github.cmansfield.deck.constants;
 
 import io.github.cmansfield.constants.Constant;
 

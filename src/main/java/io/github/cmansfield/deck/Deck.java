@@ -1,7 +1,8 @@
 package io.github.cmansfield.deck;
 
 import io.github.cmansfield.card.Card;
-import io.github.cmansfield.card.constants.Colors;
+import io.github.cmansfield.card.constants.Color;
+import io.github.cmansfield.deck.constants.Format;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -9,19 +10,27 @@ import java.util.stream.Collectors;
 
 public final class Deck {
   private Map<String,Integer> quantity;
-  private List<Colors> deckColors;
+  private List<Card> originalCards;
+  private List<Color> deckColors;
   private List<Card> cards;
+  private Format format;
+
+  public Deck(List<Card> cards) {
+    this(cards, null);
+  }
 
   /**
    * Constructor that will remove duplicates from the card list
    * and keep track of the number of copies of a card in the
    * quantity map
    *
-   * @param cards - List of cards to create the deck with
+   * @param cards   - List of cards to create the deck with
+   * @param format  - The type of game format this deck is meant for
    */
-  public Deck(List<Card> cards) {
+  public Deck(List<Card> cards, Format format) {
     this.deckColors = new ArrayList<>();
     this.quantity = new HashMap<>();
+    this.originalCards = new ArrayList<>(cards);
 
     this.cards = cards.stream().filter(card -> {
       String key = card.getName();
@@ -36,7 +45,7 @@ public final class Deck {
         }
 
         card.getColors().forEach(color -> {
-          Colors colorEnum = Colors.find(color);
+          Color colorEnum = Color.find(color);
           if(!this.deckColors.contains(colorEnum)) {
             this.deckColors.add(colorEnum);
           }
@@ -51,8 +60,20 @@ public final class Deck {
     return new ArrayList<>(this.cards);
   }
 
-  public List<Colors> getDeckColors() {
+  public List<Card> getOriginalCards() {
+    return new ArrayList<>(this.originalCards);
+  }
+
+  public List<Color> getDeckColors() {
     return new ArrayList<>(this.deckColors);
+  }
+
+  public Format getFormat() {
+    return this.format;
+  }
+
+  public void setFormat(Format format) {
+    this.format = format;
   }
 
   /**

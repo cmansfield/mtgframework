@@ -1,7 +1,7 @@
 package io.github.cmansfield.card;
 
-import io.github.cmansfield.card.constants.Formats;
-import io.github.cmansfield.card.constants.Legality;
+import io.github.cmansfield.deck.constants.Format;
+import io.github.cmansfield.deck.constants.Legality;
 import io.github.cmansfield.io.LoadCards;
 import org.testng.annotations.Test;
 
@@ -19,17 +19,17 @@ public class CardUtilsTest {
   @Test
   public void test_legalitiesBuilder() {
     List<String> legalitiesStr = new ArrayList<>();
-    legalitiesStr.add(Formats.COMMANDER.toString());
-    legalitiesStr.add(Formats.BATTLE_FOR_ZENDIKAR_BLOCK.toString());
-    legalitiesStr.add(Formats.MODERN.toString());
-    legalitiesStr.add(Formats.LEGACY.toString());
+    legalitiesStr.add(Format.COMMANDER.toString());
+    legalitiesStr.add(Format.BATTLE_FOR_ZENDIKAR_BLOCK.toString());
+    legalitiesStr.add(Format.MODERN.toString());
+    legalitiesStr.add(Format.LEGACY.toString());
 
     List<Map<String,String>> legalities = new CardUtils
             .LegalitiesBuilder()
-            .format(Formats.COMMANDER)
-            .format(Formats.BATTLE_FOR_ZENDIKAR_BLOCK)
-            .format(Formats.MODERN)
-            .format(Formats.LEGACY)
+            .format(Format.COMMANDER)
+            .format(Format.BATTLE_FOR_ZENDIKAR_BLOCK)
+            .format(Format.MODERN)
+            .format(Format.LEGACY)
             .build();
 
     assertNotNull(legalities);
@@ -46,7 +46,7 @@ public class CardUtilsTest {
 
     Set<String> legalities = CardUtils.getListOfLegalities(cards);
 
-    for(Formats format : Formats.values()) {
+    for(Format format : Format.values()) {
       assertTrue(legalities.contains(format.toString()));
     }
   }

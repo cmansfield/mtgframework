@@ -4,6 +4,7 @@ Mtg Framework TODO list
 IO
 	LoadCards.cardMap an immutable map
 	Once Cards are immutable, stop copying the card list
+	Save/Load Deck, includes featured card, and deck format
 
 Card
     Create deep copy of cardPojo when creating a new Card
@@ -19,8 +20,19 @@ CardFilter
 Simulator
     Keep working on the state pattern for the different turn phases
 
+DeckCrawler
+    Continue to find ways to inject token cookies into REST calls
+
+DeckValidator
+    Update 'isFormatCompliant' to check for deck sizes and any other
+    rules for the format specified in the deck
+
 Testing
     Add integration tests
         DeckCrawler
         LoadCards::lookupCard
         Entire simulator package
+        Player
+        Deck::getFormat
+        Deck::getOriginalCards
+        Zone
