@@ -59,7 +59,10 @@ public class App {
       return;
     }
 
-    Deck doranDeck = LoadCards.loadDeck("SavedCardLists/Deck2.json");
-    System.out.println(DeckAppraiser.appraiseHandDraw(doranDeck));
+    Deck doranDeck = LoadCards.loadDeck("SavedCardLists/Doran.json");
+    System.out.println(String.format("Doran: %.2f", DeckAppraiser.appraiseHandDraw(doranDeck)));
+
+    Deck gaveDeck = LoadCards.loadDeck("SavedCardLists/Ghave.json");
+    System.out.println(String.format("Ghave: %.2f", DeckAppraiser.appraiseHandDraw(gaveDeck)));
   }
 }

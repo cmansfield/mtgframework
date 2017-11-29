@@ -30,16 +30,11 @@ LoadCards
     LoadCards::lookupCard - Make it so you can look up card name by contains
 
 Player
-    Load the featured card into the command zone, remove featured card from list
     Overload the toString method
 
 Testing
     Add integration tests
+        DeckAppraiser::appraiseHandDraw (Wait to create this)
+        Entire simulator.turn package
         DeckCrawler
-        LoadCards::lookupCard
-        Entire simulator package
-        Player::shuffle
-        Player::getZone
-        Player::moveZone
         Zone
-        DeckAppraiser::appraiseHandDraw

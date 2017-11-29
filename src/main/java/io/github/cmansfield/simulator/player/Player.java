@@ -70,6 +70,10 @@ public class Player {
     }
   }
 
+  /**
+   * This returns all of the zones back to their default
+   * The library will need to be shuffled after each reset
+   */
   public void resetZones() {
     this.zones = new EnumMap<>(Zone.class);
     this.zones.put(
@@ -86,7 +90,6 @@ public class Player {
                     .map(card -> new PlayerCard(card.getCardPojo(), this))
                     .collect(Collectors.toList()));
     this.zones.put(Zone.HAND, new ArrayList<>());
-    this.zones.put(Zone.BATTLEFIELD, new ArrayList<>());
     this.zones.put(Zone.GRAVEYARD, new ArrayList<>());
     this.zones.put(Zone.EXILE, new ArrayList<>());
     this.zones.put(
