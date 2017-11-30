@@ -25,7 +25,7 @@ public class PlayerTest {
     Deck deck = LoadCards.loadDeck(file.getAbsolutePath());
 
     assertNotNull(deck);
-    this.player = new Player(deck);
+    this.player = new Player(deck, 20);
   }
 
   @Test

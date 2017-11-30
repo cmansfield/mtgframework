@@ -1,4 +1,4 @@
-package io.github.cmansfield.card.filter;
+package io.github.cmansfield.filters;
 
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.card.constants.CardConstants;
@@ -9,13 +9,13 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 
-public final class CardFilter {
+public class CardFilter {
   /**
    * Returns a list of cards that do not match anything in the filters supplied
    *
-   * @param cards   - List of cards to filter down
-   * @param filters - A list of Cards that will be used as the filter criteria
-   * @return        - A list of cards that met the filter criteria
+   * @param cards   - List of cards to filters down
+   * @param filters - A list of Cards that will be used as the filters criteria
+   * @return        - A list of cards that met the filters criteria
    */
   public static List<Card> filterNot(List<Card> cards, List<Card> filters) {
     List<Card> allFilteredNotCards = new ArrayList<>();
@@ -28,22 +28,22 @@ public final class CardFilter {
   }
 
   /**
-   * Returns a list of cards that do not match anything in the filter supplied
+   * Returns a list of cards that do not match anything in the filters supplied
    *
-   * @param cards   - List of cards to filter down
-   * @param filter  - A Card that will be used as the filter criteria
-   * @return        - A List of cards that met the filter criteria
+   * @param cards   - List of cards to filters down
+   * @param filter  - A Card that will be used as the filters criteria
+   * @return        - A List of cards that met the filters criteria
    */
   public static List<Card> filterNot(List<Card> cards, Card filter) {
     return filterTemplateMethod(cards, filter, true);
   }
 
   /**
-   * Returns a list of cards that meet the filter criteria
+   * Returns a list of cards that meet the filters criteria
    *
-   * @param cards   - List of cards to filter down
-   * @param filters - A list of Cards that will be used as the filter criteria
-   * @return        - A list of cards that met the filter criteria
+   * @param cards   - List of cards to filters down
+   * @param filters - A list of Cards that will be used as the filters criteria
+   * @return        - A list of cards that met the filters criteria
    */
   public static List<Card> filter(List<Card> cards, List<Card> filters) {
     List<Card> allFilteredCards = new ArrayList<>();
@@ -56,11 +56,11 @@ public final class CardFilter {
   }
 
   /**
-   * Returns a list of cards that meet the filter criteria
+   * Returns a list of cards that meet the filters criteria
    *
-   * @param cards   - List of cards to filter down
-   * @param filter  - A Card that will be used as the filter criteria
-   * @return        - A List of cards that met the filter criteria
+   * @param cards   - List of cards to filters down
+   * @param filter  - A Card that will be used as the filters criteria
+   * @return        - A List of cards that met the filters criteria
    */
   public static List<Card> filter(List<Card> cards, Card filter) {
     return filterTemplateMethod(cards, filter, false);
@@ -71,10 +71,10 @@ public final class CardFilter {
    * set to find only cards that match the filters or if set to true, remove cards that
    * match what is in the filters.
    *
-   * @param cards   - List of cards to filter down
-   * @param filter  - A list of Cards that will be used as the filter criteria
-   * @param isNot   - A boolean to filter for matching or non-matching cards
-   * @return        - A List of cards that met the filter criteria
+   * @param cards   - List of cards to filters down
+   * @param filter  - A list of Cards that will be used as the filters criteria
+   * @param isNot   - A boolean to filters for matching or non-matching cards
+   * @return        - A List of cards that met the filters criteria
    */
   private static List<Card> filterTemplateMethod(List<Card> cards, Card filter, boolean isNot) {
     final Map<CardConstants, Pair<Supplier,Function>> getterMethodMap = generateFilterMap(filter);
@@ -192,9 +192,9 @@ public final class CardFilter {
 
   /**
    * Returns a Map of all of the function references that were found in the
-   * filter object
+   * filters object
    *
-   * @param filter  - Card object that contains the filter criteria
+   * @param filter  - Card object that contains the filters criteria
    * @return        - Returns a map of functions that were found in the filters object
    */
   private static Map<CardConstants, Pair<Supplier,Function>> generateFilterMap(Card filter) {

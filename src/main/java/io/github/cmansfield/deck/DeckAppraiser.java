@@ -2,7 +2,7 @@ package io.github.cmansfield.deck;
 
 import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.simulator.player.Player;
-import io.github.cmansfield.card.filter.CardFilter;
+import io.github.cmansfield.filters.CardFilter;
 import io.github.cmansfield.card.Card;
 
 import java.util.Collections;
@@ -22,7 +22,7 @@ public final class DeckAppraiser {
    */
   public static float appraiseHandDraw(Deck deck) {
     Card filter = new Card.CardBuilder().types(Collections.singletonList("Land")).build();
-    Player player = new Player(deck);
+    Player player = new Player(deck, 1);
     int maxDraws = 1000;
     int goodHand = 0;
 

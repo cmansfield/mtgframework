@@ -24,7 +24,7 @@ public class PlayerCardTest {
 
     assertNotNull(deck);
 
-    Player player = new Player(deck);
+    Player player = new Player(deck, 20);
     List<PlayerCard> library = player.getZone(Zone.LIBRARY);
     assertTrue(library.size() > 0);
     assertTrue(library.get(0) instanceof PlayerCard);

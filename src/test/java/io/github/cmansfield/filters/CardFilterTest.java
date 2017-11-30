@@ -1,4 +1,4 @@
-package io.github.cmansfield.card.filter;
+package io.github.cmansfield.filters;
 
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.card.CardUtils;

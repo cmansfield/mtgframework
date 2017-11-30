@@ -9,13 +9,21 @@ import java.util.stream.Collectors;
 
 public class Player {
   private Map<Zone,List<PlayerCard>> zones;
+  private Integer life;
   private Deck deck;
 
-  public Player(Deck deck) {
+  public Player(Deck deck, Integer life) {
     if(deck == null) {
       throw new NullPointerException("Deck must not be null");
     }
+    if(life == null) {
+      throw new IllegalArgumentException("A player's life total must be provided");
+    }
+    if(life < 1) {
+      throw new IllegalArgumentException(String.format("A player's life total cannot start at %d", life));
+    }
 
+    this.life = life;
     this.deck = deck;
     resetZones();
   }
