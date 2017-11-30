@@ -12,8 +12,8 @@ public class Card {
 
   // TODO - Make deep copy of cardPojo
   public Card(Object cardPojo) {
-    if(cardPojo instanceof LinkedHashMap) {
-      this.cardPojo = (LinkedHashMap) cardPojo;
+    if(cardPojo instanceof Map) {
+      this.cardPojo = (Map)cardPojo;
     }
     else {
       throw new IllegalArgumentException("Object must be a LinkedHashMap");
