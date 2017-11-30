@@ -23,8 +23,8 @@ DeckCrawler
     Continue to find ways to inject token cookies into REST calls
 
 DeckValidator
-    Update 'isFormatCompliant' to check for deck sizes and any other
-    rules for the format specified in the deck
+    Update 'isFormatCompliant' to check for other format rules
+    Udpate 'isFormatCompliant' for Commander to allow commander partners
 
 LoadCards
     LoadCards::lookupCard - Make it so you can look up card name by contains

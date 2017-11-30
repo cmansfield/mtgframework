@@ -14,6 +14,7 @@ import io.github.cmansfield.io.web.GetUpdates;
 import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.simulator.player.Player;
 import io.github.cmansfield.simulator.player.PlayerCard;
+import io.github.cmansfield.validator.DeckValidator;
 
 import java.io.IOException;
 import java.util.*;
@@ -65,20 +66,6 @@ public class App {
     Deck doranDeck = LoadCards.loadDeck("SavedCardLists/DoranDeck.json");
     Deck ghaveDeck = LoadCards.loadDeck("SavedCardLists/GhaveDeck.json");
 
-    Player player1 = new Player(doranDeck, 40);
-    Player player2 = new Player(ghaveDeck, 40);
-
-    List<PlayerCard> player1Cards = player1.getZone(Zone.LIBRARY);
-    PlayerCard playerCardFilter = new PlayerCard
-            .PlayerCardBuilder()
-            .owner(player1)
-            .card(new Card
-                    .CardBuilder()
-                    .types(Collections.singletonList("Land"))
-                    .build()
-                    .getCardPojo())
-            .build();
-    List filteredCards = PlayerCardFilter.filter(player1Cards, playerCardFilter);
-    CardUtils.printCards(filteredCards);
+    DeckValidator.isFormatCompliant(doranDeck);
   }
 }

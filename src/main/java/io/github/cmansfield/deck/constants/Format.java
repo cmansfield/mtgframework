@@ -1,13 +1,20 @@
 package io.github.cmansfield.deck.constants;
 
+import io.github.cmansfield.card.Card;
 import io.github.cmansfield.constants.Constant;
+
+import java.util.Collections;
 
 public enum Format implements Constant<Format> {
   SCARS_OF_MIRRODIN_BLOCK("Scars of Mirrodin Block"),
   ICE_AGE_BLOCK("Ice Age Block"),
   KHANS_OF_TARKIR_BLOCK("Khans of Tarkir Block"),
   LORWYN_SHADOWMOOR_BLOCK("Lorwyn-Shadowmoor Block"),
-  COMMANDER("Commander"),
+  COMMANDER("Commander",
+            new Card
+              .CardBuilder()
+              .superTypes(Collections.singletonList("Legendary"))
+              .build()),
   ODYSSEY_BLOCK("Odyssey Block"),
   KALADESH_BLOCK("Kaladesh Block"),
   LEGACY("Legacy"),
@@ -38,9 +45,20 @@ public enum Format implements Constant<Format> {
   RAVNICA_BLOCK("Ravnica Block");
 
   private final String value;
+  private final Card featureCardFilter;
 
   Format(String value) {
     this.value = value;
+    this.featureCardFilter = null;
+  }
+
+  Format(String value, Card featureCardFilter) {
+    this.value = value;
+    this.featureCardFilter = featureCardFilter;
+  }
+
+  public Card getFeatureCardFilter() {
+    return this.featureCardFilter;
   }
 
   public static boolean contains(final String value) {

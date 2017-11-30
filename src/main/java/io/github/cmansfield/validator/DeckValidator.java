@@ -1,9 +1,11 @@
 package io.github.cmansfield.validator;
 
+import io.github.cmansfield.card.constants.Color;
 import io.github.cmansfield.deck.constants.Format;
 import io.github.cmansfield.card.CardUtils;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
+import io.github.cmansfield.filters.CardFilter;
 
 import java.util.stream.Collectors;
 import java.util.Collections;
@@ -12,15 +14,65 @@ import java.util.List;
 
 public final class DeckValidator {
 
+  private DeckValidator() {}
+
   /**
    * Returns true is the deck is format compliant
    *
    * @param deck  - The deck to check
-   * @return      - Boolean true if the deck is format legal
    */
-  // TODO - Check deck sizes for each of the different formats
-  public static boolean isFormatCompliant(Deck deck) {
-    return getNonCompliantCards(deck).size() == 0;
+  public static void isFormatCompliant(Deck deck) {
+    if(deck.getFormat() != Format.COMMANDER) {
+      throw new UnsupportedOperationException("This feature currently only checks to see if decks are commander legal");
+    }
+
+    Card commander = deck.getFeaturedCard();
+
+    if(commander == null) {
+      throw new IllegalStateException("Commander decks must have a commander");
+    }
+
+    if(deck.getOriginalCards().size() != 100) {
+      throw new IllegalStateException("Commander decks can only contain 100 cards");
+    }
+
+    // TODO - Add logic for commander partners
+    if(CardFilter.filter(
+            Collections.singletonList(commander),
+            Format.COMMANDER.getFeatureCardFilter()).size() != 1) {
+      throw new IllegalStateException("Deck commanders must be of Legendary type");
+    }
+
+    List<Card> deckCards = deck.getCards();
+
+    // Remove all colorless cards
+    deckCards = CardFilter.filter(
+            deckCards,
+            new Card.CardBuilder()
+                    .colors(Collections.EMPTY_LIST)
+                    .build());
+
+    // Filter for all of the cards that don't have their commander's colors
+    for(String color : commander.getColors()) {
+      deckCards = CardFilter.filterNot(
+              deckCards,
+              new Card.CardBuilder()
+                      .colors(Collections.singletonList(color))
+                      .build());
+    }
+
+    if(!deckCards.isEmpty()) {
+      throw new IllegalStateException("Commander decks must only include cards with colors that match their commander");
+    }
+
+    List<Card> nonCompliantCards = getNonCompliantCards(deck);
+    if(!nonCompliantCards.isEmpty()) {
+      throw new IllegalStateException(
+              String.format(
+                      "There are cards that are not %s legal%n%s",
+                      deck.getFormat().toString(),
+                      nonCompliantCards.toString() ));
+    }
   }
 
   /**
