@@ -32,6 +32,7 @@ public class PreCombatMainPhase implements Phase {
       if(!land.isEmpty()) {
         Collections.shuffle(land);
         activePlayer.moveZone(Zone.HAND, Zone.BATTLEFIELD, land.get(0));
+        gameManager.setActivePlayerPlayedLand(true);
       }
     }
 
