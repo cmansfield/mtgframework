@@ -27,17 +27,17 @@ public enum Zone implements Constant<Zone> {
     this.properties.put(ZoneProperty.ORDERED, isOrdered);
   }
 
-  public boolean getProperty(final String prop) {
+  public boolean getPropertyValue(final String prop) {
     ZoneProperty property = ZoneProperty.find(prop);
 
     if(property == null) {
       throw new NullPointerException(String.format("Zone property %s does not exisit", prop));
     }
 
-    return getProperty(property);
+    return getPropertyValue(property);
   }
 
-  public boolean getProperty(ZoneProperty property) {
+  public boolean getPropertyValue(ZoneProperty property) {
       if(!this.properties.containsKey(property)) {
         throw new IllegalStateException("The Zone.java class is missing a property from the ZoneProperty.java class");
       }
