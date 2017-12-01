@@ -7,6 +7,7 @@ import io.github.cmansfield.deck.constants.Format;
 import io.github.cmansfield.filters.CardFilter;
 import io.github.cmansfield.io.IoConstants;
 import io.github.cmansfield.io.LoadCards;
+import io.github.cmansfield.io.LoadDeck;
 import io.github.cmansfield.io.SaveCards;
 import io.github.cmansfield.io.web.GetUpdates;
 import io.github.cmansfield.simulator.gameManager.GameManager;
@@ -60,8 +61,8 @@ public class App {
       return;
     }
 
-    Deck doranDeck = LoadCards.loadDeck("SavedCardLists/DoranDeck.json");
-    Deck ghaveDeck = LoadCards.loadDeck("SavedCardLists/GhaveDeck.json");
+    Deck doranDeck = LoadDeck.loadDeck("SavedCardLists/DoranDeck.json");
+    Deck ghaveDeck = LoadDeck.loadDeck("SavedCardLists/GhaveDeck.json");
 
     Player player1 = new Player(doranDeck);
     Player player2 = new Player(ghaveDeck);

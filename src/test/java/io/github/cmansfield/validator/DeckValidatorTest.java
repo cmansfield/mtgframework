@@ -7,6 +7,7 @@ import io.github.cmansfield.card.CardUtils;
 import io.github.cmansfield.io.LoadCards;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
+import io.github.cmansfield.io.LoadDeck;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -22,7 +23,7 @@ public class DeckValidatorTest {
   public void test_getNonCompliantCards_commander() throws IOException {
     final String TEST_DECK_FILE = "NonCompliantCommanderTestDeck.json";
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
-    Deck deck = LoadCards.loadDeck(file.getAbsolutePath());
+    Deck deck = LoadDeck.loadDeck(file.getAbsolutePath());
     deck.setFormat(Format.COMMANDER);
 
     List<Card> nonCompliantCards = DeckValidator.getNonCompliantCards(deck);
@@ -45,7 +46,7 @@ public class DeckValidatorTest {
   public void test_isFormatCompliant_commander() throws IOException {
     final String TEST_DECK_FILE = "CompleteCommanderDeck.json";
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
-    Deck deck = LoadCards.loadDeck(file.getAbsolutePath());
+    Deck deck = LoadDeck.loadDeck(file.getAbsolutePath());
 
     DeckValidator.isFormatCompliant(deck);
   }
@@ -54,7 +55,7 @@ public class DeckValidatorTest {
   public void test_isFormatCompliant_commander_wrongColors() throws IOException {
     final String TEST_DECK_FILE = "CompleteCommanderDeck.json";
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
-    Deck deck = LoadCards.loadDeck(file.getAbsolutePath());
+    Deck deck = LoadDeck.loadDeck(file.getAbsolutePath());
 
     Card commander = deck.getFeaturedCard();
 
@@ -76,7 +77,7 @@ public class DeckValidatorTest {
   public void test_isFormatCompliant_commander_noFeaturedCard() throws IOException {
     final String TEST_DECK_FILE = "CompleteCommanderDeck.json";
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
-    Deck deck = LoadCards.loadDeck(file.getAbsolutePath());
+    Deck deck = LoadDeck.loadDeck(file.getAbsolutePath());
 
     deck.setFeaturedCard(null);
 
@@ -87,7 +88,7 @@ public class DeckValidatorTest {
   public void test_isFormatCompliant_commander_wrongDeckSize() throws IOException {
     final String TEST_DECK_FILE = "CompleteCommanderDeck.json";
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
-    Deck deck = LoadCards.loadDeck(file.getAbsolutePath());
+    Deck deck = LoadDeck.loadDeck(file.getAbsolutePath());
 
     Card commander = deck.getFeaturedCard();
 
@@ -104,7 +105,7 @@ public class DeckValidatorTest {
   public void test_isFormatCompliant_commander_nonLegendary() throws IOException {
     final String TEST_DECK_FILE = "CompleteCommanderDeck.json";
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
-    Deck deck = LoadCards.loadDeck(file.getAbsolutePath());
+    Deck deck = LoadDeck.loadDeck(file.getAbsolutePath());
 
     Card commander = deck.getFeaturedCard();
     Map cardPojo = commander.getCardPojo();

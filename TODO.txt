@@ -17,9 +17,6 @@ Other
 CardFilter
     Search all of the text fields as contains
 
-Simulator
-    Keep working on the state pattern for the different turn phases
-
 DeckCrawler
     Continue to find ways to inject token cookies into REST calls
 
@@ -29,10 +26,8 @@ DeckValidator
 
 LoadCards
     LoadCards::lookupCard - Make it so you can look up card name by contains
-    Move LoadCards::loadDeck to a new LoadDeck class
 
 Player
-    Overload the toString method
     Give players unique names
 
 turn.combatSteps

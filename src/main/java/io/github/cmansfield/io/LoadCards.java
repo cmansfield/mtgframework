@@ -1,27 +1,22 @@
 package io.github.cmansfield.io;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.cmansfield.card.Card;
-import io.github.cmansfield.deck.Deck;
-import io.github.cmansfield.deck.constants.Format;
-import io.github.cmansfield.deck.constants.Legality;
 import org.apache.commons.io.FilenameUtils;
+import io.github.cmansfield.card.Card;
 import org.apache.commons.io.IOUtils;
 
-import java.io.FileInputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.stream.Collectors;
+import java.io.FileInputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import java.util.zip.ZipFile;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.*;
 
 
 public final class LoadCards {
-  private static final String JSON_EXT = "json";
-  private static final String TXT_EXT = "txt";
   private static Map<String, Card> cardMap;
 
   private LoadCards() {}
@@ -71,11 +66,11 @@ public final class LoadCards {
     String extension = FilenameUtils.getExtension(fileName);
 
     try(InputStream inputstream = new FileInputStream(fileName)) {
-      if(extension.equalsIgnoreCase(JSON_EXT)) {
+      if(extension.equalsIgnoreCase(IoConstants.JSON_EXT)) {
         Map<String, Object> jsonMap = mapper.readValue(inputstream, Map.class);
         cards = loadCards(jsonMap, false);
       }
-      if(extension.equalsIgnoreCase(TXT_EXT)) {
+      if(extension.equalsIgnoreCase(IoConstants.TXT_EXT)) {
         String cardListRaw = IOUtils.toString(inputstream, StandardCharsets.UTF_8);
         cards = loadCardsFromString(cardListRaw);
       }
@@ -86,50 +81,6 @@ public final class LoadCards {
     }
 
     return cards;
-  }
-
-  /**
-   * Loads a json file into a Deck object
-   *
-   * @param fileName  - The filename of the file to load
-   * @return          - Returns a Deck object loaded with cards from the specified file
-   * @throws IOException
-   */
-  public static Deck loadDeck(final String fileName) throws IOException {
-    ObjectMapper mapper = new ObjectMapper();
-    Deck deck = null;
-
-    String extension = FilenameUtils.getExtension(fileName);
-
-    if(extension.equalsIgnoreCase(TXT_EXT)) {
-      return new Deck(loadCards(fileName));
-    }
-
-    if(extension.equalsIgnoreCase(JSON_EXT)) {
-      try(InputStream inputstream = new FileInputStream(fileName)) {
-        Map<String, Object> jsonMap = mapper.readValue(inputstream, Map.class);
-
-        if(jsonMap.containsKey(IoConstants.CARDS_KEY)) {
-          deck = new Deck(loadCards((Map<String,Object>)jsonMap.get(IoConstants.CARDS_KEY), false));
-        }
-        else {
-          return new Deck(loadCards(fileName));
-        }
-
-        if(jsonMap.containsKey(IoConstants.FEATURED_KEY)) {
-          deck.setFeaturedCard(new Card(jsonMap.get(IoConstants.FEATURED_KEY)));
-        }
-        if(jsonMap.containsKey(Legality.FORMAT.toString())) {
-          deck.setFormat(Format.find((String)jsonMap.get(Legality.FORMAT.toString())));
-        }
-      }
-      catch(Exception e) {
-        System.out.printf("Unable to load file %s%n", fileName);
-        throw new IOException(e);
-      }
-    }
-
-    return deck;
   }
 
   /**
@@ -206,7 +157,7 @@ public final class LoadCards {
    * @return            - Returns a list of card objects
    * @throws IOException
    */
-  private static List<Card> loadCards(Map<String, Object> jsonMap, boolean saveSource) throws IOException {
+  static List<Card> loadCards(Map<String, Object> jsonMap, boolean saveSource) throws IOException {
     Map<String, Card> cardMap = jsonMap
             .entrySet()
             .stream()

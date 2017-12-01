@@ -6,6 +6,8 @@ public final class IoConstants {
   public static final String SAVE_DIR = "SavedCardLists";
   public static final String FEATURED_KEY = "featured";
   public static final String CARDS_KEY = "cards";
+  public static final String JSON_EXT = "json";
+  public static final String TXT_EXT = "txt";
 
   private IoConstants() {}
 }

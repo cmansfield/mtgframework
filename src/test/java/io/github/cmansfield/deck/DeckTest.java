@@ -4,6 +4,7 @@ import io.github.cmansfield.card.Card;
 import io.github.cmansfield.card.constants.Color;
 import io.github.cmansfield.deck.constants.Format;
 import io.github.cmansfield.io.LoadCards;
+import io.github.cmansfield.io.LoadDeck;
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -37,7 +38,7 @@ public class DeckTest {
   public void test_checkDeckColors() throws IOException {
     final String TEST_DECK_FILE = "TestDeck.json";
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
-    Deck deck = LoadCards.loadDeck(file.getAbsolutePath());
+    Deck deck = LoadDeck.loadDeck(file.getAbsolutePath());
 
     List<Color> deckColors = deck.getDeckColors();
 
@@ -56,7 +57,7 @@ public class DeckTest {
   public void test_getFormat() throws IOException {
     final String TEST_DECK_FILE = "CompleteCommanderDeck.json";
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
-    Deck deck = LoadCards.loadDeck(file.getAbsolutePath());
+    Deck deck = LoadDeck.loadDeck(file.getAbsolutePath());
 
     Format format = deck.getFormat();
 
@@ -68,7 +69,7 @@ public class DeckTest {
   public void test_getFeaturedCard() throws IOException {
     final String TEST_DECK_FILE = "CompleteCommanderDeck.json";
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
-    Deck deck = LoadCards.loadDeck(file.getAbsolutePath());
+    Deck deck = LoadDeck.loadDeck(file.getAbsolutePath());
 
     Card featuredCard = deck.getFeaturedCard();
 

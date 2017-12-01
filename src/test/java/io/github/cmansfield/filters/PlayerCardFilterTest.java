@@ -1,5 +1,6 @@
 package io.github.cmansfield.filters;
 
+import io.github.cmansfield.io.LoadDeck;
 import io.github.cmansfield.simulator.player.PlayerCard;
 import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.simulator.player.Player;
@@ -25,7 +26,7 @@ public class PlayerCardFilterTest {
   public void test_filter() throws IOException {
     final String TEST_DECK_FILE = "CompleteCommanderDeck.json";
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
-    Deck doranDeck = LoadCards.loadDeck(file.getAbsolutePath());
+    Deck doranDeck = LoadDeck.loadDeck(file.getAbsolutePath());
 
     List<String> uniqueCards = new ArrayList<>();
     uniqueCards.add("Swamp");

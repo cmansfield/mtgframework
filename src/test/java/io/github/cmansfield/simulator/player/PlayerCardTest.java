@@ -2,6 +2,7 @@ package io.github.cmansfield.simulator.player;
 
 import io.github.cmansfield.deck.Deck;
 import io.github.cmansfield.io.LoadCards;
+import io.github.cmansfield.io.LoadDeck;
 import io.github.cmansfield.simulator.constants.Zone;
 import org.testng.annotations.Test;
 
@@ -20,7 +21,7 @@ public class PlayerCardTest {
   public void test_getOwner() throws IOException {
     final String TEST_DECK_FILE = "CompleteCommanderDeck.json";
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
-    Deck deck = LoadCards.loadDeck(file.getAbsolutePath());
+    Deck deck = LoadDeck.loadDeck(file.getAbsolutePath());
 
     assertNotNull(deck);
 
