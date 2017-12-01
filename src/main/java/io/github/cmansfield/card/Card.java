@@ -16,7 +16,7 @@ public class Card {
       this.cardPojo = (Map)cardPojo;
     }
     else {
-      throw new IllegalArgumentException("Object must be a LinkedHashMap");
+      throw new IllegalArgumentException("Object must be a Map");
     }
   }
 

@@ -43,27 +43,12 @@ public final class DeckValidator {
       throw new IllegalStateException("Deck commanders must be of Legendary type");
     }
 
-    List<Card> deckCards = deck.getCards();
-
-    // Remove all colorless cards
-    deckCards = CardFilter.filter(
-            deckCards,
-            new Card.CardBuilder()
-                    .colors(Collections.EMPTY_LIST)
-                    .build());
-
-    // Filter for all of the cards that don't have their commander's colors
-    for(String color : commander.getColors()) {
-      deckCards = CardFilter.filterNot(
-              deckCards,
-              new Card.CardBuilder()
-                      .colors(Collections.singletonList(color))
-                      .build());
-    }
-
-    if(!deckCards.isEmpty()) {
-      throw new IllegalStateException("Commander decks must only include cards with colors that match their commander");
-    }
+    List<String> commanderColors = commander.getColors();
+    deck.getDeckColors().forEach(color -> {
+      if(!commanderColors.contains(color.toString())) {
+        throw new IllegalStateException("Commander decks must only include cards with colors that match their commander");
+      }
+    });
 
     List<Card> nonCompliantCards = getNonCompliantCards(deck);
     if(!nonCompliantCards.isEmpty()) {
