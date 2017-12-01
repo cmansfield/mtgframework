@@ -39,7 +39,7 @@ public class Player {
       throw new IllegalArgumentException("A player's life total must be provided");
     }
     if(life < 1) {
-      throw new IllegalArgumentException(String.format("A player's life total cannot start at %d", life));
+      throw new IllegalArgumentException(String.format("A player's life total cannot startGame at %d", life));
     }
 
     this.life = life;
@@ -87,7 +87,7 @@ public class Player {
 
     for(int x = 0; x < amount; ++x) {
       if(fromList.isEmpty()) {
-        throw new IllegalStateException(String.format("No more cards to pull from zone %s", from.toString()));
+        throw new IllegalStateException(String.format("No more cards to pull from %s", from.toString()));
       }
 
       toList.add(fromList.get(0));

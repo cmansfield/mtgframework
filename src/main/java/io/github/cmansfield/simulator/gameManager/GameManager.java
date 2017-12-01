@@ -43,7 +43,21 @@ public final class GameManager {
     return this.players.getFirst();
   }
 
-  public void perform() {
+  public void startGame() {
+    while(true) {
+      try {
+        perform();
+      }
+      catch(Exception e) {
+        System.out.println(e);
+        break;
+      }
+    }
+
+    System.out.println("End of Game");
+  }
+
+  private void perform() {
     this.phase.perform(this);
   }
 

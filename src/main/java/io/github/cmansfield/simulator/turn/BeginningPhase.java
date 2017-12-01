@@ -19,7 +19,7 @@ public class BeginningPhase implements Phase {
 
   @Override
   public void perform(GameManager gameManager) {
-    System.out.println("This is the beginning phase");
+    System.out.printf("%nThis is the beginning phase%n");
 
     while(this.beginningStep != null) {
       this.beginningStep.perform(gameManager, this);

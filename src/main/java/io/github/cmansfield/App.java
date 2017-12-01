@@ -1,22 +1,12 @@
 package io.github.cmansfield;
 
 import io.github.cmansfield.card.Card;
-import io.github.cmansfield.card.CardUtils;
 import io.github.cmansfield.deck.Deck;
-import io.github.cmansfield.deck.DeckAppraiser;
-import io.github.cmansfield.deck.constants.Format;
-import io.github.cmansfield.filters.CardFilter;
-import io.github.cmansfield.filters.PlayerCardFilter;
 import io.github.cmansfield.io.IoConstants;
 import io.github.cmansfield.io.LoadCards;
-import io.github.cmansfield.io.SaveCards;
 import io.github.cmansfield.io.web.GetUpdates;
-import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.simulator.gameManager.GameManager;
-import io.github.cmansfield.simulator.gameManager.constants.GameConstants;
 import io.github.cmansfield.simulator.player.Player;
-import io.github.cmansfield.simulator.player.PlayerCard;
-import io.github.cmansfield.validator.DeckValidator;
 
 import java.io.IOException;
 import java.util.*;
@@ -77,10 +67,6 @@ public class App {
             .player(player2)
             .build();
 
-    for(int i = 0; i < 10; ++i) {
-      gameManager.perform();
-    }
-
-    System.out.println("");
+    gameManager.startGame();
   }
 }
