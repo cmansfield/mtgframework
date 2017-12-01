@@ -9,6 +9,7 @@ import java.util.*;
 
 public class Player {
   private Map<Zone,List<PlayerCard>> zones;
+  private String playerName;
   private Integer life;
   private Deck deck;
 
@@ -32,6 +33,18 @@ public class Player {
     }
 
     return this.zones.get(zone);
+  }
+
+  public String getPlayerName() {
+    return this.playerName;
+  }
+
+  public void setPlayerName(String playerName) {
+    if(playerName == null || playerName.length() < 1) {
+      throw new IllegalArgumentException("Invalid player name");
+    }
+
+    this.playerName = playerName;
   }
 
   public void setLife(Integer life) {

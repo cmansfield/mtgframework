@@ -19,7 +19,8 @@ public class BeginningPhase implements Phase {
 
   @Override
   public void perform(GameManager gameManager) {
-    System.out.printf("%nThis is the beginning phase%n");
+    System.out.printf("%n-- %s's turn --%n", gameManager.getActivePlayer().getPlayerName());
+    System.out.println("This is the beginning phase");
 
     while(this.beginningStep != null) {
       this.beginningStep.perform(gameManager, this);

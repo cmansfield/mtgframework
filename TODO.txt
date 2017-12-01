@@ -24,15 +24,6 @@ DeckValidator
     Udpate 'isFormatCompliant' for Commander to allow commander partners
     Update 'isFormatCompliant' to check for other format rules
 
-LoadCards
-    LoadCards::lookupCard - Make it so you can look up card name by contains
-
-Player
-    Give players unique names
-
-turn.combatSteps
-    Implement the state pattern to the combatSteps
-
 GameManager
     Use the command pattern to add actions to the stack
     Use the observer pattern to notify listeners when something is placed
