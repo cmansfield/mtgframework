@@ -66,13 +66,17 @@ public class App {
 
     Player player1 = new Player(doranDeck);
     Player player2 = new Player(ghaveDeck);
+    Player player3 = new Player(ghaveDeck);
 
     GameManager gameManager = new GameManager
             .GameManagerBuilder()
             .player(player1)
             .player(player2)
+            .player(player3)
             .build();
 
     gameManager.startGame();
+
+    System.out.println("");
   }
 }

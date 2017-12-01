@@ -1,5 +1,6 @@
 package io.github.cmansfield.simulator.gameManager;
 
+import io.github.cmansfield.simulator.actions.Action;
 import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.simulator.gameManager.constants.GameConstants;
 import io.github.cmansfield.simulator.turn.BeginningPhase;
@@ -8,16 +9,13 @@ import io.github.cmansfield.simulator.player.Player;
 import io.github.cmansfield.deck.constants.Format;
 import io.github.cmansfield.simulator.turn.Phase;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 
 
 public final class GameManager {
 
   private Deque<Player> players;
-  private Format format;
+  private Deque<Action> stack;
   private Phase phase;
 
   // TODO - Revisit this to make sure this is where I want to store this
@@ -26,6 +24,7 @@ public final class GameManager {
   private GameManager() {
     this.phase = new BeginningPhase();
     this.activePlayerPlayedLand = false;
+    this.stack = new LinkedList<>();
   }
 
   public void setPhase(Phase phase) {
@@ -44,22 +43,29 @@ public final class GameManager {
     return this.players.getFirst();
   }
 
+  public Deque<Action> getStack() {
+    return this.stack;
+  }
+
   public void startGame() {
-    while(true) {
+    for(int i = 0; i < 10000; ++i) {
       try {
         perform();
       }
       catch(Exception e) {
-        System.out.println(e);
-        break;
+        System.out.println(String.format("%s lost the game", this.getActivePlayer().getPlayerName()));
+        System.out.println(e.getMessage());
+
+        this.players.remove(getActivePlayer());
+
+        if(this.players.size() < 2) {
+          break;
+        }
       }
     }
 
+    System.out.println(String.format("%n%s won!", getActivePlayer().getPlayerName()));
     System.out.println("End of Game");
-  }
-
-  private void perform() {
-    this.phase.perform(this);
   }
 
   public void nextPlayersTurn() {
@@ -67,17 +73,24 @@ public final class GameManager {
     this.activePlayerPlayedLand = false;
   }
 
-  private void setUp() {
-    // Have the players draw their hands
-    this.players.forEach(player -> {
-      player.draw(GameConstants.STARTING_HAND_SIZE.value());
-    });
+  public void resolveStack() {
+    Action action;
+
+    while(!this.stack.isEmpty()) {
+      action = stack.pollLast();
+      action.execute();
+    }
+  }
+
+  private void perform() {
+    this.phase.perform(this);
   }
 
 
-  // This class uses the builder pattern to help get the game manager
   // into a valid starting state
+  // This class uses the builder pattern to help get the game manager
   public static class GameManagerBuilder {
+
 
     private LinkedList<Player> players;
     private Format format;
@@ -133,10 +146,15 @@ public final class GameManager {
       // Shuffle the players to randomize who goes first
       Collections.shuffle(this.players);
 
+      setUp();
       gm.players = this.players;
-      gm.setUp();
 
       return gm;
+    }
+
+    private void setUp() {
+      // Have the players draw their hands
+      this.players.forEach(player -> player.draw(GameConstants.STARTING_HAND_SIZE.value()));
     }
   }
 }

@@ -1,5 +1,6 @@
 package io.github.cmansfield.simulator.turn;
 
+import io.github.cmansfield.simulator.actions.PlayLandAction;
 import io.github.cmansfield.simulator.gameManager.GameManager;
 import io.github.cmansfield.simulator.player.PlayerCard;
 import io.github.cmansfield.simulator.constants.Zone;
@@ -19,22 +20,8 @@ public class PreCombatMainPhase implements Phase {
 
     Player activePlayer = gameManager.getActivePlayer();
 
-    // If the player hasn't played a land yet, and has one to play
-    // this will randomly select one to add to the battlefield
-    if(!gameManager.hasActivePlayerPlayedLand()) {
-      List<PlayerCard> land = CardFilter
-              .filter((List)activePlayer
-                      .getZone(Zone.HAND),
-                      new Card.CardBuilder()
-                              .types(Collections.singletonList("Land"))
-                              .build());
-
-      if(!land.isEmpty()) {
-        Collections.shuffle(land);
-        activePlayer.moveZone(Zone.HAND, Zone.BATTLEFIELD, land.get(0));
-        gameManager.setActivePlayerPlayedLand(true);
-      }
-    }
+    gameManager.getStack().add(new PlayLandAction(gameManager));
+    gameManager.resolveStack();
 
     gameManager.setPhase(new CombatPhase());
   }
