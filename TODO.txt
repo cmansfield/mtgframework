@@ -36,5 +36,6 @@ Testing
     Add integration tests
         DeckAppraiser::appraiseHandDraw (Wait to create this)
         Entire simulator.turn package
+        gameManager package
         DeckCrawler
         Zone

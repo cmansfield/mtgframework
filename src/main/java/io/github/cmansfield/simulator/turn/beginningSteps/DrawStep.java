@@ -1,9 +1,17 @@
 package io.github.cmansfield.simulator.turn.beginningSteps;
 
-public class DrawStep implements BeginningSteps {
+import io.github.cmansfield.simulator.gameManager.GameManager;
+import io.github.cmansfield.simulator.turn.BeginningPhase;
+
+
+public class DrawStep implements BeginningStep {
 
   @Override
-  public void perform() {
+  public void perform(GameManager gameManager, BeginningPhase beginningPhase) {
+    System.out.printf("\tDraw Step%n");
 
+    gameManager.getActivePlayer().draw(1);
+
+    beginningPhase.setBeginningStep(null);
   }
 }

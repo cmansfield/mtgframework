@@ -12,20 +12,18 @@ public class Player {
   private Integer life;
   private Deck deck;
 
-  public Player(Deck deck, Integer life) {
+  public Player(Deck deck) {
     if(deck == null) {
       throw new NullPointerException("Deck must not be null");
     }
-    if(life == null) {
-      throw new IllegalArgumentException("A player's life total must be provided");
-    }
-    if(life < 1) {
-      throw new IllegalArgumentException(String.format("A player's life total cannot start at %d", life));
-    }
 
-    this.life = life;
+    this.life = 0;
     this.deck = deck;
     resetZones();
+  }
+
+  public Deck getDeck() {
+    return this.deck;
   }
 
   public List<PlayerCard> getZone(Zone zone) {
@@ -34,6 +32,17 @@ public class Player {
     }
 
     return this.zones.get(zone);
+  }
+
+  public void setLife(Integer life) {
+    if(life == null) {
+      throw new IllegalArgumentException("A player's life total must be provided");
+    }
+    if(life < 1) {
+      throw new IllegalArgumentException(String.format("A player's life total cannot start at %d", life));
+    }
+
+    this.life = life;
   }
 
   public void shuffle(Zone zone) {
@@ -100,6 +109,7 @@ public class Player {
     this.zones.put(Zone.HAND, new ArrayList<>());
     this.zones.put(Zone.GRAVEYARD, new ArrayList<>());
     this.zones.put(Zone.EXILE, new ArrayList<>());
+    this.zones.put(Zone.BATTLEFIELD, new ArrayList<>());
     this.zones.put(
             Zone.COMMAND,
             this.deck.getFeaturedCard() == null ?

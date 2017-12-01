@@ -1,9 +1,14 @@
 package io.github.cmansfield.simulator.turn.beginningSteps;
 
-public class UntapStep implements BeginningSteps {
+import io.github.cmansfield.simulator.gameManager.GameManager;
+import io.github.cmansfield.simulator.turn.BeginningPhase;
+
+
+public class UntapStep implements BeginningStep {
 
   @Override
-  public void perform() {
-
+  public void perform(GameManager gameManager, BeginningPhase beginningPhase) {
+    System.out.printf("\tUntap Step%n");
+    beginningPhase.setBeginningStep(new UpkeepStep());
   }
 }

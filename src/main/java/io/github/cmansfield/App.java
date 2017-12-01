@@ -12,6 +12,8 @@ import io.github.cmansfield.io.LoadCards;
 import io.github.cmansfield.io.SaveCards;
 import io.github.cmansfield.io.web.GetUpdates;
 import io.github.cmansfield.simulator.constants.Zone;
+import io.github.cmansfield.simulator.gameManager.GameManager;
+import io.github.cmansfield.simulator.gameManager.constants.GameConstants;
 import io.github.cmansfield.simulator.player.Player;
 import io.github.cmansfield.simulator.player.PlayerCard;
 import io.github.cmansfield.validator.DeckValidator;
@@ -66,6 +68,19 @@ public class App {
     Deck doranDeck = LoadCards.loadDeck("SavedCardLists/DoranDeck.json");
     Deck ghaveDeck = LoadCards.loadDeck("SavedCardLists/GhaveDeck.json");
 
-    DeckValidator.isFormatCompliant(doranDeck);
+    Player player1 = new Player(doranDeck);
+    Player player2 = new Player(ghaveDeck);
+
+    GameManager gameManager = new GameManager
+            .GameManagerBuilder()
+            .player(player1)
+            .player(player2)
+            .build();
+
+    for(int i = 0; i < 10; ++i) {
+      gameManager.perform();
+    }
+
+    System.out.println("");
   }
 }

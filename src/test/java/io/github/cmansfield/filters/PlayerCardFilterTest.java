@@ -48,7 +48,7 @@ public class PlayerCardFilterTest {
     uniqueCards.add("Terramorphic Expanse");
     uniqueCards.add("Temple of the False God");
 
-    Player player1 = new Player(doranDeck, 40);
+    Player player1 = new Player(doranDeck);
 
     List<PlayerCard> player1Cards = player1.getZone(Zone.LIBRARY);
     PlayerCard playerCardFilter = new PlayerCard

@@ -1,9 +1,14 @@
 package io.github.cmansfield.simulator.turn.endingSteps;
 
-public class EndStep implements EndingSteps {
+import io.github.cmansfield.simulator.gameManager.GameManager;
+import io.github.cmansfield.simulator.turn.EndingPhase;
+
+
+public class EndStep implements EndingStep {
 
   @Override
-  public void perform() {
-
+  public void perform(GameManager gameManager, EndingPhase endingPhase) {
+    System.out.printf("\tEnd Step%n");
+    endingPhase.setEndingStep(new CleanupStep());
   }
 }
