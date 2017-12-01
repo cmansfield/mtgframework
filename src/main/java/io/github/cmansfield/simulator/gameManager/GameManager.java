@@ -1,5 +1,6 @@
 package io.github.cmansfield.simulator.gameManager;
 
+import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.simulator.gameManager.constants.GameConstants;
 import io.github.cmansfield.simulator.turn.BeginningPhase;
 import io.github.cmansfield.validator.DeckValidator;
@@ -104,6 +105,8 @@ public final class GameManager {
         catch (Exception e) {
           throw new RuntimeException("Player has an illegal deck for this format", e);
         }
+
+        player.shuffle(Zone.LIBRARY);
       });
 
       gm.players = this.players;

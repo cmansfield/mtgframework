@@ -32,6 +32,9 @@ LoadCards
 Player
     Overload the toString method
 
+turn.combatSteps
+    Implement the state pattern to the combatSteps
+
 Testing
     Add integration tests
         DeckAppraiser::appraiseHandDraw (Wait to create this)

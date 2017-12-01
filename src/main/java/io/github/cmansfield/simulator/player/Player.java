@@ -1,10 +1,10 @@
 package io.github.cmansfield.simulator.player;
 
-import io.github.cmansfield.deck.Deck;
 import io.github.cmansfield.simulator.constants.Zone;
+import io.github.cmansfield.deck.Deck;
 
-import java.util.*;
 import java.util.stream.Collectors;
+import java.util.*;
 
 
 public class Player {
@@ -28,7 +28,7 @@ public class Player {
 
   public List<PlayerCard> getZone(Zone zone) {
     if(!this.zones.containsKey(zone)) {
-      throw new IllegalArgumentException(String.format("Player dones not contain zone '%s'", zone.toString()));
+      throw new IllegalArgumentException(String.format("Player does not contain zone '%s'", zone.toString()));
     }
 
     return this.zones.get(zone);
@@ -43,6 +43,14 @@ public class Player {
     }
 
     this.life = life;
+  }
+
+  public void damagePlayer(int damage) {
+    this.life -= damage;
+
+    if(this.life < 1) {
+      throw new IllegalStateException("The player has lost the game!");
+    }
   }
 
   public void shuffle(Zone zone) {
@@ -85,6 +93,39 @@ public class Player {
       toList.add(fromList.get(0));
       fromList.remove(0);
     }
+  }
+
+  /**
+   * This will move a card from one player zone to another as long as that card exists in the
+   * correct zone, and does not already exist in the destination zone
+   *
+   * @param from  - Zone to pull the card from
+   * @param to    - Zone to add the card to
+   * @param card  - The Card to move
+   */
+  public void moveZone(Zone from, Zone to, PlayerCard card) {
+    if(!this.zones.containsKey(from)) {
+      throw new IllegalArgumentException(String.format("Zone '%s' is not managed by the player", from.toString()));
+    }
+    if(!this.zones.containsKey(to)) {
+      throw new IllegalArgumentException(String.format("Zone '%s' is not managed by the player", to.toString()));
+    }
+    if(from == to) {
+      throw new IllegalArgumentException("The zones provided cannot be the same zone");
+    }
+
+    List<PlayerCard> fromList = this.zones.get(from);
+    List<PlayerCard> toList = this.zones.get(to);
+
+    if(!fromList.contains(card)) {
+      throw new IllegalStateException(String.format("Card %s not in player zone %s", card.getName(), from.toString()));
+    }
+    if(toList.contains(card)) {
+      throw new IllegalStateException(String.format("Card %s already belongs to zone %s", card.getName(), to.toString()));
+    }
+
+    fromList.remove(card);
+    toList.add(card);
   }
 
   /**
