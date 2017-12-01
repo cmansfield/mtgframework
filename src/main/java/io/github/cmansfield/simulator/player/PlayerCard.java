@@ -1,6 +1,7 @@
 package io.github.cmansfield.simulator.player;
 
 import io.github.cmansfield.card.Card;
+import io.github.cmansfield.simulator.player.constants.CardState;
 
 import java.util.Collections;
 import java.util.Map;
@@ -8,6 +9,7 @@ import java.util.Map;
 
 // This is a wrapper class for the Card class
 public class PlayerCard extends Card {
+  private CardState cardState;
   private Player controller;
   private Player owner;
 
@@ -15,6 +17,7 @@ public class PlayerCard extends Card {
     super(cardPojo);
     this.owner = owner;
     this.controller = owner;
+    this.cardState = CardState.UNTAPPED;
   }
 
   public Player getController() {
@@ -23,6 +26,14 @@ public class PlayerCard extends Card {
 
   public Player getOwner() {
     return this.owner;
+  }
+
+  public CardState getCardState() {
+    return this.cardState;
+  }
+
+  public void setCardState(CardState cardState) {
+    this.cardState = cardState;
   }
 
   public void setController(Player player) {
