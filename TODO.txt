@@ -32,6 +32,7 @@ GameManager
 Testing
     Add integration tests
         DeckAppraiser::appraiseHandDraw (Wait to create this)
-        Entire simulator.turn package
-        gameManager package
+        simulator.gameManager package
+        simulator.action package
+        simulator.turn package
         DeckCrawler

@@ -43,10 +43,6 @@ public final class GameManager {
     return this.players.getFirst();
   }
 
-  public Deque<Action> getStack() {
-    return this.stack;
-  }
-
   public void startGame() {
     for(int i = 0; i < 10000; ++i) {
       try {
@@ -71,6 +67,10 @@ public final class GameManager {
   public void nextPlayersTurn() {
     this.players.addLast(this.players.pollFirst());
     this.activePlayerPlayedLand = false;
+  }
+
+  public void addToStack(Action action) {
+    this.stack.add(action);
   }
 
   public void resolveStack() {
