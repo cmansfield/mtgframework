@@ -2,8 +2,8 @@
 Mtg Framework TODO list
 
 IO
-	LoadCards.cardMap an immutable map
 	Once Cards are immutable, stop copying the card list
+	LoadCards.cardMap an immutable map
 
 Card
     Create deep copy of cardPojo when creating a new Card
@@ -11,6 +11,7 @@ Card
 
 Other
 	Add additional exception handling in main
+	Replace System.out.prints with logging
 	Add more program args
 
 CardFilter
@@ -23,17 +24,24 @@ DeckCrawler
     Continue to find ways to inject token cookies into REST calls
 
 DeckValidator
-    Update 'isFormatCompliant' to check for other format rules
     Udpate 'isFormatCompliant' for Commander to allow commander partners
+    Update 'isFormatCompliant' to check for other format rules
 
 LoadCards
     LoadCards::lookupCard - Make it so you can look up card name by contains
+    Move LoadCards::loadDeck to a new LoadDeck class
 
 Player
     Overload the toString method
+    Give players unique names
 
 turn.combatSteps
     Implement the state pattern to the combatSteps
+
+GameManager
+    Use the command pattern to add actions to the stack
+    Use the observer pattern to notify listeners when something is placed
+        on the stack and at what time
 
 Testing
     Add integration tests

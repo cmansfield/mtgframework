@@ -9,6 +9,7 @@ import io.github.cmansfield.simulator.gameManager.GameManager;
 import io.github.cmansfield.simulator.player.Player;
 
 import java.io.IOException;
+import java.sql.SQLSyntaxErrorException;
 import java.util.*;
 
 
