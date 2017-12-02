@@ -41,11 +41,17 @@ public class PlayerCard extends Card {
   }
 
   public static class PlayerCardBuilder {
+    private CardState cardState;
     private Player controller;
     private Player owner;
     private Map cardPojo;
 
     public PlayerCardBuilder() {}
+
+    public PlayerCard.PlayerCardBuilder cardState(CardState cardState) {
+      this.cardState = cardState;
+      return this;
+    }
 
     public PlayerCard.PlayerCardBuilder controller(Player player) {
       this.controller = controller;
@@ -68,6 +74,7 @@ public class PlayerCard extends Card {
               this.owner);
 
       playerCard.setController(this.controller);
+      playerCard.setCardState(this.cardState);
 
       return playerCard;
     }

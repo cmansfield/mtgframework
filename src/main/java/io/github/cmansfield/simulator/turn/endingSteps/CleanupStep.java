@@ -1,5 +1,6 @@
 package io.github.cmansfield.simulator.turn.endingSteps;
 
+import io.github.cmansfield.simulator.actions.DiscardAction;
 import io.github.cmansfield.simulator.gameManager.constants.GameConstants;
 import io.github.cmansfield.simulator.gameManager.GameManager;
 import io.github.cmansfield.simulator.turn.EndingPhase;
@@ -14,9 +15,11 @@ public class CleanupStep implements EndingStep {
     System.out.printf("\tCleanup Step%n");
 
     Player activePlayer = gameManager.getActivePlayer();
-    while(activePlayer.getZone(Zone.HAND).size() > GameConstants.MAX_HAND_SIZE.value()) {
-      activePlayer.shuffle(Zone.HAND);
-      activePlayer.moveZone(Zone.HAND, Zone.GRAVEYARD, 1);
+    int amount = activePlayer.getZone(Zone.HAND).size() - GameConstants.MAX_HAND_SIZE.value();
+
+    if(amount > 0) {
+      gameManager.addToStack(new DiscardAction(gameManager, amount));
+      gameManager.resolveStack();
     }
 
     gameManager.nextPlayersTurn();

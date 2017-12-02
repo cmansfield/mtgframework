@@ -29,12 +29,14 @@ public class CastSpellAction implements Action {
   public void execute() {
     Player activePlayer = gameManager.getActivePlayer();
 
+    System.out.println(String.format("\t\tSpell Cast: %s", this.playerCard.getName()));
+
     // Get the land from the battlefield
     List<PlayerCard> availableMana = PlayerUtils.getUntappedMana(activePlayer);
     Double manaToTap = playerCard.getCmc();
 
     if(manaToTap == null) {
-      return;
+      throw new IllegalArgumentException("Player card passed in must have a cmc value inorder to be cast");
     }
 
     if(availableMana.size() < manaToTap.intValue()) {
@@ -43,6 +45,10 @@ public class CastSpellAction implements Action {
 
     for(int i = 0; i < manaToTap; ++i) {
       availableMana.get(i).setCardState(CardState.TAPPED);
+    }
+
+    if(playerCard.getTypes().contains("Creature")) {
+      playerCard.setCardState(CardState.SUMMONING_SICKNESS);
     }
 
     activePlayer.moveZone(Zone.HAND, Zone.BATTLEFIELD, playerCard);

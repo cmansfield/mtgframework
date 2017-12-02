@@ -1,8 +1,8 @@
 package io.github.cmansfield.simulator.turn.beginningSteps;
 
-import io.github.cmansfield.simulator.actions.DrawAction;
 import io.github.cmansfield.simulator.gameManager.GameManager;
 import io.github.cmansfield.simulator.turn.BeginningPhase;
+import io.github.cmansfield.simulator.actions.DrawAction;
 
 
 public class DrawStep implements BeginningStep {

@@ -41,6 +41,10 @@ public class Card {
   }
 
   public Double getCmc() {
+    if(getFromPojo(CardConstants.CMC.toString()) instanceof Integer) {
+      return (double)((int)getFromPojo(CardConstants.CMC.toString()));
+    }
+
     return getFromPojo(CardConstants.CMC.toString());
   }
 

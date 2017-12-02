@@ -54,11 +54,9 @@ public final class GameManager {
 
         this.players.remove(getActivePlayer());
 
-        throw e;
-
-//        if(this.players.size() < 2) {
-//          break;
-//        }
+        if(this.players.size() < 2) {
+          break;
+        }
       }
     }
 

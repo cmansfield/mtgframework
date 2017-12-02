@@ -21,7 +21,11 @@ public class PlayerCardFilter extends CardFilter {
       if(filter.getOwner() != null && card.getOwner() != filter.getOwner()) {
         return false;
       }
-      return !(filter.getController() != null && card.getController() != filter.getController());
+      if(filter.getController() != null && card.getController() != filter.getController()) {
+        return false;
+      }
+
+      return filter.getCardState() == null || card.getCardState() == filter.getCardState();
     }).collect(Collectors.toList());
 
     return filter((List)playerCards, (Card)filter);

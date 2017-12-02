@@ -1,9 +1,13 @@
 package io.github.cmansfield.simulator.actions;
 
+import io.github.cmansfield.filters.PlayerCardFilter;
 import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.simulator.gameManager.GameManager;
 import io.github.cmansfield.simulator.player.Player;
+import io.github.cmansfield.simulator.player.PlayerCard;
 import io.github.cmansfield.simulator.player.constants.CardState;
+
+import java.util.List;
 
 
 public class UntapAction implements Action {
@@ -22,6 +26,14 @@ public class UntapAction implements Action {
   @Override
   public void execute() {
     Player activePlayer = this.gameManager.getActivePlayer();
+
+    // TODO - Check these counts, the number of cards untapped seems off
+    System.out.println(String.format("\t\tCards Untapped: %d",
+            PlayerCardFilter.filter(
+                    activePlayer.getZone(Zone.BATTLEFIELD),
+                    new PlayerCard.PlayerCardBuilder()
+                            .cardState(CardState.TAPPED)
+                            .build()).size()));
 
     activePlayer.getZone(Zone.BATTLEFIELD).forEach(card -> {
       card.setCardState(CardState.UNTAPPED);

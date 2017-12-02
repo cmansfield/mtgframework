@@ -32,6 +32,8 @@ GameManager
 CastSpellAction::execute
     Check to make sure we are using the correct mana to cast spells
 
+Create a card type constants
+
 Testing
     Add integration tests
         DeckAppraiser::appraiseHandDraw (Wait to create this)

@@ -31,7 +31,7 @@ public class PlayLandAction implements Action {
     // If the player hasn't played a land yet, and has one to play
     // this will randomly select one to add to the battlefield
     if(!gameManager.hasActivePlayerPlayedLand()) {
-      List<PlayerCard> land = CardFilter.filter(
+      List land = CardFilter.filter(
               (List)activePlayer.getZone(Zone.HAND),
               new Card.CardBuilder()
                       .types(Collections.singletonList("Land"))
@@ -39,8 +39,10 @@ public class PlayLandAction implements Action {
 
       if(!land.isEmpty()) {
         Collections.shuffle(land);
-        activePlayer.moveZone(Zone.HAND, Zone.BATTLEFIELD, land.get(0));
+        activePlayer.moveZone(Zone.HAND, Zone.BATTLEFIELD, (PlayerCard)land.get(0));
         gameManager.setActivePlayerPlayedLand(true);
+
+        System.out.println(String.format("\t\tLand Played: %s", ((PlayerCard)land.get(0)).getName()));
       }
     }
   }
