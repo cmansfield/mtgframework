@@ -29,10 +29,15 @@ GameManager
     Use the observer pattern to notify listeners when something is placed
         on the stack and at what time
 
+CastSpellAction::execute
+    Check to make sure we are using the correct mana to cast spells
+
 Testing
     Add integration tests
         DeckAppraiser::appraiseHandDraw (Wait to create this)
         simulator.gameManager package
         simulator.action package
         simulator.turn package
+        PlayerUtils
         DeckCrawler
+
