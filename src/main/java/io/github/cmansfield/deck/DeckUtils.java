@@ -1,4 +1,4 @@
-package io.github.cmansfield.deck.constants;
+package io.github.cmansfield.deck;
 
 import io.github.cmansfield.deck.Deck;
 
@@ -9,6 +9,12 @@ import java.util.Map;
 
 public final class DeckUtils {
 
+  /**
+   * Gets a count of each card in the list of decks
+   *
+   * @param decks - A list of deck objects to have their cards counted
+   * @return      - A map with a key/value of card name and the quantity of that card
+   */
   public static Map<String,Integer> getCardCount(List<Deck> decks) {
     Map<String,Integer> cardCount = new HashMap<>();
 

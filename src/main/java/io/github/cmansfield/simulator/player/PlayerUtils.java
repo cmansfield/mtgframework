@@ -14,15 +14,14 @@ public class PlayerUtils {
 
   public static List<PlayerCard> getUntappedMana(Player player) {
     // Get the land from the battlefield
-    List<PlayerCard> availableMana = CardFilter.filter(
+    List availableMana = CardFilter.filter(
             (List)player.getZone(Zone.BATTLEFIELD),
             new Card.CardBuilder()
                     .types(Collections.singletonList("Land"))
-                    .build()
-    );
+                    .build());
 
     // Remove tapped mana
-    return availableMana.stream().filter(card -> {
+    return ((List<PlayerCard>)availableMana).stream().filter(card -> {
       return card.getCardState() == CardState.UNTAPPED;
     }).collect(Collectors.toList());
   }

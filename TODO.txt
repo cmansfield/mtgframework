@@ -39,5 +39,4 @@ Testing
         simulator.turn package
         LoadCards::lookupCard
         PlayerUtils
-        DeckUtils
 
