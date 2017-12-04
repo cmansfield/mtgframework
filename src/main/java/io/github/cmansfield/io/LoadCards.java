@@ -1,7 +1,9 @@
 package io.github.cmansfield.io;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.github.cmansfield.filters.CardFilter;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang.WordUtils;
 import io.github.cmansfield.card.Card;
 import org.apache.commons.io.IOUtils;
 
@@ -86,7 +88,12 @@ public final class LoadCards {
   /**
    * Loads a list of cards from a text file with a list of card names
    *
-   * @param cardsStr  - The filename for the string of card names
+   * Looking for strings that look like the following
+   * 1x cardName
+   * 4x cardName2
+   * 2x cardName3
+   *
+   * @param cardsStr  - The un-formatted string of card names
    * @return          - A list of cards produced from the file
    * @throws IOException
    */
@@ -143,10 +150,54 @@ public final class LoadCards {
     }
 
     if(LoadCards.cardMap.containsKey(cardName)) {
-      card = LoadCards.cardMap.get(cardName);
+      return LoadCards.cardMap.get(cardName);
     }
 
-    return card;
+    String treatedName = cardNameTreatment(cardName);
+
+    if(LoadCards.cardMap.containsKey(treatedName)) {
+      return LoadCards.cardMap.get(cardName);
+    }
+
+    Card filter = new Card.CardBuilder().name(treatedName).build();
+    List<Card> filteredList = null;
+
+    try {
+      filteredList = CardFilter.filter(loadCards(), filter);
+    }
+    catch (Exception e) {}
+
+    if(filteredList != null && filteredList.size() == 1) {
+      return filteredList.get(0);
+    }
+
+    System.out.printf("Could not find card %s    Treated Name: '%s'%n", cardName, treatedName);
+
+    return null;
+  }
+
+  /**
+   * This method is used to treat and normalize bad card names
+   *
+   * @param cardName  - The bad card name that needs to be treated
+   * @return          - The treated card name that should be good
+   */
+  private static String cardNameTreatment(String cardName) {
+    String treatedCardName = cardName.replace("’", "'");
+    List<Pattern> patterns = new ArrayList<>();
+    patterns.add(Pattern.compile("\\[(?:(?!\\s).)*]$"));    // Remove set tags at the end: Phantasmal Image [M12]
+    patterns.add(Pattern.compile("\\((?:(?!\\s).)*\\)$"));  // Remove set tags at the end: Evolving Wilds (BFZ)
+    patterns.add(Pattern.compile("\\["));                   // Remove opening brackets
+    patterns.add(Pattern.compile("]"));                     // Remove closing brackets
+    patterns.add(Pattern.compile("\\*.*\\*"));              // Remove foil tags: Island *F*
+    patterns.add(Pattern.compile("^\\s+"));                 // Remove leading spaces
+    patterns.add(Pattern.compile("\\s+$"));                 // Remove trailing spaces
+
+    for (Pattern pattern: patterns) {
+      treatedCardName = pattern.matcher(treatedCardName).replaceAll("");
+    }
+
+    return WordUtils.capitalizeFully(treatedCardName);
   }
 
   /**

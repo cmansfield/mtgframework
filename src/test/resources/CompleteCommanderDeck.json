@@ -1,5 +1,5 @@
 {
-  "featured" : {
+  "featured_card" : {
     "layout" : "normal",
     "name" : "Doran, the Siege Tower",
     "manaCost" : "{B}{G}{W}",

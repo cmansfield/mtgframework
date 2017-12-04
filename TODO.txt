@@ -17,9 +17,6 @@ Other
 CardFilter
     Search all of the text fields as contains
 
-DeckCrawler
-    Continue to find ways to inject token cookies into REST calls
-
 DeckValidator
     Udpate 'isFormatCompliant' for Commander to allow commander partners
     Update 'isFormatCompliant' to check for other format rules
@@ -40,6 +37,7 @@ Testing
         simulator.gameManager package
         simulator.action package
         simulator.turn package
+        LoadCards::lookupCard
         PlayerUtils
-        DeckCrawler
+        DeckUtils
 

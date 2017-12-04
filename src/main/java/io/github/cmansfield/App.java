@@ -3,6 +3,7 @@ package io.github.cmansfield;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.card.CardUtils;
 import io.github.cmansfield.deck.Deck;
+import io.github.cmansfield.deck.constants.DeckUtils;
 import io.github.cmansfield.deck.constants.Format;
 import io.github.cmansfield.filters.CardFilter;
 import io.github.cmansfield.io.IoConstants;
@@ -10,12 +11,14 @@ import io.github.cmansfield.io.LoadCards;
 import io.github.cmansfield.io.LoadDeck;
 import io.github.cmansfield.io.SaveCards;
 import io.github.cmansfield.io.web.GetUpdates;
+import io.github.cmansfield.io.web.TappedImporter;
 import io.github.cmansfield.simulator.gameManager.GameManager;
 import io.github.cmansfield.simulator.player.Player;
 
 import java.io.IOException;
 import java.sql.SQLSyntaxErrorException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class App {
@@ -75,7 +78,18 @@ public class App {
             .player(player3)
             .build();
 
-    gameManager.startGame();
+//    gameManager.startGame();
+
+    List<Deck> decks = TappedImporter.importFilesFromTappedOut("TappedCrawler\\decks\\animar-soul-of-elements");
+    Map<String,Integer> cardCounts = DeckUtils.getCardCount(decks);
+    List<Map.Entry<String, Integer>> sorted = new ArrayList<>(cardCounts.entrySet());
+//    Collections.sort(sorted, (a, b) ->  a.getValue().compareTo(b.getValue()));
+    Collections.sort(sorted, Comparator.comparing(Map.Entry::getValue));
+    Collections.reverse(sorted);
+    sorted.forEach(entry -> {
+      System.out.printf("%d %s%n", entry.getValue(), entry.getKey());
+    });
+
 
     System.out.println("");
   }
