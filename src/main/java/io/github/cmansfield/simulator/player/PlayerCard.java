@@ -13,8 +13,8 @@ public class PlayerCard extends Card {
   private Player controller;
   private Player owner;
 
-  public PlayerCard(Map cardPojo, Player owner) {
-    super(cardPojo);
+  public PlayerCard(Card card, Player owner) {
+    super(card);
     this.owner = owner;
     this.controller = owner;
     this.cardState = CardState.UNTAPPED;
@@ -44,7 +44,7 @@ public class PlayerCard extends Card {
     private CardState cardState;
     private Player controller;
     private Player owner;
-    private Map cardPojo;
+    private Card card;
 
     public PlayerCardBuilder() {}
 
@@ -63,14 +63,14 @@ public class PlayerCard extends Card {
       return this;
     }
 
-    public PlayerCard.PlayerCardBuilder card(Map cardPojo) {
-      this.cardPojo = cardPojo;
+    public PlayerCard.PlayerCardBuilder card(Card card) {
+      this.card = card;
       return this;
     }
 
     public PlayerCard build() {
       PlayerCard playerCard = new PlayerCard(
-              this.cardPojo == null ? Collections.EMPTY_MAP : this.cardPojo,
+              this.card == null ? new Card() : this.card,
               this.owner);
 
       playerCard.setController(this.controller);

@@ -1,262 +1,432 @@
 package io.github.cmansfield.card;
 
-import io.github.cmansfield.card.constants.CardConstants;
 
-import java.util.LinkedHashMap;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
+@JsonDeserialize(using = CardDeserializer.class)
 public class Card {
-  private Map cardPojo;
+  private String name;
+  private List<String> names;
+  private String layout;
+  private String manaCost;
+  private Double cmc;
+  private List<String> colors;
+  private String type;
+  private List<String> supertypes;
+  private List<String> types;
+  private List<String> subtypes;
+  private String text;
+  private String power;
+  private String toughness;
+  public Integer loyalty;
+  public String imageName;
+  public List<Map<String,String>> rulings;
+  public Integer hand;
+  public Integer life;
+  public Boolean starter;
+  public List<String> printings;
+  public String source;
+  public List<Map<String,String>> legalities;
+  public List<String> colorIdentity;
 
-  // TODO - Make deep copy of cardPojo
-  public Card(Object cardPojo) {
-    if(cardPojo instanceof Map) {
-      this.cardPojo = (Map)cardPojo;
-    }
-    else {
-      throw new IllegalArgumentException("Object must be a Map");
-    }
+
+  public Card() {}
+
+  public Card(Card card) {
+    this.name = card.getName();
+    this.names = card.getNames();
+    this.layout = card.getLayout();
+    this.manaCost = card.getManaCost();
+    this.cmc = card.getCmc();
+    this.colors = card.getColors();
+    this.type = card.getType();
+    this.supertypes = card.getSuperTypes();
+    this.types = card.getTypes();
+    this.subtypes = card.getSubTypes();
+    this.text = card.getText();
+    this.power = card.getPower();
+    this.toughness = card.getToughness();
+    this.loyalty = card.getLoyalty();
+    this.imageName = card.getImageName();
+    this.rulings = card.getRulings();
+    this.hand = card.getHand();
+    this.life = card.getLife();
+    this.starter = card.getStarter();
+    this.printings = card.getPrintings();
+    this.source = card.getSource();
+    this.legalities = card.getLegalities();
+    this.colorIdentity = card.getColorIdentity();
   }
 
-  public Map getCardPojo() {
-    return cardPojo;
-  }
+//  public void setName(String name) {
+//    this.name = name;
+//  }
+//
+//  public void setNames(List<String> names) {
+//    this.names = names;
+//  }
+//
+//  public void setLayout(String layout) {
+//    this.layout = layout;
+//  }
+//
+//  public void setManaCost(String manaCost) {
+//    this.manaCost = manaCost;
+//  }
+//
+//  public void setCmc(Double cmc) {
+//    this.cmc = cmc;
+//  }
+//
+//  public void setColors(List<String> colors) {
+//    this.colors = colors;
+//  }
+//
+//  public void setType(String type) {
+//    this.type = type;
+//  }
+//
+//  public void setSupertypes(List<String> supertypes) {
+//    this.supertypes = supertypes;
+//  }
+//
+//  public void setTypes(List<String> types) {
+//    this.types = types;
+//  }
+//
+//  public void setSubtypes(List<String> subtypes) {
+//    this.subtypes = subtypes;
+//  }
+//
+//  public void setText(String text) {
+//    this.text = text;
+//  }
+//
+//  public void setPower(String power) {
+//    this.power = power;
+//  }
+//
+//  public void setToughness(String toughness) {
+//    this.toughness = toughness;
+//  }
+//
+//  public void setLoyalty(Integer loyalty) {
+//    this.loyalty = loyalty;
+//  }
+//
+//  public void setImageName(String imageName) {
+//    this.imageName = imageName;
+//  }
+//
+//  public void setRulings(List<Map<String, String>> rulings) {
+//    this.rulings = rulings;
+//  }
+//
+//  public void setHand(Integer hand) {
+//    this.hand = hand;
+//  }
+//
+//  public void setLife(Integer life) {
+//    this.life = life;
+//  }
+//
+//  public void setStarter(Boolean starter) {
+//    this.starter = starter;
+//  }
+//
+//  public void setPrintings(List<String> printings) {
+//    this.printings = printings;
+//  }
+//
+//  public void setSource(String source) {
+//    this.source = source;
+//  }
+//
+//  public void setLegalities(List<Map<String, String>> legalities) {
+//    this.legalities = legalities;
+//  }
+//
+//  public void setColorIdentity(List<String> colorIdentity) {
+//    this.colorIdentity = colorIdentity;
+//  }
 
   public String getName() {
-    return getFromPojo(CardConstants.NAME.toString());
+    return this.name;
   }
 
   public List<String> getNames() {
-    return getFromPojo(CardConstants.NAMES.toString());
+    return new ArrayList<>(this.names);
   }
 
   public String getLayout() {
-    return getFromPojo(CardConstants.LAYOUT.toString());
+    return this.layout;
   }
 
   public String getManaCost() {
-    return getFromPojo(CardConstants.MANA_COST.toString());
+    return manaCost;
   }
 
   public Double getCmc() {
-    if(getFromPojo(CardConstants.CMC.toString()) instanceof Integer) {
-      return (double)((int)getFromPojo(CardConstants.CMC.toString()));
-    }
-
-    return getFromPojo(CardConstants.CMC.toString());
+    return this.cmc;
   }
 
   public List<String> getColors() {
-    return getFromPojo(CardConstants.COLORS.toString());
+    return new ArrayList<>(this.colors);
   }
 
   public String getType() {
-    return getFromPojo(CardConstants.TYPE.toString());
+    return this.type;
   }
 
   public List<String> getSuperTypes() {
-    return getFromPojo(CardConstants.SUPER_TYPES.toString());
+    return new ArrayList<>(this.supertypes);
   }
 
   public List<String> getTypes() {
-    return getFromPojo(CardConstants.TYPES.toString());
+    return new ArrayList<>(this.types);
   }
 
   public List<String> getSubTypes() {
-    return getFromPojo(CardConstants.SUB_TYPES.toString());
+    return new ArrayList<>(this.subtypes);
   }
 
   public String getText() {
-    return getFromPojo(CardConstants.TEXT.toString());
+    return this.text;
   }
 
   public String getPower() {
-    return getFromPojo(CardConstants.POWER.toString());
+    return this.power;
   }
 
   public String getToughness() {
-    return getFromPojo(CardConstants.TOUGHNESS.toString());
+    return this.toughness;
   }
 
   public Integer getLoyalty() {
-    return getFromPojo(CardConstants.LOYALTY.toString());
+    return this.loyalty;
   }
 
   public String getImageName() {
-    return getFromPojo(CardConstants.IMAGE_NAME.toString());
+    return imageName;
   }
 
+  // TODO - Deep copy this
   public List<Map<String,String>> getRulings() {
-    return getFromPojo(CardConstants.RULINGS.toString());
+    return this.rulings;
   }
 
   public Integer getHand() {
-    return getFromPojo(CardConstants.HAND.toString());
+    return this.hand;
   }
 
   public Integer getLife() {
-    return getFromPojo(CardConstants.LIFE.toString());
+    return this.life;
   }
 
   public Boolean getStarter() {
-    return getFromPojo(CardConstants.STARTER.toString());
+    return this.starter;
   }
 
   public List<String> getPrintings() {
-    return getFromPojo(CardConstants.PRINTINGS.toString());
+    return new ArrayList<>(this.printings);
   }
 
   public String getSource() {
-    return getFromPojo(CardConstants.SOURCE.toString());
+    return this.source;
   }
 
+  // TODO - Deep copy this
   public List<Map<String,String>> getLegalities() {
-    return getFromPojo(CardConstants.LEGALITIES.toString());
+    return this.legalities;
   }
 
   public List<String> getColorIdentity() {
-    return getFromPojo(CardConstants.COLOR_IDENTITY.toString());
+    return new ArrayList<>(this.colorIdentity);
   }
 
-  private <T> T getFromPojo(String key) {
-    if(cardPojo.containsKey(key)) {
-      return (T)cardPojo.get(key);
-    }
-
-    return null;
-  }
-
+  // TODO - finish this method
   @Override
   public String toString() {
-    return cardPojo.toString();
+    return super.toString();
   }
 
-  public static class CardBuilder {
-    private Map<String,Object> _cardPojo;
 
-    public CardBuilder() {
-      this._cardPojo = new LinkedHashMap<>();
-    }
+  public static class CardBuilder {
+    private String name;
+    private List<String> names;
+    private String layout;
+    private String manaCost;
+    private Double cmc;
+    private List<String> colors;
+    private String type;
+    private List<String> supertypes;
+    private List<String> types;
+    private List<String> subtypes;
+    private String text;
+    private String power;
+    private String toughness;
+    private Integer loyalty;
+    private String imageName;
+    private List<Map<String,String>> rulings;
+    private Integer hand;
+    private Integer life;
+    private Boolean starter;
+    private List<String> printings;
+    private String source;
+    private List<Map<String,String>> legalities;
+    private List<String> colorIdentity;
+
+
+    public CardBuilder() {}
 
     public Card.CardBuilder name(String key) {
-      this._cardPojo.put(CardConstants.NAME.toString(), key);
+      this.name = key;
       return this;
     }
 
     public Card.CardBuilder layout(String layout) {
-      this._cardPojo.put(CardConstants.LAYOUT.toString(), layout);
+      this.layout = layout;
       return this;
     }
 
     public Card.CardBuilder names(List<String> names) {
-      this._cardPojo.put(CardConstants.NAMES.toString(), names);
+      this.names = names;
       return this;
     }
 
     public Card.CardBuilder manaCost(String manaCost) {
-      this._cardPojo.put(CardConstants.MANA_COST.toString(), manaCost);
+      this.manaCost = manaCost;
       return this;
     }
 
     public Card.CardBuilder cmc(Double cmc) {
-      this._cardPojo.put(CardConstants.CMC.toString(), cmc);
+      this.cmc = cmc;
       return this;
     }
 
     public Card.CardBuilder colors(List<String> colors) {
-      this._cardPojo.put(CardConstants.COLORS.toString(), colors);
+      this.colors = colors;
       return this;
     }
 
     public Card.CardBuilder type(String type) {
-      this._cardPojo.put(CardConstants.TYPE.toString(), type);
+      this.type = type;
       return this;
     }
 
     public Card.CardBuilder superTypes(List<String> superTypes) {
-      this._cardPojo.put(CardConstants.SUPER_TYPES.toString(), superTypes);
+      this.supertypes = superTypes;
       return this;
     }
 
     public Card.CardBuilder types(List<String > types) {
-      this._cardPojo.put(CardConstants.TYPES.toString(), types);
+      this.types = types;
       return this;
     }
 
     public Card.CardBuilder subTypes(List<String> subTypes) {
-      this._cardPojo.put(CardConstants.SUB_TYPES.toString(), subTypes);
+      this.subtypes = subTypes;
       return this;
     }
 
     public Card.CardBuilder text(String text) {
-      this._cardPojo.put(CardConstants.TEXT.toString(), text);
+      this.text = text;
       return this;
     }
 
     public Card.CardBuilder power(String power) {
-      this._cardPojo.put(CardConstants.POWER.toString(), power);
+      this.power = power;
       return this;
     }
 
     public Card.CardBuilder toughness(String toughness) {
-      this._cardPojo.put(CardConstants.TOUGHNESS.toString(), toughness);
+      this.toughness = toughness;
       return this;
     }
 
     public Card.CardBuilder loyalty(Integer loyalty) {
-      this._cardPojo.put(CardConstants.LOYALTY.toString(), loyalty);
+      this.loyalty = loyalty;
       return this;
     }
 
     public Card.CardBuilder imageName(String imageName) {
-      this._cardPojo.put(CardConstants.IMAGE_NAME.toString(), imageName);
+      this.imageName = imageName;
       return this;
     }
 
     public Card.CardBuilder rulings(List<Map<String,String>> rulings) {
-      this._cardPojo.put(CardConstants.RULINGS.toString(), rulings);
+      this.rulings = rulings;
       return this;
     }
 
     public Card.CardBuilder hand(Integer hand) {
-      this._cardPojo.put(CardConstants.HAND.toString(), hand);
+      this.hand = hand;
       return this;
     }
 
     public Card.CardBuilder life(Integer life) {
-      this._cardPojo.put(CardConstants.LIFE.toString(), life);
+      this.life = life;
       return this;
     }
 
     public Card.CardBuilder starter(Boolean starter) {
-      this._cardPojo.put(CardConstants.STARTER.toString(), starter);
+      this.starter = starter;
       return this;
     }
 
     public Card.CardBuilder printings(List<String> printings) {
-      this._cardPojo.put(CardConstants.PRINTINGS.toString(), printings);
+      this.printings = printings;
       return this;
     }
 
     public Card.CardBuilder source(String source) {
-      this._cardPojo.put(CardConstants.SOURCE.toString(), source);
+      this.source = source;
       return this;
     }
 
     public Card.CardBuilder legalities(List<Map<String,String>> legalities) {
-      this._cardPojo.put(CardConstants.LEGALITIES.toString(), legalities);
+      this.legalities = legalities;
       return this;
     }
 
     public Card.CardBuilder colorIdentity(List<String> colorIdentity) {
-      this._cardPojo.put(CardConstants.COLOR_IDENTITY.toString(), colorIdentity);
+      this.colorIdentity = colorIdentity;
       return this;
     }
 
     public Card build() {
-      return new Card(this._cardPojo);
+      Card card = new Card();
+
+      card.name = this.name;
+      card.names = this.names;
+      card.layout = this.layout;
+      card.manaCost = this.manaCost;
+      card.cmc = this.cmc;
+      card.colors = this.colors;
+      card.type = this.type;
+      card.supertypes = this.supertypes;
+      card.types = this.types;
+      card.subtypes = this.subtypes;
+      card.text = this.text;
+      card.power = this.power;
+      card.toughness = this.toughness;
+      card.loyalty = this.loyalty;
+      card.imageName = this.imageName;
+      card.rulings = this.rulings;
+      card.hand = this.hand;
+      card.life = this.life;
+      card.starter = this.starter;
+      card.printings = this.printings;
+      card.source = this.source;
+      card.legalities = this.legalities;
+      card.colorIdentity = this.colorIdentity;
+
+      return card;
     }
   }
 }

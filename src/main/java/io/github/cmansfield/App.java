@@ -3,7 +3,6 @@ package io.github.cmansfield;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cmansfield.card.Card;
-import io.github.cmansfield.card.CardDeleteMe;
 import io.github.cmansfield.deck.Deck;
 import io.github.cmansfield.deck.DeckUtils;
 import io.github.cmansfield.io.IoConstants;
@@ -24,29 +23,6 @@ public class App {
 
 
   public static void main(String[] args) throws IOException {
-    List<Card> cards;
-
-    ZipFile zip = new ZipFile(IoConstants.CARD_LIST_FILE_NAME);
-    ObjectMapper mapper = new ObjectMapper();
-    Map<String, CardDeleteMe> jsonMap;
-
-    try(InputStream inputstream = zip.getInputStream(zip.getEntry(IoConstants.ALL_CARDS_FILE_NAME))) {
-      jsonMap = mapper.readValue(inputstream, new TypeReference<Map<String,CardDeleteMe>>(){});
-    }
-    catch (Exception e) {
-      System.out.printf("Unable to load file %s%n", IoConstants.ALL_CARDS_FILE_NAME);
-      throw new IOException(e);
-    }
-    finally {
-      zip.close();
-    }
-
-
-    System.out.println("End");
-  }
-
-
-  public static void main_(String[] args) throws IOException {
 
     if(args.length > 0) {
       if(args[0].equals("-u") || args[0].equals("--update")) {
@@ -66,6 +42,10 @@ public class App {
       System.out.printf("Unable to load card list from file '%s'%n", IoConstants.ALL_CARDS_FILE_NAME);
       return;
     }
+
+    List<Card> doranCards = LoadCards.loadCards("SavedCardLists/DoranDeck.json");
+
+    System.out.println("End");
   }
 
 

@@ -35,13 +35,13 @@ public class SaveDeck {
 
       deck.getCards().forEach(card -> {
         for(int i = 0; i < deck.getQuantity(card.getName()); ++i) {
-          cardMap.put(String.format("%s%d", card.getName(), i), card.getCardPojo());
+//          cardMap.put(String.format("%s%d", card.getName(), i), card.getCardPojo());
         }
       });
 
       Map<String, Object> deckMap = new HashMap<>();
       if(deck.getFeaturedCard() != null) {
-        deckMap.put(IoConstants.FEATURED_KEY, deck.getFeaturedCard().getCardPojo());
+//        deckMap.put(IoConstants.FEATURED_KEY, deck.getFeaturedCard().getCardPojo());
       }
       if(deck.getFormat() != null) {
         deckMap.put(Legality.FORMAT.toString(), deck.getFormat().toString());

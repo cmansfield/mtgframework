@@ -158,7 +158,7 @@ public class Player {
 
                       return !deck.getFeaturedCard().getName().equalsIgnoreCase(card.getName());
                     })
-                    .map(card -> new PlayerCard(card.getCardPojo(), this))
+                    .map(card -> new PlayerCard(card, this))
                     .collect(Collectors.toList()));
     this.zones.put(Zone.HAND, new ArrayList<>());
     this.zones.put(Zone.GRAVEYARD, new ArrayList<>());
@@ -168,7 +168,7 @@ public class Player {
             Zone.COMMAND,
             this.deck.getFeaturedCard() == null ?
                     new ArrayList<>() :
-                    Collections.singletonList(new PlayerCard(this.deck.getFeaturedCard().getCardPojo(), this)));
+                    Collections.singletonList(new PlayerCard(this.deck.getFeaturedCard(), this)));
     this.zones.put(Zone.ANTE, new ArrayList<>());
     this.zones.put(Zone.SCRAPYARD, new ArrayList<>());
   }

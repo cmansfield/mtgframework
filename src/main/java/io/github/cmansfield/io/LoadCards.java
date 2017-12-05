@@ -1,5 +1,6 @@
 package io.github.cmansfield.io;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cmansfield.filters.CardFilter;
 import org.apache.commons.io.FilenameUtils;
@@ -8,7 +9,6 @@ import io.github.cmansfield.card.Card;
 import org.apache.commons.io.IOUtils;
 
 import java.nio.charset.StandardCharsets;
-import java.util.stream.Collectors;
 import java.io.FileInputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,18 +30,15 @@ public final class LoadCards {
    * @throws IOException
    */
   public static List<Card> loadCards() throws IOException {
-    List<Card> cards;
-
     if(LoadCards.cardMap != null) {
-      return new ArrayList<Card>(LoadCards.cardMap.values());
+      return new ArrayList<>(LoadCards.cardMap.values());
     }
 
     ZipFile zip = new ZipFile(IoConstants.CARD_LIST_FILE_NAME);
     ObjectMapper mapper = new ObjectMapper();
 
     try(InputStream inputstream = zip.getInputStream(zip.getEntry(IoConstants.ALL_CARDS_FILE_NAME))) {
-      Map<String, Object> jsonMap = mapper.readValue(inputstream, Map.class);
-      cards = loadCards(jsonMap, true);
+      LoadCards.cardMap = mapper.readValue(inputstream, new TypeReference<Map<String,Card>>(){});
     }
     catch (Exception e) {
       System.out.printf("Unable to load file %s%n", IoConstants.ALL_CARDS_FILE_NAME);
@@ -51,7 +48,7 @@ public final class LoadCards {
       zip.close();
     }
 
-    return cards;
+    return new ArrayList<>(LoadCards.cardMap.values());
   }
 
   /**
@@ -69,8 +66,8 @@ public final class LoadCards {
 
     try(InputStream inputstream = new FileInputStream(fileName)) {
       if(extension.equalsIgnoreCase(IoConstants.JSON_EXT)) {
-        Map<String, Object> jsonMap = mapper.readValue(inputstream, Map.class);
-        cards = loadCards(jsonMap, false);
+        Map<String, Card> cardMap = mapper.readValue(inputstream, new TypeReference<Map<String,Card>>(){});
+        return new ArrayList<>(cardMap.values());
       }
       if(extension.equalsIgnoreCase(IoConstants.TXT_EXT)) {
         String cardListRaw = IOUtils.toString(inputstream, StandardCharsets.UTF_8);
@@ -198,27 +195,5 @@ public final class LoadCards {
     }
 
     return WordUtils.capitalizeFully(treatedCardName);
-  }
-
-  /**
-   * Creates a list of cards from an inputstream
-   *
-   * @param jsonMap     - A json map that contains the card objects
-   * @param saveSource  - If true then store the jsonMap produced
-   * @return            - Returns a list of card objects
-   * @throws IOException
-   */
-  static List<Card> loadCards(Map<String, Object> jsonMap, boolean saveSource) throws IOException {
-    Map<String, Card> cardMap = jsonMap
-            .entrySet()
-            .stream()
-            .collect(Collectors.toMap(
-                    Map.Entry::getKey,
-                    e -> new Card(e.getValue())
-            ));
-
-    LoadCards.cardMap = saveSource ? cardMap : LoadCards.cardMap;
-
-    return new ArrayList<>(cardMap.values());
   }
 }

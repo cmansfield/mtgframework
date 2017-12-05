@@ -37,14 +37,14 @@ public class LoadDeck {
         Map<String, Object> jsonMap = mapper.readValue(inputstream, Map.class);
 
         if(jsonMap.containsKey(IoConstants.CARDS_KEY)) {
-          deck = new Deck(LoadCards.loadCards((Map<String,Object>)jsonMap.get(IoConstants.CARDS_KEY), false));
+//          deck = new Deck(LoadCards.loadCards((Map<String,Object>)jsonMap.get(IoConstants.CARDS_KEY), false));
         }
         else {
           return new Deck(LoadCards.loadCards(fileName));
         }
 
         if(jsonMap.containsKey(IoConstants.FEATURED_KEY)) {
-          deck.setFeaturedCard(new Card(jsonMap.get(IoConstants.FEATURED_KEY)));
+          deck.setFeaturedCard(new Card((Card)jsonMap.get(IoConstants.FEATURED_KEY)));
         }
         if(jsonMap.containsKey(Legality.FORMAT.toString())) {
           deck.setFormat(Format.find((String)jsonMap.get(Legality.FORMAT.toString())));

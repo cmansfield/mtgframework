@@ -30,8 +30,8 @@ public final class SaveCards {
 
     try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(saveFileName), StandardCharsets.UTF_8);) {
 
-      Map<String, Object> cardMap = cards.stream()
-              .collect(Collectors.toMap(Card::getName, card -> card.getCardPojo()));
+      Map<String, Card> cardMap = cards.stream()
+              .collect(Collectors.toMap(Card::getName, card -> card));
 
       String jsonCards = mapper.writerWithDefaultPrettyPrinter()
               .writeValueAsString(cardMap);
