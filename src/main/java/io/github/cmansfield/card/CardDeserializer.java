@@ -1,29 +1,26 @@
 package io.github.cmansfield.card;
 
-import org.codehaus.jackson.map.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.github.cmansfield.card.constants.CardConstants;
-import org.codehaus.jackson.map.DeserializationContext;
-import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.JsonNode;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.core.JsonParser;
 
 import java.io.IOException;
 
 
-public class CardDeserializer extends StdDeserializer<CardDeleteMe>{
+public class CardDeserializer extends JsonDeserializer<CardDeleteMe> {
 
-  public CardDeserializer() {
-    this(null);
-  }
-
-  public CardDeserializer(Class<?> vc) {
-    super(vc);
-  }
+  public CardDeserializer() {}
 
   @Override
-  public CardDeleteMe deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException {
+  public CardDeleteMe deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
     CardDeleteMe card = new CardDeleteMe();
-    JsonNode productNode = jp.getCodec().readTree(jp);
-    card.setName(productNode.get(CardConstants.NAME.toString()).getTextValue());
+    JsonNode node = jp.getCodec().readTree(jp);
+
+//    card.setName(node.get(CardConstants.NAME.toString()).asText());
+    card.setName("Test");
     return card;
   }
 }

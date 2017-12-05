@@ -1,14 +1,14 @@
 package io.github.cmansfield.card;
 
-import io.github.cmansfield.card.constants.CardConstants;
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
+
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-//@JsonDeserialize(using = CardDeserializer.class)
+@JsonDeserialize(using = CardDeserializer.class)
 public class CardDeleteMe {
   private String name;
   private List<String> names;
@@ -244,16 +244,16 @@ public class CardDeleteMe {
     private String text;
     private String power;
     private String toughness;
-    public Integer loyalty;
-    public String imageName;
-    public List<Map<String,String>> rulings;
-    public Integer hand;
-    public Integer life;
-    public Boolean starter;
-    public List<String> printings;
-    public String source;
-    public List<Map<String,String>> legalities;
-    public List<String> colorIdentity;
+    private Integer loyalty;
+    private String imageName;
+    private List<Map<String,String>> rulings;
+    private Integer hand;
+    private Integer life;
+    private Boolean starter;
+    private List<String> printings;
+    private String source;
+    private List<Map<String,String>> legalities;
+    private List<String> colorIdentity;
 
 
     public CardBuilder() {}
@@ -376,31 +376,29 @@ public class CardDeleteMe {
     public CardDeleteMe build() {
       CardDeleteMe card = new CardDeleteMe();
 
-      card.setName(this.name);
-      card.setNames(this.names);
-      card.setLayout(this.layout);
-      card.setManaCost(this.manaCost);
-
-
-      this.cardcmc;
-      this.cardcolors;
-      this.cardtype;
-      this.cardsupertypes;
-      this.cardtypes;
-      this.cardsubtypes;
-      this.cardtext;
-      this.cardpower;
-      this.cardtoughness;
-      this.cardloyalty;
-      this.cardimageName;
-      this.cardrulings;
-      this.cardhand;
-      this.cardlife;
-      this.cardstarter;
-      this.cardprintings;
-      this.cardsource;
-      this.cardlegalities;
-      this.cardcolorIdentity;
+      card.name = this.name;
+      card.names = this.names;
+      card.layout = this.layout;
+      card.manaCost = this.manaCost;
+      card.cmc = this.cmc;
+      card.colors = this.colors;
+      card.type = this.type;
+      card.supertypes = this.supertypes;
+      card.types = this.types;
+      card.subtypes = this.subtypes;
+      card.text = this.text;
+      card.power = this.power;
+      card.toughness = this.toughness;
+      card.loyalty = this.loyalty;
+      card.imageName = this.imageName;
+      card.rulings = this.rulings;
+      card.hand = this.hand;
+      card.life = this.life;
+      card.starter = this.starter;
+      card.printings = this.printings;
+      card.source = this.source;
+      card.legalities = this.legalities;
+      card.colorIdentity = this.colorIdentity;
 
       return card;
     }
