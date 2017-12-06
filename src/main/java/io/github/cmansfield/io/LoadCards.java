@@ -143,7 +143,13 @@ public final class LoadCards {
     Card card = null;
 
     if(LoadCards.cardMap == null) {
-      throw new IllegalStateException("The complete list of cards has not been loaded yet");
+      System.out.println("The complete list of cards has not been loaded yet, loading now.");
+      try {
+        loadCards();
+      }
+      catch (Exception e) {
+        throw new RuntimeException(e);
+      }
     }
 
     if(LoadCards.cardMap.containsKey(cardName)) {

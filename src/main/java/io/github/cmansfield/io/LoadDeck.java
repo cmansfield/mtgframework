@@ -1,16 +1,12 @@
 package io.github.cmansfield.io;
 
-import io.github.cmansfield.deck.constants.Legality;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.cmansfield.deck.constants.Format;
 import org.apache.commons.io.FilenameUtils;
-import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Map;
 
 
 public class LoadDeck {

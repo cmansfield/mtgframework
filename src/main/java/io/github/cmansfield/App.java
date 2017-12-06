@@ -42,11 +42,10 @@ public class App {
       return;
     }
 
-    List<Card> cardList = LoadCards.loadCards("SavedCardLists/testList.json");
-    Deck deck = new Deck(cardList, Format.COMMANDER);
-    deck.setFeaturedCard(LoadCards.lookupCard("Thawing Glaciers"));
+    List<Card> cards1 = LoadCards.loadCards("SavedCardLists/NonCompliantCommanderTestDeck.json");
+    Deck deck = new Deck(cards1, Format.COMMANDER);
+    deck.setFeaturedCard(LoadCards.lookupCard("Doran, the Siege Tower"));
     String filename = SaveDeck.saveDeck(deck);
-    Deck deck1 = LoadDeck.loadDeck(filename);
 
     System.out.println("End");
   }

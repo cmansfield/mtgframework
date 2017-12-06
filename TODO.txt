@@ -1,13 +1,8 @@
 
 Mtg Framework TODO list
 
-IO
-    Once Cards are immutable, stop copying the card list
-    LoadCards.cardMap an immutable map
-
 Card
-    Create deep copy of cardPojo when creating a new Card
-    Make the Card class immutable
+    Create deep copy of complex list objects
 
 Other
     Add additional exception handling in main
@@ -16,6 +11,7 @@ Other
 
 CardFilter
     Search all of the text fields as contains
+    Refactor to accomidate the new changes to Card
 
 DeckValidator
     Udpate 'isFormatCompliant' for Commander to allow commander partners

@@ -21,8 +21,8 @@ public class DeckTest {
 
   @Test
   public void test_createDeck() throws IOException {
-    final String TEST_DECK_FILE = "TestDeck.json";
-    File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
+    final String TEST_CARD_LIST_FILE = "inputRaw.txt";
+    File file = new File(getClass().getClassLoader().getResource(TEST_CARD_LIST_FILE).getFile());
     List<Card> cards = LoadCards.loadCards(file.getAbsolutePath());
     Deck deck = new Deck(cards);
 
@@ -36,7 +36,7 @@ public class DeckTest {
 
   @Test
   public void test_checkDeckColors() throws IOException {
-    final String TEST_DECK_FILE = "TestDeck.json";
+    final String TEST_DECK_FILE = "CompleteCommanderDeck.json";
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
     Deck deck = LoadDeck.loadDeck(file.getAbsolutePath());
 

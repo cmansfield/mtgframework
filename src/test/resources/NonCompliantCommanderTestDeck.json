@@ -1,9 +1,142 @@
 {
-  "Indomitable Ancients0" : {
+  "quantity" : {
+    "Belbe's Armor" : 1,
+    "Khalni Garden" : 1,
+    "Task Force" : 1,
+    "Darksteel Ingot" : 1,
+    "Aligned Hedron Network" : 1,
+    "Swamp" : 2,
+    "Crossbow Ambush" : 1,
+    "Awakening Zone" : 1,
+    "Sol Ring" : 1,
+    "Thallid Shell-Dweller" : 1,
+    "Sandsteppe Citadel" : 1,
+    "Grizzled Leotau" : 1,
+    "AWOL" : 1,
+    "Nyx-Fleece Ram" : 1,
+    "Dawn" : 1,
+    "Golgari Rot Farm" : 1,
+    "Commander's Sphere" : 1,
+    "Dragonlord Dromoka" : 1,
+    "Elfhame Palace" : 1,
+    "Reliquary Tower" : 1,
+    "Oathsworn Giant" : 1,
+    "Wall of Blossoms" : 1,
+    "Vivid Marsh" : 1,
+    "Assault Formation" : 1,
+    "Stalwart Shield-Bearers" : 1,
+    "Whispersilk Cloak" : 1,
+    "Trostani, Selesnya's Voice" : 1,
+    "Return to Dust" : 1,
+    "Stirring Wildwood" : 1,
+    "Karametra, God of Harvests" : 1,
+    "Warmonger's Chariot" : 1,
+    "Silklash Spider" : 1,
+    "Plains" : 8,
+    "Condemn" : 1,
+    "Behind the Scenes" : 1,
+    "Elspeth, Sun's Champion" : 1,
+    "Wave of Reckoning" : 1,
+    "Command Tower" : 1,
+    "Biorhythm" : 1,
+    "Ensouled Scimitar" : 1,
+    "Accorder's Shield" : 1,
+    "Vivid Grove" : 1,
+    "Tree of Perdition" : 1,
+    "Wall of Tanglecord" : 1,
+    "Jungle Hollow" : 1,
+    "Doran, the Siege Tower" : 1,
+    "Vanguard's Shield" : 1,
+    "Guiltfeeder" : 1,
+    "Vivid Meadow" : 1,
+    "Sidar Kondo of Jamuraa" : 1,
+    "Traproot Kami" : 1,
+    "Ornithopter" : 1,
+    "Fell the Mighty" : 1,
+    "Chromatic Lantern" : 1,
+    "Evolving Wilds" : 1,
+    "Foul Renewal" : 1,
+    "Brave the Sands" : 1,
+    "Spidersilk Armor" : 1,
+    "Blossoming Sands" : 1,
+    "Tower Defense" : 1,
+    "Wakestone Gargoyle" : 1,
+    "Path of Ancestry" : 1,
+    "Indomitable Ancients" : 1,
+    "Fortified Rampart" : 1,
+    "Thawing Glaciers" : 1,
+    "Rebirth" : 1,
+    "Terramorphic Expanse" : 1,
+    "Harmonize" : 1,
+    "Lightning Greaves" : 1,
+    "Slagwurm Armor" : 1,
+    "Sterling Grove" : 1,
+    "Worldly Tutor" : 1,
+    "Congregation at Dawn" : 1,
+    "Primordial Sage" : 1,
+    "Perimeter Captain" : 1,
+    "Soul of the Harvest" : 1,
+    "Eladamri's Call" : 1,
+    "Wall of Omens" : 1,
+    "Forest" : 6,
+    "Nissa, Voice of Zendikar" : 1,
+    "Overgrown Battlement" : 1,
+    "Holy Armor" : 1,
+    "Axebane Guardian" : 1,
+    "Rampant Growth" : 1,
+    "Cathar's Shield" : 1,
+    "Hero's Resolve" : 1,
+    "Abzan Beastmaster" : 1
+  },
+  "deckColors" : [ "WHITE", "GREEN", "BLACK" ],
+  "featuredCard" : {
+    "name" : "Doran, the Siege Tower",
     "layout" : "normal",
+    "manaCost" : "{B}{G}{W}",
+    "cmc" : 3.0,
+    "colors" : [ "White", "Black", "Green" ],
+    "type" : "Legendary Creature — Treefolk Shaman",
+    "supertypes" : [ "Legendary" ],
+    "types" : [ "Creature" ],
+    "subtypes" : [ "Treefolk", "Shaman" ],
+    "text" : "Each creature assigns combat damage equal to its toughness rather than its power.",
+    "power" : "0",
+    "toughness" : "5",
+    "imageName" : "doran, the siege tower",
+    "rulings" : [ {
+      "date" : "2007-10-01",
+      "text" : "Doran's ability means, for example, that a 2/3 creature will assign 3 damage in combat instead of 2."
+    }, {
+      "date" : "2007-10-01",
+      "text" : "Doran's ability doesn't actually change creatures' power; it changes only the value of the combat damage they assign. All other rules and effects that check power or toughness use the real values."
+    }, {
+      "date" : "2007-10-01",
+      "text" : "This effect is mandatory and affects all creatures."
+    } ],
+    "printings" : [ "pCMP", "LRW", "V11" ],
+    "legalities" : [ {
+      "format" : "Commander",
+      "legality" : "Legal"
+    }, {
+      "format" : "Legacy",
+      "legality" : "Legal"
+    }, {
+      "format" : "Lorwyn-Shadowmoor Block",
+      "legality" : "Legal"
+    }, {
+      "format" : "Modern",
+      "legality" : "Legal"
+    }, {
+      "format" : "Vintage",
+      "legality" : "Legal"
+    } ],
+    "colorIdentity" : [ "W", "B", "G" ]
+  },
+  "cards" : [ {
     "name" : "Indomitable Ancients",
+    "layout" : "normal",
     "manaCost" : "{2}{W}{W}",
-    "cmc" : 4,
+    "cmc" : 4.0,
     "colors" : [ "White" ],
     "type" : "Creature — Treefolk Warrior",
     "types" : [ "Creature" ],
@@ -29,11 +162,10 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W" ]
-  },
-  "Path of Ancestry0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Path of Ancestry",
-    "cmc" : 0,
+    "layout" : "normal",
+    "cmc" : 0.0,
     "type" : "Land",
     "types" : [ "Land" ],
     "text" : "Path of Ancestry enters the battlefield tapped.\n{T}: Add to your mana pool one mana of any color in your commander's color identity. When that mana is spent to cast a creature spell that shares a creature type with your commander, scry 1.",
@@ -80,12 +212,11 @@
       "format" : "Vintage",
       "legality" : "Legal"
     } ]
-  },
-  "Worldly Tutor0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Worldly Tutor",
+    "layout" : "normal",
     "manaCost" : "{G}",
-    "cmc" : 1,
+    "cmc" : 1.0,
     "colors" : [ "Green" ],
     "type" : "Instant",
     "types" : [ "Instant" ],
@@ -110,12 +241,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "G" ]
-  },
-  "Doran, the Siege Tower0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Doran, the Siege Tower",
+    "layout" : "normal",
     "manaCost" : "{B}{G}{W}",
-    "cmc" : 3,
+    "cmc" : 3.0,
     "colors" : [ "White", "Black", "Green" ],
     "type" : "Legendary Creature — Treefolk Shaman",
     "supertypes" : [ "Legendary" ],
@@ -153,12 +283,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W", "B", "G" ]
-  },
-  "Axebane Guardian0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Axebane Guardian",
+    "layout" : "normal",
     "manaCost" : "{2}{G}",
-    "cmc" : 3,
+    "cmc" : 3.0,
     "colors" : [ "Green" ],
     "type" : "Creature — Human Druid",
     "types" : [ "Creature" ],
@@ -189,12 +318,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "G" ]
-  },
-  "Darksteel Ingot0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Darksteel Ingot",
+    "layout" : "normal",
     "manaCost" : "{3}",
-    "cmc" : 3,
+    "cmc" : 3.0,
     "type" : "Artifact",
     "types" : [ "Artifact" ],
     "text" : "Indestructible\n{T}: Add one mana of any color to your mana pool.",
@@ -216,12 +344,11 @@
       "format" : "Vintage",
       "legality" : "Legal"
     } ]
-  },
-  "Ensouled Scimitar0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Ensouled Scimitar",
+    "layout" : "normal",
     "manaCost" : "{3}",
-    "cmc" : 3,
+    "cmc" : 3.0,
     "type" : "Artifact — Equipment",
     "types" : [ "Artifact" ],
     "subtypes" : [ "Equipment" ],
@@ -248,12 +375,11 @@
       "format" : "Vintage",
       "legality" : "Legal"
     } ]
-  },
-  "Karametra, God of Harvests0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Karametra, God of Harvests",
+    "layout" : "normal",
     "manaCost" : "{3}{G}{W}",
-    "cmc" : 5,
+    "cmc" : 5.0,
     "colors" : [ "White", "Green" ],
     "type" : "Legendary Enchantment Creature — God",
     "supertypes" : [ "Legendary" ],
@@ -318,12 +444,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W", "G" ]
-  },
-  "Vanguard's Shield0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Vanguard's Shield",
+    "layout" : "normal",
     "manaCost" : "{2}",
-    "cmc" : 2,
+    "cmc" : 2.0,
     "type" : "Artifact — Equipment",
     "types" : [ "Artifact" ],
     "subtypes" : [ "Equipment" ],
@@ -350,12 +475,11 @@
       "format" : "Vintage",
       "legality" : "Legal"
     } ]
-  },
-  "Crossbow Ambush0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Crossbow Ambush",
+    "layout" : "normal",
     "manaCost" : "{G}",
-    "cmc" : 1,
+    "cmc" : 1.0,
     "colors" : [ "Green" ],
     "type" : "Instant",
     "types" : [ "Instant" ],
@@ -380,12 +504,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "G" ]
-  },
-  "Guiltfeeder0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Guiltfeeder",
+    "layout" : "normal",
     "manaCost" : "{3}{B}{B}",
-    "cmc" : 5,
+    "cmc" : 5.0,
     "colors" : [ "Black" ],
     "type" : "Creature — Horror",
     "types" : [ "Creature" ],
@@ -413,12 +536,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "B" ]
-  },
-  "Awakening Zone0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Awakening Zone",
+    "layout" : "normal",
     "manaCost" : "{2}{G}",
-    "cmc" : 3,
+    "cmc" : 3.0,
     "colors" : [ "Green" ],
     "type" : "Enchantment",
     "types" : [ "Enchantment" ],
@@ -442,11 +564,10 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "G" ]
-  },
-  "Swamp0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Swamp",
-    "cmc" : 0,
+    "layout" : "normal",
+    "cmc" : 0.0,
     "type" : "Basic Land — Swamp",
     "supertypes" : [ "Basic" ],
     "types" : [ "Land" ],
@@ -548,118 +669,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "B" ]
-  },
-  "Swamp1" : {
-    "layout" : "normal",
-    "name" : "Swamp",
-    "cmc" : 0,
-    "type" : "Basic Land — Swamp",
-    "supertypes" : [ "Basic" ],
-    "types" : [ "Land" ],
-    "subtypes" : [ "Swamp" ],
-    "imageName" : "swamp",
-    "printings" : [ "LEA", "LEB", "2ED", "CED", "CEI", "3ED", "4ED", "ICE", "RQS", "pARL", "MIR", "ITP", "5ED", "POR", "TMP", "pJGP", "PO2", "UGL", "pALP", "USG", "ATH", "6ED", "PTK", "pGRU", "S99", "MMQ", "BRB", "pELP", "S00", "BTD", "INV", "7ED", "ODY", "DKM", "ONS", "8ED", "MRD", "CHK", "UNH", "9ED", "RAV", "CST", "TSP", "10E", "MED", "LRW", "SHM", "ALA", "DDC", "M10", "HOP", "ME3", "ZEN", "DDD", "H09", "DDE", "ROE", "DPA", "ARC", "M11", "SOM", "MBS", "NPH", "CMD", "M12", "DDH", "ISD", "PD3", "AVR", "PC2", "M13", "DDJ", "RTR", "DDK", "M14", "THS", "C13", "DDM", "MD1", "M15", "DDN", "KTK", "C14", "DD3_DVD", "DD3_GVL", "FRF", "DTK", "TPR", "ORI", "DDP", "BFZ", "C15", "DDQ", "SOI", "DDR", "KLD", "C16", "PCA", "AKH", "CMA", "E01", "HOU", "C17", "XLN" ],
-    "legalities" : [ {
-      "format" : "Amonkhet Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Battle for Zendikar Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Commander",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ice Age Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Innistrad Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Invasion Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ixalan Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Kaladesh Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Kamigawa Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Khans of Tarkir Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Legacy",
-      "legality" : "Legal"
-    }, {
-      "format" : "Lorwyn-Shadowmoor Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Masques Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Mirage Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Mirrodin Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Modern",
-      "legality" : "Legal"
-    }, {
-      "format" : "Odyssey Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Onslaught Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ravnica Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Return to Ravnica Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Scars of Mirrodin Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Shadows over Innistrad Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Shards of Alara Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Standard",
-      "legality" : "Legal"
-    }, {
-      "format" : "Tempest Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Theros Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Time Spiral Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Un-Sets",
-      "legality" : "Legal"
-    }, {
-      "format" : "Urza Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Vintage",
-      "legality" : "Legal"
-    }, {
-      "format" : "Zendikar Block",
-      "legality" : "Legal"
-    } ],
-    "colorIdentity" : [ "B" ]
-  },
-  "Elspeth, Sun's Champion0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Elspeth, Sun's Champion",
+    "layout" : "normal",
     "manaCost" : "{4}{W}{W}",
-    "cmc" : 6,
+    "cmc" : 6.0,
     "colors" : [ "White" ],
     "type" : "Legendary Planeswalker — Elspeth",
     "supertypes" : [ "Legendary" ],
@@ -686,12 +700,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W" ]
-  },
-  "Return to Dust0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Return to Dust",
+    "layout" : "normal",
     "manaCost" : "{2}{W}{W}",
-    "cmc" : 4,
+    "cmc" : 4.0,
     "colors" : [ "White" ],
     "type" : "Instant",
     "types" : [ "Instant" ],
@@ -719,11 +732,10 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W" ]
-  },
-  "Thawing Glaciers0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Thawing Glaciers",
-    "cmc" : 0,
+    "layout" : "normal",
+    "cmc" : 0.0,
     "type" : "Land",
     "types" : [ "Land" ],
     "text" : "Thawing Glaciers enters the battlefield tapped.\n{1}, {T}: Search your library for a basic land card, put that card onto the battlefield tapped, then shuffle your library. Return Thawing Glaciers to its owner's hand at the beginning of the next cleanup step.",
@@ -749,12 +761,11 @@
       "format" : "Vintage",
       "legality" : "Legal"
     } ]
-  },
-  "Holy Armor0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Holy Armor",
+    "layout" : "normal",
     "manaCost" : "{W}",
-    "cmc" : 1,
+    "cmc" : 1.0,
     "colors" : [ "White" ],
     "type" : "Enchantment — Aura",
     "types" : [ "Enchantment" ],
@@ -773,11 +784,10 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W" ]
-  },
-  "Forest1" : {
-    "layout" : "normal",
+  }, {
     "name" : "Forest",
-    "cmc" : 0,
+    "layout" : "normal",
+    "cmc" : 0.0,
     "type" : "Basic Land — Forest",
     "supertypes" : [ "Basic" ],
     "types" : [ "Land" ],
@@ -879,12 +889,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "G" ]
-  },
-  "AWOL0" : {
-    "layout" : "normal",
+  }, {
     "name" : "AWOL",
+    "layout" : "normal",
     "manaCost" : "{2}{W}",
-    "cmc" : 3,
+    "cmc" : 3.0,
     "colors" : [ "White" ],
     "type" : "Instant",
     "types" : [ "Instant" ],
@@ -896,118 +905,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W" ]
-  },
-  "Forest2" : {
-    "layout" : "normal",
-    "name" : "Forest",
-    "cmc" : 0,
-    "type" : "Basic Land — Forest",
-    "supertypes" : [ "Basic" ],
-    "types" : [ "Land" ],
-    "subtypes" : [ "Forest" ],
-    "imageName" : "forest",
-    "printings" : [ "LEA", "LEB", "2ED", "CED", "CEI", "3ED", "4ED", "ICE", "RQS", "pARL", "MIR", "ITP", "5ED", "POR", "TMP", "pJGP", "PO2", "UGL", "pALP", "USG", "ATH", "6ED", "PTK", "pGRU", "S99", "MMQ", "BRB", "pELP", "S00", "BTD", "INV", "7ED", "ODY", "DKM", "ONS", "8ED", "MRD", "CHK", "UNH", "9ED", "RAV", "CST", "TSP", "10E", "MED", "LRW", "EVG", "SHM", "ALA", "M10", "HOP", "ME3", "ZEN", "DDD", "H09", "DDE", "ROE", "DPA", "ARC", "M11", "SOM", "MBS", "DDG", "NPH", "CMD", "M12", "DDH", "ISD", "AVR", "PC2", "M13", "DDJ", "RTR", "M14", "DDL", "THS", "C13", "DDM", "M15", "KTK", "C14", "DD3_EVG", "DD3_GVL", "FRF", "DDO", "DTK", "TPR", "ORI", "DDP", "BFZ", "C15", "SOI", "DDR", "KLD", "C16", "PCA", "DDS", "AKH", "CMA", "E01", "HOU", "C17", "XLN" ],
-    "legalities" : [ {
-      "format" : "Amonkhet Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Battle for Zendikar Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Commander",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ice Age Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Innistrad Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Invasion Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ixalan Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Kaladesh Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Kamigawa Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Khans of Tarkir Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Legacy",
-      "legality" : "Legal"
-    }, {
-      "format" : "Lorwyn-Shadowmoor Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Masques Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Mirage Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Mirrodin Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Modern",
-      "legality" : "Legal"
-    }, {
-      "format" : "Odyssey Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Onslaught Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ravnica Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Return to Ravnica Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Scars of Mirrodin Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Shadows over Innistrad Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Shards of Alara Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Standard",
-      "legality" : "Legal"
-    }, {
-      "format" : "Tempest Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Theros Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Time Spiral Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Un-Sets",
-      "legality" : "Legal"
-    }, {
-      "format" : "Urza Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Vintage",
-      "legality" : "Legal"
-    }, {
-      "format" : "Zendikar Block",
-      "legality" : "Legal"
-    } ],
-    "colorIdentity" : [ "G" ]
-  },
-  "Dragonlord Dromoka0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Dragonlord Dromoka",
+    "layout" : "normal",
     "manaCost" : "{4}{G}{W}",
-    "cmc" : 6,
+    "cmc" : 6.0,
     "colors" : [ "White", "Green" ],
     "type" : "Legendary Creature — Elder Dragon",
     "supertypes" : [ "Legendary" ],
@@ -1035,118 +937,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W", "G" ]
-  },
-  "Forest3" : {
-    "layout" : "normal",
-    "name" : "Forest",
-    "cmc" : 0,
-    "type" : "Basic Land — Forest",
-    "supertypes" : [ "Basic" ],
-    "types" : [ "Land" ],
-    "subtypes" : [ "Forest" ],
-    "imageName" : "forest",
-    "printings" : [ "LEA", "LEB", "2ED", "CED", "CEI", "3ED", "4ED", "ICE", "RQS", "pARL", "MIR", "ITP", "5ED", "POR", "TMP", "pJGP", "PO2", "UGL", "pALP", "USG", "ATH", "6ED", "PTK", "pGRU", "S99", "MMQ", "BRB", "pELP", "S00", "BTD", "INV", "7ED", "ODY", "DKM", "ONS", "8ED", "MRD", "CHK", "UNH", "9ED", "RAV", "CST", "TSP", "10E", "MED", "LRW", "EVG", "SHM", "ALA", "M10", "HOP", "ME3", "ZEN", "DDD", "H09", "DDE", "ROE", "DPA", "ARC", "M11", "SOM", "MBS", "DDG", "NPH", "CMD", "M12", "DDH", "ISD", "AVR", "PC2", "M13", "DDJ", "RTR", "M14", "DDL", "THS", "C13", "DDM", "M15", "KTK", "C14", "DD3_EVG", "DD3_GVL", "FRF", "DDO", "DTK", "TPR", "ORI", "DDP", "BFZ", "C15", "SOI", "DDR", "KLD", "C16", "PCA", "DDS", "AKH", "CMA", "E01", "HOU", "C17", "XLN" ],
-    "legalities" : [ {
-      "format" : "Amonkhet Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Battle for Zendikar Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Commander",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ice Age Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Innistrad Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Invasion Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ixalan Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Kaladesh Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Kamigawa Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Khans of Tarkir Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Legacy",
-      "legality" : "Legal"
-    }, {
-      "format" : "Lorwyn-Shadowmoor Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Masques Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Mirage Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Mirrodin Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Modern",
-      "legality" : "Legal"
-    }, {
-      "format" : "Odyssey Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Onslaught Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ravnica Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Return to Ravnica Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Scars of Mirrodin Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Shadows over Innistrad Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Shards of Alara Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Standard",
-      "legality" : "Legal"
-    }, {
-      "format" : "Tempest Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Theros Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Time Spiral Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Un-Sets",
-      "legality" : "Legal"
-    }, {
-      "format" : "Urza Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Vintage",
-      "legality" : "Legal"
-    }, {
-      "format" : "Zendikar Block",
-      "legality" : "Legal"
-    } ],
-    "colorIdentity" : [ "G" ]
-  },
-  "Harmonize0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Harmonize",
+    "layout" : "normal",
     "manaCost" : "{2}{G}{G}",
-    "cmc" : 4,
+    "cmc" : 4.0,
     "colors" : [ "Green" ],
     "type" : "Sorcery",
     "types" : [ "Sorcery" ],
@@ -1174,118 +969,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "G" ]
-  },
-  "Forest4" : {
-    "layout" : "normal",
-    "name" : "Forest",
-    "cmc" : 0,
-    "type" : "Basic Land — Forest",
-    "supertypes" : [ "Basic" ],
-    "types" : [ "Land" ],
-    "subtypes" : [ "Forest" ],
-    "imageName" : "forest",
-    "printings" : [ "LEA", "LEB", "2ED", "CED", "CEI", "3ED", "4ED", "ICE", "RQS", "pARL", "MIR", "ITP", "5ED", "POR", "TMP", "pJGP", "PO2", "UGL", "pALP", "USG", "ATH", "6ED", "PTK", "pGRU", "S99", "MMQ", "BRB", "pELP", "S00", "BTD", "INV", "7ED", "ODY", "DKM", "ONS", "8ED", "MRD", "CHK", "UNH", "9ED", "RAV", "CST", "TSP", "10E", "MED", "LRW", "EVG", "SHM", "ALA", "M10", "HOP", "ME3", "ZEN", "DDD", "H09", "DDE", "ROE", "DPA", "ARC", "M11", "SOM", "MBS", "DDG", "NPH", "CMD", "M12", "DDH", "ISD", "AVR", "PC2", "M13", "DDJ", "RTR", "M14", "DDL", "THS", "C13", "DDM", "M15", "KTK", "C14", "DD3_EVG", "DD3_GVL", "FRF", "DDO", "DTK", "TPR", "ORI", "DDP", "BFZ", "C15", "SOI", "DDR", "KLD", "C16", "PCA", "DDS", "AKH", "CMA", "E01", "HOU", "C17", "XLN" ],
-    "legalities" : [ {
-      "format" : "Amonkhet Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Battle for Zendikar Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Commander",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ice Age Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Innistrad Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Invasion Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ixalan Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Kaladesh Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Kamigawa Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Khans of Tarkir Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Legacy",
-      "legality" : "Legal"
-    }, {
-      "format" : "Lorwyn-Shadowmoor Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Masques Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Mirage Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Mirrodin Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Modern",
-      "legality" : "Legal"
-    }, {
-      "format" : "Odyssey Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Onslaught Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ravnica Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Return to Ravnica Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Scars of Mirrodin Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Shadows over Innistrad Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Shards of Alara Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Standard",
-      "legality" : "Legal"
-    }, {
-      "format" : "Tempest Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Theros Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Time Spiral Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Un-Sets",
-      "legality" : "Legal"
-    }, {
-      "format" : "Urza Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Vintage",
-      "legality" : "Legal"
-    }, {
-      "format" : "Zendikar Block",
-      "legality" : "Legal"
-    } ],
-    "colorIdentity" : [ "G" ]
-  },
-  "Condemn0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Condemn",
+    "layout" : "normal",
     "manaCost" : "{W}",
-    "cmc" : 1,
+    "cmc" : 1.0,
     "colors" : [ "White" ],
     "type" : "Instant",
     "types" : [ "Instant" ],
@@ -1313,12 +1001,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W" ]
-  },
-  "Thallid Shell-Dweller0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Thallid Shell-Dweller",
+    "layout" : "normal",
     "manaCost" : "{1}{G}",
-    "cmc" : 2,
+    "cmc" : 2.0,
     "colors" : [ "Green" ],
     "type" : "Creature — Fungus",
     "types" : [ "Creature" ],
@@ -1345,12 +1032,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "G" ]
-  },
-  "Congregation at Dawn0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Congregation at Dawn",
+    "layout" : "normal",
     "manaCost" : "{G}{G}{W}",
-    "cmc" : 3,
+    "cmc" : 3.0,
     "colors" : [ "White", "Green" ],
     "type" : "Instant",
     "types" : [ "Instant" ],
@@ -1378,118 +1064,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W", "G" ]
-  },
-  "Forest0" : {
-    "layout" : "normal",
-    "name" : "Forest",
-    "cmc" : 0,
-    "type" : "Basic Land — Forest",
-    "supertypes" : [ "Basic" ],
-    "types" : [ "Land" ],
-    "subtypes" : [ "Forest" ],
-    "imageName" : "forest",
-    "printings" : [ "LEA", "LEB", "2ED", "CED", "CEI", "3ED", "4ED", "ICE", "RQS", "pARL", "MIR", "ITP", "5ED", "POR", "TMP", "pJGP", "PO2", "UGL", "pALP", "USG", "ATH", "6ED", "PTK", "pGRU", "S99", "MMQ", "BRB", "pELP", "S00", "BTD", "INV", "7ED", "ODY", "DKM", "ONS", "8ED", "MRD", "CHK", "UNH", "9ED", "RAV", "CST", "TSP", "10E", "MED", "LRW", "EVG", "SHM", "ALA", "M10", "HOP", "ME3", "ZEN", "DDD", "H09", "DDE", "ROE", "DPA", "ARC", "M11", "SOM", "MBS", "DDG", "NPH", "CMD", "M12", "DDH", "ISD", "AVR", "PC2", "M13", "DDJ", "RTR", "M14", "DDL", "THS", "C13", "DDM", "M15", "KTK", "C14", "DD3_EVG", "DD3_GVL", "FRF", "DDO", "DTK", "TPR", "ORI", "DDP", "BFZ", "C15", "SOI", "DDR", "KLD", "C16", "PCA", "DDS", "AKH", "CMA", "E01", "HOU", "C17", "XLN" ],
-    "legalities" : [ {
-      "format" : "Amonkhet Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Battle for Zendikar Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Commander",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ice Age Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Innistrad Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Invasion Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ixalan Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Kaladesh Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Kamigawa Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Khans of Tarkir Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Legacy",
-      "legality" : "Legal"
-    }, {
-      "format" : "Lorwyn-Shadowmoor Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Masques Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Mirage Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Mirrodin Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Modern",
-      "legality" : "Legal"
-    }, {
-      "format" : "Odyssey Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Onslaught Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ravnica Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Return to Ravnica Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Scars of Mirrodin Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Shadows over Innistrad Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Shards of Alara Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Standard",
-      "legality" : "Legal"
-    }, {
-      "format" : "Tempest Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Theros Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Time Spiral Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Un-Sets",
-      "legality" : "Legal"
-    }, {
-      "format" : "Urza Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Vintage",
-      "legality" : "Legal"
-    }, {
-      "format" : "Zendikar Block",
-      "legality" : "Legal"
-    } ],
-    "colorIdentity" : [ "G" ]
-  },
-  "Rebirth0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Rebirth",
+    "layout" : "normal",
     "manaCost" : "{3}{G}{G}{G}",
-    "cmc" : 6,
+    "cmc" : 6.0,
     "colors" : [ "Green" ],
     "type" : "Sorcery",
     "types" : [ "Sorcery" ],
@@ -1507,118 +1086,11 @@
       "legality" : "Banned"
     } ],
     "colorIdentity" : [ "G" ]
-  },
-  "Forest5" : {
-    "layout" : "normal",
-    "name" : "Forest",
-    "cmc" : 0,
-    "type" : "Basic Land — Forest",
-    "supertypes" : [ "Basic" ],
-    "types" : [ "Land" ],
-    "subtypes" : [ "Forest" ],
-    "imageName" : "forest",
-    "printings" : [ "LEA", "LEB", "2ED", "CED", "CEI", "3ED", "4ED", "ICE", "RQS", "pARL", "MIR", "ITP", "5ED", "POR", "TMP", "pJGP", "PO2", "UGL", "pALP", "USG", "ATH", "6ED", "PTK", "pGRU", "S99", "MMQ", "BRB", "pELP", "S00", "BTD", "INV", "7ED", "ODY", "DKM", "ONS", "8ED", "MRD", "CHK", "UNH", "9ED", "RAV", "CST", "TSP", "10E", "MED", "LRW", "EVG", "SHM", "ALA", "M10", "HOP", "ME3", "ZEN", "DDD", "H09", "DDE", "ROE", "DPA", "ARC", "M11", "SOM", "MBS", "DDG", "NPH", "CMD", "M12", "DDH", "ISD", "AVR", "PC2", "M13", "DDJ", "RTR", "M14", "DDL", "THS", "C13", "DDM", "M15", "KTK", "C14", "DD3_EVG", "DD3_GVL", "FRF", "DDO", "DTK", "TPR", "ORI", "DDP", "BFZ", "C15", "SOI", "DDR", "KLD", "C16", "PCA", "DDS", "AKH", "CMA", "E01", "HOU", "C17", "XLN" ],
-    "legalities" : [ {
-      "format" : "Amonkhet Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Battle for Zendikar Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Commander",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ice Age Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Innistrad Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Invasion Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ixalan Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Kaladesh Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Kamigawa Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Khans of Tarkir Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Legacy",
-      "legality" : "Legal"
-    }, {
-      "format" : "Lorwyn-Shadowmoor Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Masques Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Mirage Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Mirrodin Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Modern",
-      "legality" : "Legal"
-    }, {
-      "format" : "Odyssey Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Onslaught Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ravnica Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Return to Ravnica Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Scars of Mirrodin Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Shadows over Innistrad Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Shards of Alara Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Standard",
-      "legality" : "Legal"
-    }, {
-      "format" : "Tempest Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Theros Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Time Spiral Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Un-Sets",
-      "legality" : "Legal"
-    }, {
-      "format" : "Urza Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Vintage",
-      "legality" : "Legal"
-    }, {
-      "format" : "Zendikar Block",
-      "legality" : "Legal"
-    } ],
-    "colorIdentity" : [ "G" ]
-  },
-  "Brave the Sands0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Brave the Sands",
+    "layout" : "normal",
     "manaCost" : "{1}{W}",
-    "cmc" : 2,
+    "cmc" : 2.0,
     "colors" : [ "White" ],
     "type" : "Enchantment",
     "types" : [ "Enchantment" ],
@@ -1646,12 +1118,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W" ]
-  },
-  "Wakestone Gargoyle0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Wakestone Gargoyle",
+    "layout" : "normal",
     "manaCost" : "{3}{W}",
-    "cmc" : 4,
+    "cmc" : 4.0,
     "colors" : [ "White" ],
     "type" : "Creature — Gargoyle",
     "types" : [ "Creature" ],
@@ -1685,12 +1156,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W" ]
-  },
-  "Primordial Sage0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Primordial Sage",
+    "layout" : "normal",
     "manaCost" : "{4}{G}{G}",
-    "cmc" : 6,
+    "cmc" : 6.0,
     "colors" : [ "Green" ],
     "type" : "Creature — Spirit",
     "types" : [ "Creature" ],
@@ -1717,11 +1187,10 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "G" ]
-  },
-  "Vivid Marsh0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Vivid Marsh",
-    "cmc" : 0,
+    "layout" : "normal",
+    "cmc" : 0.0,
     "type" : "Land",
     "types" : [ "Land" ],
     "text" : "Vivid Marsh enters the battlefield tapped with two charge counters on it.\n{T}: Add {B} to your mana pool.\n{T}, Remove a charge counter from Vivid Marsh: Add one mana of any color to your mana pool.",
@@ -1744,12 +1213,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "B" ]
-  },
-  "Belbe's Armor0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Belbe's Armor",
+    "layout" : "normal",
     "manaCost" : "{3}",
-    "cmc" : 3,
+    "cmc" : 3.0,
     "type" : "Artifact",
     "types" : [ "Artifact" ],
     "text" : "{X}, {T}: Target creature gets -X/+X until end of turn.",
@@ -1768,12 +1236,11 @@
       "format" : "Vintage",
       "legality" : "Legal"
     } ]
-  },
-  "Accorder's Shield0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Accorder's Shield",
+    "layout" : "normal",
     "manaCost" : "{0}",
-    "cmc" : 0,
+    "cmc" : 0.0,
     "type" : "Artifact — Equipment",
     "types" : [ "Artifact" ],
     "subtypes" : [ "Equipment" ],
@@ -1796,12 +1263,11 @@
       "format" : "Vintage",
       "legality" : "Legal"
     } ]
-  },
-  "Cathar's Shield0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Cathar's Shield",
+    "layout" : "normal",
     "manaCost" : "{0}",
-    "cmc" : 0,
+    "cmc" : 0.0,
     "type" : "Artifact — Equipment",
     "types" : [ "Artifact" ],
     "subtypes" : [ "Equipment" ],
@@ -1824,11 +1290,10 @@
       "format" : "Vintage",
       "legality" : "Legal"
     } ]
-  },
-  "Blossoming Sands0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Blossoming Sands",
-    "cmc" : 0,
+    "layout" : "normal",
+    "cmc" : 0.0,
     "type" : "Land",
     "types" : [ "Land" ],
     "text" : "Blossoming Sands enters the battlefield tapped.\nWhen Blossoming Sands enters the battlefield, you gain 1 life.\n{T}: Add {G} or {W} to your mana pool.",
@@ -1851,12 +1316,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "G", "W" ]
-  },
-  "Sol Ring0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Sol Ring",
+    "layout" : "normal",
     "manaCost" : "{1}",
-    "cmc" : 1,
+    "cmc" : 1.0,
     "type" : "Artifact",
     "types" : [ "Artifact" ],
     "text" : "{T}: Add {C}{C} to your mana pool.",
@@ -1872,11 +1336,10 @@
       "format" : "Vintage",
       "legality" : "Restricted"
     } ]
-  },
-  "Jungle Hollow0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Jungle Hollow",
-    "cmc" : 0,
+    "layout" : "normal",
+    "cmc" : 0.0,
     "type" : "Land",
     "types" : [ "Land" ],
     "text" : "Jungle Hollow enters the battlefield tapped.\nWhen Jungle Hollow enters the battlefield, you gain 1 life.\n{T}: Add {B} or {G} to your mana pool.",
@@ -1899,12 +1362,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "B", "G" ]
-  },
-  "Tower Defense0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Tower Defense",
+    "layout" : "normal",
     "manaCost" : "{1}{G}",
-    "cmc" : 2,
+    "cmc" : 2.0,
     "colors" : [ "Green" ],
     "type" : "Instant",
     "types" : [ "Instant" ],
@@ -1932,12 +1394,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "G" ]
-  },
-  "Warmonger's Chariot0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Warmonger's Chariot",
+    "layout" : "normal",
     "manaCost" : "{2}",
-    "cmc" : 2,
+    "cmc" : 2.0,
     "type" : "Artifact — Equipment",
     "types" : [ "Artifact" ],
     "subtypes" : [ "Equipment" ],
@@ -1967,11 +1428,10 @@
       "format" : "Zendikar Block",
       "legality" : "Legal"
     } ]
-  },
-  "Command Tower0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Command Tower",
-    "cmc" : 0,
+    "layout" : "normal",
+    "cmc" : 0.0,
     "type" : "Land",
     "types" : [ "Land" ],
     "text" : "{T}: Add to your mana pool one mana of any color in your commander's color identity.",
@@ -1997,11 +1457,10 @@
       "format" : "Vintage",
       "legality" : "Legal"
     } ]
-  },
-  "Plains0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Plains",
-    "cmc" : 0,
+    "layout" : "normal",
+    "cmc" : 0.0,
     "type" : "Basic Land — Plains",
     "supertypes" : [ "Basic" ],
     "types" : [ "Land" ],
@@ -2103,12 +1562,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W" ]
-  },
-  "Wall of Tanglecord0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Wall of Tanglecord",
+    "layout" : "normal",
     "manaCost" : "{2}",
-    "cmc" : 2,
+    "cmc" : 2.0,
     "type" : "Artifact Creature — Wall",
     "types" : [ "Artifact", "Creature" ],
     "subtypes" : [ "Wall" ],
@@ -2134,12 +1592,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "G" ]
-  },
-  "Hero's Resolve0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Hero's Resolve",
+    "layout" : "normal",
     "manaCost" : "{1}{W}",
-    "cmc" : 2,
+    "cmc" : 2.0,
     "colors" : [ "White" ],
     "type" : "Enchantment — Aura",
     "types" : [ "Enchantment" ],
@@ -2161,11 +1618,10 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W" ]
-  },
-  "Elfhame Palace0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Elfhame Palace",
-    "cmc" : 0,
+    "layout" : "normal",
+    "cmc" : 0.0,
     "type" : "Land",
     "types" : [ "Land" ],
     "text" : "Elfhame Palace enters the battlefield tapped.\n{T}: Add {G} or {W} to your mana pool.",
@@ -2188,118 +1644,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "G", "W" ]
-  },
-  "Plains7" : {
-    "layout" : "normal",
-    "name" : "Plains",
-    "cmc" : 0,
-    "type" : "Basic Land — Plains",
-    "supertypes" : [ "Basic" ],
-    "types" : [ "Land" ],
-    "subtypes" : [ "Plains" ],
-    "imageName" : "plains",
-    "printings" : [ "LEA", "LEB", "2ED", "CED", "CEI", "3ED", "4ED", "ICE", "RQS", "pARL", "MIR", "ITP", "5ED", "POR", "pPRE", "TMP", "pJGP", "PO2", "UGL", "pALP", "USG", "ATH", "6ED", "PTK", "pGRU", "S99", "MMQ", "BRB", "pELP", "S00", "INV", "7ED", "ODY", "ONS", "8ED", "MRD", "CHK", "UNH", "9ED", "RAV", "CST", "TSP", "10E", "MED", "LRW", "SHM", "ALA", "DDC", "M10", "HOP", "ME3", "ZEN", "H09", "DDE", "ROE", "ARC", "M11", "DDF", "SOM", "MBS", "DDG", "NPH", "CMD", "M12", "DDH", "ISD", "DDI", "AVR", "PC2", "M13", "RTR", "DDK", "M14", "DDL", "THS", "C13", "MD1", "M15", "DDN", "KTK", "C14", "DD3_DVD", "FRF", "DDO", "DTK", "TPR", "ORI", "DDP", "BFZ", "C15", "DDQ", "SOI", "KLD", "C16", "PCA", "AKH", "CMA", "E01", "HOU", "C17", "XLN" ],
-    "legalities" : [ {
-      "format" : "Amonkhet Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Battle for Zendikar Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Commander",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ice Age Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Innistrad Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Invasion Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ixalan Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Kaladesh Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Kamigawa Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Khans of Tarkir Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Legacy",
-      "legality" : "Legal"
-    }, {
-      "format" : "Lorwyn-Shadowmoor Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Masques Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Mirage Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Mirrodin Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Modern",
-      "legality" : "Legal"
-    }, {
-      "format" : "Odyssey Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Onslaught Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ravnica Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Return to Ravnica Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Scars of Mirrodin Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Shadows over Innistrad Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Shards of Alara Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Standard",
-      "legality" : "Legal"
-    }, {
-      "format" : "Tempest Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Theros Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Time Spiral Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Un-Sets",
-      "legality" : "Legal"
-    }, {
-      "format" : "Urza Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Vintage",
-      "legality" : "Legal"
-    }, {
-      "format" : "Zendikar Block",
-      "legality" : "Legal"
-    } ],
-    "colorIdentity" : [ "W" ]
-  },
-  "Chromatic Lantern0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Chromatic Lantern",
+    "layout" : "normal",
     "manaCost" : "{3}",
-    "cmc" : 3,
+    "cmc" : 3.0,
     "type" : "Artifact",
     "types" : [ "Artifact" ],
     "text" : "Lands you control have \"{T}: Add one mana of any color to your mana pool.\"\n{T}: Add one mana of any color to your mana pool.",
@@ -2325,11 +1674,10 @@
       "format" : "Vintage",
       "legality" : "Legal"
     } ]
-  },
-  "Stirring Wildwood0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Stirring Wildwood",
-    "cmc" : 0,
+    "layout" : "normal",
+    "cmc" : 0.0,
     "type" : "Land",
     "types" : [ "Land" ],
     "text" : "Stirring Wildwood enters the battlefield tapped.\n{T}: Add {G} or {W} to your mana pool.\n{1}{G}{W}: Until end of turn, Stirring Wildwood becomes a 3/4 green and white Elemental creature with reach. It's still a land.",
@@ -2359,649 +1707,12 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "G", "W" ]
-  },
-  "Plains5" : {
-    "layout" : "normal",
-    "name" : "Plains",
-    "cmc" : 0,
-    "type" : "Basic Land — Plains",
-    "supertypes" : [ "Basic" ],
-    "types" : [ "Land" ],
-    "subtypes" : [ "Plains" ],
-    "imageName" : "plains",
-    "printings" : [ "LEA", "LEB", "2ED", "CED", "CEI", "3ED", "4ED", "ICE", "RQS", "pARL", "MIR", "ITP", "5ED", "POR", "pPRE", "TMP", "pJGP", "PO2", "UGL", "pALP", "USG", "ATH", "6ED", "PTK", "pGRU", "S99", "MMQ", "BRB", "pELP", "S00", "INV", "7ED", "ODY", "ONS", "8ED", "MRD", "CHK", "UNH", "9ED", "RAV", "CST", "TSP", "10E", "MED", "LRW", "SHM", "ALA", "DDC", "M10", "HOP", "ME3", "ZEN", "H09", "DDE", "ROE", "ARC", "M11", "DDF", "SOM", "MBS", "DDG", "NPH", "CMD", "M12", "DDH", "ISD", "DDI", "AVR", "PC2", "M13", "RTR", "DDK", "M14", "DDL", "THS", "C13", "MD1", "M15", "DDN", "KTK", "C14", "DD3_DVD", "FRF", "DDO", "DTK", "TPR", "ORI", "DDP", "BFZ", "C15", "DDQ", "SOI", "KLD", "C16", "PCA", "AKH", "CMA", "E01", "HOU", "C17", "XLN" ],
-    "legalities" : [ {
-      "format" : "Amonkhet Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Battle for Zendikar Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Commander",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ice Age Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Innistrad Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Invasion Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ixalan Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Kaladesh Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Kamigawa Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Khans of Tarkir Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Legacy",
-      "legality" : "Legal"
-    }, {
-      "format" : "Lorwyn-Shadowmoor Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Masques Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Mirage Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Mirrodin Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Modern",
-      "legality" : "Legal"
-    }, {
-      "format" : "Odyssey Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Onslaught Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ravnica Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Return to Ravnica Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Scars of Mirrodin Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Shadows over Innistrad Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Shards of Alara Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Standard",
-      "legality" : "Legal"
-    }, {
-      "format" : "Tempest Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Theros Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Time Spiral Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Un-Sets",
-      "legality" : "Legal"
-    }, {
-      "format" : "Urza Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Vintage",
-      "legality" : "Legal"
-    }, {
-      "format" : "Zendikar Block",
-      "legality" : "Legal"
-    } ],
-    "colorIdentity" : [ "W" ]
-  },
-  "Plains6" : {
-    "layout" : "normal",
-    "name" : "Plains",
-    "cmc" : 0,
-    "type" : "Basic Land — Plains",
-    "supertypes" : [ "Basic" ],
-    "types" : [ "Land" ],
-    "subtypes" : [ "Plains" ],
-    "imageName" : "plains",
-    "printings" : [ "LEA", "LEB", "2ED", "CED", "CEI", "3ED", "4ED", "ICE", "RQS", "pARL", "MIR", "ITP", "5ED", "POR", "pPRE", "TMP", "pJGP", "PO2", "UGL", "pALP", "USG", "ATH", "6ED", "PTK", "pGRU", "S99", "MMQ", "BRB", "pELP", "S00", "INV", "7ED", "ODY", "ONS", "8ED", "MRD", "CHK", "UNH", "9ED", "RAV", "CST", "TSP", "10E", "MED", "LRW", "SHM", "ALA", "DDC", "M10", "HOP", "ME3", "ZEN", "H09", "DDE", "ROE", "ARC", "M11", "DDF", "SOM", "MBS", "DDG", "NPH", "CMD", "M12", "DDH", "ISD", "DDI", "AVR", "PC2", "M13", "RTR", "DDK", "M14", "DDL", "THS", "C13", "MD1", "M15", "DDN", "KTK", "C14", "DD3_DVD", "FRF", "DDO", "DTK", "TPR", "ORI", "DDP", "BFZ", "C15", "DDQ", "SOI", "KLD", "C16", "PCA", "AKH", "CMA", "E01", "HOU", "C17", "XLN" ],
-    "legalities" : [ {
-      "format" : "Amonkhet Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Battle for Zendikar Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Commander",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ice Age Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Innistrad Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Invasion Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ixalan Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Kaladesh Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Kamigawa Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Khans of Tarkir Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Legacy",
-      "legality" : "Legal"
-    }, {
-      "format" : "Lorwyn-Shadowmoor Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Masques Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Mirage Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Mirrodin Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Modern",
-      "legality" : "Legal"
-    }, {
-      "format" : "Odyssey Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Onslaught Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ravnica Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Return to Ravnica Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Scars of Mirrodin Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Shadows over Innistrad Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Shards of Alara Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Standard",
-      "legality" : "Legal"
-    }, {
-      "format" : "Tempest Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Theros Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Time Spiral Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Un-Sets",
-      "legality" : "Legal"
-    }, {
-      "format" : "Urza Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Vintage",
-      "legality" : "Legal"
-    }, {
-      "format" : "Zendikar Block",
-      "legality" : "Legal"
-    } ],
-    "colorIdentity" : [ "W" ]
-  },
-  "Plains3" : {
-    "layout" : "normal",
-    "name" : "Plains",
-    "cmc" : 0,
-    "type" : "Basic Land — Plains",
-    "supertypes" : [ "Basic" ],
-    "types" : [ "Land" ],
-    "subtypes" : [ "Plains" ],
-    "imageName" : "plains",
-    "printings" : [ "LEA", "LEB", "2ED", "CED", "CEI", "3ED", "4ED", "ICE", "RQS", "pARL", "MIR", "ITP", "5ED", "POR", "pPRE", "TMP", "pJGP", "PO2", "UGL", "pALP", "USG", "ATH", "6ED", "PTK", "pGRU", "S99", "MMQ", "BRB", "pELP", "S00", "INV", "7ED", "ODY", "ONS", "8ED", "MRD", "CHK", "UNH", "9ED", "RAV", "CST", "TSP", "10E", "MED", "LRW", "SHM", "ALA", "DDC", "M10", "HOP", "ME3", "ZEN", "H09", "DDE", "ROE", "ARC", "M11", "DDF", "SOM", "MBS", "DDG", "NPH", "CMD", "M12", "DDH", "ISD", "DDI", "AVR", "PC2", "M13", "RTR", "DDK", "M14", "DDL", "THS", "C13", "MD1", "M15", "DDN", "KTK", "C14", "DD3_DVD", "FRF", "DDO", "DTK", "TPR", "ORI", "DDP", "BFZ", "C15", "DDQ", "SOI", "KLD", "C16", "PCA", "AKH", "CMA", "E01", "HOU", "C17", "XLN" ],
-    "legalities" : [ {
-      "format" : "Amonkhet Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Battle for Zendikar Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Commander",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ice Age Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Innistrad Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Invasion Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ixalan Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Kaladesh Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Kamigawa Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Khans of Tarkir Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Legacy",
-      "legality" : "Legal"
-    }, {
-      "format" : "Lorwyn-Shadowmoor Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Masques Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Mirage Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Mirrodin Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Modern",
-      "legality" : "Legal"
-    }, {
-      "format" : "Odyssey Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Onslaught Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ravnica Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Return to Ravnica Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Scars of Mirrodin Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Shadows over Innistrad Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Shards of Alara Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Standard",
-      "legality" : "Legal"
-    }, {
-      "format" : "Tempest Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Theros Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Time Spiral Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Un-Sets",
-      "legality" : "Legal"
-    }, {
-      "format" : "Urza Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Vintage",
-      "legality" : "Legal"
-    }, {
-      "format" : "Zendikar Block",
-      "legality" : "Legal"
-    } ],
-    "colorIdentity" : [ "W" ]
-  },
-  "Plains4" : {
-    "layout" : "normal",
-    "name" : "Plains",
-    "cmc" : 0,
-    "type" : "Basic Land — Plains",
-    "supertypes" : [ "Basic" ],
-    "types" : [ "Land" ],
-    "subtypes" : [ "Plains" ],
-    "imageName" : "plains",
-    "printings" : [ "LEA", "LEB", "2ED", "CED", "CEI", "3ED", "4ED", "ICE", "RQS", "pARL", "MIR", "ITP", "5ED", "POR", "pPRE", "TMP", "pJGP", "PO2", "UGL", "pALP", "USG", "ATH", "6ED", "PTK", "pGRU", "S99", "MMQ", "BRB", "pELP", "S00", "INV", "7ED", "ODY", "ONS", "8ED", "MRD", "CHK", "UNH", "9ED", "RAV", "CST", "TSP", "10E", "MED", "LRW", "SHM", "ALA", "DDC", "M10", "HOP", "ME3", "ZEN", "H09", "DDE", "ROE", "ARC", "M11", "DDF", "SOM", "MBS", "DDG", "NPH", "CMD", "M12", "DDH", "ISD", "DDI", "AVR", "PC2", "M13", "RTR", "DDK", "M14", "DDL", "THS", "C13", "MD1", "M15", "DDN", "KTK", "C14", "DD3_DVD", "FRF", "DDO", "DTK", "TPR", "ORI", "DDP", "BFZ", "C15", "DDQ", "SOI", "KLD", "C16", "PCA", "AKH", "CMA", "E01", "HOU", "C17", "XLN" ],
-    "legalities" : [ {
-      "format" : "Amonkhet Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Battle for Zendikar Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Commander",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ice Age Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Innistrad Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Invasion Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ixalan Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Kaladesh Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Kamigawa Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Khans of Tarkir Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Legacy",
-      "legality" : "Legal"
-    }, {
-      "format" : "Lorwyn-Shadowmoor Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Masques Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Mirage Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Mirrodin Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Modern",
-      "legality" : "Legal"
-    }, {
-      "format" : "Odyssey Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Onslaught Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ravnica Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Return to Ravnica Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Scars of Mirrodin Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Shadows over Innistrad Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Shards of Alara Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Standard",
-      "legality" : "Legal"
-    }, {
-      "format" : "Tempest Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Theros Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Time Spiral Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Un-Sets",
-      "legality" : "Legal"
-    }, {
-      "format" : "Urza Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Vintage",
-      "legality" : "Legal"
-    }, {
-      "format" : "Zendikar Block",
-      "legality" : "Legal"
-    } ],
-    "colorIdentity" : [ "W" ]
-  },
-  "Plains1" : {
-    "layout" : "normal",
-    "name" : "Plains",
-    "cmc" : 0,
-    "type" : "Basic Land — Plains",
-    "supertypes" : [ "Basic" ],
-    "types" : [ "Land" ],
-    "subtypes" : [ "Plains" ],
-    "imageName" : "plains",
-    "printings" : [ "LEA", "LEB", "2ED", "CED", "CEI", "3ED", "4ED", "ICE", "RQS", "pARL", "MIR", "ITP", "5ED", "POR", "pPRE", "TMP", "pJGP", "PO2", "UGL", "pALP", "USG", "ATH", "6ED", "PTK", "pGRU", "S99", "MMQ", "BRB", "pELP", "S00", "INV", "7ED", "ODY", "ONS", "8ED", "MRD", "CHK", "UNH", "9ED", "RAV", "CST", "TSP", "10E", "MED", "LRW", "SHM", "ALA", "DDC", "M10", "HOP", "ME3", "ZEN", "H09", "DDE", "ROE", "ARC", "M11", "DDF", "SOM", "MBS", "DDG", "NPH", "CMD", "M12", "DDH", "ISD", "DDI", "AVR", "PC2", "M13", "RTR", "DDK", "M14", "DDL", "THS", "C13", "MD1", "M15", "DDN", "KTK", "C14", "DD3_DVD", "FRF", "DDO", "DTK", "TPR", "ORI", "DDP", "BFZ", "C15", "DDQ", "SOI", "KLD", "C16", "PCA", "AKH", "CMA", "E01", "HOU", "C17", "XLN" ],
-    "legalities" : [ {
-      "format" : "Amonkhet Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Battle for Zendikar Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Commander",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ice Age Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Innistrad Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Invasion Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ixalan Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Kaladesh Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Kamigawa Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Khans of Tarkir Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Legacy",
-      "legality" : "Legal"
-    }, {
-      "format" : "Lorwyn-Shadowmoor Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Masques Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Mirage Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Mirrodin Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Modern",
-      "legality" : "Legal"
-    }, {
-      "format" : "Odyssey Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Onslaught Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ravnica Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Return to Ravnica Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Scars of Mirrodin Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Shadows over Innistrad Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Shards of Alara Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Standard",
-      "legality" : "Legal"
-    }, {
-      "format" : "Tempest Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Theros Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Time Spiral Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Un-Sets",
-      "legality" : "Legal"
-    }, {
-      "format" : "Urza Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Vintage",
-      "legality" : "Legal"
-    }, {
-      "format" : "Zendikar Block",
-      "legality" : "Legal"
-    } ],
-    "colorIdentity" : [ "W" ]
-  },
-  "Plains2" : {
-    "layout" : "normal",
-    "name" : "Plains",
-    "cmc" : 0,
-    "type" : "Basic Land — Plains",
-    "supertypes" : [ "Basic" ],
-    "types" : [ "Land" ],
-    "subtypes" : [ "Plains" ],
-    "imageName" : "plains",
-    "printings" : [ "LEA", "LEB", "2ED", "CED", "CEI", "3ED", "4ED", "ICE", "RQS", "pARL", "MIR", "ITP", "5ED", "POR", "pPRE", "TMP", "pJGP", "PO2", "UGL", "pALP", "USG", "ATH", "6ED", "PTK", "pGRU", "S99", "MMQ", "BRB", "pELP", "S00", "INV", "7ED", "ODY", "ONS", "8ED", "MRD", "CHK", "UNH", "9ED", "RAV", "CST", "TSP", "10E", "MED", "LRW", "SHM", "ALA", "DDC", "M10", "HOP", "ME3", "ZEN", "H09", "DDE", "ROE", "ARC", "M11", "DDF", "SOM", "MBS", "DDG", "NPH", "CMD", "M12", "DDH", "ISD", "DDI", "AVR", "PC2", "M13", "RTR", "DDK", "M14", "DDL", "THS", "C13", "MD1", "M15", "DDN", "KTK", "C14", "DD3_DVD", "FRF", "DDO", "DTK", "TPR", "ORI", "DDP", "BFZ", "C15", "DDQ", "SOI", "KLD", "C16", "PCA", "AKH", "CMA", "E01", "HOU", "C17", "XLN" ],
-    "legalities" : [ {
-      "format" : "Amonkhet Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Battle for Zendikar Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Commander",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ice Age Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Innistrad Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Invasion Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ixalan Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Kaladesh Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Kamigawa Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Khans of Tarkir Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Legacy",
-      "legality" : "Legal"
-    }, {
-      "format" : "Lorwyn-Shadowmoor Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Masques Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Mirage Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Mirrodin Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Modern",
-      "legality" : "Legal"
-    }, {
-      "format" : "Odyssey Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Onslaught Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Ravnica Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Return to Ravnica Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Scars of Mirrodin Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Shadows over Innistrad Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Shards of Alara Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Standard",
-      "legality" : "Legal"
-    }, {
-      "format" : "Tempest Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Theros Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Time Spiral Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Un-Sets",
-      "legality" : "Legal"
-    }, {
-      "format" : "Urza Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Vintage",
-      "legality" : "Legal"
-    }, {
-      "format" : "Zendikar Block",
-      "legality" : "Legal"
-    } ],
-    "colorIdentity" : [ "W" ]
-  },
-  "Dawn0" : {
-    "layout" : "aftermath",
+  }, {
     "name" : "Dawn",
     "names" : [ "Dusk", "Dawn" ],
+    "layout" : "aftermath",
     "manaCost" : "{3}{W}{W}",
-    "cmc" : 5,
+    "cmc" : 5.0,
     "colors" : [ "White" ],
     "type" : "Sorcery",
     "types" : [ "Sorcery" ],
@@ -3032,12 +1743,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W" ]
-  },
-  "Behind the Scenes0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Behind the Scenes",
+    "layout" : "normal",
     "manaCost" : "{2}{B}",
-    "cmc" : 3,
+    "cmc" : 3.0,
     "colors" : [ "Black" ],
     "type" : "Enchantment",
     "types" : [ "Enchantment" ],
@@ -3068,12 +1778,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "B", "W" ]
-  },
-  "Traproot Kami0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Traproot Kami",
+    "layout" : "normal",
     "manaCost" : "{G}",
-    "cmc" : 1,
+    "cmc" : 1.0,
     "colors" : [ "Green" ],
     "type" : "Creature — Spirit",
     "types" : [ "Creature" ],
@@ -3100,12 +1809,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "G" ]
-  },
-  "Lightning Greaves0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Lightning Greaves",
+    "layout" : "normal",
     "manaCost" : "{2}",
-    "cmc" : 2,
+    "cmc" : 2.0,
     "type" : "Artifact — Equipment",
     "types" : [ "Artifact" ],
     "subtypes" : [ "Equipment" ],
@@ -3132,12 +1840,11 @@
       "format" : "Vintage",
       "legality" : "Legal"
     } ]
-  },
-  "Commander's Sphere0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Commander's Sphere",
+    "layout" : "normal",
     "manaCost" : "{3}",
-    "cmc" : 3,
+    "cmc" : 3.0,
     "type" : "Artifact",
     "types" : [ "Artifact" ],
     "text" : "{T}: Add to your mana pool one mana of any color in your commander's color identity.\nSacrifice Commander's Sphere: Draw a card.",
@@ -3163,12 +1870,11 @@
       "format" : "Vintage",
       "legality" : "Legal"
     } ]
-  },
-  "Rampant Growth0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Rampant Growth",
+    "layout" : "normal",
     "manaCost" : "{1}{G}",
-    "cmc" : 2,
+    "cmc" : 2.0,
     "colors" : [ "Green" ],
     "type" : "Sorcery",
     "types" : [ "Sorcery" ],
@@ -3202,12 +1908,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "G" ]
-  },
-  "Abzan Beastmaster0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Abzan Beastmaster",
+    "layout" : "normal",
     "manaCost" : "{2}{G}",
-    "cmc" : 3,
+    "cmc" : 3.0,
     "colors" : [ "Green" ],
     "type" : "Creature — Hound Shaman",
     "types" : [ "Creature" ],
@@ -3241,12 +1946,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "G" ]
-  },
-  "Sidar Kondo of Jamuraa0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Sidar Kondo of Jamuraa",
+    "layout" : "normal",
     "manaCost" : "{2}{G}{W}",
-    "cmc" : 4,
+    "cmc" : 4.0,
     "colors" : [ "White", "Green" ],
     "type" : "Legendary Creature — Human Knight",
     "supertypes" : [ "Legendary" ],
@@ -3275,11 +1979,10 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W", "G" ]
-  },
-  "Vivid Meadow0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Vivid Meadow",
-    "cmc" : 0,
+    "layout" : "normal",
+    "cmc" : 0.0,
     "type" : "Land",
     "types" : [ "Land" ],
     "text" : "Vivid Meadow enters the battlefield tapped with two charge counters on it.\n{T}: Add {W} to your mana pool.\n{T}, Remove a charge counter from Vivid Meadow: Add one mana of any color to your mana pool.",
@@ -3302,12 +2005,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W" ]
-  },
-  "Spidersilk Armor0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Spidersilk Armor",
+    "layout" : "normal",
     "manaCost" : "{2}{G}",
-    "cmc" : 3,
+    "cmc" : 3.0,
     "colors" : [ "Green" ],
     "type" : "Enchantment",
     "types" : [ "Enchantment" ],
@@ -3328,12 +2030,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "G" ]
-  },
-  "Slagwurm Armor0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Slagwurm Armor",
+    "layout" : "normal",
     "manaCost" : "{1}",
-    "cmc" : 1,
+    "cmc" : 1.0,
     "type" : "Artifact — Equipment",
     "types" : [ "Artifact" ],
     "subtypes" : [ "Equipment" ],
@@ -3356,12 +2057,11 @@
       "format" : "Vintage",
       "legality" : "Legal"
     } ]
-  },
-  "Ornithopter0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Ornithopter",
+    "layout" : "normal",
     "manaCost" : "{0}",
-    "cmc" : 0,
+    "cmc" : 0.0,
     "type" : "Artifact Creature — Thopter",
     "types" : [ "Artifact", "Creature" ],
     "subtypes" : [ "Thopter" ],
@@ -3392,11 +2092,10 @@
       "format" : "Vintage",
       "legality" : "Legal"
     } ]
-  },
-  "Evolving Wilds0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Evolving Wilds",
-    "cmc" : 0,
+    "layout" : "normal",
+    "cmc" : 0.0,
     "type" : "Land",
     "types" : [ "Land" ],
     "text" : "{T}, Sacrifice Evolving Wilds: Search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library.",
@@ -3433,12 +2132,11 @@
       "format" : "Zendikar Block",
       "legality" : "Legal"
     } ]
-  },
-  "Sterling Grove0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Sterling Grove",
+    "layout" : "normal",
     "manaCost" : "{G}{W}",
-    "cmc" : 2,
+    "cmc" : 2.0,
     "colors" : [ "White", "Green" ],
     "type" : "Enchantment",
     "types" : [ "Enchantment" ],
@@ -3463,12 +2161,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W", "G" ]
-  },
-  "Nyx-Fleece Ram0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Nyx-Fleece Ram",
+    "layout" : "normal",
     "manaCost" : "{1}{W}",
-    "cmc" : 2,
+    "cmc" : 2.0,
     "colors" : [ "White" ],
     "type" : "Enchantment Creature — Sheep",
     "types" : [ "Enchantment", "Creature" ],
@@ -3495,11 +2192,10 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W" ]
-  },
-  "Sandsteppe Citadel0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Sandsteppe Citadel",
-    "cmc" : 0,
+    "layout" : "normal",
+    "cmc" : 0.0,
     "type" : "Land",
     "types" : [ "Land" ],
     "text" : "Sandsteppe Citadel enters the battlefield tapped.\n{T}: Add {W}, {B}, or {G} to your mana pool.",
@@ -3523,12 +2219,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W", "B", "G" ]
-  },
-  "Fell the Mighty0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Fell the Mighty",
+    "layout" : "normal",
     "manaCost" : "{4}{W}",
-    "cmc" : 5,
+    "cmc" : 5.0,
     "colors" : [ "White" ],
     "type" : "Sorcery",
     "types" : [ "Sorcery" ],
@@ -3556,12 +2251,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W" ]
-  },
-  "Stalwart Shield-Bearers0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Stalwart Shield-Bearers",
+    "layout" : "normal",
     "manaCost" : "{1}{W}",
-    "cmc" : 2,
+    "cmc" : 2.0,
     "colors" : [ "White" ],
     "type" : "Creature — Human Soldier",
     "types" : [ "Creature" ],
@@ -3592,12 +2286,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W" ]
-  },
-  "Grizzled Leotau0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Grizzled Leotau",
+    "layout" : "normal",
     "manaCost" : "{G}{W}",
-    "cmc" : 2,
+    "cmc" : 2.0,
     "colors" : [ "White", "Green" ],
     "type" : "Creature — Cat",
     "types" : [ "Creature" ],
@@ -3623,12 +2316,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W", "G" ]
-  },
-  "Oathsworn Giant0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Oathsworn Giant",
+    "layout" : "normal",
     "manaCost" : "{4}{W}{W}",
-    "cmc" : 6,
+    "cmc" : 6.0,
     "colors" : [ "White" ],
     "type" : "Creature — Giant Soldier",
     "types" : [ "Creature" ],
@@ -3655,12 +2347,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W" ]
-  },
-  "Assault Formation0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Assault Formation",
+    "layout" : "normal",
     "manaCost" : "{1}{G}",
-    "cmc" : 2,
+    "cmc" : 2.0,
     "colors" : [ "Green" ],
     "type" : "Enchantment",
     "types" : [ "Enchantment" ],
@@ -3691,12 +2382,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "G" ]
-  },
-  "Silklash Spider0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Silklash Spider",
+    "layout" : "normal",
     "manaCost" : "{3}{G}{G}",
-    "cmc" : 5,
+    "cmc" : 5.0,
     "colors" : [ "Green" ],
     "type" : "Creature — Spider",
     "types" : [ "Creature" ],
@@ -3723,12 +2413,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "G" ]
-  },
-  "Eladamri's Call0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Eladamri's Call",
+    "layout" : "normal",
     "manaCost" : "{G}{W}",
-    "cmc" : 2,
+    "cmc" : 2.0,
     "colors" : [ "White", "Green" ],
     "type" : "Instant",
     "types" : [ "Instant" ],
@@ -3753,12 +2442,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W", "G" ]
-  },
-  "Tree of Perdition0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Tree of Perdition",
+    "layout" : "normal",
     "manaCost" : "{3}{B}",
-    "cmc" : 4,
+    "cmc" : 4.0,
     "colors" : [ "Black" ],
     "type" : "Creature — Plant",
     "types" : [ "Creature" ],
@@ -3795,11 +2483,10 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "B" ]
-  },
-  "Vivid Grove0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Vivid Grove",
-    "cmc" : 0,
+    "layout" : "normal",
+    "cmc" : 0.0,
     "type" : "Land",
     "types" : [ "Land" ],
     "text" : "Vivid Grove enters the battlefield tapped with two charge counters on it.\n{T}: Add {G} to your mana pool.\n{T}, Remove a charge counter from Vivid Grove: Add one mana of any color to your mana pool.",
@@ -3822,12 +2509,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "G" ]
-  },
-  "Fortified Rampart0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Fortified Rampart",
+    "layout" : "normal",
     "manaCost" : "{1}{W}",
-    "cmc" : 2,
+    "cmc" : 2.0,
     "colors" : [ "White" ],
     "type" : "Creature — Wall",
     "types" : [ "Creature" ],
@@ -3854,12 +2540,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W" ]
-  },
-  "Nissa, Voice of Zendikar0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Nissa, Voice of Zendikar",
+    "layout" : "normal",
     "manaCost" : "{1}{G}{G}",
-    "cmc" : 3,
+    "cmc" : 3.0,
     "colors" : [ "Green" ],
     "type" : "Legendary Planeswalker — Nissa",
     "supertypes" : [ "Legendary" ],
@@ -3886,12 +2571,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "G" ]
-  },
-  "Wall of Blossoms0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Wall of Blossoms",
+    "layout" : "normal",
     "manaCost" : "{1}{G}",
-    "cmc" : 2,
+    "cmc" : 2.0,
     "colors" : [ "Green" ],
     "type" : "Creature — Plant Wall",
     "types" : [ "Creature" ],
@@ -3915,12 +2599,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "G" ]
-  },
-  "Whispersilk Cloak0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Whispersilk Cloak",
+    "layout" : "normal",
     "manaCost" : "{3}",
-    "cmc" : 3,
+    "cmc" : 3.0,
     "type" : "Artifact — Equipment",
     "types" : [ "Artifact" ],
     "subtypes" : [ "Equipment" ],
@@ -3943,12 +2626,11 @@
       "format" : "Vintage",
       "legality" : "Legal"
     } ]
-  },
-  "Foul Renewal0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Foul Renewal",
+    "layout" : "normal",
     "manaCost" : "{3}{B}",
-    "cmc" : 4,
+    "cmc" : 4.0,
     "colors" : [ "Black" ],
     "type" : "Instant",
     "types" : [ "Instant" ],
@@ -3976,11 +2658,10 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "B" ]
-  },
-  "Terramorphic Expanse0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Terramorphic Expanse",
-    "cmc" : 0,
+    "layout" : "normal",
+    "cmc" : 0.0,
     "type" : "Land",
     "types" : [ "Land" ],
     "text" : "{T}, Sacrifice Terramorphic Expanse: Search your library for a basic land card and put it onto the battlefield tapped. Then shuffle your library.",
@@ -4002,11 +2683,10 @@
       "format" : "Vintage",
       "legality" : "Legal"
     } ]
-  },
-  "Khalni Garden0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Khalni Garden",
-    "cmc" : 0,
+    "layout" : "normal",
+    "cmc" : 0.0,
     "type" : "Land",
     "types" : [ "Land" ],
     "text" : "Khalni Garden enters the battlefield tapped.\nWhen Khalni Garden enters the battlefield, create a 0/1 green Plant creature token.\n{T}: Add {G} to your mana pool.",
@@ -4029,11 +2709,10 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "G" ]
-  },
-  "Reliquary Tower0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Reliquary Tower",
-    "cmc" : 0,
+    "layout" : "normal",
+    "cmc" : 0.0,
     "type" : "Land",
     "types" : [ "Land" ],
     "text" : "You have no maximum hand size.\n{T}: Add {C} to your mana pool.",
@@ -4059,12 +2738,11 @@
       "format" : "Vintage",
       "legality" : "Legal"
     } ]
-  },
-  "Overgrown Battlement0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Overgrown Battlement",
+    "layout" : "normal",
     "manaCost" : "{1}{G}",
-    "cmc" : 2,
+    "cmc" : 2.0,
     "colors" : [ "Green" ],
     "type" : "Creature — Wall",
     "types" : [ "Creature" ],
@@ -4095,12 +2773,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "G" ]
-  },
-  "Task Force0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Task Force",
+    "layout" : "normal",
     "manaCost" : "{2}{W}",
-    "cmc" : 3,
+    "cmc" : 3.0,
     "colors" : [ "White" ],
     "type" : "Creature — Human Rebel",
     "types" : [ "Creature" ],
@@ -4128,12 +2805,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W" ]
-  },
-  "Trostani, Selesnya's Voice0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Trostani, Selesnya's Voice",
+    "layout" : "normal",
     "manaCost" : "{G}{G}{W}{W}",
-    "cmc" : 4,
+    "cmc" : 4.0,
     "colors" : [ "White", "Green" ],
     "type" : "Legendary Creature — Dryad",
     "supertypes" : [ "Legendary" ],
@@ -4183,12 +2859,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W", "G" ]
-  },
-  "Wave of Reckoning0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Wave of Reckoning",
+    "layout" : "normal",
     "manaCost" : "{4}{W}",
-    "cmc" : 5,
+    "cmc" : 5.0,
     "colors" : [ "White" ],
     "type" : "Sorcery",
     "types" : [ "Sorcery" ],
@@ -4209,12 +2884,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W" ]
-  },
-  "Perimeter Captain0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Perimeter Captain",
+    "layout" : "normal",
     "manaCost" : "{W}",
-    "cmc" : 1,
+    "cmc" : 1.0,
     "colors" : [ "White" ],
     "type" : "Creature — Human Soldier",
     "types" : [ "Creature" ],
@@ -4241,11 +2915,10 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W" ]
-  },
-  "Golgari Rot Farm0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Golgari Rot Farm",
-    "cmc" : 0,
+    "layout" : "normal",
+    "cmc" : 0.0,
     "type" : "Land",
     "types" : [ "Land" ],
     "text" : "Golgari Rot Farm enters the battlefield tapped.\nWhen Golgari Rot Farm enters the battlefield, return a land you control to its owner's hand.\n{T}: Add {B}{G} to your mana pool.",
@@ -4272,12 +2945,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "B", "G" ]
-  },
-  "Soul of the Harvest0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Soul of the Harvest",
+    "layout" : "normal",
     "manaCost" : "{4}{G}{G}",
-    "cmc" : 6,
+    "cmc" : 6.0,
     "colors" : [ "Green" ],
     "type" : "Creature — Elemental",
     "types" : [ "Creature" ],
@@ -4308,12 +2980,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "G" ]
-  },
-  "Biorhythm0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Biorhythm",
+    "layout" : "normal",
     "manaCost" : "{6}{G}{G}",
-    "cmc" : 8,
+    "cmc" : 8.0,
     "colors" : [ "Green" ],
     "type" : "Sorcery",
     "types" : [ "Sorcery" ],
@@ -4344,12 +3015,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "G" ]
-  },
-  "Wall of Omens0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Wall of Omens",
+    "layout" : "normal",
     "manaCost" : "{1}{W}",
-    "cmc" : 2,
+    "cmc" : 2.0,
     "colors" : [ "White" ],
     "type" : "Creature — Wall",
     "types" : [ "Creature" ],
@@ -4376,12 +3046,11 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W" ]
-  },
-  "Aligned Hedron Network0" : {
-    "layout" : "normal",
+  }, {
     "name" : "Aligned Hedron Network",
+    "layout" : "normal",
     "manaCost" : "{4}",
-    "cmc" : 4,
+    "cmc" : 4.0,
     "type" : "Artifact",
     "types" : [ "Artifact" ],
     "text" : "When Aligned Hedron Network enters the battlefield, exile all creatures with power 5 or greater until Aligned Hedron Network leaves the battlefield. (Those creatures return under their owners' control.)",
@@ -4428,5 +3097,6 @@
       "format" : "Vintage",
       "legality" : "Legal"
     } ]
-  }
+  } ],
+  "format" : "COMMANDER"
 }

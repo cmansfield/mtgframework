@@ -59,18 +59,19 @@ public class DeckValidatorTest {
 
     Card commander = deck.getFeaturedCard();
 
-//    List<Card> cards = deck.getOriginalCards();
-//    cards.remove(0);
-//    Map cardPojo = CardUtils.generateTemplateCard().getCardPojo();
-//    cardPojo.put(CardConstants.COLORS.toString(), Collections.singletonList(Color.RED.toString()));
-//    Card badCard = new Card(cardPojo);
-//    cards.add(badCard);
-//
-//    deck = new Deck(cards);
-//    deck.setFormat(Format.COMMANDER);
-//    deck.setFeaturedCard(commander);
-//
-//    DeckValidator.isFormatCompliant(deck);
+    List<Card> cards = deck.generateFullDeckList();
+    cards.remove(0);
+    Card badCard = new Card.CardBuilder()
+            .name("I don't have the right colors")
+            .colors(Collections.singletonList(Color.RED.toString()))
+            .build();
+    cards.add(badCard);
+
+    deck = new Deck(cards);
+    deck.setFormat(Format.COMMANDER);
+    deck.setFeaturedCard(commander);
+
+    DeckValidator.isFormatCompliant(deck);
   }
 
   @Test (expectedExceptions = IllegalStateException.class)
@@ -107,12 +108,9 @@ public class DeckValidatorTest {
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
     Deck deck = LoadDeck.loadDeck(file.getAbsolutePath());
 
-//    Card commander = deck.getFeaturedCard();
-//    Map cardPojo = commander.getCardPojo();
-//    cardPojo.remove(CardConstants.SUPER_TYPES.toString());
-//    commander = new Card(cardPojo);
-//    deck.setFeaturedCard(commander);
-//
-//    DeckValidator.isFormatCompliant(deck);
+    Card commander = LoadCards.lookupCard("Soul Collector");
+    deck.setFeaturedCard(commander);
+
+    DeckValidator.isFormatCompliant(deck);
   }
 }
