@@ -11,7 +11,6 @@ Other
 
 CardFilter
     Search all of the text fields as contains
-    Refactor to accomidate the new changes to Card
 
 DeckValidator
     Udpate 'isFormatCompliant' for Commander to allow commander partners
