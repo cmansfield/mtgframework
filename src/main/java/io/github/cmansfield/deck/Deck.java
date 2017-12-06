@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 public final class Deck {
   private Map<String,Integer> quantity;
-  private List<Card> originalCards;
   private List<Color> deckColors;
   private Card featuredCard;
   private List<Card> cards;
@@ -19,6 +18,8 @@ public final class Deck {
   public Deck(List<Card> cards) {
     this(cards, null);
   }
+
+  public Deck() {}
 
   /**
    * Constructor that will remove duplicates from the card list
@@ -31,7 +32,7 @@ public final class Deck {
   public Deck(List<Card> cards, Format format) {
     this.deckColors = new ArrayList<>();
     this.quantity = new HashMap<>();
-    this.originalCards = new ArrayList<>(cards);
+    this.format = format;
 
     this.cards = cards.stream().filter(card -> {
       String key = card.getName();
@@ -61,10 +62,6 @@ public final class Deck {
     return new ArrayList<>(this.cards);
   }
 
-  public List<Card> getOriginalCards() {
-    return new ArrayList<>(this.originalCards);
-  }
-
   public List<Color> getDeckColors() {
     return new ArrayList<>(this.deckColors);
   }
@@ -77,12 +74,8 @@ public final class Deck {
     return this.format;
   }
 
-  public void setFeaturedCard(Card card) {
-    this.featuredCard = card;
-  }
-
-  public void setFormat(Format format) {
-    this.format = format;
+  public Map<String,Integer> getQuantity() {
+    return this.quantity;
   }
 
   /**
@@ -97,6 +90,31 @@ public final class Deck {
     }
 
     return this.quantity.get(key);
+  }
+
+  public void setFeaturedCard(Card card) {
+    this.featuredCard = card;
+  }
+
+  public void setFormat(Format format) {
+    this.format = format;
+  }
+
+  /**
+   * This method generates a full list of cards with duplicate cards in the list
+   *
+   * @return  - A list of all cards in the deck
+   */
+  public List<Card> generateFullDeckList() {
+    List<Card> cards = new ArrayList<>();
+
+    this.cards.forEach(card -> {
+      for(int i = 0; i < getQuantity(card.getName()); ++i) {
+        cards.add(card);
+      }
+    });
+
+    return cards;
   }
 
   @Override

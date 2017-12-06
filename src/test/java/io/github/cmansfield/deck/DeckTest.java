@@ -31,7 +31,7 @@ public class DeckTest {
     assertEquals(deck.getCards().size(), 10);
     assertEquals((int)deck.getQuantity("Behind the Scenes"), 5);
     assertEquals((int)deck.getQuantity("Chromatic Lantern"), 2);
-    assertEquals(cards.size(), deck.getOriginalCards().size());
+    assertEquals(cards.size(), deck.generateFullDeckList().size());
   }
 
   @Test

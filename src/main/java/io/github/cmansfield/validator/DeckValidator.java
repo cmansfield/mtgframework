@@ -32,7 +32,7 @@ public final class DeckValidator {
       throw new IllegalStateException("Commander decks must have a commander");
     }
 
-    if(deck.getOriginalCards().size() != 100) {
+    if(deck.generateFullDeckList().size() != 100) {
       throw new IllegalStateException("Commander decks can only contain 100 cards");
     }
 

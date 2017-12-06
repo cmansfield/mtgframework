@@ -149,7 +149,7 @@ public class Player {
     this.zones = new EnumMap<>(Zone.class);
     this.zones.put(
             Zone.LIBRARY,
-            this.deck.getOriginalCards()
+            this.deck.generateFullDeckList()
                     .stream()
                     .filter(card -> {
                       if(deck.getFeaturedCard() == null) {

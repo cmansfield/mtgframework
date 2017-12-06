@@ -34,21 +34,7 @@ public class LoadDeck {
 
     if(extension.equalsIgnoreCase(IoConstants.JSON_EXT)) {
       try(InputStream inputstream = new FileInputStream(fileName)) {
-        Map<String, Object> jsonMap = mapper.readValue(inputstream, Map.class);
-
-        if(jsonMap.containsKey(IoConstants.CARDS_KEY)) {
-//          deck = new Deck(LoadCards.loadCards((Map<String,Object>)jsonMap.get(IoConstants.CARDS_KEY), false));
-        }
-        else {
-          return new Deck(LoadCards.loadCards(fileName));
-        }
-
-        if(jsonMap.containsKey(IoConstants.FEATURED_KEY)) {
-          deck.setFeaturedCard(new Card((Card)jsonMap.get(IoConstants.FEATURED_KEY)));
-        }
-        if(jsonMap.containsKey(Legality.FORMAT.toString())) {
-          deck.setFormat(Format.find((String)jsonMap.get(Legality.FORMAT.toString())));
-        }
+        deck = mapper.readValue(inputstream, Deck.class);
       }
       catch(Exception e) {
         System.out.printf("Unable to load file %s%n", fileName);

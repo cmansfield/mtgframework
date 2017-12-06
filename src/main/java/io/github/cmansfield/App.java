@@ -5,10 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
 import io.github.cmansfield.deck.DeckUtils;
-import io.github.cmansfield.io.IoConstants;
-import io.github.cmansfield.io.LoadCards;
-import io.github.cmansfield.io.LoadDeck;
-import io.github.cmansfield.io.SaveCards;
+import io.github.cmansfield.deck.constants.Format;
+import io.github.cmansfield.io.*;
 import io.github.cmansfield.io.web.GetUpdates;
 import io.github.cmansfield.io.web.TappedImporter;
 import io.github.cmansfield.simulator.gameManager.GameManager;
@@ -44,13 +42,11 @@ public class App {
       return;
     }
 
-    List<Card> cardList = LoadCards.loadCards();
-    String filename = SaveCards.saveCards(cardList);
-    List<Card> cardList1 = LoadCards.loadCards(filename);
-
-    if(!cardList.equals(cardList1)) {
-      System.out.println("Problems");
-    }
+    List<Card> cardList = LoadCards.loadCards("SavedCardLists/testList.json");
+    Deck deck = new Deck(cardList, Format.COMMANDER);
+    deck.setFeaturedCard(LoadCards.lookupCard("Thawing Glaciers"));
+    String filename = SaveDeck.saveDeck(deck);
+    Deck deck1 = LoadDeck.loadDeck(filename);
 
     System.out.println("End");
   }

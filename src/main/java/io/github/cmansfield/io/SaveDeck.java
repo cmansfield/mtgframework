@@ -30,26 +30,8 @@ public class SaveDeck {
     String saveFileName = IoConstants.SAVE_DIR + "/" + String.format(DECK_SAVE_NAME, saveFolder.listFiles().length);
 
     try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(saveFileName), StandardCharsets.UTF_8);) {
-
-      Map<String, Object> cardMap = new HashMap<>();
-
-      deck.getCards().forEach(card -> {
-        for(int i = 0; i < deck.getQuantity(card.getName()); ++i) {
-//          cardMap.put(String.format("%s%d", card.getName(), i), card.getCardPojo());
-        }
-      });
-
-      Map<String, Object> deckMap = new HashMap<>();
-      if(deck.getFeaturedCard() != null) {
-//        deckMap.put(IoConstants.FEATURED_KEY, deck.getFeaturedCard().getCardPojo());
-      }
-      if(deck.getFormat() != null) {
-        deckMap.put(Legality.FORMAT.toString(), deck.getFormat().toString());
-      }
-      deckMap.put(IoConstants.CARDS_KEY, cardMap);
-
       String jsonCards = mapper.writerWithDefaultPrettyPrinter()
-              .writeValueAsString(deckMap);
+              .writeValueAsString(deck);
 
       writer.write(jsonCards);
     }

@@ -34,7 +34,7 @@ public class DeckValidatorTest {
     nonCompliantCardNames.add("Biorhythm");
 
     assertNotNull(nonCompliantCards);
-    assertEquals(deck.getOriginalCards().size(), 100);
+    assertEquals(deck.generateFullDeckList().size(), 100);
     assertEquals(nonCompliantCards.size(), 3);
     assertEquals(nonCompliantCards.size(), nonCompliantCardNames.size());
     nonCompliantCards.forEach(card -> {
@@ -59,8 +59,8 @@ public class DeckValidatorTest {
 
     Card commander = deck.getFeaturedCard();
 
-    List<Card> cards = deck.getOriginalCards();
-    cards.remove(0);
+//    List<Card> cards = deck.getOriginalCards();
+//    cards.remove(0);
 //    Map cardPojo = CardUtils.generateTemplateCard().getCardPojo();
 //    cardPojo.put(CardConstants.COLORS.toString(), Collections.singletonList(Color.RED.toString()));
 //    Card badCard = new Card(cardPojo);
@@ -92,7 +92,7 @@ public class DeckValidatorTest {
 
     Card commander = deck.getFeaturedCard();
 
-    List<Card> cards = deck.getOriginalCards();
+    List<Card> cards = deck.generateFullDeckList();
     cards.remove(0);
     deck = new Deck(cards);
     deck.setFeaturedCard(commander);
