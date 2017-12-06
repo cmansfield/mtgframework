@@ -1,14 +1,15 @@
 package io.github.cmansfield.card;
 
-
-
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+
 @JsonDeserialize(using = CardDeserializer.class)
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Card {
   private String name;
   private List<String> names;
@@ -45,9 +46,9 @@ public class Card {
     this.cmc = card.getCmc();
     this.colors = card.getColors();
     this.type = card.getType();
-    this.supertypes = card.getSuperTypes();
+    this.supertypes = card.getSupertypes();
     this.types = card.getTypes();
-    this.subtypes = card.getSubTypes();
+    this.subtypes = card.getSubtypes();
     this.text = card.getText();
     this.power = card.getPower();
     this.toughness = card.getToughness();
@@ -63,103 +64,14 @@ public class Card {
     this.colorIdentity = card.getColorIdentity();
   }
 
-//  public void setName(String name) {
-//    this.name = name;
-//  }
-//
-//  public void setNames(List<String> names) {
-//    this.names = names;
-//  }
-//
-//  public void setLayout(String layout) {
-//    this.layout = layout;
-//  }
-//
-//  public void setManaCost(String manaCost) {
-//    this.manaCost = manaCost;
-//  }
-//
-//  public void setCmc(Double cmc) {
-//    this.cmc = cmc;
-//  }
-//
-//  public void setColors(List<String> colors) {
-//    this.colors = colors;
-//  }
-//
-//  public void setType(String type) {
-//    this.type = type;
-//  }
-//
-//  public void setSupertypes(List<String> supertypes) {
-//    this.supertypes = supertypes;
-//  }
-//
-//  public void setTypes(List<String> types) {
-//    this.types = types;
-//  }
-//
-//  public void setSubtypes(List<String> subtypes) {
-//    this.subtypes = subtypes;
-//  }
-//
-//  public void setText(String text) {
-//    this.text = text;
-//  }
-//
-//  public void setPower(String power) {
-//    this.power = power;
-//  }
-//
-//  public void setToughness(String toughness) {
-//    this.toughness = toughness;
-//  }
-//
-//  public void setLoyalty(Integer loyalty) {
-//    this.loyalty = loyalty;
-//  }
-//
-//  public void setImageName(String imageName) {
-//    this.imageName = imageName;
-//  }
-//
-//  public void setRulings(List<Map<String, String>> rulings) {
-//    this.rulings = rulings;
-//  }
-//
-//  public void setHand(Integer hand) {
-//    this.hand = hand;
-//  }
-//
-//  public void setLife(Integer life) {
-//    this.life = life;
-//  }
-//
-//  public void setStarter(Boolean starter) {
-//    this.starter = starter;
-//  }
-//
-//  public void setPrintings(List<String> printings) {
-//    this.printings = printings;
-//  }
-//
-//  public void setSource(String source) {
-//    this.source = source;
-//  }
-//
-//  public void setLegalities(List<Map<String, String>> legalities) {
-//    this.legalities = legalities;
-//  }
-//
-//  public void setColorIdentity(List<String> colorIdentity) {
-//    this.colorIdentity = colorIdentity;
-//  }
-
   public String getName() {
     return this.name;
   }
 
   public List<String> getNames() {
+    if(this.names == null) {
+      return null;
+    }
     return new ArrayList<>(this.names);
   }
 
@@ -176,6 +88,9 @@ public class Card {
   }
 
   public List<String> getColors() {
+    if(this.colors == null) {
+      return null;
+    }
     return new ArrayList<>(this.colors);
   }
 
@@ -183,15 +98,24 @@ public class Card {
     return this.type;
   }
 
-  public List<String> getSuperTypes() {
+  public List<String> getSupertypes() {
+    if(this.supertypes == null) {
+      return null;
+    }
     return new ArrayList<>(this.supertypes);
   }
 
   public List<String> getTypes() {
+    if(this.types == null) {
+      return null;
+    }
     return new ArrayList<>(this.types);
   }
 
-  public List<String> getSubTypes() {
+  public List<String> getSubtypes() {
+    if(this.subtypes == null) {
+      return null;
+    }
     return new ArrayList<>(this.subtypes);
   }
 
@@ -233,6 +157,9 @@ public class Card {
   }
 
   public List<String> getPrintings() {
+    if(this.printings == null) {
+      return null;
+    }
     return new ArrayList<>(this.printings);
   }
 
@@ -246,6 +173,9 @@ public class Card {
   }
 
   public List<String> getColorIdentity() {
+    if(this.colorIdentity == null) {
+      return null;
+    }
     return new ArrayList<>(this.colorIdentity);
   }
 

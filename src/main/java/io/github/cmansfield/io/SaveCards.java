@@ -1,5 +1,6 @@
 package io.github.cmansfield.io;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
@@ -26,6 +27,7 @@ public final class SaveCards {
     ObjectMapper mapper = new ObjectMapper();
     File saveFolder = createSaveDir();
 
+    mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
     String saveFileName = IoConstants.SAVE_DIR + "/" + String.format(CARD_LIST_SAVE_NAME, saveFolder.listFiles().length);
 
     try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(saveFileName), StandardCharsets.UTF_8);) {

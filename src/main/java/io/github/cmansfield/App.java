@@ -8,6 +8,7 @@ import io.github.cmansfield.deck.DeckUtils;
 import io.github.cmansfield.io.IoConstants;
 import io.github.cmansfield.io.LoadCards;
 import io.github.cmansfield.io.LoadDeck;
+import io.github.cmansfield.io.SaveCards;
 import io.github.cmansfield.io.web.GetUpdates;
 import io.github.cmansfield.io.web.TappedImporter;
 import io.github.cmansfield.simulator.gameManager.GameManager;
@@ -43,7 +44,13 @@ public class App {
       return;
     }
 
-    List<Card> doranCards = LoadCards.loadCards("SavedCardLists/DoranDeck.json");
+    List<Card> cardList = LoadCards.loadCards();
+    String filename = SaveCards.saveCards(cardList);
+    List<Card> cardList1 = LoadCards.loadCards(filename);
+
+    if(!cardList.equals(cardList1)) {
+      System.out.println("Problems");
+    }
 
     System.out.println("End");
   }

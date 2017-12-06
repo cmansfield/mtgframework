@@ -207,9 +207,9 @@ public class CardFilter {
     if(filter.getCmc() != null) getterMethodMap.put(CardConstants.CMC, new Pair<Supplier,Function>(filter::getCmc, c -> ((Card)c).getCmc()));
     if(filter.getColors() != null) getterMethodMap.put(CardConstants.COLORS, new Pair<Supplier,Function>(filter::getColors, c -> ((Card)c).getColors()));
     if(filter.getType() != null) getterMethodMap.put(CardConstants.TYPE, new Pair<Supplier,Function>(filter::getType, c -> ((Card)c).getType()));
-    if(filter.getSuperTypes() != null) getterMethodMap.put(CardConstants.SUPER_TYPES, new Pair<Supplier,Function>(filter::getSuperTypes, c -> ((Card)c).getSuperTypes()));
+    if(filter.getSupertypes() != null) getterMethodMap.put(CardConstants.SUPER_TYPES, new Pair<Supplier,Function>(filter::getSupertypes, c -> ((Card)c).getSupertypes()));
     if(filter.getTypes() != null) getterMethodMap.put(CardConstants.TYPES, new Pair<Supplier,Function>(filter::getTypes, c -> ((Card)c).getTypes()));
-    if(filter.getSubTypes() != null) getterMethodMap.put(CardConstants.SUB_TYPES, new Pair<Supplier,Function>(filter::getSubTypes, c -> ((Card)c).getSubTypes()));
+    if(filter.getSubtypes() != null) getterMethodMap.put(CardConstants.SUB_TYPES, new Pair<Supplier,Function>(filter::getSubtypes, c -> ((Card)c).getSubtypes()));
     if(filter.getText() != null) getterMethodMap.put(CardConstants.TEXT, new Pair<Supplier,Function>(filter::getText, c -> ((Card)c).getText()));
     if(filter.getPower() != null) getterMethodMap.put(CardConstants.POWER, new Pair<Supplier,Function>(filter::getPower, c -> ((Card)c).getPower()));
     if(filter.getToughness() != null) getterMethodMap.put(CardConstants.TOUGHNESS, new Pair<Supplier,Function>(filter::getToughness, c -> ((Card)c).getToughness()));
