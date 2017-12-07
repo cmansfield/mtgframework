@@ -37,8 +37,7 @@ public class App {
       return;
     }
 
-    Card card = LoadCards.lookupCard("Stun");
-    System.out.println(card);
+
 
     System.out.println("End");
   }
