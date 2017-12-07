@@ -39,8 +39,7 @@ public class CardUtilsTest {
     });
   }
 
-  // TODO - This test fails when there is no pre-existing cardList to load
-  @Test(enabled = false)
+  @Test(enabled = true)
   public void test_getListOfLegalities() throws IOException {
     List<Card> cards = LoadCards.loadCards();
 

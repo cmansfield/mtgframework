@@ -38,10 +38,7 @@ public class App {
     }
 
     Card card = LoadCards.lookupCard("Stun");
-    List<Map<String,String>> rulings = card.getRulings();
-    rulings.get(0).put("text", "This is some new text");
-
-    List<Map<String,String>> copyRulings = card.getRulings();
+    System.out.println(card);
 
     System.out.println("End");
   }

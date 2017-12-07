@@ -3,10 +3,7 @@ package io.github.cmansfield.card;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -26,16 +23,16 @@ public class Card {
   private String text;
   private String power;
   private String toughness;
-  public Integer loyalty;
-  public String imageName;
-  public List<Map<String,String>> rulings;
-  public Integer hand;
-  public Integer life;
-  public Boolean starter;
-  public List<String> printings;
-  public String source;
-  public List<Map<String,String>> legalities;
-  public List<String> colorIdentity;
+  private Integer loyalty;
+  private String imageName;
+  private List<Map<String,String>> rulings;
+  private Integer hand;
+  private Integer life;
+  private Boolean starter;
+  private List<String> printings;
+  private String source;
+  private List<Map<String,String>> legalities;
+  private List<String> colorIdentity;
 
 
   public Card() {}
@@ -142,6 +139,9 @@ public class Card {
   }
 
   public List<Map<String,String>> getRulings() {
+    if(this.rulings == null) {
+      return null;
+    }
     return this.rulings.stream().map(HashMap::new).collect(Collectors.toList());
   }
 
@@ -169,6 +169,9 @@ public class Card {
   }
 
   public List<Map<String,String>> getLegalities() {
+    if(this.legalities == null) {
+      return null;
+    }
     return this.legalities.stream().map(HashMap::new).collect(Collectors.toList());
   }
 
@@ -179,10 +182,24 @@ public class Card {
     return new ArrayList<>(this.colorIdentity);
   }
 
-  // TODO - finish this method
   @Override
   public String toString() {
-    return super.toString();
+    return Arrays.asList(Card.class.getDeclaredFields()).stream()
+            .filter(field -> {
+              boolean isNull = false;
+              try {
+                isNull = field.get(this) != null;
+              }
+              catch (Exception e) {}
+              return isNull;})
+            .map(field -> {
+              String fieldValue = "";
+              try {
+                fieldValue = String.format("%s: %s", field.getName(), field.get(this).toString());
+              }
+              catch (Exception e) {}
+              return fieldValue;})
+            .collect(Collectors.joining("\n"));
   }
 
 
