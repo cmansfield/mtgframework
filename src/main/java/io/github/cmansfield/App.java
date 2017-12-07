@@ -1,5 +1,6 @@
 package io.github.cmansfield;
 
+import io.github.cmansfield.filters.CardFilter;
 import io.github.cmansfield.simulator.gameManager.GameManager;
 import io.github.cmansfield.simulator.player.Player;
 import io.github.cmansfield.io.web.TappedImporter;
@@ -37,9 +38,10 @@ public class App {
       return;
     }
 
+    importFromTappedOut();
 
 
-    System.out.println("End");
+    System.out.println("");
   }
 
 

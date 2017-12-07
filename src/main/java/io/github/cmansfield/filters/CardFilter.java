@@ -97,10 +97,11 @@ public class CardFilter {
                 }
 
                 if(filterField instanceof String) {
-//                  String filterStr = ((String)filterField).replaceAll("^[a-zA-Z0-9]", "");
+                  String pattern = "[^a-zA-Z0-9]";
+                  String filterStr = ((String)filterField).replaceAll(pattern, "");
+                  String cardStr = ((String)cardField).replaceAll(pattern, "");
 
-                  isMatch = ((String)cardField).contains((String)filterField);
-                  isMatch |= ((String)cardField).equalsIgnoreCase((String)filterField);
+                  isMatch = cardStr.toLowerCase().contains(filterStr.toLowerCase());
 
                   return isNot != isMatch;
                 }
