@@ -97,7 +97,7 @@ public class CardFilter {
                 }
 
                 if(filterField instanceof String) {
-                  String pattern = "[^a-zA-Z0-9]";
+                  String pattern = "[^a-zA-Z0-9]";      // Remove anything that isnt' a alpha-numeric character
                   String filterStr = ((String)filterField).replaceAll(pattern, "");
                   String cardStr = ((String)cardField).replaceAll(pattern, "");
 
