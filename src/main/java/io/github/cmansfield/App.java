@@ -1,21 +1,16 @@
 package io.github.cmansfield;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.cmansfield.card.Card;
-import io.github.cmansfield.deck.Deck;
-import io.github.cmansfield.deck.DeckUtils;
-import io.github.cmansfield.deck.constants.Format;
-import io.github.cmansfield.io.*;
-import io.github.cmansfield.io.web.GetUpdates;
-import io.github.cmansfield.io.web.TappedImporter;
 import io.github.cmansfield.simulator.gameManager.GameManager;
 import io.github.cmansfield.simulator.player.Player;
+import io.github.cmansfield.io.web.TappedImporter;
+import io.github.cmansfield.io.web.GetUpdates;
+import io.github.cmansfield.deck.DeckUtils;
+import io.github.cmansfield.card.Card;
+import io.github.cmansfield.deck.Deck;
+import io.github.cmansfield.io.*;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.*;
-import java.util.zip.ZipFile;
 
 
 public class App {
@@ -42,16 +37,13 @@ public class App {
       return;
     }
 
-    List<Card> cards1 = LoadCards.loadCards("SavedCardLists/NonCompliantCommanderTestDeck.json");
-    Deck deck = new Deck(cards1, Format.COMMANDER);
-    deck.setFeaturedCard(LoadCards.lookupCard("Doran, the Siege Tower"));
-    String filename = SaveDeck.saveDeck(deck);
 
-    System.out.println("End");
+    importFromTappedOut();
   }
 
 
-  private void importFromTappedOut() throws IOException {
+  private static void importFromTappedOut() throws IOException {
+//    List<Deck> decks = TappedImporter.importFilesFromTappedOut("TappedCrawler\\decks\\test");
     List<Deck> decks = TappedImporter.importFilesFromTappedOut("TappedCrawler\\decks\\animar-soul-of-elements");
     Map<String,Integer> cardCounts = DeckUtils.getCardCount(decks);
     List<Map.Entry<String, Integer>> sorted = new ArrayList<>(cardCounts.entrySet());
@@ -63,7 +55,7 @@ public class App {
   }
 
 
-  private void playGame() throws IOException {
+  private static void playGame() throws IOException {
     Deck doranDeck = LoadDeck.loadDeck("SavedCardLists/DoranDeck.json");
     Deck ghaveDeck = LoadDeck.loadDeck("SavedCardLists/GhaveDeck.json");
 

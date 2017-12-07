@@ -1,6 +1,4 @@
-package io.github.cmansfield.card.constants;
-
-import io.github.cmansfield.constants.Constant;
+package io.github.cmansfield.constants;
 
 public enum Color implements Constant<Color> {
   WHITE("White"),

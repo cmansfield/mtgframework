@@ -1,7 +1,7 @@
 package io.github.cmansfield.deck;
 
 import io.github.cmansfield.card.Card;
-import io.github.cmansfield.card.constants.Color;
+import io.github.cmansfield.constants.Color;
 import io.github.cmansfield.deck.constants.Format;
 import io.github.cmansfield.io.LoadCards;
 import io.github.cmansfield.io.LoadDeck;

@@ -97,7 +97,11 @@ public class CardFilter {
                 }
 
                 if(filterField instanceof String) {
+//                  String filterStr = ((String)filterField).replaceAll("^[a-zA-Z0-9]", "");
+
                   isMatch = ((String)cardField).contains((String)filterField);
+                  isMatch |= ((String)cardField).equalsIgnoreCase((String)filterField);
+
                   return isNot != isMatch;
                 }
 
@@ -143,6 +147,12 @@ public class CardFilter {
         if(listCard.contains(item)) {
           return allMatchMap(item, listCard.get(listCard.indexOf(item)));
         }
+      }
+
+      if(item instanceof String) {
+        return listCard.stream().anyMatch(field -> {
+          return ((String)field).contains((String)item);
+        });
       }
 
       return listCard.contains(item);

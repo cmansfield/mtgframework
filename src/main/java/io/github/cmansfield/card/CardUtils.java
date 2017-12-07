@@ -1,9 +1,8 @@
 package io.github.cmansfield.card;
 
-import io.github.cmansfield.card.constants.Color;
+import io.github.cmansfield.constants.Color;
 import io.github.cmansfield.deck.constants.Format;
 import io.github.cmansfield.deck.constants.Legality;
-import org.apache.commons.lang.ObjectUtils;
 
 import java.util.*;
 

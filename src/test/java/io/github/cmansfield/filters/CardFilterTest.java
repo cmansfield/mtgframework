@@ -2,7 +2,7 @@ package io.github.cmansfield.filters;
 
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.card.CardUtils;
-import io.github.cmansfield.card.constants.Color;
+import io.github.cmansfield.constants.Color;
 import io.github.cmansfield.deck.constants.Format;
 import io.github.cmansfield.deck.constants.Legality;
 import io.github.cmansfield.io.LoadCards;

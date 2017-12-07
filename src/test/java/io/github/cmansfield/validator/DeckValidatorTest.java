@@ -1,9 +1,7 @@
 package io.github.cmansfield.validator;
 
-import io.github.cmansfield.card.constants.CardConstants;
 import io.github.cmansfield.deck.constants.Format;
-import io.github.cmansfield.card.constants.Color;
-import io.github.cmansfield.card.CardUtils;
+import io.github.cmansfield.constants.Color;
 import io.github.cmansfield.io.LoadCards;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
