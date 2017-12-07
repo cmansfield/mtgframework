@@ -1,9 +1,6 @@
 
 Mtg Framework TODO list
 
-Card
-    Create deep copy of complex list objects
-
 Other
     Add additional exception handling in main
     Replace System.out.prints with logging

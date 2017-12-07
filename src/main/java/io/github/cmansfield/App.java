@@ -37,8 +37,13 @@ public class App {
       return;
     }
 
+    Card card = LoadCards.lookupCard("Stun");
+    List<Map<String,String>> rulings = card.getRulings();
+    rulings.get(0).put("text", "This is some new text");
 
-    importFromTappedOut();
+    List<Map<String,String>> copyRulings = card.getRulings();
+
+    System.out.println("End");
   }
 
 

@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 @JsonDeserialize(using = CardDeserializer.class)
@@ -139,9 +141,8 @@ public class Card {
     return imageName;
   }
 
-  // TODO - Deep copy this
   public List<Map<String,String>> getRulings() {
-    return this.rulings;
+    return this.rulings.stream().map(HashMap::new).collect(Collectors.toList());
   }
 
   public Integer getHand() {
@@ -167,9 +168,8 @@ public class Card {
     return this.source;
   }
 
-  // TODO - Deep copy this
   public List<Map<String,String>> getLegalities() {
-    return this.legalities;
+    return this.legalities.stream().map(HashMap::new).collect(Collectors.toList());
   }
 
   public List<String> getColorIdentity() {
