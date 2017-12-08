@@ -6,9 +6,6 @@ Other
     Replace System.out.prints with logging
     Add more program args
 
-CardFilter
-    Search all of the text fields as contains
-
 DeckValidator
     Udpate 'isFormatCompliant' for Commander to allow commander partners
     Update 'isFormatCompliant' to check for other format rules
@@ -29,5 +26,4 @@ Testing
         simulator.gameManager package
         simulator.action package
         simulator.turn package
-        LoadCards::lookupCard
 

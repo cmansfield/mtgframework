@@ -159,7 +159,7 @@ public final class LoadCards {
     String treatedName = cardNameTreatment(cardName);
 
     if(LoadCards.cardMap.containsKey(treatedName)) {
-      return LoadCards.cardMap.get(cardName);
+      return LoadCards.cardMap.get(treatedName);
     }
 
     Card filter = new Card.CardBuilder().name(treatedName).build();

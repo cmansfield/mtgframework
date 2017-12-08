@@ -38,7 +38,7 @@ public class App {
       return;
     }
 
-    importFromTappedOut();
+
     
     System.out.println("");
   }
