@@ -55,7 +55,7 @@ public class DeckValidatorTest {
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
     Deck deck = LoadDeck.loadDeck(file.getAbsolutePath());
 
-    Card commander = deck.getFeaturedCard();
+    Card commander = deck.getFeaturedCards();
 
     List<Card> cards = deck.generateFullDeckList();
     cards.remove(0);
@@ -67,7 +67,7 @@ public class DeckValidatorTest {
 
     deck = new Deck(cards);
     deck.setFormat(Format.COMMANDER);
-    deck.setFeaturedCard(commander);
+    deck.setFeaturedCards(commander);
 
     DeckValidator.isFormatCompliant(deck);
   }
@@ -78,7 +78,7 @@ public class DeckValidatorTest {
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
     Deck deck = LoadDeck.loadDeck(file.getAbsolutePath());
 
-    deck.setFeaturedCard(null);
+    deck.setFeaturedCards(null);
 
     DeckValidator.isFormatCompliant(deck);
   }
@@ -89,12 +89,12 @@ public class DeckValidatorTest {
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
     Deck deck = LoadDeck.loadDeck(file.getAbsolutePath());
 
-    Card commander = deck.getFeaturedCard();
+    Card commander = deck.getFeaturedCards();
 
     List<Card> cards = deck.generateFullDeckList();
     cards.remove(0);
     deck = new Deck(cards);
-    deck.setFeaturedCard(commander);
+    deck.setFeaturedCards(commander);
     deck.setFormat(Format.COMMANDER);
 
     DeckValidator.isFormatCompliant(deck);
@@ -107,7 +107,7 @@ public class DeckValidatorTest {
     Deck deck = LoadDeck.loadDeck(file.getAbsolutePath());
 
     Card commander = LoadCards.lookupCard("Soul Collector");
-    deck.setFeaturedCard(commander);
+    deck.setFeaturedCards(commander);
 
     DeckValidator.isFormatCompliant(deck);
   }

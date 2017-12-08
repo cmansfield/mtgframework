@@ -91,7 +91,7 @@ public final class TappedImporter {
 
     Deck deck = new Deck(cards);
     if(featuredCard != null) {
-      deck.setFeaturedCard(featuredCard);
+      deck.setFeaturedCards(featuredCard);
       deck.setFormat(Format.COMMANDER);
     }
 

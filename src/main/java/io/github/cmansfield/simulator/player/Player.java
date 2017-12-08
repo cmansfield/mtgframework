@@ -152,11 +152,11 @@ public class Player {
             this.deck.generateFullDeckList()
                     .stream()
                     .filter(card -> {
-                      if(deck.getFeaturedCard() == null) {
+                      if(deck.getFeaturedCards() == null) {
                         return false;
                       }
 
-                      return !deck.getFeaturedCard().getName().equalsIgnoreCase(card.getName());
+                      return !deck.getFeaturedCards().getName().equalsIgnoreCase(card.getName());
                     })
                     .map(card -> new PlayerCard(card, this))
                     .collect(Collectors.toList()));
@@ -166,9 +166,9 @@ public class Player {
     this.zones.put(Zone.BATTLEFIELD, new ArrayList<>());
     this.zones.put(
             Zone.COMMAND,
-            this.deck.getFeaturedCard() == null ?
+            this.deck.getFeaturedCards() == null ?
                     new ArrayList<>() :
-                    Collections.singletonList(new PlayerCard(this.deck.getFeaturedCard(), this)));
+                    Collections.singletonList(new PlayerCard(this.deck.getFeaturedCards(), this)));
     this.zones.put(Zone.ANTE, new ArrayList<>());
     this.zones.put(Zone.SCRAPYARD, new ArrayList<>());
   }

@@ -44,7 +44,8 @@ public final class GameManager {
   }
 
   public void startGame() {
-    for(int i = 0; i < 10000; ++i) {
+    final int MAX_NUMBER_OF_TURNS = 10000;
+    for(int i = 0; i < MAX_NUMBER_OF_TURNS; ++i) {
       try {
         perform();
       }

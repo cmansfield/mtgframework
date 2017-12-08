@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public final class Deck {
   private Map<String,Integer> quantity;
   private List<Color> deckColors;
-  private Card featuredCard;
+  private List<Card> featuredCards;
   private List<Card> cards;
   private Format format;
 
@@ -66,8 +66,8 @@ public final class Deck {
     return new ArrayList<>(this.deckColors);
   }
 
-  public Card getFeaturedCard() {
-    return this.featuredCard;
+  public List<Card> getFeaturedCards() {
+    return this.featuredCards;
   }
 
   public Format getFormat() {
@@ -92,8 +92,8 @@ public final class Deck {
     return this.quantity.get(key);
   }
 
-  public void setFeaturedCard(Card card) {
-    this.featuredCard = card;
+  public void setFeaturedCards(List<Card> cards) {
+    this.featuredCards = cards;
   }
 
   public void setFormat(Format format) {
@@ -121,7 +121,11 @@ public final class Deck {
   public String toString() {
     return String.format("%s%s%s",
             this.format == null ? "" : String.format("Format: %s%n", this.format.toString()),
-            this.featuredCard == null ? "" : String.format("Featured Card: %s%n", this.featuredCard.getName()),
+            this.featuredCards == null ? "" : String.format(
+                    "Featured Cards: %s%n",
+                    this.featuredCards.stream()
+                            .map(Card::getName)
+                            .collect(Collectors.joining(", "))),
             this.cards.stream()
             .map(card -> String.format("%dx %s", this.quantity.get(card.getName()), card.getName()))
             .collect(Collectors.joining("\r\n")));

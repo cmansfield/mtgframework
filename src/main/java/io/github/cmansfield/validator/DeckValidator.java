@@ -25,9 +25,9 @@ public final class DeckValidator {
       throw new UnsupportedOperationException("This feature currently only checks to see if decks are commander legal");
     }
 
-    Card commander = deck.getFeaturedCard();
+    List<Card> commanders = deck.getFeaturedCards();
 
-    if(commander == null) {
+    if(commanders == null) {
       throw new IllegalStateException("Commander decks must have a commander");
     }
 
@@ -35,14 +35,17 @@ public final class DeckValidator {
       throw new IllegalStateException("Commander decks can only contain 100 cards");
     }
 
-    // TODO - Add logic for commander partners
-    if(CardFilter.filter(
-            Collections.singletonList(commander),
-            Format.COMMANDER.getFeatureCardFilter()).size() != 1) {
+    List<Card> filteredCommanders = CardFilter.filter(
+            commanders,
+            Format.COMMANDER.getFeatureCardFilter());
+    if(filteredCommanders.size() == 2) {
+      // TODO - Add logic for commander partners
+    }
+    else if(filteredCommanders.size() != 1) {
       throw new IllegalStateException("Deck commanders must be of Legendary type");
     }
 
-    List<String> commanderColors = commander.getColors();
+    List<String> commanderColors = commanders.get(0).getColors();
     deck.getDeckColors().forEach(color -> {
       if(!commanderColors.contains(color.toString())) {
         throw new IllegalStateException("Commander decks must only include cards with colors that match their commander");
