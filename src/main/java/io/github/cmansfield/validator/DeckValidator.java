@@ -25,23 +25,26 @@ public final class DeckValidator {
       throw new UnsupportedOperationException("This feature currently only checks to see if decks are commander legal");
     }
 
+    final int SET_COMMANDER_DECK_SIZE = 100;
+    final int MAX_COMMANDER_COUNT = 1;
+    final int MAX_PARTNER_COUNT = 2;
     List<Card> commanders = deck.getFeaturedCards();
 
     if(commanders == null) {
       throw new IllegalStateException("Commander decks must have a commander");
     }
 
-    if(deck.generateFullDeckList().size() != 100) {
+    if(deck.generateFullDeckList().size() != SET_COMMANDER_DECK_SIZE) {
       throw new IllegalStateException("Commander decks can only contain 100 cards");
     }
 
     List<Card> filteredCommanders = CardFilter.filter(
             commanders,
             Format.COMMANDER.getFeatureCardFilter());
-    if(filteredCommanders.size() == 2) {
+    if(filteredCommanders.size() == MAX_PARTNER_COUNT) {
       // TODO - Add logic for commander partners
     }
-    else if(filteredCommanders.size() != 1) {
+    else if(filteredCommanders.size() != MAX_COMMANDER_COUNT) {
       throw new IllegalStateException("Deck commanders must be of Legendary type");
     }
 
