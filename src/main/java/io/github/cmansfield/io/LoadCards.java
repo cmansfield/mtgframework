@@ -188,13 +188,25 @@ public final class LoadCards {
   private static String cardNameTreatment(String cardName) {
     String treatedCardName = cardName.replace("’", "'");
     List<Pattern> patterns = new ArrayList<>();
-    patterns.add(Pattern.compile("\\[(?:(?!\\s).)*]$")); // Remove set tags at the end: Phantasmal Image [M12]
+//    patterns.add(Pattern.compile("\\[(?:(?!\\s).)*]$"));    // Remove set tags at the end: Phantasmal Image [M12]
     patterns.add(Pattern.compile("\\((?:(?!\\s).)*\\)$"));  // Remove set tags at the end: Evolving Wilds (BFZ)
     patterns.add(Pattern.compile("\\["));                   // Remove opening brackets
     patterns.add(Pattern.compile("]"));                     // Remove closing brackets
     patterns.add(Pattern.compile("\\*.*\\*"));              // Remove foil tags: Island *F*
     patterns.add(Pattern.compile("^\\s+"));                 // Remove leading spaces
     patterns.add(Pattern.compile("\\s+$"));                 // Remove trailing spaces
+
+    Pattern bracketPattern = Pattern.compile("\\s*(.+)\\s\\[.+].*");
+    Matcher match = bracketPattern.matcher(treatedCardName);
+    if(match.find()) {
+      treatedCardName = match.group(1);
+    }
+
+    Pattern splitPattern = Pattern.compile("\\s*([^\\s]+)\\s?\\/\\s?.*");
+    match = splitPattern.matcher(treatedCardName);
+    if(match.find()) {
+      treatedCardName = match.group(1);
+    }
 
     for (Pattern pattern: patterns) {
       treatedCardName = pattern.matcher(treatedCardName).replaceAll("");

@@ -46,7 +46,8 @@ public class App {
 
   private static void importFromTappedOut() throws IOException {
 //    List<Deck> decks = TappedImporter.importFilesFromTappedOut("TappedCrawler\\decks\\test");
-    List<Deck> decks = TappedImporter.importFilesFromTappedOut("TappedCrawler\\decks\\animar-soul-of-elements");
+//    List<Deck> decks = TappedImporter.importFilesFromTappedOut("TappedCrawler\\decks\\animar-soul-of-elements");
+    List<Deck> decks = TappedImporter.importFilesFromTappedOut("TappedCrawler\\decks\\ghave-guru-of-spores");
     Map<String,Integer> cardCounts = DeckUtils.getCardCount(decks);
     List<Map.Entry<String, Integer>> sorted = new ArrayList<>(cardCounts.entrySet());
     sorted.sort(Comparator.comparing(Map.Entry::getValue));
