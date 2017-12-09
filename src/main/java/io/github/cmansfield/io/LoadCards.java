@@ -162,7 +162,49 @@ public final class LoadCards {
       return LoadCards.cardMap.get(treatedName);
     }
 
-    Card filter = new Card.CardBuilder().name(treatedName).build();
+    card = getBestMatchingCard(treatedName);
+    if(card != null) {
+      return card;
+    }
+
+    // Check to see if the deck owner added an 's' to the end
+    //  of the card name, if so we need to remove it
+    if(treatedName.matches(".+s$")) {
+      StringBuilder sb = new StringBuilder(treatedName);
+      sb.deleteCharAt(treatedName.length() - 1);
+      treatedName = sb.toString();
+
+      card = getBestMatchingCard(treatedName);
+      if(card != null) {
+        return card;
+      }
+    }
+
+    // Sometimes split cards show up like 'Ready Willing' rather
+    // than 'Ready / Willing', this treatment will grab the first
+    // word and try a search on it
+    List<String> cardNames = Arrays.asList(treatedName.split("\\s"));
+    if(cardNames.size() > 1) {
+      card = getBestMatchingCard(cardNames.get(0));
+      if(card != null) {
+        return card;
+      }
+    }
+
+    System.out.printf("Could not find card %s    Treated Name: '%s'%n", cardName, treatedName);
+
+    return null;
+  }
+
+  /**
+   * This method tries to find the best matching card based on
+   * the card name supplied
+   *
+   * @param cardName  - Name of the card to search for
+   * @return          - The card object if found, null if not
+   */
+  private static Card getBestMatchingCard(final String cardName) {
+    Card filter = new Card.CardBuilder().name(cardName).build();
     List<Card> filteredList = null;
 
     try {
@@ -173,8 +215,18 @@ public final class LoadCards {
     if(filteredList != null && filteredList.size() == 1) {
       return filteredList.get(0);
     }
+    else if(filteredList != null && filteredList.size() > 1) {
+      return filteredList
+              .stream()
+              .reduce(
+                      filteredList.get(0),
+                      (a,c) -> {
+                        int aDif = Math.abs(a.getName().length() - cardName.length());
+                        int cDif = Math.abs(c.getName().length() - cardName.length());
 
-    System.out.printf("Could not find card %s    Treated Name: '%s'%n", cardName, treatedName);
+                        return aDif <= cDif ? a : c;
+                      });
+    }
 
     return null;
   }
@@ -189,10 +241,10 @@ public final class LoadCards {
     String treatedCardName = cardName.replace("’", "'");
     List<Pattern> patterns = new ArrayList<>();
 //    patterns.add(Pattern.compile("\\[(?:(?!\\s).)*]$"));    // Remove set tags at the end: Phantasmal Image [M12]
-    patterns.add(Pattern.compile("\\((?:(?!\\s).)*\\)$"));  // Remove set tags at the end: Evolving Wilds (BFZ)
+    patterns.add(Pattern.compile("\\*.*\\*"));              // Remove foil tags: Island *F*
+    patterns.add(Pattern.compile("\\((?:(?!\\s).)*\\)"));   // Remove set tags at the end: Evolving Wilds (BFZ)
     patterns.add(Pattern.compile("\\["));                   // Remove opening brackets
     patterns.add(Pattern.compile("]"));                     // Remove closing brackets
-    patterns.add(Pattern.compile("\\*.*\\*"));              // Remove foil tags: Island *F*
     patterns.add(Pattern.compile("^\\s+"));                 // Remove leading spaces
     patterns.add(Pattern.compile("\\s+$"));                 // Remove trailing spaces
 
