@@ -7,7 +7,7 @@ Other
     Add more program args
 
 DeckValidator
-    Udpate 'isFormatCompliant' for Commander to allow commander partners
+    Update 'isFormatCompliant' for Commander to allow commander partners
     Update 'isFormatCompliant' to check for other format rules
 
 GameManager
@@ -26,4 +26,5 @@ Testing
         simulator.gameManager package
         simulator.action package
         simulator.turn package
+        LoadCards::LookupCard
 
