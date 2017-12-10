@@ -156,7 +156,10 @@ public class Player {
                         return false;
                       }
 
-                      return !deck.getFeaturedCards().getName().equalsIgnoreCase(card.getName());
+                      return !deck.getFeaturedCards().stream()
+                              .anyMatch(featuredCard -> {
+                                return featuredCard.getName().equalsIgnoreCase(card.getName());
+                              });
                     })
                     .map(card -> new PlayerCard(card, this))
                     .collect(Collectors.toList()));
@@ -168,7 +171,9 @@ public class Player {
             Zone.COMMAND,
             this.deck.getFeaturedCards() == null ?
                     new ArrayList<>() :
-                    Collections.singletonList(new PlayerCard(this.deck.getFeaturedCards(), this)));
+                    this.deck.getFeaturedCards().stream()
+                            .map(card -> new PlayerCard(card, this))
+                            .collect(Collectors.toList()));
     this.zones.put(Zone.ANTE, new ArrayList<>());
     this.zones.put(Zone.SCRAPYARD, new ArrayList<>());
   }

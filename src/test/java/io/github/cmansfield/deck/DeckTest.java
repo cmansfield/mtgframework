@@ -71,9 +71,9 @@ public class DeckTest {
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
     Deck deck = LoadDeck.loadDeck(file.getAbsolutePath());
 
-    Card featuredCard = deck.getFeaturedCards();
+    List<Card> featuredCards = deck.getFeaturedCards();
 
-    assertNotNull(featuredCard);
-    assertEquals(featuredCard.getName(), "Doran, the Siege Tower");
+    assertNotNull(featuredCards);
+    assertEquals(featuredCards.get(0).getName(), "Doran, the Siege Tower");
   }
 }

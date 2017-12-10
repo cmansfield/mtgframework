@@ -42,9 +42,13 @@ public final class DeckValidator {
             commanders,
             Format.COMMANDER.getFeatureCardFilter());
     if(filteredCommanders.size() == MAX_PARTNER_COUNT) {
-      // TODO - Add logic for commander partners
+      if(!filteredCommanders.stream().allMatch(card -> {
+        return card.getText().toLowerCase().contains("partner");
+      })) {
+        throw new IllegalStateException("If there are two commanders then they both must have partner");
+      }
     }
-    else if(filteredCommanders.size() != MAX_COMMANDER_COUNT) {
+    if(filteredCommanders.size() != MAX_COMMANDER_COUNT && filteredCommanders.size() != MAX_PARTNER_COUNT) {
       throw new IllegalStateException("Deck commanders must be of Legendary type");
     }
 

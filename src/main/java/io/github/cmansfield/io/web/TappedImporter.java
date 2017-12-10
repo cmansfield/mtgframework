@@ -51,11 +51,11 @@ public final class TappedImporter {
 
 
   private static Deck createDeckFromJson(Map<String, Object> jsonMap) {
-    Card featuredCard = null;
+    List<Card> featuredCards = null;
     List inventory = (List)jsonMap.get(IoConstants.INVENTORY_KEY);
 
     if(jsonMap.containsKey(IoConstants.FEATURED_KEY)) {
-      featuredCard = LoadCards.lookupCard((String)jsonMap.get(IoConstants.FEATURED_KEY));
+      featuredCards = Collections.singletonList(LoadCards.lookupCard((String)jsonMap.get(IoConstants.FEATURED_KEY)));
     }
 
     Map<String,Integer> cardMap = new HashMap<>();
@@ -90,8 +90,8 @@ public final class TappedImporter {
     });
 
     Deck deck = new Deck(cards);
-    if(featuredCard != null) {
-      deck.setFeaturedCards(featuredCard);
+    if(featuredCards != null) {
+      deck.setFeaturedCards(featuredCards);
       deck.setFormat(Format.COMMANDER);
     }
 

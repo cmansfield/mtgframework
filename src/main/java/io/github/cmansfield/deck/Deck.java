@@ -100,6 +100,13 @@ public final class Deck {
     this.format = format;
   }
 
+  public void addFeaturedCard(Card card) {
+    if(this.featuredCards == null) {
+      this.featuredCards = new ArrayList<>();
+    }
+    this.featuredCards.add(card);
+  }
+
   /**
    * This method generates a full list of cards with duplicate cards in the list
    *
@@ -125,7 +132,7 @@ public final class Deck {
                     "Featured Cards: %s%n",
                     this.featuredCards.stream()
                             .map(Card::getName)
-                            .collect(Collectors.joining(", "))),
+                            .collect(Collectors.joining("; "))),
             this.cards.stream()
             .map(card -> String.format("%dx %s", this.quantity.get(card.getName()), card.getName()))
             .collect(Collectors.joining("\r\n")));

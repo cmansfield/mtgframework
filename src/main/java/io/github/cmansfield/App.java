@@ -1,5 +1,6 @@
 package io.github.cmansfield;
 
+import io.github.cmansfield.deck.constants.Format;
 import io.github.cmansfield.filters.CardFilter;
 import io.github.cmansfield.simulator.gameManager.GameManager;
 import io.github.cmansfield.simulator.player.Player;
@@ -9,6 +10,7 @@ import io.github.cmansfield.deck.DeckUtils;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
 import io.github.cmansfield.io.*;
+import io.github.cmansfield.validator.DeckValidator;
 
 import java.io.IOException;
 import java.util.*;
@@ -38,7 +40,7 @@ public class App {
       return;
     }
 
-    importFromTappedOut();
+//    importFromTappedOut();
     
     System.out.println("");
   }

@@ -89,7 +89,7 @@
     "Abzan Beastmaster" : 1
   },
   "deckColors" : [ "WHITE", "GREEN", "BLACK" ],
-  "featuredCard" : {
+  "featuredCards" : [{
     "name" : "Doran, the Siege Tower",
     "layout" : "normal",
     "manaCost" : "{B}{G}{W}",
@@ -131,7 +131,7 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "W", "B", "G" ]
-  },
+  }],
   "cards" : [ {
     "name" : "Belbe's Armor",
     "layout" : "normal",
