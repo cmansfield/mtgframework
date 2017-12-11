@@ -40,8 +40,17 @@ public class App {
       return;
     }
 
-//    importFromTappedOut();
-    
+    List<Deck> decks = TappedImporter.importFilesFromTappedOut("TappedCrawler\\decks\\animar-soul-of-elements");
+    decks.forEach(deck -> {
+      try{
+        DeckValidator.isFormatCompliant(deck);
+        SaveDeck.saveDeck(deck);
+      }
+      catch(Exception e) {
+        System.out.println(e);
+      }
+    });
+
     System.out.println("");
   }
 

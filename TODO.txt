@@ -23,6 +23,7 @@ Testing
     Add integration tests
         DeckAppraiser::appraiseHandDraw (Wait to create this)
         DeckValidator - Check partner commanders
+        DeckUtils::getNonCommanderCards
         simulator.gameManager package
         simulator.action package
         simulator.turn package

@@ -1,10 +1,12 @@
 package io.github.cmansfield.validator;
 
+import io.github.cmansfield.deck.DeckUtils;
 import io.github.cmansfield.deck.constants.Format;
 import io.github.cmansfield.card.CardUtils;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
 import io.github.cmansfield.filters.CardFilter;
+import io.github.cmansfield.io.LoadCards;
 
 import java.util.stream.Collectors;
 import java.util.Collections;
@@ -34,7 +36,11 @@ public final class DeckValidator {
       throw new IllegalStateException("Commander decks must have a commander");
     }
 
-    if(deck.generateFullDeckList().size() != SET_COMMANDER_DECK_SIZE) {
+    // This should return all cards that are not a
+    // commander card
+    List<Card> nonCommanderCards = DeckUtils.getNonCommanderCards(deck);
+
+    if(nonCommanderCards.size() + commanders.size() != SET_COMMANDER_DECK_SIZE) {
       throw new IllegalStateException("Commander decks can only contain 100 cards");
     }
 
