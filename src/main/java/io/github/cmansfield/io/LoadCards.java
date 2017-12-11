@@ -240,7 +240,6 @@ public final class LoadCards {
   private static String cardNameTreatment(String cardName) {
     String treatedCardName = cardName.replace("’", "'");
     List<Pattern> patterns = new ArrayList<>();
-//    patterns.add(Pattern.compile("\\[(?:(?!\\s).)*]$"));    // Remove set tags at the end: Phantasmal Image [M12]
     patterns.add(Pattern.compile("\\*.*\\*"));              // Remove foil tags: Island *F*
     patterns.add(Pattern.compile("\\((?:(?!\\s).)*\\)"));   // Remove set tags at the end: Evolving Wilds (BFZ)
     patterns.add(Pattern.compile("\\["));                   // Remove opening brackets

@@ -17,9 +17,6 @@ GameManager
 CastSpellAction::execute
     Check to make sure we are using the correct mana to cast spells
 
-deck.constants.Format.java
-    Include other format information
-
 Create:
     card type constants
     DeckDeserializer (Mostly to ensure the commander isn't included in the deck list)
@@ -27,8 +24,6 @@ Create:
 Testing
     Add integration tests
         DeckAppraiser::appraiseHandDraw (Wait to create this)
-        DeckValidator - Check partner commanders
-        DeckUtils::getNonCommanderCards
         simulator.gameManager package
         simulator.action package
         simulator.turn package

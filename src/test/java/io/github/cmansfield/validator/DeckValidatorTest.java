@@ -111,4 +111,21 @@ public class DeckValidatorTest {
 
     DeckValidator.isFormatCompliant(deck);
   }
+
+  @Test (expectedExceptions = IllegalStateException.class)
+  public void test_isFormatCompliant_commander_tooManyCardCopies() throws IOException {
+    final String TEST_DECK_FILE = "CompleteCommanderDeck.json";
+    File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
+    Deck deck = LoadDeck.loadDeck(file.getAbsolutePath());
+    List<Card> cards = deck.generateFullDeckList();
+    Card duplicatedCard = cards.get(0);
+    cards.remove(duplicatedCard);
+    cards.remove(0);
+    cards.add(duplicatedCard);
+    cards.add(duplicatedCard);
+    Deck badDeck = new Deck(cards, Format.COMMANDER);
+    badDeck.setFeaturedCards(deck.getFeaturedCards());
+
+    DeckValidator.isFormatCompliant(badDeck);
+  }
 }

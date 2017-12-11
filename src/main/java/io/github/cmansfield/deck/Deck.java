@@ -109,6 +109,9 @@ public final class Deck {
     removeFeaturedCards();
   }
 
+  /**
+   * This method removes featured cards from the deck's list of cards
+   */
   private void removeFeaturedCards() {
     if(this.cards == null || this.featuredCards == null) {
       return;

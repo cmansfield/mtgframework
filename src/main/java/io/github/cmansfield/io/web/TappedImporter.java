@@ -16,6 +16,13 @@ import java.util.*;
 
 public final class TappedImporter {
 
+  /**
+   * Iterates over all json objects in the supplied directory, creates a list of deck objects
+   *
+   * @param directory     - File directory full of tappedout json files
+   * @return              - List of decks generated from the json files
+   * @throws IOException
+   */
   public static List<Deck> importFilesFromTappedOut(String directory) throws IOException {
     File folder = new File(directory);
     File[] fileArray = folder.listFiles();
@@ -49,7 +56,12 @@ public final class TappedImporter {
     return decks;
   }
 
-
+  /**
+   * Generates a deck object from a supplied jsonMap object
+   *
+   * @param jsonMap - jsonMap object created from the json file
+   * @return        - A deck object generated from the jsonMap
+   */
   private static Deck createDeckFromJson(Map<String, Object> jsonMap) {
     List<Card> featuredCards = null;
     List inventory = (List)jsonMap.get(IoConstants.INVENTORY_KEY);

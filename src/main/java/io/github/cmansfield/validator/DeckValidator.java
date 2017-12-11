@@ -35,6 +35,8 @@ public final class DeckValidator {
       throw new IllegalStateException("Commander decks must have a commander");
     }
 
+    checkLegalCardCounts(deck);
+
     // This should return all cards that are not a commander card
     List<Card> nonCommanderCards = deck.generateFullDeckList();
 
@@ -97,5 +99,23 @@ public final class DeckValidator {
               .getListOfLegalities(Collections.singletonList(card))
               .contains(format.toString());
     }).collect(Collectors.toList());
+  }
+
+  /**
+   * Checks to make sure there are the correct number of copies of each
+   * card within the deck for the deck's format
+   *
+   * @param deck - Deck to validate card counts
+   */
+  private static void checkLegalCardCounts(Deck deck) {
+
+    deck.getCards().forEach(card -> {
+      if(card.getTypes() != null && card.getType().contains("Basic Land")) {
+        return;
+      }
+      if(deck.getQuantity(card.getName()) > deck.getFormat().getMaxCopiesOfCard()) {
+        throw new IllegalStateException(String.format("There are too many copies of card: %s", card.getName()));
+      }
+    });
   }
 }

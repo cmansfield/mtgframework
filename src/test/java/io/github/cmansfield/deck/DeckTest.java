@@ -88,6 +88,6 @@ public class DeckTest {
 
     assertFalse(deck.getCards().contains(card));
     assertEquals((int)deck.getQuantity(card.getName()), 0);
-    assertEquals(deck.generateFullDeckList().size(), 98);
+    assertEquals(deck.generateFullDeckList().size(), Format.COMMANDER.getMaxDeckSize() - 2);
   }
 }
