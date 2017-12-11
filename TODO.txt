@@ -17,7 +17,9 @@ GameManager
 CastSpellAction::execute
     Check to make sure we are using the correct mana to cast spells
 
-Create a card type constants
+Create:
+    card type constants
+    DeckDeserializer (Mostly to ensure the commander isn't included in the deck list)
 
 Testing
     Add integration tests

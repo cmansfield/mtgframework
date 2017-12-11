@@ -32,7 +32,7 @@ public class DeckValidatorTest {
     nonCompliantCardNames.add("Biorhythm");
 
     assertNotNull(nonCompliantCards);
-    assertEquals(deck.generateFullDeckList().size(), 100);
+    assertEquals(deck.generateFullDeckList().size(), 99);
     assertEquals(nonCompliantCards.size(), 3);
     assertEquals(nonCompliantCards.size(), nonCompliantCardNames.size());
     nonCompliantCards.forEach(card -> {

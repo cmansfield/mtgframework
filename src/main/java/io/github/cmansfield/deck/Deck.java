@@ -94,6 +94,7 @@ public final class Deck {
 
   public void setFeaturedCards(List<Card> cards) {
     this.featuredCards = cards;
+    removeFeaturedCards();
   }
 
   public void setFormat(Format format) {
@@ -105,6 +106,20 @@ public final class Deck {
       this.featuredCards = new ArrayList<>();
     }
     this.featuredCards.add(card);
+    removeFeaturedCards();
+  }
+
+  private void removeFeaturedCards() {
+    if(this.cards == null || this.featuredCards == null) {
+      return;
+    }
+
+    this.featuredCards.forEach(card -> {
+      this.quantity.remove(card.getName());
+      this.cards.removeIf(c -> {
+        return c.getName().equals(card.getName());
+      });
+    });
   }
 
   /**

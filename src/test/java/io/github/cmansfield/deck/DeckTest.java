@@ -12,9 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 
 public class DeckTest {
@@ -75,5 +73,21 @@ public class DeckTest {
 
     assertNotNull(featuredCards);
     assertEquals(featuredCards.get(0).getName(), "Doran, the Siege Tower");
+  }
+
+  @Test
+  public void test_removeFeaturedCards() throws IOException {
+    final String TEST_DECK_FILE = "CompleteCommanderDeck.json";
+    File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
+    Deck deck = LoadDeck.loadDeck(file.getAbsolutePath());
+
+    assertEquals(deck.generateFullDeckList().size(), 99);
+
+    Card card = deck.getCards().get(0);
+    deck.addFeaturedCard(card);
+
+    assertFalse(deck.getCards().contains(card));
+    assertEquals((int)deck.getQuantity(card.getName()), 0);
+    assertEquals(deck.generateFullDeckList().size(), 98);
   }
 }

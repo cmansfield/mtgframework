@@ -45,7 +45,6 @@
     "Tree of Perdition" : 1,
     "Wall of Tanglecord" : 1,
     "Jungle Hollow" : 1,
-    "Doran, the Siege Tower" : 1,
     "Guiltfeeder" : 1,
     "Vanguard's Shield" : 1,
     "Vivid Meadow" : 1,
@@ -1708,48 +1707,6 @@
       "legality" : "Legal"
     } ],
     "colorIdentity" : [ "B", "G" ]
-  }, {
-    "name" : "Doran, the Siege Tower",
-    "layout" : "normal",
-    "manaCost" : "{B}{G}{W}",
-    "cmc" : 3.0,
-    "colors" : [ "White", "Black", "Green" ],
-    "type" : "Legendary Creature — Treefolk Shaman",
-    "supertypes" : [ "Legendary" ],
-    "types" : [ "Creature" ],
-    "subtypes" : [ "Treefolk", "Shaman" ],
-    "text" : "Each creature assigns combat damage equal to its toughness rather than its power.",
-    "power" : "0",
-    "toughness" : "5",
-    "imageName" : "doran, the siege tower",
-    "rulings" : [ {
-      "date" : "2007-10-01",
-      "text" : "Doran's ability means, for example, that a 2/3 creature will assign 3 damage in combat instead of 2."
-    }, {
-      "date" : "2007-10-01",
-      "text" : "Doran's ability doesn't actually change creatures' power; it changes only the value of the combat damage they assign. All other rules and effects that check power or toughness use the real values."
-    }, {
-      "date" : "2007-10-01",
-      "text" : "This effect is mandatory and affects all creatures."
-    } ],
-    "printings" : [ "pCMP", "LRW", "V11" ],
-    "legalities" : [ {
-      "format" : "Commander",
-      "legality" : "Legal"
-    }, {
-      "format" : "Legacy",
-      "legality" : "Legal"
-    }, {
-      "format" : "Lorwyn-Shadowmoor Block",
-      "legality" : "Legal"
-    }, {
-      "format" : "Modern",
-      "legality" : "Legal"
-    }, {
-      "format" : "Vintage",
-      "legality" : "Legal"
-    } ],
-    "colorIdentity" : [ "W", "B", "G" ]
   }, {
     "name" : "Guiltfeeder",
     "layout" : "normal",

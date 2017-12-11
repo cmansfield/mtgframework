@@ -151,16 +151,6 @@ public class Player {
             Zone.LIBRARY,
             this.deck.generateFullDeckList()
                     .stream()
-                    .filter(card -> {
-                      if(deck.getFeaturedCards() == null) {
-                        return false;
-                      }
-
-                      return !deck.getFeaturedCards().stream()
-                              .anyMatch(featuredCard -> {
-                                return featuredCard.getName().equalsIgnoreCase(card.getName());
-                              });
-                    })
                     .map(card -> new PlayerCard(card, this))
                     .collect(Collectors.toList()));
     this.zones.put(Zone.HAND, new ArrayList<>());

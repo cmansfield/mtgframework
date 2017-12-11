@@ -36,9 +36,8 @@ public final class DeckValidator {
       throw new IllegalStateException("Commander decks must have a commander");
     }
 
-    // This should return all cards that are not a
-    // commander card
-    List<Card> nonCommanderCards = DeckUtils.getNonCommanderCards(deck);
+    // This should return all cards that are not a commander card
+    List<Card> nonCommanderCards = deck.generateFullDeckList();
 
     if(nonCommanderCards.size() + commanders.size() != SET_COMMANDER_DECK_SIZE) {
       throw new IllegalStateException("Commander decks can only contain 100 cards");
