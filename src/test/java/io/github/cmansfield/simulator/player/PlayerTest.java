@@ -1,5 +1,6 @@
 package io.github.cmansfield.simulator.player;
 
+import io.github.cmansfield.deck.constants.Format;
 import io.github.cmansfield.io.LoadDeck;
 import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.io.LoadCards;
@@ -31,7 +32,7 @@ public class PlayerTest {
 
   @Test
   public void test_draw() throws IOException {
-    assertEquals(player.getZone(Zone.LIBRARY).size(), 99);
+    assertEquals(player.getZone(Zone.LIBRARY).size(), Format.COMMANDER.getMaxDeckSize() - 1);
     assertEquals(player.getZone(Zone.HAND).size(), 0);
     assertEquals(player.getZone(Zone.COMMAND).size(), 1);
 

@@ -1,6 +1,7 @@
 package io.github.cmansfield.simulator.player;
 
 import io.github.cmansfield.deck.Deck;
+import io.github.cmansfield.deck.constants.Format;
 import io.github.cmansfield.io.LoadDeck;
 import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.simulator.player.constants.CardState;
@@ -24,7 +25,7 @@ public class PlayerUtilsTest {
 
     assertEquals(PlayerUtils.getUntappedMana(player).size(), 0);
 
-    player.moveZone(Zone.LIBRARY, Zone.BATTLEFIELD, 99);
+    player.moveZone(Zone.LIBRARY, Zone.BATTLEFIELD, Format.COMMANDER.getMaxDeckSize() - 1);
     List<PlayerCard> untappedMana = PlayerUtils.getUntappedMana(player);
 
     assertEquals(untappedMana.size(), expectedMana);

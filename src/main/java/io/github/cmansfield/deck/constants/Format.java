@@ -11,6 +11,8 @@ public enum Format implements Constant<Format> {
   KHANS_OF_TARKIR_BLOCK("Khans of Tarkir Block"),
   LORWYN_SHADOWMOOR_BLOCK("Lorwyn-Shadowmoor Block"),
   COMMANDER("Commander",
+            100,
+            100,
             new Card
               .CardBuilder()
               .superTypes(Collections.singletonList("Legendary"))
@@ -44,17 +46,37 @@ public enum Format implements Constant<Format> {
   ONSLAUGHT_BLOCK("Onslaught Block"),
   RAVNICA_BLOCK("Ravnica Block");
 
-  private final String value;
-  private final Card featureCardFilter;
+  private String value;
+  private int minDeckSize;
+  private int maxDeckSize;
+  private Card featureCardFilter;
 
   Format(String value) {
     this.value = value;
-    this.featureCardFilter = null;
+  }
+
+  Format(String value, int minDeckSize, int maxDeckSize) {
+    this(value);
+    this.minDeckSize = minDeckSize;
+    this.maxDeckSize = maxDeckSize;
   }
 
   Format(String value, Card featureCardFilter) {
-    this.value = value;
+    this(value);
     this.featureCardFilter = featureCardFilter;
+  }
+
+  Format(String value, int minDeckSize, int maxDeckSize, Card featureCardFilter) {
+    this(value, minDeckSize, maxDeckSize);
+    this.featureCardFilter = featureCardFilter;
+  }
+
+  public int getMinDeckSize() {
+    return this.minDeckSize;
+  }
+
+  public int getMaxDeckSize() {
+    return this.maxDeckSize;
   }
 
   public Card getFeatureCardFilter() {

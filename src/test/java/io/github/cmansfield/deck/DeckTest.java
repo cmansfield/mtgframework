@@ -81,7 +81,7 @@ public class DeckTest {
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
     Deck deck = LoadDeck.loadDeck(file.getAbsolutePath());
 
-    assertEquals(deck.generateFullDeckList().size(), 99);
+    assertEquals(deck.generateFullDeckList().size(), Format.COMMANDER.getMaxDeckSize() - 1);
 
     Card card = deck.getCards().get(0);
     deck.addFeaturedCard(card);

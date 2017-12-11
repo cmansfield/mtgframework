@@ -27,7 +27,6 @@ public final class DeckValidator {
       throw new UnsupportedOperationException("This feature currently only checks to see if decks are commander legal");
     }
 
-    final int SET_COMMANDER_DECK_SIZE = 100;
     final int MAX_COMMANDER_COUNT = 1;
     final int MAX_PARTNER_COUNT = 2;
     List<Card> commanders = deck.getFeaturedCards();
@@ -39,8 +38,8 @@ public final class DeckValidator {
     // This should return all cards that are not a commander card
     List<Card> nonCommanderCards = deck.generateFullDeckList();
 
-    if(nonCommanderCards.size() + commanders.size() != SET_COMMANDER_DECK_SIZE) {
-      throw new IllegalStateException("Commander decks can only contain 100 cards");
+    if(nonCommanderCards.size() + commanders.size() != Format.COMMANDER.getMaxDeckSize()) {
+      throw new IllegalStateException(String.format("Commander decks can only contain %d cards", Format.COMMANDER.getMaxDeckSize()));
     }
 
     List<Card> filteredCommanders = CardFilter.filter(
