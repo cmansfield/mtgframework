@@ -21,12 +21,13 @@ public final class DeckValidator {
    * @param deck  - The deck to check
    */
   public static void isFormatCompliant(Deck deck) {
-    if(deck.getFormat() != Format.COMMANDER) {
-      throw new UnsupportedOperationException("This feature currently only checks to see if decks are commander legal");
+    Format deckFormat = deck.getFormat();
+
+    if(deckFormat == null) {
+      throw new NullPointerException("This deck has no format set");
     }
 
     checkLegalCardCounts(deck);
-    Format deckFormat = deck.getFormat();
 
     switch (deckFormat) {
       case SCARS_OF_MIRRODIN_BLOCK:
