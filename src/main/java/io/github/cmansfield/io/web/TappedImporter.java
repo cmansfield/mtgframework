@@ -21,9 +21,8 @@ public final class TappedImporter {
    *
    * @param directory     - File directory full of tappedout json files
    * @return              - List of decks generated from the json files
-   * @throws IOException
    */
-  public static List<Deck> importFilesFromTappedOut(String directory) throws IOException {
+  public static List<Deck> importFilesFromTappedOut(String directory) {
     File folder = new File(directory);
     File[] fileArray = folder.listFiles();
     List<Deck> decks = new ArrayList<>();
@@ -40,6 +39,7 @@ public final class TappedImporter {
         return;
       }
       try(InputStream inputStream = new FileInputStream(file.getAbsolutePath())) {
+        //noinspection unchecked
         Map<String, Object> jsonMap = mapper.readValue(inputStream, Map.class);
         Deck deck = createDeckFromJson(jsonMap);
         if(deck != null) {
@@ -72,6 +72,7 @@ public final class TappedImporter {
 
     Map<String,Integer> cardMap = new HashMap<>();
 
+    //noinspection unchecked
     inventory.forEach(list -> {
       String name;
       int qty;

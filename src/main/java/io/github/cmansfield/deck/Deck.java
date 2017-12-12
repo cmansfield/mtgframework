@@ -119,9 +119,9 @@ public final class Deck {
 
     this.featuredCards.forEach(card -> {
       this.quantity.remove(card.getName());
-      this.cards.removeIf(c -> {
-        return c.getName().equals(card.getName());
-      });
+      this.cards.removeIf(c ->
+        c.getName().equals(card.getName())
+      );
     });
   }
 

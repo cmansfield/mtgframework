@@ -1,12 +1,10 @@
 package io.github.cmansfield.validator;
 
-import io.github.cmansfield.deck.DeckUtils;
 import io.github.cmansfield.deck.constants.Format;
+import io.github.cmansfield.filters.CardFilter;
 import io.github.cmansfield.card.CardUtils;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
-import io.github.cmansfield.filters.CardFilter;
-import io.github.cmansfield.io.LoadCards;
 
 import java.util.stream.Collectors;
 import java.util.Collections;
@@ -28,7 +26,72 @@ public final class DeckValidator {
     }
 
     checkLegalCardCounts(deck);
-    isCommanderCompliant(deck);
+    Format deckFormat = deck.getFormat();
+
+    switch (deckFormat) {
+      case SCARS_OF_MIRRODIN_BLOCK:
+      case ICE_AGE_BLOCK:
+      case KHANS_OF_TARKIR_BLOCK:
+      case LORWYN_SHADOWMOOR_BLOCK:
+      case ODYSSEY_BLOCK:
+      case KALADESH_BLOCK:
+      case MASQUES_BLOCK:
+      case SHADOWS_OVER_INNISTRAD_BLOCK:
+      case IXALAN_BLOCK:
+      case INNISTRAD_BLOCK:
+      case INVASION_BLOCK:
+      case THEROS_BLOCK:
+      case SHARDS_OF_ALARA_BLOCK:
+      case KAMIGAWA_BLOCK:
+      case TEMPEST_BLOCK:
+      case RETURN_TO_RAVNICA_BLOCK:
+      case URZA_BLOCK:
+      case MIRAGE_BLOCK:
+      case BATTLE_FOR_ZENDIKAR_BLOCK:
+      case TIME_SPIRAL_BLOCK:
+      case MIRRODIN_BLOCK:
+      case ZENDIKAR_BLOCK:
+      case AMONKHET_BLOCK:
+      case ONSLAUGHT_BLOCK:
+      case RAVNICA_BLOCK:
+        break;
+      case COMMANDER:
+        isCommanderCompliant(deck);
+        break;
+      case LEGACY:
+        break;
+      case EXTENDED:
+        break;
+      case STANDARD:
+        break;
+      case UN_SETS:
+        break;
+      case MODERN:
+        break;
+      case VINTAGE:
+        break;
+      case CLASSIC:
+        break;
+    }
+
+    int deckCount = deck.generateFullDeckList().size() + deck.getFeaturedCards().size();
+    int minCount = deckFormat.getMinDeckSize();
+    int maxCount = deckFormat.getMaxDeckSize();
+    if(deckCount > maxCount || deckCount < minCount) {
+      String message = minCount == maxCount ?
+              String.format(
+                "%s decks must be %d cards, found %d",
+                deckFormat.toString(),
+                maxCount,
+                deckCount)
+              : String.format(
+                "%s decks must be between %d to %d cards, found %d",
+                deckFormat.toString(),
+                minCount,
+                maxCount,
+                deckCount);
+      throw new IllegalStateException(message);
+    }
 
     List<Card> nonCompliantCards = getNonCompliantCards(deck);
     if(!nonCompliantCards.isEmpty()) {
@@ -59,11 +122,11 @@ public final class DeckValidator {
     }
 
     List<Card> cards = deck.getCards();
-    return cards.stream().filter(card -> {
-      return !CardUtils
+    return cards.stream().filter(card ->
+            !CardUtils
               .getListOfLegalities(Collections.singletonList(card))
-              .contains(format.toString());
-    }).collect(Collectors.toList());
+              .contains(format.toString())
+    ).collect(Collectors.toList());
   }
 
   /**
@@ -98,20 +161,13 @@ public final class DeckValidator {
       throw new IllegalStateException("Commander decks must have a commander");
     }
 
-    // This should return all cards that are not a commander card
-    List<Card> nonCommanderCards = deck.generateFullDeckList();
-
-    if(nonCommanderCards.size() + commanders.size() != Format.COMMANDER.getMaxDeckSize()) {
-      throw new IllegalStateException(String.format("Commander decks can only contain %d cards", Format.COMMANDER.getMaxDeckSize()));
-    }
-
     List<Card> filteredCommanders = CardFilter.filter(
             commanders,
             Format.COMMANDER.getFeatureCardFilter());
     if(filteredCommanders.size() == MAX_PARTNER_COUNT) {
-      if(!filteredCommanders.stream().allMatch(card -> {
-        return card.getText().toLowerCase().contains("partner");
-      })) {
+      if(!filteredCommanders.stream().allMatch(card ->
+        card.getText().toLowerCase().contains("partner")
+      )) {
         throw new IllegalStateException("If there are two commanders then they both must have partner");
       }
     }

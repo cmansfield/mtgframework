@@ -6,8 +6,8 @@ Other
     Replace System.out.prints with logging
     Add more program args
 
-DeckValidator
-    Update 'isFormatCompliant' to check for other format rules
+DeckValidator::isFormatCompliant
+    Make sure all formats other than commander are validated correctly
 
 GameManager
     Use the command pattern to add actions to the stack
@@ -26,9 +26,9 @@ LoadCards::LookupCard
 
 Testing
     Add integration tests
+        DeckValidator::isFormatCompliant (Check other formats)
         DeckAppraiser::appraiseHandDraw (Wait to create this)
         simulator.gameManager package
         simulator.action package
         simulator.turn package
         LoadCards::LookupCard
-
