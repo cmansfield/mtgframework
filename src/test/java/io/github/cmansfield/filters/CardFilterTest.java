@@ -164,4 +164,24 @@ public class CardFilterTest {
     assertEquals(filteredCards.size(), 1);
     assertEquals(filteredCards.get(0).getName(), "Ebony Treefolk");
   }
+
+  @Test
+  public void test_filter_multiLegalities() throws IOException {
+    List<Card> cards = LoadCards.loadCards();
+    List<Card> zendikarBlock = CardFilter.filter(
+            cards,
+            new Card.CardBuilder()
+                    .legalities(new CardUtils.LegalitiesBuilder()
+                            .format(Format.ZENDIKAR_BLOCK)
+                            .format(Format.COMMANDER)
+                            .build())
+                    .build());
+    List<Card> foundCards = CardFilter.filter(
+            zendikarBlock,
+            new Card.CardBuilder()
+                    .name("Emrakul, the Aeons Torn")
+                    .build());
+
+    assertEquals(foundCards.size(), 0);
+  }
 }

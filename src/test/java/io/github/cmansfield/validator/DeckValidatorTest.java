@@ -1,7 +1,9 @@
 package io.github.cmansfield.validator;
 
+import io.github.cmansfield.card.CardUtils;
 import io.github.cmansfield.deck.constants.Format;
 import io.github.cmansfield.constants.Color;
+import io.github.cmansfield.filters.CardFilter;
 import io.github.cmansfield.io.LoadCards;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
@@ -10,6 +12,7 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.io.File;
+import java.text.Normalizer;
 import java.util.*;
 
 import static org.testng.Assert.*;
@@ -127,5 +130,45 @@ public class DeckValidatorTest {
     badDeck.setFeaturedCards(deck.getFeaturedCards());
 
     DeckValidator.isFormatCompliant(badDeck);
+  }
+
+  @Test
+  public void test_isFormatCompliant_block() throws IOException {
+    List<Card> cards = LoadCards.loadCards();
+    List<Card> zendikarBlock = CardFilter.filter(
+            cards,
+            new Card.CardBuilder()
+                    .legalities(new CardUtils.LegalitiesBuilder()
+                            .format(Format.BATTLE_FOR_ZENDIKAR_BLOCK)
+                            .build())
+                    .build());
+
+    Deck deck = new Deck(zendikarBlock, Format.BATTLE_FOR_ZENDIKAR_BLOCK);
+    DeckValidator.isFormatCompliant(deck);
+  }
+
+  @Test (expectedExceptions = IllegalStateException.class)
+  public void test_isFormatCompliant_block_badCounts() throws IOException {
+    List<Card> cards = LoadCards.loadCards();
+    List<Card> zendikarBlock = CardFilter.filter(
+            cards,
+            new Card.CardBuilder()
+                    .legalities(new CardUtils.LegalitiesBuilder()
+                            .format(Format.BATTLE_FOR_ZENDIKAR_BLOCK)
+                            .build())
+                    .build());
+    zendikarBlock = CardFilter.filterNot(
+          zendikarBlock,
+          new Card.CardBuilder()
+                  .type("Basic Land")
+                  .build());
+    Card muliCard = zendikarBlock.get(0);
+    zendikarBlock.add(muliCard);
+    zendikarBlock.add(muliCard);
+    zendikarBlock.add(muliCard);
+    zendikarBlock.add(muliCard);    // 5th copy
+
+    Deck deck = new Deck(zendikarBlock, Format.BATTLE_FOR_ZENDIKAR_BLOCK);
+    DeckValidator.isFormatCompliant(deck);
   }
 }

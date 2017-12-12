@@ -33,7 +33,8 @@ public final class DeckValidator {
       isCommanderCompliant(deck);
     }
 
-    int deckCount = deck.generateFullDeckList().size() + deck.getFeaturedCards().size();
+    int deckCount = deck.generateFullDeckList().size()
+            + (deck.getFeaturedCards() == null ? 0 : deck.getFeaturedCards().size());
     int minCount = deckFormat.getMinDeckSize();
     int maxCount = deckFormat.getMaxDeckSize();
     if(deckCount > maxCount || deckCount < minCount) {
