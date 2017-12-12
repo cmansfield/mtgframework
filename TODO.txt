@@ -23,7 +23,6 @@ LoadCards::LookupCard
 
 Testing
     Add integration tests
-        DeckValidator::isFormatCompliant (Check other formats)
         DeckAppraiser::appraiseHandDraw (Wait to create this)
         simulator.gameManager package
         simulator.action package

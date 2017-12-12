@@ -147,6 +147,30 @@ public class DeckValidatorTest {
     DeckValidator.isFormatCompliant(deck);
   }
 
+  @Test
+  public void test_isFormatCompliant_block_goodCounts() throws IOException {
+    List<Card> cards = LoadCards.loadCards();
+    List<Card> zendikarBlock = CardFilter.filter(
+            cards,
+            new Card.CardBuilder()
+                    .legalities(new CardUtils.LegalitiesBuilder()
+                            .format(Format.BATTLE_FOR_ZENDIKAR_BLOCK)
+                            .build())
+                    .build());
+    zendikarBlock = CardFilter.filterNot(
+            zendikarBlock,
+            new Card.CardBuilder()
+                    .type("Basic Land")
+                    .build());
+    Card muliCard = zendikarBlock.get(0);
+    zendikarBlock.add(muliCard);
+    zendikarBlock.add(muliCard);
+    zendikarBlock.add(muliCard);    // 4th copy
+
+    Deck deck = new Deck(zendikarBlock, Format.BATTLE_FOR_ZENDIKAR_BLOCK);
+    DeckValidator.isFormatCompliant(deck);
+  }
+
   @Test (expectedExceptions = IllegalStateException.class)
   public void test_isFormatCompliant_block_badCounts() throws IOException {
     List<Card> cards = LoadCards.loadCards();
@@ -167,6 +191,38 @@ public class DeckValidatorTest {
     zendikarBlock.add(muliCard);
     zendikarBlock.add(muliCard);
     zendikarBlock.add(muliCard);    // 5th copy
+
+    Deck deck = new Deck(zendikarBlock, Format.BATTLE_FOR_ZENDIKAR_BLOCK);
+    DeckValidator.isFormatCompliant(deck);
+  }
+
+  @Test
+  public void test_isFormatCompliant_block_goodDeckSize() throws IOException {
+    List<Card> cards = LoadCards.loadCards();
+    List<Card> zendikarBlock = CardFilter.filter(
+            cards,
+            new Card.CardBuilder()
+                    .legalities(new CardUtils.LegalitiesBuilder()
+                            .format(Format.BATTLE_FOR_ZENDIKAR_BLOCK)
+                            .build())
+                    .build());
+    zendikarBlock = zendikarBlock.subList(0, Format.BATTLE_FOR_ZENDIKAR_BLOCK.getMinDeckSize());
+
+    Deck deck = new Deck(zendikarBlock, Format.BATTLE_FOR_ZENDIKAR_BLOCK);
+    DeckValidator.isFormatCompliant(deck);
+  }
+
+  @Test (expectedExceptions = IllegalStateException.class)
+  public void test_isFormatCompliant_block_badDeckSize() throws IOException {
+    List<Card> cards = LoadCards.loadCards();
+    List<Card> zendikarBlock = CardFilter.filter(
+            cards,
+            new Card.CardBuilder()
+                    .legalities(new CardUtils.LegalitiesBuilder()
+                            .format(Format.BATTLE_FOR_ZENDIKAR_BLOCK)
+                            .build())
+                    .build());
+    zendikarBlock = zendikarBlock.subList(0, Format.BATTLE_FOR_ZENDIKAR_BLOCK.getMinDeckSize() - 1);
 
     Deck deck = new Deck(zendikarBlock, Format.BATTLE_FOR_ZENDIKAR_BLOCK);
     DeckValidator.isFormatCompliant(deck);
