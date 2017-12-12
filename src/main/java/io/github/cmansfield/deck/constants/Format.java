@@ -25,7 +25,7 @@ public enum Format implements Constant<Format> {
   EXTENDED("Extended"),
   IXALAN_BLOCK("Ixalan Block", 60, Integer.MAX_VALUE, 4),
   STANDARD("Standard", 60, Integer.MAX_VALUE, 4),
-  UN_SETS("Un-Sets"),
+  UN_SETS("Un-Sets", 60, Integer.MAX_VALUE, 4),
   MODERN("Modern", 60, Integer.MAX_VALUE, 4),
   VINTAGE("Vintage"),
   SHADOWS_OVER_INNISTRAD_BLOCK("Shadows over Innistrad Block", 60, Integer.MAX_VALUE, 4),

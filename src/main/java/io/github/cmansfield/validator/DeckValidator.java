@@ -29,50 +29,8 @@ public final class DeckValidator {
 
     checkLegalCardCounts(deck);
 
-    switch (deckFormat) {
-      case SCARS_OF_MIRRODIN_BLOCK:
-      case ICE_AGE_BLOCK:
-      case KHANS_OF_TARKIR_BLOCK:
-      case LORWYN_SHADOWMOOR_BLOCK:
-      case ODYSSEY_BLOCK:
-      case KALADESH_BLOCK:
-      case MASQUES_BLOCK:
-      case SHADOWS_OVER_INNISTRAD_BLOCK:
-      case IXALAN_BLOCK:
-      case INNISTRAD_BLOCK:
-      case INVASION_BLOCK:
-      case THEROS_BLOCK:
-      case SHARDS_OF_ALARA_BLOCK:
-      case KAMIGAWA_BLOCK:
-      case TEMPEST_BLOCK:
-      case RETURN_TO_RAVNICA_BLOCK:
-      case URZA_BLOCK:
-      case MIRAGE_BLOCK:
-      case BATTLE_FOR_ZENDIKAR_BLOCK:
-      case TIME_SPIRAL_BLOCK:
-      case MIRRODIN_BLOCK:
-      case ZENDIKAR_BLOCK:
-      case AMONKHET_BLOCK:
-      case ONSLAUGHT_BLOCK:
-      case RAVNICA_BLOCK:
-        break;
-      case COMMANDER:
-        isCommanderCompliant(deck);
-        break;
-      case LEGACY:
-        break;
-      case EXTENDED:
-        break;
-      case STANDARD:
-        break;
-      case UN_SETS:
-        break;
-      case MODERN:
-        break;
-      case VINTAGE:
-        break;
-      case CLASSIC:
-        break;
+    if(deckFormat == Format.COMMANDER) {
+      isCommanderCompliant(deck);
     }
 
     int deckCount = deck.generateFullDeckList().size() + deck.getFeaturedCards().size();
@@ -137,12 +95,13 @@ public final class DeckValidator {
    * @param deck - Deck to validate card counts
    */
   private static void checkLegalCardCounts(Deck deck) {
+    final int MAX_COPIES = deck.getFormat().getMaxCopiesOfCard();
 
     deck.getCards().forEach(card -> {
       if(card.getTypes() != null && card.getType().contains("Basic Land")) {
         return;
       }
-      if(deck.getQuantity(card.getName()) > deck.getFormat().getMaxCopiesOfCard()) {
+      if(deck.getQuantity(card.getName()) > MAX_COPIES) {
         throw new IllegalStateException(String.format("There are too many copies of card: %s", card.getName()));
       }
     });
