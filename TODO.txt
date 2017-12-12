@@ -18,8 +18,11 @@ CastSpellAction::execute
     Check to make sure we are using the correct mana to cast spells
 
 Create:
-    card type constants
+    card type constants (Maybe not. if I do I would have to update this program with each new set)
     DeckDeserializer (Mostly to ensure the commander isn't included in the deck list)
+
+LoadCards::LookupCard
+    Allow lookup on ascii card names, convert uni-char to ascii for lookup
 
 Testing
     Add integration tests

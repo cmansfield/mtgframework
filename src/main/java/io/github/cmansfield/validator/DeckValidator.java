@@ -27,43 +27,8 @@ public final class DeckValidator {
       throw new UnsupportedOperationException("This feature currently only checks to see if decks are commander legal");
     }
 
-    final int MAX_COMMANDER_COUNT = 1;
-    final int MAX_PARTNER_COUNT = 2;
-    List<Card> commanders = deck.getFeaturedCards();
-
-    if(commanders == null) {
-      throw new IllegalStateException("Commander decks must have a commander");
-    }
-
     checkLegalCardCounts(deck);
-
-    // This should return all cards that are not a commander card
-    List<Card> nonCommanderCards = deck.generateFullDeckList();
-
-    if(nonCommanderCards.size() + commanders.size() != Format.COMMANDER.getMaxDeckSize()) {
-      throw new IllegalStateException(String.format("Commander decks can only contain %d cards", Format.COMMANDER.getMaxDeckSize()));
-    }
-
-    List<Card> filteredCommanders = CardFilter.filter(
-            commanders,
-            Format.COMMANDER.getFeatureCardFilter());
-    if(filteredCommanders.size() == MAX_PARTNER_COUNT) {
-      if(!filteredCommanders.stream().allMatch(card -> {
-        return card.getText().toLowerCase().contains("partner");
-      })) {
-        throw new IllegalStateException("If there are two commanders then they both must have partner");
-      }
-    }
-    if(filteredCommanders.size() != MAX_COMMANDER_COUNT && filteredCommanders.size() != MAX_PARTNER_COUNT) {
-      throw new IllegalStateException("Deck commanders must be of Legendary type");
-    }
-
-    List<String> commanderColors = commanders.get(0).getColors();
-    deck.getDeckColors().forEach(color -> {
-      if(!commanderColors.contains(color.toString())) {
-        throw new IllegalStateException("Commander decks must only include cards with colors that match their commander");
-      }
-    });
+    isCommanderCompliant(deck);
 
     List<Card> nonCompliantCards = getNonCompliantCards(deck);
     if(!nonCompliantCards.isEmpty()) {
@@ -115,6 +80,49 @@ public final class DeckValidator {
       }
       if(deck.getQuantity(card.getName()) > deck.getFormat().getMaxCopiesOfCard()) {
         throw new IllegalStateException(String.format("There are too many copies of card: %s", card.getName()));
+      }
+    });
+  }
+
+  /**
+   * Checks to make sure the deck is Commander compliant
+   *
+   * @param deck - Deck to validate
+   */
+  private static void isCommanderCompliant(Deck deck) {
+    final int MAX_COMMANDER_COUNT = 1;
+    final int MAX_PARTNER_COUNT = 2;
+    List<Card> commanders = deck.getFeaturedCards();
+
+    if(commanders == null) {
+      throw new IllegalStateException("Commander decks must have a commander");
+    }
+
+    // This should return all cards that are not a commander card
+    List<Card> nonCommanderCards = deck.generateFullDeckList();
+
+    if(nonCommanderCards.size() + commanders.size() != Format.COMMANDER.getMaxDeckSize()) {
+      throw new IllegalStateException(String.format("Commander decks can only contain %d cards", Format.COMMANDER.getMaxDeckSize()));
+    }
+
+    List<Card> filteredCommanders = CardFilter.filter(
+            commanders,
+            Format.COMMANDER.getFeatureCardFilter());
+    if(filteredCommanders.size() == MAX_PARTNER_COUNT) {
+      if(!filteredCommanders.stream().allMatch(card -> {
+        return card.getText().toLowerCase().contains("partner");
+      })) {
+        throw new IllegalStateException("If there are two commanders then they both must have partner");
+      }
+    }
+    if(filteredCommanders.size() != MAX_COMMANDER_COUNT && filteredCommanders.size() != MAX_PARTNER_COUNT) {
+      throw new IllegalStateException("Deck commanders must be of Legendary type");
+    }
+
+    List<String> commanderColors = commanders.get(0).getColors();
+    deck.getDeckColors().forEach(color -> {
+      if(!commanderColors.contains(color.toString())) {
+        throw new IllegalStateException("Commander decks must only include cards with colors that match their commander");
       }
     });
   }
