@@ -3,8 +3,8 @@ package io.github.cmansfield.deck;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.constants.Color;
 import io.github.cmansfield.deck.constants.Format;
-import io.github.cmansfield.io.LoadCards;
-import io.github.cmansfield.io.LoadDeck;
+import io.github.cmansfield.io.CardReader;
+import io.github.cmansfield.io.DeckReader;
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -21,7 +21,7 @@ public class DeckTest {
   public void test_createDeck() throws IOException {
     final String TEST_CARD_LIST_FILE = "inputRaw.txt";
     File file = new File(getClass().getClassLoader().getResource(TEST_CARD_LIST_FILE).getFile());
-    List<Card> cards = LoadCards.loadCards(file.getAbsolutePath());
+    List<Card> cards = CardReader.loadCards(file.getAbsolutePath());
     Deck deck = new Deck(cards);
 
     assertNotNull(deck);
@@ -36,7 +36,7 @@ public class DeckTest {
   public void test_checkDeckColors() throws IOException {
     final String TEST_DECK_FILE = "CompleteCommanderDeck.json";
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
-    Deck deck = LoadDeck.loadDeck(file.getAbsolutePath());
+    Deck deck = DeckReader.loadDeck(file.getAbsolutePath());
 
     List<Color> deckColors = deck.getDeckColors();
 
@@ -55,7 +55,7 @@ public class DeckTest {
   public void test_getFormat() throws IOException {
     final String TEST_DECK_FILE = "CompleteCommanderDeck.json";
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
-    Deck deck = LoadDeck.loadDeck(file.getAbsolutePath());
+    Deck deck = DeckReader.loadDeck(file.getAbsolutePath());
 
     Format format = deck.getFormat();
 
@@ -67,7 +67,7 @@ public class DeckTest {
   public void test_getFeaturedCard() throws IOException {
     final String TEST_DECK_FILE = "CompleteCommanderDeck.json";
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
-    Deck deck = LoadDeck.loadDeck(file.getAbsolutePath());
+    Deck deck = DeckReader.loadDeck(file.getAbsolutePath());
 
     List<Card> featuredCards = deck.getFeaturedCards();
 
@@ -79,7 +79,7 @@ public class DeckTest {
   public void test_removeFeaturedCards() throws IOException {
     final String TEST_DECK_FILE = "CompleteCommanderDeck.json";
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
-    Deck deck = LoadDeck.loadDeck(file.getAbsolutePath());
+    Deck deck = DeckReader.loadDeck(file.getAbsolutePath());
 
     assertEquals(deck.generateFullDeckList().size(), Format.COMMANDER.getMaxDeckSize() - 1);
 

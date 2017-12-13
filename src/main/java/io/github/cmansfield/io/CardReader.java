@@ -18,10 +18,10 @@ import java.io.InputStream;
 import java.util.*;
 
 
-public final class LoadCards {
+public final class CardReader {
   private static Map<String, Card> cardMap;
 
-  private LoadCards() {}
+  private CardReader() {}
 
   /**
    * Loads a list of cards into a List object
@@ -30,15 +30,15 @@ public final class LoadCards {
    * @throws IOException
    */
   public static List<Card> loadCards() throws IOException {
-    if(LoadCards.cardMap != null) {
-      return new ArrayList<>(LoadCards.cardMap.values());
+    if(CardReader.cardMap != null) {
+      return new ArrayList<>(CardReader.cardMap.values());
     }
 
     ZipFile zip = new ZipFile(IoConstants.CARD_LIST_FILE_NAME);
     ObjectMapper mapper = new ObjectMapper();
 
     try(InputStream inputstream = zip.getInputStream(zip.getEntry(IoConstants.ALL_CARDS_FILE_NAME))) {
-      LoadCards.cardMap = mapper.readValue(inputstream, new TypeReference<Map<String,Card>>(){});
+      CardReader.cardMap = mapper.readValue(inputstream, new TypeReference<Map<String,Card>>(){});
     }
     catch (Exception e) {
       System.out.printf("Unable to load file %s%n", IoConstants.ALL_CARDS_FILE_NAME);
@@ -48,7 +48,7 @@ public final class LoadCards {
       zip.close();
     }
 
-    return new ArrayList<>(LoadCards.cardMap.values());
+    return new ArrayList<>(CardReader.cardMap.values());
   }
 
   /**
@@ -142,7 +142,7 @@ public final class LoadCards {
   public static Card lookupCard(final String cardName) {
     Card card = null;
 
-    if(LoadCards.cardMap == null) {
+    if(CardReader.cardMap == null) {
       System.out.println("The complete list of cards has not been loaded yet, loading now.");
       try {
         loadCards();
@@ -152,14 +152,14 @@ public final class LoadCards {
       }
     }
 
-    if(LoadCards.cardMap.containsKey(cardName)) {
-      return LoadCards.cardMap.get(cardName);
+    if(CardReader.cardMap.containsKey(cardName)) {
+      return CardReader.cardMap.get(cardName);
     }
 
     String treatedName = cardNameTreatment(cardName);
 
-    if(LoadCards.cardMap.containsKey(treatedName)) {
-      return LoadCards.cardMap.get(treatedName);
+    if(CardReader.cardMap.containsKey(treatedName)) {
+      return CardReader.cardMap.get(treatedName);
     }
 
     card = getBestMatchingCard(treatedName);

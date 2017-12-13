@@ -5,13 +5,12 @@ import io.github.cmansfield.card.CardUtils;
 import io.github.cmansfield.constants.Color;
 import io.github.cmansfield.deck.constants.Format;
 import io.github.cmansfield.deck.constants.Legality;
-import io.github.cmansfield.io.LoadCards;
+import io.github.cmansfield.io.CardReader;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.Normalizer;
 import java.util.*;
 
 import static org.testng.Assert.assertEquals;
@@ -26,7 +25,7 @@ public class CardFilterTest {
   @BeforeClass
   public void setUp() throws IOException {
     File file = new File(getClass().getClassLoader().getResource(TEST_CARD_LIST_NAME).getFile());
-    cards = LoadCards.loadCards(file.getAbsolutePath());
+    cards = CardReader.loadCards(file.getAbsolutePath());
   }
 
   @Test
@@ -168,7 +167,7 @@ public class CardFilterTest {
 
   @Test
   public void test_filter_multiLegalities() throws IOException {
-    List<Card> cards = LoadCards.loadCards();
+    List<Card> cards = CardReader.loadCards();
     List<Card> zendikarBlock = CardFilter.filter(
             cards,
             new Card.CardBuilder()
@@ -189,7 +188,7 @@ public class CardFilterTest {
   @Test
   public void test_filter_searchForUnicode() throws IOException {
     String unicodeName = "Junún Efreet";
-    List<Card> cardToFind = Collections.singletonList(LoadCards.lookupCard(unicodeName));
+    List<Card> cardToFind = Collections.singletonList(CardReader.lookupCard(unicodeName));
     List<Card> foundCard = CardFilter.filter(cardToFind, new Card.CardBuilder().name("Junun Efreet").build());
 
     assertNotNull(foundCard);
@@ -200,7 +199,7 @@ public class CardFilterTest {
   @Test
   public void test_filter_searchWithUnicode() throws IOException {
     String unicodeName = "Junún Efreet";
-    List<Card> cardToFind = Collections.singletonList(LoadCards.lookupCard(unicodeName));
+    List<Card> cardToFind = Collections.singletonList(CardReader.lookupCard(unicodeName));
     List<Card> foundCard = CardFilter.filter(cardToFind, new Card.CardBuilder().name(unicodeName).build());
 
     assertNotNull(foundCard);

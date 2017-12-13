@@ -1,7 +1,5 @@
 package io.github.cmansfield;
 
-import io.github.cmansfield.deck.constants.Format;
-import io.github.cmansfield.filters.CardFilter;
 import io.github.cmansfield.simulator.gameManager.GameManager;
 import io.github.cmansfield.simulator.player.Player;
 import io.github.cmansfield.io.web.TappedImporter;
@@ -10,7 +8,6 @@ import io.github.cmansfield.deck.DeckUtils;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
 import io.github.cmansfield.io.*;
-import io.github.cmansfield.validator.DeckValidator;
 
 import java.io.IOException;
 import java.util.*;
@@ -33,7 +30,7 @@ public class App {
     List<Card> cards;
 
     try {
-      cards = LoadCards.loadCards();
+      cards = CardReader.loadCards();
     }
     catch (Exception e) {
       System.out.printf("Unable to load card list from file '%s'%n", IoConstants.ALL_CARDS_FILE_NAME);
@@ -44,7 +41,7 @@ public class App {
 //    decks.forEach(deck -> {
 //      try{
 //        DeckValidator.isFormatCompliant(deck);
-//        SaveDeck.saveDeck(deck);
+//        DeckWriter.saveDeck(deck);
 //      }
 //      catch(Exception e) {
 //        System.out.println(e);
@@ -70,8 +67,8 @@ public class App {
 
 
   private static void playGame() throws IOException {
-    Deck doranDeck = LoadDeck.loadDeck("SavedCardLists/DoranDeck.json");
-    Deck ghaveDeck = LoadDeck.loadDeck("SavedCardLists/GhaveDeck.json");
+    Deck doranDeck = DeckReader.loadDeck("SavedCardLists/DoranDeck.json");
+    Deck ghaveDeck = DeckReader.loadDeck("SavedCardLists/GhaveDeck.json");
 
     Player player1 = new Player(doranDeck);
     Player player2 = new Player(ghaveDeck);

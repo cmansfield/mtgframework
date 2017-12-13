@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 
-public class LoadDeck {
+public class DeckReader {
 
   /**
    * Loads a json file into a Deck object
@@ -25,7 +25,7 @@ public class LoadDeck {
     String extension = FilenameUtils.getExtension(fileName);
 
     if(extension.equalsIgnoreCase(IoConstants.TXT_EXT)) {
-      return new Deck(LoadCards.loadCards(fileName));
+      return new Deck(CardReader.loadCards(fileName));
     }
 
     if(extension.equalsIgnoreCase(IoConstants.JSON_EXT)) {

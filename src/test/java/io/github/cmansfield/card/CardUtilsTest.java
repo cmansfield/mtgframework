@@ -2,7 +2,7 @@ package io.github.cmansfield.card;
 
 import io.github.cmansfield.deck.constants.Format;
 import io.github.cmansfield.deck.constants.Legality;
-import io.github.cmansfield.io.LoadCards;
+import io.github.cmansfield.io.CardReader;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -41,7 +41,7 @@ public class CardUtilsTest {
 
   @Test(enabled = true)
   public void test_getListOfLegalities() throws IOException {
-    List<Card> cards = LoadCards.loadCards();
+    List<Card> cards = CardReader.loadCards();
 
     Set<String> legalities = CardUtils.getListOfLegalities(cards);
 

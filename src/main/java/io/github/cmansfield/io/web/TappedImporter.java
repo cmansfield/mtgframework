@@ -3,12 +3,11 @@ package io.github.cmansfield.io.web;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cmansfield.deck.constants.Format;
 import io.github.cmansfield.io.IoConstants;
-import io.github.cmansfield.io.LoadCards;
+import io.github.cmansfield.io.CardReader;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
 
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.File;
 import java.util.*;
@@ -67,7 +66,7 @@ public final class TappedImporter {
     List inventory = (List)jsonMap.get(IoConstants.INVENTORY_KEY);
 
     if(jsonMap.containsKey(IoConstants.FEATURED_KEY)) {
-      featuredCards = Collections.singletonList(LoadCards.lookupCard((String)jsonMap.get(IoConstants.FEATURED_KEY)));
+      featuredCards = Collections.singletonList(CardReader.lookupCard((String)jsonMap.get(IoConstants.FEATURED_KEY)));
     }
 
     Map<String,Integer> cardMap = new HashMap<>();
@@ -95,7 +94,7 @@ public final class TappedImporter {
     List<Card> cards = new ArrayList<>();
     cardMap.entrySet().forEach(entry -> {
       for(int i = 0; i < entry.getValue(); ++i) {
-        Card foundCard = LoadCards.lookupCard(entry.getKey());
+        Card foundCard = CardReader.lookupCard(entry.getKey());
         if(foundCard != null) {
           cards.add(foundCard);
         }

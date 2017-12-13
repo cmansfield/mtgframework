@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 import java.io.*;
 
 
-public final class SaveCards {
-  private SaveCards() {}
+public final class CardWriter {
+  private CardWriter() {}
 
   /**
    * Saves a list of card objects to a predefined output location

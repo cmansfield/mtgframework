@@ -2,18 +2,15 @@ package io.github.cmansfield.io;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cmansfield.deck.Deck;
-import io.github.cmansfield.deck.constants.Legality;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
 
 
-public class SaveDeck {
+public class DeckWriter {
 
   /**
    * Saves a Deck object as a json file
@@ -25,7 +22,7 @@ public class SaveDeck {
   public static String saveDeck(Deck deck) throws IOException {
     final String DECK_SAVE_NAME = "Deck%d.json";
     ObjectMapper mapper = new ObjectMapper();
-    File saveFolder = SaveCards.createSaveDir();
+    File saveFolder = CardWriter.createSaveDir();
 
     String saveFileName = IoConstants.SAVE_DIR + "/" + String.format(DECK_SAVE_NAME, saveFolder.listFiles().length);
 
@@ -53,7 +50,7 @@ public class SaveDeck {
    */
   public static String saveDeckRaw(Deck deck) throws IOException {
     final String DECK_SAVE_NAME = "Deck%d.txt";
-    File saveFolder = SaveCards.createSaveDir();
+    File saveFolder = CardWriter.createSaveDir();
 
     String saveFileName = IoConstants.SAVE_DIR + "/" + String.format(DECK_SAVE_NAME, saveFolder.listFiles().length);
 

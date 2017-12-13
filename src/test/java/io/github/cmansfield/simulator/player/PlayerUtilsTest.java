@@ -2,7 +2,7 @@ package io.github.cmansfield.simulator.player;
 
 import io.github.cmansfield.deck.Deck;
 import io.github.cmansfield.deck.constants.Format;
-import io.github.cmansfield.io.LoadDeck;
+import io.github.cmansfield.io.DeckReader;
 import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.simulator.player.constants.CardState;
 import org.testng.annotations.Test;
@@ -19,7 +19,7 @@ public class PlayerUtilsTest {
   public void test_getUntappedMana() throws IOException {
     final String TEST_DECK_FILE = "CompleteCommanderDeck.json";
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
-    Deck deck = LoadDeck.loadDeck(file.getAbsolutePath());
+    Deck deck = DeckReader.loadDeck(file.getAbsolutePath());
     Player player = new Player(deck);
     int expectedMana = 32;
 

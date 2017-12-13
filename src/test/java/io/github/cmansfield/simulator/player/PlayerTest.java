@@ -1,9 +1,8 @@
 package io.github.cmansfield.simulator.player;
 
 import io.github.cmansfield.deck.constants.Format;
-import io.github.cmansfield.io.LoadDeck;
+import io.github.cmansfield.io.DeckReader;
 import io.github.cmansfield.simulator.constants.Zone;
-import io.github.cmansfield.io.LoadCards;
 import io.github.cmansfield.deck.Deck;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -24,7 +23,7 @@ public class PlayerTest {
   public void setUp() throws IOException {
     final String TEST_DECK_FILE = "CompleteCommanderDeck.json";
     File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
-    Deck deck = LoadDeck.loadDeck(file.getAbsolutePath());
+    Deck deck = DeckReader.loadDeck(file.getAbsolutePath());
 
     assertNotNull(deck);
     this.player = new Player(deck);
