@@ -4,6 +4,7 @@ import io.github.cmansfield.card.Card;
 import io.github.cmansfield.card.constants.CardConstants;
 import javafx.util.Pair;
 
+import java.text.Normalizer;
 import java.util.*;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -102,6 +103,18 @@ public class CardFilter {
                   String cardStr = ((String)cardField).replaceAll(pattern, "");
 
                   isMatch = cardStr.toLowerCase().contains(filterStr.toLowerCase());
+
+                  // Strip any unicode characters and check again
+                  if(!isMatch) {
+                    filterStr = Normalizer                  // This replaces unicode characters to ascii
+                            .normalize(((String)filterField), Normalizer.Form.NFD)
+                            .replaceAll("[^\\p{ASCII}]", "");
+                    cardStr = Normalizer                  // This replaces unicode characters to ascii
+                            .normalize(((String)cardField), Normalizer.Form.NFD)
+                            .replaceAll("[^\\p{ASCII}]", "");
+
+                    isMatch = cardStr.toLowerCase().contains(filterStr.toLowerCase());
+                  }
 
                   return isNot != isMatch;
                 }

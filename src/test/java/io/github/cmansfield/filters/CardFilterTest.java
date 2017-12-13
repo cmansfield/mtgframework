@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.Normalizer;
 import java.util.*;
 
 import static org.testng.Assert.assertEquals;
@@ -183,5 +184,27 @@ public class CardFilterTest {
                     .build());
 
     assertEquals(foundCards.size(), 0);
+  }
+
+  @Test
+  public void test_filter_searchForUnicode() throws IOException {
+    String unicodeName = "Junún Efreet";
+    List<Card> cardToFind = Collections.singletonList(LoadCards.lookupCard(unicodeName));
+    List<Card> foundCard = CardFilter.filter(cardToFind, new Card.CardBuilder().name("Junun Efreet").build());
+
+    assertNotNull(foundCard);
+    assertEquals(foundCard.size(), 1);
+    assertEquals(foundCard.get(0).getName(), unicodeName);
+  }
+
+  @Test
+  public void test_filter_searchWithUnicode() throws IOException {
+    String unicodeName = "Junún Efreet";
+    List<Card> cardToFind = Collections.singletonList(LoadCards.lookupCard(unicodeName));
+    List<Card> foundCard = CardFilter.filter(cardToFind, new Card.CardBuilder().name(unicodeName).build());
+
+    assertNotNull(foundCard);
+    assertEquals(foundCard.size(), 1);
+    assertEquals(foundCard.get(0).getName(), unicodeName);
   }
 }
