@@ -93,7 +93,7 @@ public class CardFilter {
                 }
 
                 if(filterField instanceof List) {
-                  isMatch = allMatchList(filterField, cardField);
+                  isMatch = allMatchList((List)cardField, (List)filterField);
                   return isNot != isMatch;
                 }
 
@@ -144,32 +144,17 @@ public class CardFilter {
    * Checks to make sure the second param list meets the criteria in
    * the first list
    *
-   * @param lhs - List to be used to see if the second list contains
+   * @param listCard - List to be used to see if the second list contains
    *            the elements of this list
-   * @param rhs - The list of the card to check
+   * @param listFilter - The list of the card to check
    * @return    - Returns true if the second list contains the elements
    *            of the first list
    */
-  private static boolean allMatchList(Object lhs, Object rhs) {
-
-    if(lhs == null || rhs == null) {
-      return false;
-    }
-
-    if(!(lhs instanceof List)) {
-      throw new IllegalArgumentException("Expecting List Object");
-    }
-    if(!(rhs instanceof List)) {
-      throw new IllegalArgumentException("Expecting List Object");
-    }
-
-    List listFilter = (List)lhs;
-    List listCard = (List)rhs;
-
+  private static boolean allMatchList(List listCard, List listFilter) {
     return listFilter.stream().allMatch(item -> {
       if(item instanceof Map) {
         if(listCard.contains(item)) {
-          return allMatchMap(item, listCard.get(listCard.indexOf(item)));
+          return allMatchMap((Map)item, (Map)listCard.get(listCard.indexOf(item)));
         }
       }
 
@@ -187,32 +172,15 @@ public class CardFilter {
    * Checks to make sure the second param map meets the criteria in
    * the first map
    *
-   * @param lhs - List to be used to see if the second map contains
-   *            the elements of this map
-   * @param rhs - The map of the card to check
-   * @return    - Returns true if the second map contains the elements
-   *            of the first map
+   * @param mapCard   - The map of the card to check
+   * @param mapFilter - Map to be used to see if the second map contains the elements of this map
+   * @return          - Returns true if the second map contains the elements of the first map
    */
-  private static boolean allMatchMap(Object lhs, Object rhs) {
-
-    if(lhs == null || rhs == null) {
-      return false;
-    }
-
-    if(!(lhs instanceof Map)) {
-      throw new IllegalArgumentException("Expecting Map Object");
-    }
-    if(!(rhs instanceof Map)) {
-      throw new IllegalArgumentException("Expecting Map Object");
-    }
-
-    Map<Object, Object> mapFilter = (Map)lhs;
-    Map<Object, Object> mapCard = (Map)rhs;
-
+  private static boolean allMatchMap(Map<Object, Object> mapCard, Map<Object, Object> mapFilter) {
     return mapFilter.entrySet().stream().allMatch(e -> {
       if(e.getValue() instanceof List) {
         if(((List)mapCard.get(e.getKey())).contains(e.getValue())) {
-          return allMatchList(e.getValue(), (List)mapCard.get(e.getKey()));
+          return allMatchList((List)e.getValue(), (List)mapCard.get(e.getKey()));
         }
       }
 
