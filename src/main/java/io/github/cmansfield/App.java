@@ -2,13 +2,16 @@ package io.github.cmansfield;
 
 import io.github.cmansfield.simulator.gameManager.GameManager;
 import io.github.cmansfield.simulator.player.Player;
+import io.github.cmansfield.validator.DeckValidator;
 import io.github.cmansfield.io.web.TappedImporter;
+import io.github.cmansfield.filters.CardFilter;
 import io.github.cmansfield.io.web.GetUpdates;
 import io.github.cmansfield.deck.DeckUtils;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
 import io.github.cmansfield.io.*;
 
+import java.util.function.Supplier;
 import java.io.IOException;
 import java.util.*;
 
@@ -37,18 +40,34 @@ public class App {
       return;
     }
 
-//    List<Deck> decks = TappedImporter.importFilesFromTappedOut("TappedCrawler\\decks\\animar-soul-of-elements");
-//    decks.forEach(deck -> {
-//      try{
-//        DeckValidator.isFormatCompliant(deck);
-//        DeckWriter.saveDeck(deck);
-//      }
-//      catch(Exception e) {
-//        System.out.println(e);
-//      }
-//    });
+    // Wrap method we want to test in a lambda
+    timeMethod(() -> {
+      CardFilter.filter(cards, new Card.CardBuilder().name("awol2").build());
+      return null;
+    });
 
     System.out.println("");
+  }
+
+
+  /**
+   * Simple profiler to help optimize methods
+   *
+   * @param supplier
+   * @throws IOException
+   */
+  private static void timeMethod(Supplier supplier) throws IOException {
+    List<Card> cards = CardReader.loadCards();
+
+    final int TEST_ITERATIONS = 100;
+    long startTime = System.nanoTime();
+    for (int i = 0; i < TEST_ITERATIONS; i++) {
+      supplier.get();
+    }
+    long endTime = System.nanoTime();
+    long averageTime = ((endTime - startTime) / 1000000 / TEST_ITERATIONS);
+
+    System.out.printf("%d ms%n", averageTime);
   }
 
 
@@ -62,6 +81,20 @@ public class App {
     Collections.reverse(sorted);
     sorted.forEach(entry -> {
       System.out.printf("%d %s%n", entry.getValue(), entry.getKey());
+    });
+  }
+
+
+  private static void saveFormatCompliantFromTappedOut() throws IOException {
+    List<Deck> decks = TappedImporter.importFilesFromTappedOut("TappedCrawler\\decks\\animar-soul-of-elements");
+    decks.forEach(deck -> {
+      try{
+        DeckValidator.isFormatCompliant(deck);
+        DeckWriter.saveDeck(deck);
+      }
+      catch(Exception e) {
+        System.out.println(e);
+      }
     });
   }
 

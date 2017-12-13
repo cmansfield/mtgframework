@@ -98,24 +98,7 @@ public class CardFilter {
                 }
 
                 if(filterField instanceof String) {
-                  String pattern = "[^a-zA-Z0-9]";      // Remove anything that isnt' a alpha-numeric character
-                  String filterStr = ((String)filterField).replaceAll(pattern, "");
-                  String cardStr = ((String)cardField).replaceAll(pattern, "");
-
-                  isMatch = cardStr.toLowerCase().contains(filterStr.toLowerCase());
-
-                  // Strip any unicode characters and check again
-                  if(!isMatch) {
-                    filterStr = Normalizer                  // This replaces unicode characters to ascii
-                            .normalize(((String)filterField), Normalizer.Form.NFD)
-                            .replaceAll("[^\\p{ASCII}]", "");
-                    cardStr = Normalizer                  // This replaces unicode characters to ascii
-                            .normalize(((String)cardField), Normalizer.Form.NFD)
-                            .replaceAll("[^\\p{ASCII}]", "");
-
-                    isMatch = cardStr.toLowerCase().contains(filterStr.toLowerCase());
-                  }
-
+                  isMatch = matchString((String)cardField, (String)filterField);
                   return isNot != isMatch;
                 }
 
@@ -128,6 +111,33 @@ public class CardFilter {
     });
 
     return filteredCards;
+  }
+
+  /**
+   * This method checks to see if the two strings are a close match
+   *
+   * @param cardStr   - Card's string field
+   * @param filterStr - Filter's string field
+   * @return          - Boolean isMatch
+   */
+  private static boolean matchString(String cardStr, String filterStr) {
+    String pattern = "[^a-zA-Z0-9]";      // Remove anything that isnt' a alpha-numeric character
+
+    boolean isMatch = cardStr.replaceAll(pattern, "").toLowerCase().contains(filterStr.replaceAll(pattern, "").toLowerCase());
+
+    // Strip any unicode characters and check again
+    if(!isMatch && cardStr.matches(".*[^\\p{ASCII}].*")) {
+      filterStr = Normalizer                  // This replaces unicode characters to ascii
+              .normalize(filterStr, Normalizer.Form.NFD)
+              .replaceAll("[^\\p{ASCII}]", "");
+      cardStr = Normalizer                  // This replaces unicode characters to ascii
+              .normalize(cardStr, Normalizer.Form.NFD)
+              .replaceAll("[^\\p{ASCII}]", "");
+
+      isMatch = cardStr.toLowerCase().contains(filterStr.toLowerCase());
+    }
+
+    return isMatch;
   }
 
   /**
@@ -164,9 +174,9 @@ public class CardFilter {
       }
 
       if(item instanceof String) {
-        return listCard.stream().anyMatch(field -> {
-          return ((String)field).contains((String)item);
-        });
+        return listCard.stream().anyMatch(field ->
+          matchString((String)field, (String)item)
+        );
       }
 
       return listCard.contains(item);
