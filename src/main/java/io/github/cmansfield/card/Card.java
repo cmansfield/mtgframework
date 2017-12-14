@@ -1,15 +1,19 @@
 package io.github.cmansfield.card;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
-import java.util.*;
 import java.util.stream.Collectors;
+import java.util.*;
 
 
 @JsonDeserialize(using = CardDeserializer.class)
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Card {
+  private static final Logger LOGGER = LoggerFactory.getLogger(Card.class);
+
   private String name;
   private List<String> names;
   private String layout;
@@ -191,7 +195,7 @@ public class Card {
                 isNull = field.get(this) != null;
               }
               catch (Exception e) {
-                System.out.println("Unable to get Card field");
+                LOGGER.warn("Unable to get Card field");
               }
               return isNull;})
             .map(field -> {
@@ -200,7 +204,7 @@ public class Card {
                 fieldValue = String.format("%s: %s", field.getName(), field.get(this).toString());
               }
               catch (Exception e) {
-                System.out.println("Unable to get Card field");
+                LOGGER.warn("Unable to get Card field");
               }
               return fieldValue;})
             .collect(Collectors.joining("\n"));

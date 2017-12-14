@@ -10,6 +10,8 @@ import io.github.cmansfield.deck.DeckUtils;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
 import io.github.cmansfield.io.*;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 import java.util.function.Supplier;
 import java.io.IOException;
@@ -18,6 +20,7 @@ import java.util.*;
 
 public class App {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   public static void main(String[] args) throws IOException {
 
@@ -36,7 +39,7 @@ public class App {
       cards = CardReader.loadCards();
     }
     catch (Exception e) {
-      System.out.printf("Unable to load card list from file '%s'%n", IoConstants.ALL_CARDS_FILE_NAME);
+      LOGGER.error("Unable to load card list from file '{}'", IoConstants.ALL_CARDS_FILE_NAME, e);
       return;
     }
 
@@ -46,7 +49,7 @@ public class App {
       return null;
     });
 
-    System.out.println("");
+    LOGGER.info("End of App");
   }
 
 
@@ -67,7 +70,7 @@ public class App {
     long endTime = System.nanoTime();
     long averageTime = ((endTime - startTime) / 1000000 / testIterations);
 
-    System.out.printf("%d ms%n", averageTime);
+    LOGGER.info("{} ms", averageTime);
   }
 
 
@@ -93,7 +96,7 @@ public class App {
         DeckWriter.saveDeck(deck);
       }
       catch(Exception e) {
-        System.out.println(e);
+        LOGGER.error("", e);
       }
     });
   }

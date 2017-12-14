@@ -35,8 +35,7 @@ public final class DeckReader {
         deck = mapper.readValue(inputstream, Deck.class);
       }
       catch(Exception e) {
-        System.out.printf("Unable to load file %s%n", fileName);
-        throw new IOException(e);
+        throw new IOException("Unable to load file " + fileName, e);
       }
     }
 

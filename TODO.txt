@@ -14,9 +14,7 @@ Create:
     DeckDeserializer (Mostly to ensure the commander isn't included in the deck list)
 
 Sonar:
-    Return an empty collection rather than null from classes
-        Ensure we are not storing empty collections when we save json files
-    Replace System.out.prints with logging
+    Replace System.out.prints with logging (simulator package)
 
 Testing
     Add integration tests

@@ -3,11 +3,15 @@ package io.github.cmansfield.card;
 import io.github.cmansfield.constants.Color;
 import io.github.cmansfield.deck.constants.Format;
 import io.github.cmansfield.deck.constants.Legality;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
 
 public final class CardUtils {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(CardUtils.class);
 
   private CardUtils() {}
 
@@ -142,6 +146,6 @@ public final class CardUtils {
    * @param cards - List of cards to print out to the console
    */
   public static void printCards(List<Card> cards) {
-    cards.forEach(card -> System.out.println(card.getName()));
+    cards.forEach(card -> LOGGER.info(card.getName()));
   }
 }

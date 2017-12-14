@@ -7,6 +7,8 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.WordUtils;
 import io.github.cmansfield.card.Card;
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 import java.io.FileInputStream;
@@ -19,6 +21,7 @@ import java.util.*;
 
 
 public final class CardReader {
+  private static final Logger LOGGER = LoggerFactory.getLogger(CardReader.class);
   private static Map<String, Card> cardMap;
 
   private CardReader() {}
@@ -41,8 +44,7 @@ public final class CardReader {
       CardReader.cardMap = mapper.readValue(inputstream, new TypeReference<Map<String,Card>>(){});
     }
     catch (Exception e) {
-      System.out.printf("Unable to load file %s%n", IoConstants.ALL_CARDS_FILE_NAME);
-      throw new IOException(e);
+      throw new IOException("Unable to load file " + IoConstants.ALL_CARDS_FILE_NAME, e);
     }
     finally {
       zip.close();
@@ -75,8 +77,7 @@ public final class CardReader {
       }
     }
     catch (Exception e) {
-      System.out.printf("Unable to load file %s%n", fileName);
-      throw new IOException(e);
+      throw new IOException("Unable to load file " + fileName, e);
     }
 
     return cards;
@@ -143,7 +144,7 @@ public final class CardReader {
     Card card = null;
 
     if(CardReader.cardMap == null) {
-      System.out.println("The complete list of cards has not been loaded yet, loading now.");
+      LOGGER.info("The complete list of cards has not been loaded yet, loading now.");
       try {
         loadCards();
       }
@@ -191,7 +192,7 @@ public final class CardReader {
       }
     }
 
-    System.out.printf("Could not find card %s    Treated Name: '%s'%n", cardName, treatedName);
+    LOGGER.warn("Could not find card '{}'    Treated Name: '{}'", cardName, treatedName);
 
     return null;
   }

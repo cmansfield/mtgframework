@@ -45,5 +45,7 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.7.8" level="project" />
     <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.5" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-simple:1.6.4" level="project" />
   </component>
 </module>

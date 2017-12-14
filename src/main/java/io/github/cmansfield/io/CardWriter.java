@@ -39,8 +39,7 @@ public final class CardWriter {
       writer.write(jsonCards);
     }
     catch (Exception e) {
-      System.out.printf("Unable to save the card list at this time%n%s%n", e.getMessage());
-      throw new IOException(e);
+      throw new IOException("Unable to save the card list at this time", e);
     }
 
     return saveFileName;
@@ -59,7 +58,7 @@ public final class CardWriter {
       saveFolder.mkdir();
     }
     catch (Exception e) {
-      System.out.printf("Unable to create directory '%s' at this time%n", IoConstants.SAVE_DIR);
+      throw new RuntimeException(String.format("Unable to create directory '%s' at this time%n", IoConstants.SAVE_DIR), e);   // NOSONAR
     }
 
     return saveFolder;

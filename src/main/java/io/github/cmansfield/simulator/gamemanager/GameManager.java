@@ -8,11 +8,14 @@ import io.github.cmansfield.validator.DeckValidator;
 import io.github.cmansfield.simulator.player.Player;
 import io.github.cmansfield.deck.constants.Format;
 import io.github.cmansfield.simulator.turn.Phase;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
 
 public final class GameManager {
+  private static final Logger LOGGER = LoggerFactory.getLogger(GameManager.class);
 
   private Deque<Player> players;
   private Deque<Action> stack;
@@ -50,8 +53,9 @@ public final class GameManager {
         perform();
       }
       catch(Exception e) {
-        System.out.println(String.format("%s lost the game", this.getActivePlayer().getPlayerName()));
-        System.out.println(e.getMessage());
+        // TODO - improve this logic so not all exceptions are a game loss
+        LOGGER.info("{} lost the game", this.getActivePlayer().getPlayerName());
+        LOGGER.info(e.getMessage());
 
         this.players.remove(getActivePlayer());
 
@@ -61,8 +65,8 @@ public final class GameManager {
       }
     }
 
-    System.out.println(String.format("%n%s won!", getActivePlayer().getPlayerName()));
-    System.out.println("End of Game");
+    LOGGER.info("%n{} won!", getActivePlayer().getPlayerName());
+    LOGGER.info("End of Game");
   }
 
   public void nextPlayersTurn() {

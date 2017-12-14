@@ -6,6 +6,8 @@ import io.github.cmansfield.io.IoConstants;
 import io.github.cmansfield.io.CardReader;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -14,6 +16,8 @@ import java.util.*;
 
 
 public final class TappedImporter {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(TappedImporter.class);
 
   private TappedImporter() {}
 
@@ -48,7 +52,7 @@ public final class TappedImporter {
         }
       }
       catch(Exception e) {
-        System.out.printf("Unable to load file %s%n", file.getName());
+        LOGGER.error("Unable to load file {}", file.getName(), e);
         throw new RuntimeException(e);    // NOSONAR
       }
 

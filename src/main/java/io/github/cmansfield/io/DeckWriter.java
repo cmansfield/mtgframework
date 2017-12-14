@@ -2,6 +2,8 @@ package io.github.cmansfield.io;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cmansfield.deck.Deck;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -11,6 +13,8 @@ import java.nio.charset.StandardCharsets;
 
 
 public final class DeckWriter {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(DeckWriter.class);
 
   private DeckWriter() {}
 
@@ -35,7 +39,7 @@ public final class DeckWriter {
       writer.write(jsonCards);
     }
     catch (Exception e) {
-      System.out.printf("Unable to save the deck at this time%n%s%n", e.getMessage());
+      LOGGER.error("Unable to save the deck at this time", e);
       throw new IOException(e);
     }
 
@@ -60,7 +64,7 @@ public final class DeckWriter {
       writer.write(deck.toString());
     }
     catch (Exception e) {
-      System.out.printf("Unable to save the deck at this time%n%s%n", e.getMessage());
+      LOGGER.error("Unable to save the deck at this time", e);
       throw new IOException(e);
     }
 

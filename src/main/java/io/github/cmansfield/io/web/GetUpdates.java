@@ -9,6 +9,8 @@ import com.sun.jersey.api.client.Client;
 import org.apache.commons.lang.Validate;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 import java.net.MalformedURLException;
@@ -17,6 +19,7 @@ import java.io.*;
 
 
 public final class GetUpdates {
+  private static final Logger LOGGER = LoggerFactory.getLogger(GetUpdates.class);
   private static final String GET_CARD_LIST_URL = "https://mtgjson.com/json/AllCards-x.json.zip";
   private static final String GET_VER_URL = "https://mtgjson.com/json/version-full.json";
   private static final String VERSION_FILE_NAME = "cardListVersion.json";
@@ -37,13 +40,13 @@ public final class GetUpdates {
       myVersion = GetUpdates.getMyVersion();
     }
     catch (Exception e) {
-      System.out.println(e.toString());
+      LOGGER.error("", e);
       return;
     }
 
     // check to see if the versions match
     if(currentVersion.equals(myVersion)) {
-      System.out.println("No updates at this time");
+      LOGGER.info("No updates at this time");
       return;
     }
 
@@ -55,20 +58,11 @@ public final class GetUpdates {
       GetUpdates.saveNewVersion(currentVersionJson);
     }
     catch(Exception e) {
-      System.out.printf("Unable to update at this time%n%s%n", e.getMessage());
+      LOGGER.error("Unable to update at this time", e);
       return;
     }
 
-    System.out.println("Updated to version: " + currentVersion);
-  }
-
-  /**
-   * Gets the latest version number from the web
-   *
-   * @return - String of the latest card list version
-   */
-  private static String getCurrentVersion() {
-    return GetUpdates.parseVersionFromJson(GetUpdates.getCurrentVersionJson());
+    LOGGER.info("Updated to version: {}", currentVersion);
   }
 
   /**
@@ -85,7 +79,7 @@ public final class GetUpdates {
       response = webResource.get(String.class);
     }
     catch(UniformInterfaceException e) {
-      throw new RuntimeException(String.format("Unable to get card list version at this time%n%s", e.getResponse()));
+      throw new RuntimeException(String.format("Unable to get card list version at this time%n%s", e.getResponse()));     // NOSONAR
     }
 
     return response;
@@ -108,8 +102,8 @@ public final class GetUpdates {
       myVersion = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
     }
     catch(IOException e) {
-      System.out.printf("Unable to read from file %s%n%s%n", VERSION_FILE_NAME, e.getMessage());
-      return "";
+      LOGGER.error("Unable to read from file {}", VERSION_FILE_NAME, e);
+      throw new RuntimeException(e);      // NOSONAR
     }
 
     return GetUpdates.parseVersionFromJson(myVersion);
@@ -130,8 +124,8 @@ public final class GetUpdates {
       version = jsonNode.get(VERSION_KEY).asText();
     }
     catch(Exception e) {
-      System.out.printf("Unable to read the json version at this time%n%s%n", e.getMessage() == null ? "" : e.getMessage());
-      return "";
+      LOGGER.error("Unable to read the json version at this time", e);
+      throw new RuntimeException(e);      // NOSONAR
     }
 
     return version;
@@ -152,11 +146,11 @@ public final class GetUpdates {
       FileUtils.copyURLToFile(url, file, timeout, timeout);
     }
     catch(MalformedURLException e) {
-      System.out.printf("Unable create URL object with url: %s%n", GET_CARD_LIST_URL);
+      LOGGER.error("Unable create URL object with url: {}", GET_CARD_LIST_URL, e);
       throw e;
     }
     catch(IOException e) {
-      System.out.printf("Unable to save '%s' to file '%s'%n", url.getPath(), IoConstants.CARD_LIST_FILE_NAME);
+      LOGGER.error(String.format("Unable to save '%s' to file '%s'%n", url.getPath(), IoConstants.CARD_LIST_FILE_NAME), e);
       throw e;
     }
   }
@@ -175,7 +169,7 @@ public final class GetUpdates {
 
     try {
       if(file.createNewFile()) {
-        System.out.printf("File %s was created%n", file.getName());
+        LOGGER.info("File {} was created", file.getName());
       }
 
       fileWriter = new FileWriter(file);
@@ -183,8 +177,7 @@ public final class GetUpdates {
       fileWriter.flush();
     }
     catch (IOException e) {
-      System.out.printf("Unable to create/save file '%s' at this time%n", VERSION_FILE_NAME);
-      System.out.println(e);
+      LOGGER.error("Unable to create/save file '{}' at this time", VERSION_FILE_NAME, e);
       throw e;
     }
     finally {
