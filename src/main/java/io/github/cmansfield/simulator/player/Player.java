@@ -8,6 +8,8 @@ import java.util.*;
 
 
 public class Player {
+  private static final String ZONE_NOT_MANAGED_BY_PLAYER_MSG = "Zone '%s' is not managed by the player";
+
   private Map<Zone,List<PlayerCard>> zones;
   private String playerName;
   private Integer life;
@@ -89,10 +91,10 @@ public class Player {
    */
   public void moveZone(Zone from, Zone to, int amount) {
     if(!this.zones.containsKey(from)) {
-      throw new IllegalArgumentException(String.format("Zone '%s' is not managed by the player", from.toString()));
+      throw new IllegalArgumentException(String.format(ZONE_NOT_MANAGED_BY_PLAYER_MSG, from.toString()));
     }
     if(!this.zones.containsKey(to)) {
-      throw new IllegalArgumentException(String.format("Zone '%s' is not managed by the player", to.toString()));
+      throw new IllegalArgumentException(String.format(ZONE_NOT_MANAGED_BY_PLAYER_MSG, to.toString()));
     }
 
     List fromList = this.zones.get(from);
@@ -118,10 +120,10 @@ public class Player {
    */
   public void moveZone(Zone from, Zone to, PlayerCard card) {
     if(!this.zones.containsKey(from)) {
-      throw new IllegalArgumentException(String.format("Zone '%s' is not managed by the player", from.toString()));
+      throw new IllegalArgumentException(String.format(ZONE_NOT_MANAGED_BY_PLAYER_MSG, from.toString()));
     }
     if(!this.zones.containsKey(to)) {
-      throw new IllegalArgumentException(String.format("Zone '%s' is not managed by the player", to.toString()));
+      throw new IllegalArgumentException(String.format(ZONE_NOT_MANAGED_BY_PLAYER_MSG, to.toString()));
     }
     if(from == to) {
       throw new IllegalArgumentException("The zones provided cannot be the same zone");

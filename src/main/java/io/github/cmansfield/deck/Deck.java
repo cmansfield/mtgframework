@@ -1,11 +1,11 @@
 package io.github.cmansfield.deck;
 
-import io.github.cmansfield.card.Card;
-import io.github.cmansfield.constants.Color;
 import io.github.cmansfield.deck.constants.Format;
+import io.github.cmansfield.constants.Color;
+import io.github.cmansfield.card.Card;
 
-import java.util.*;
 import java.util.stream.Collectors;
+import java.util.*;
 
 
 public final class Deck {
@@ -131,15 +131,15 @@ public final class Deck {
    * @return  - A list of all cards in the deck
    */
   public List<Card> generateFullDeckList() {
-    List<Card> cards = new ArrayList<>();
+    List<Card> cardList = new ArrayList<>();
 
     this.cards.forEach(card -> {
       for(int i = 0; i < getQuantity(card.getName()); ++i) {
-        cards.add(card);
+        cardList.add(card);
       }
     });
 
-    return cards;
+    return cardList;
   }
 
   @Override

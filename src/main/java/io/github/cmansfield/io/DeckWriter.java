@@ -10,7 +10,9 @@ import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 
 
-public class DeckWriter {
+public final class DeckWriter {
+
+  private DeckWriter() {}
 
   /**
    * Saves a Deck object as a json file
@@ -20,11 +22,11 @@ public class DeckWriter {
    * @throws IOException
    */
   public static String saveDeck(Deck deck) throws IOException {
-    final String DECK_SAVE_NAME = "Deck%d.json";
+    final String deckSaveName = "Deck%d.json";
     ObjectMapper mapper = new ObjectMapper();
     File saveFolder = CardWriter.createSaveDir();
 
-    String saveFileName = IoConstants.SAVE_DIR + "/" + String.format(DECK_SAVE_NAME, saveFolder.listFiles().length);
+    String saveFileName = IoConstants.SAVE_DIR + File.separator + String.format(deckSaveName, saveFolder.listFiles().length);
 
     try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(saveFileName), StandardCharsets.UTF_8);) {
       String jsonCards = mapper.writerWithDefaultPrettyPrinter()
@@ -49,10 +51,10 @@ public class DeckWriter {
    * @throws IOException
    */
   public static String saveDeckRaw(Deck deck) throws IOException {
-    final String DECK_SAVE_NAME = "Deck%d.txt";
+    final String deckSaveName = "Deck%d.txt";
     File saveFolder = CardWriter.createSaveDir();
 
-    String saveFileName = IoConstants.SAVE_DIR + "/" + String.format(DECK_SAVE_NAME, saveFolder.listFiles().length);
+    String saveFileName = IoConstants.SAVE_DIR + File.separator + String.format(deckSaveName, saveFolder.listFiles().length);
 
     try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(saveFileName), StandardCharsets.UTF_8);) {
       writer.write(deck.toString());

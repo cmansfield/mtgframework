@@ -190,14 +190,18 @@ public class Card {
               try {
                 isNull = field.get(this) != null;
               }
-              catch (Exception e) {}
+              catch (Exception e) {
+                System.out.println("Unable to get Card field");
+              }
               return isNull;})
             .map(field -> {
               String fieldValue = "";
               try {
                 fieldValue = String.format("%s: %s", field.getName(), field.get(this).toString());
               }
-              catch (Exception e) {}
+              catch (Exception e) {
+                System.out.println("Unable to get Card field");
+              }
               return fieldValue;})
             .collect(Collectors.joining("\n"));
   }
@@ -228,8 +232,9 @@ public class Card {
     private List<Map<String,String>> legalities;
     private List<String> colorIdentity;
 
-
-    public CardBuilder() {}
+    public CardBuilder() {
+      // Empty constructor for builder pattern
+    }
 
     public Card.CardBuilder name(String key) {
       this.name = key;

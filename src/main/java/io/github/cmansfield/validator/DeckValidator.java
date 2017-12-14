@@ -96,13 +96,13 @@ public final class DeckValidator {
    * @param deck - Deck to validate card counts
    */
   private static void checkLegalCardCounts(Deck deck) {
-    final int MAX_COPIES = deck.getFormat().getMaxCopiesOfCard();
+    final int maxCopies = deck.getFormat().getMaxCopiesOfCard();
 
     deck.getCards().forEach(card -> {
       if(card.getTypes() != null && card.getType().contains("Basic Land")) {
         return;
       }
-      if(deck.getQuantity(card.getName()) > MAX_COPIES) {
+      if(deck.getQuantity(card.getName()) > maxCopies) {
         throw new IllegalStateException(String.format("There are too many copies of card: %s", card.getName()));
       }
     });
@@ -114,8 +114,8 @@ public final class DeckValidator {
    * @param deck - Deck to validate
    */
   private static void isCommanderCompliant(Deck deck) {
-    final int MAX_COMMANDER_COUNT = 1;
-    final int MAX_PARTNER_COUNT = 2;
+    final int maxCommanderCount = 1;
+    final int maxPartnerCount = 2;
     List<Card> commanders = deck.getFeaturedCards();
 
     if(commanders == null) {
@@ -125,14 +125,14 @@ public final class DeckValidator {
     List<Card> filteredCommanders = CardFilter.filter(
             commanders,
             Format.COMMANDER.getFeatureCardFilter());
-    if(filteredCommanders.size() == MAX_PARTNER_COUNT) {
-      if(!filteredCommanders.stream().allMatch(card ->
+    if(filteredCommanders.size() == maxPartnerCount) {
+      if(!filteredCommanders.stream().allMatch(card ->      // NOSONAR
         card.getText().toLowerCase().contains("partner")
       )) {
         throw new IllegalStateException("If there are two commanders then they both must have partner");
       }
     }
-    if(filteredCommanders.size() != MAX_COMMANDER_COUNT && filteredCommanders.size() != MAX_PARTNER_COUNT) {
+    if(filteredCommanders.size() != maxCommanderCount && filteredCommanders.size() != maxPartnerCount) {
       throw new IllegalStateException("Deck commanders must be of Legendary type");
     }
 

@@ -10,7 +10,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class PlayerUtils {
+public final class PlayerUtils {
+
+  private PlayerUtils() {}
 
   public static List<PlayerCard> getUntappedMana(Player player) {
     // Get the land from the battlefield
@@ -21,8 +23,8 @@ public class PlayerUtils {
                     .build());
 
     // Remove tapped mana
-    return ((List<PlayerCard>)availableMana).stream().filter(card -> {
-      return card.getCardState() == CardState.UNTAPPED;
-    }).collect(Collectors.toList());
+    return ((List<PlayerCard>)availableMana).stream().filter(card ->
+            card.getCardState() == CardState.UNTAPPED
+    ).collect(Collectors.toList());
   }
 }

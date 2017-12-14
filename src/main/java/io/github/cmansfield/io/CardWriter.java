@@ -3,12 +3,10 @@ package io.github.cmansfield.io;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cmansfield.card.Card;
-import io.github.cmansfield.deck.Deck;
-import io.github.cmansfield.deck.constants.Legality;
 
 import java.nio.charset.StandardCharsets;
-import java.util.*;
 import java.util.stream.Collectors;
+import java.util.*;
 import java.io.*;
 
 
@@ -23,12 +21,12 @@ public final class CardWriter {
    * @throws IOException
    */
   public static String saveCards(List<Card> cards) throws IOException {
-    final String CARD_LIST_SAVE_NAME = "CardList%d.json";
+    final String cardListSaveName = "CardList%d.json";
     ObjectMapper mapper = new ObjectMapper();
     File saveFolder = createSaveDir();
 
     mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-    String saveFileName = IoConstants.SAVE_DIR + "/" + String.format(CARD_LIST_SAVE_NAME, saveFolder.listFiles().length);
+    String saveFileName = IoConstants.SAVE_DIR + File.separator + String.format(cardListSaveName, saveFolder.listFiles().length);
 
     try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(saveFileName), StandardCharsets.UTF_8);) {
 

@@ -29,7 +29,7 @@ public enum Color implements Constant<Color> {
         return Color.GREEN;
       default:
         try {
-          Integer.parseInt(val);
+          Integer.parseInt(val);    // NOSONAR
         } catch (NumberFormatException e) {
           return null;
         }

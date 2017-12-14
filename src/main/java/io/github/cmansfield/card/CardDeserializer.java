@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class CardDeserializer extends JsonDeserializer<Card> {
 
-  private static Map<String,BiFunction> CARD_METHODS = new HashMap<>();
+  private static Map<String,BiFunction> CARD_METHODS = new HashMap<>();   // NOSONAR
   static {
     CARD_METHODS.put(CardConstants.LAYOUT.toString(), (cb, value) -> ((Card.CardBuilder)cb).layout((String)value));
     CARD_METHODS.put(CardConstants.NAME.toString(), (cb, value) -> ((Card.CardBuilder)cb).name((String)value));

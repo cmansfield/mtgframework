@@ -9,10 +9,14 @@ import java.util.*;
 
 public final class CardUtils {
 
+  private CardUtils() {}
+
   public static class LegalitiesBuilder {
     private List<Format> formats = new ArrayList<>();
 
-    public LegalitiesBuilder() {}
+    public LegalitiesBuilder() {
+      // Used for the builder pattern
+    }
 
     /**
      * @param format  - The game format that a card is legal to play in

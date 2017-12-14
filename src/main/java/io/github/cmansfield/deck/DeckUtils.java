@@ -1,16 +1,13 @@
 package io.github.cmansfield.deck;
 
-import io.github.cmansfield.card.Card;
-import io.github.cmansfield.deck.Deck;
-import io.github.cmansfield.deck.constants.Format;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 
 public final class DeckUtils {
+
+  private DeckUtils() {}
 
   /**
    * Gets a count of each card in the list of decks
@@ -21,7 +18,7 @@ public final class DeckUtils {
   public static Map<String,Integer> getCardCount(List<Deck> decks) {
     Map<String,Integer> cardCount = new HashMap<>();
 
-    decks.forEach(deck -> {
+    decks.forEach(deck ->
       deck.getCards().forEach(card -> {
         String cardName = card.getName();
         if(cardCount.containsKey(cardName)) {
@@ -30,8 +27,8 @@ public final class DeckUtils {
         else {
           cardCount.put(cardName, deck.getQuantity(cardName));
         }
-      });
-    });
+      })
+    );
 
     return cardCount;
   }

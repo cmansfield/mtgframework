@@ -44,8 +44,8 @@ public final class GameManager {
   }
 
   public void startGame() {
-    final int MAX_NUMBER_OF_TURNS = 10000;
-    for(int i = 0; i < MAX_NUMBER_OF_TURNS; ++i) {
+    final int maxNumberOfTurns = 10000;
+    for(int i = 0; i < maxNumberOfTurns; ++i) {
       try {
         perform();
       }
@@ -138,7 +138,7 @@ public final class GameManager {
           DeckValidator.isFormatCompliant(player.getDeck());
         }
         catch (Exception e) {
-          throw new RuntimeException("Player has an illegal deck for this format", e);
+          throw new RuntimeException("Player has an illegal deck for this format", e);    // NOSONAR
         }
 
         player.shuffle(Zone.LIBRARY);

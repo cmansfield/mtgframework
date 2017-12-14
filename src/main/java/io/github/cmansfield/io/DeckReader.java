@@ -9,7 +9,9 @@ import java.io.IOException;
 import java.io.InputStream;
 
 
-public class DeckReader {
+public final class DeckReader {
+
+  private DeckReader() {}
 
   /**
    * Loads a json file into a Deck object

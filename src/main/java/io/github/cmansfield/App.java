@@ -59,19 +59,19 @@ public class App {
   private static void timeMethod(Supplier supplier) throws IOException {
     List<Card> cards = CardReader.loadCards();
 
-    final int TEST_ITERATIONS = 100;
+    final int testIterations = 100;
     long startTime = System.nanoTime();
-    for (int i = 0; i < TEST_ITERATIONS; i++) {
+    for (int i = 0; i < testIterations; i++) {
       supplier.get();
     }
     long endTime = System.nanoTime();
-    long averageTime = ((endTime - startTime) / 1000000 / TEST_ITERATIONS);
+    long averageTime = ((endTime - startTime) / 1000000 / testIterations);
 
     System.out.printf("%d ms%n", averageTime);
   }
 
 
-  private static void importFromTappedOut() throws IOException {
+  private static void importFromTappedOut() {
 //    List<Deck> decks = TappedImporter.importFilesFromTappedOut("TappedCrawler\\decks\\test");
     List<Deck> decks = TappedImporter.importFilesFromTappedOut("TappedCrawler\\decks\\animar-soul-of-elements");
 //    List<Deck> decks = TappedImporter.importFilesFromTappedOut("TappedCrawler\\decks\\ghave-guru-of-spores");
@@ -79,13 +79,13 @@ public class App {
     List<Map.Entry<String, Integer>> sorted = new ArrayList<>(cardCounts.entrySet());
     sorted.sort(Comparator.comparing(Map.Entry::getValue));
     Collections.reverse(sorted);
-    sorted.forEach(entry -> {
-      System.out.printf("%d %s%n", entry.getValue(), entry.getKey());
-    });
+    sorted.forEach(entry ->
+      System.out.printf("%d %s%n", entry.getValue(), entry.getKey())
+    );
   }
 
 
-  private static void saveFormatCompliantDecksFromTappedOut() throws IOException {
+  private static void saveFormatCompliantDecksFromTappedOut() {
     List<Deck> decks = TappedImporter.importFilesFromTappedOut("TappedCrawler\\decks\\animar-soul-of-elements");
     decks.forEach(deck -> {
       try{

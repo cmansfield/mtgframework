@@ -117,7 +117,7 @@ public final class CardReader {
           Card card = lookupCard(e.getKey());
 
           if(card == null) {
-            throw new RuntimeException(String.format("Unable to load card: %s", e.getKey()));
+            throw new RuntimeException(String.format("Unable to load card: %s", e.getKey()));   // NOSONAR
           }
 
           for (int i = 0; i < cardsToFind.get(card.getName()); ++i) {
@@ -148,7 +148,7 @@ public final class CardReader {
         loadCards();
       }
       catch (Exception e) {
-        throw new RuntimeException(e);
+        throw new RuntimeException(e);    // NOSONAR
       }
     }
 
@@ -210,7 +210,9 @@ public final class CardReader {
     try {
       filteredList = CardFilter.filter(loadCards(), filter);
     }
-    catch (Exception e) {}
+    catch (Exception e) {
+      throw new RuntimeException(e);    // NOSONAR
+    }
 
     if(filteredList != null && filteredList.size() == 1) {
       return filteredList.get(0);

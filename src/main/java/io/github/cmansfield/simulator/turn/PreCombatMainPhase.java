@@ -27,7 +27,7 @@ public class PreCombatMainPhase implements Phase {
     gameManager.addToStack(new PlayLandAction(gameManager));
     gameManager.resolveStack();
 
-    while(castSpell(gameManager)) {};
+    while(castSpell(gameManager))
 
     gameManager.setPhase(new CombatPhase());
   }

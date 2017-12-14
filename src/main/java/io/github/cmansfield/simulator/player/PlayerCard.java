@@ -3,9 +3,6 @@ package io.github.cmansfield.simulator.player;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.simulator.player.constants.CardState;
 
-import java.util.Collections;
-import java.util.Map;
-
 
 // This is a wrapper class for the Card class
 public class PlayerCard extends Card {
@@ -46,19 +43,21 @@ public class PlayerCard extends Card {
     private Player owner;
     private Card card;
 
-    public PlayerCardBuilder() {}
+    public PlayerCardBuilder() {
+      // Here for builder pattern
+    }
 
     public PlayerCard.PlayerCardBuilder cardState(CardState cardState) {
       this.cardState = cardState;
       return this;
     }
 
-    public PlayerCard.PlayerCardBuilder controller(Player player) {
+    public PlayerCard.PlayerCardBuilder controller(Player controller) {
       this.controller = controller;
       return this;
     }
 
-    public PlayerCard.PlayerCardBuilder owner(Player player) {
+    public PlayerCard.PlayerCardBuilder owner(Player owner) {
       this.owner = owner;
       return this;
     }

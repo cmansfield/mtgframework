@@ -15,6 +15,8 @@ import java.util.*;
 
 public final class TappedImporter {
 
+  private TappedImporter() {}
+
   /**
    * Iterates over all json objects in the supplied directory, creates a list of deck objects
    *
@@ -27,7 +29,7 @@ public final class TappedImporter {
     List<Deck> decks = new ArrayList<>();
 
     if(fileArray == null) {
-      return null;
+      return Collections.emptyList();
     }
 
     List<File> files = Arrays.asList(fileArray);
@@ -47,7 +49,7 @@ public final class TappedImporter {
       }
       catch(Exception e) {
         System.out.printf("Unable to load file %s%n", file.getName());
-        throw new RuntimeException(e);
+        throw new RuntimeException(e);    // NOSONAR
       }
 
     });

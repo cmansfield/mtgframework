@@ -4,8 +4,8 @@ import com.sun.jersey.api.client.UniformInterfaceException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.sun.jersey.api.client.WebResource;
-import com.sun.jersey.api.client.Client;
 import io.github.cmansfield.io.IoConstants;
+import com.sun.jersey.api.client.Client;
 import org.apache.commons.lang.Validate;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -143,13 +143,13 @@ public final class GetUpdates {
    * @throws IOException
    */
   private static void downloadLatestCardList() throws IOException {
-    final int TIMEOUT = 500;
+    int timeout = 500;
     File file = new File(IoConstants.CARD_LIST_FILE_NAME);
     URL url = null;
 
     try {
       url = new URL(GET_CARD_LIST_URL);
-      FileUtils.copyURLToFile(url, file, TIMEOUT, TIMEOUT);
+      FileUtils.copyURLToFile(url, file, timeout, timeout);
     }
     catch(MalformedURLException e) {
       System.out.printf("Unable create URL object with url: %s%n", GET_CARD_LIST_URL);
@@ -174,7 +174,9 @@ public final class GetUpdates {
     Validate.notEmpty(version);
 
     try {
-      file.createNewFile();
+      if(file.createNewFile()) {
+        System.out.printf("File %s was created%n", file.getName());
+      }
 
       fileWriter = new FileWriter(file);
       fileWriter.write(version);

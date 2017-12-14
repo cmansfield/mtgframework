@@ -1,11 +1,6 @@
 
 Mtg Framework TODO list
 
-Other
-    Add additional exception handling in main
-    Replace System.out.prints with logging
-    Add more program args
-
 GameManager
     Use the command pattern to add actions to the stack
     Use the observer pattern to notify listeners when something is placed
@@ -17,6 +12,11 @@ CastSpellAction::execute
 Create:
     card type constants (Maybe not. if I do I would have to update this program with each new set)
     DeckDeserializer (Mostly to ensure the commander isn't included in the deck list)
+
+Sonar:
+    Return an empty collection rather than null from classes
+        Ensure we are not storing empty collections when we save json files
+    Replace System.out.prints with logging
 
 Testing
     Add integration tests

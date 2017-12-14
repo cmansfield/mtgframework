@@ -33,8 +33,8 @@ public class UntapAction implements Action {
                             .cardState(CardState.TAPPED)
                             .build()).size()));
 
-    activePlayer.getZone(Zone.BATTLEFIELD).forEach(card -> {
-      card.setCardState(CardState.UNTAPPED);
-    });
+    activePlayer.getZone(Zone.BATTLEFIELD).forEach(card ->
+      card.setCardState(CardState.UNTAPPED)
+    );
   }
 }
