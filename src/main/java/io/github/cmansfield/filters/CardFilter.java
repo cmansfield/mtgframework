@@ -1,8 +1,6 @@
 package io.github.cmansfield.filters;
 
 import io.github.cmansfield.card.Card;
-import io.github.cmansfield.card.constants.CardConstants;
-import javafx.util.Pair;
 
 import java.text.Normalizer;
 import java.util.*;
@@ -11,6 +9,9 @@ import java.util.function.Supplier;
 
 
 public class CardFilter {
+
+  protected CardFilter() {}
+
   /**
    * Returns a list of cards that do not match anything in the filters supplied
    *
@@ -21,9 +22,9 @@ public class CardFilter {
   public static List<Card> filterNot(List<Card> cards, List<Card> filters) {
     List<Card> allFilteredNotCards = new ArrayList<>();
 
-    filters.forEach(filter -> {
-      allFilteredNotCards.addAll(CardFilter.filter(cards, filter));
-    });
+    filters.forEach(filter ->
+      allFilteredNotCards.addAll(CardFilter.filter(cards, filter))
+    );
 
     return allFilteredNotCards;
   }
@@ -49,9 +50,9 @@ public class CardFilter {
   public static List<Card> filter(List<Card> cards, List<Card> filters) {
     List<Card> allFilteredCards = new ArrayList<>();
 
-    filters.forEach(filter -> {
-      allFilteredCards.addAll(CardFilter.filter(cards, filter));
-    });
+    filters.forEach(filter ->
+      allFilteredCards.addAll(CardFilter.filter(cards, filter))
+    );
 
     return allFilteredCards;
   }
@@ -127,14 +128,14 @@ public class CardFilter {
 
     // Strip any unicode characters and check again
     if(!isMatch && cardStr.matches(".*[^\\p{ASCII}].*")) {
-      filterStr = Normalizer                  // This replaces unicode characters to ascii
+      String filterNormalized = Normalizer                  // This replaces unicode characters to ascii
               .normalize(filterStr, Normalizer.Form.NFD)
               .replaceAll("[^\\p{ASCII}]", "");
-      cardStr = Normalizer                  // This replaces unicode characters to ascii
+      String cardNormalized = Normalizer                  // This replaces unicode characters to ascii
               .normalize(cardStr, Normalizer.Form.NFD)
               .replaceAll("[^\\p{ASCII}]", "");
 
-      isMatch = cardStr.toLowerCase().contains(filterStr.toLowerCase());
+      isMatch = cardNormalized.toLowerCase().contains(filterNormalized.toLowerCase());
     }
 
     return isMatch;
@@ -150,12 +151,10 @@ public class CardFilter {
    * @return    - Returns true if the second list contains the elements
    *            of the first list
    */
-  private static boolean allMatchList(List listCard, List listFilter) {
+  private static boolean allMatchList(List<Object> listCard, List<Object> listFilter) {
     return listFilter.stream().allMatch(item -> {
-      if(item instanceof Map) {
-        if(listCard.contains(item)) {
-          return allMatchMap((Map)item, (Map)listCard.get(listCard.indexOf(item)));
-        }
+      if(item instanceof Map && listCard.contains(item)) {
+        return allMatchMap((Map)item, (Map)listCard.get(listCard.indexOf(item)));
       }
 
       if(item instanceof String) {
@@ -179,7 +178,7 @@ public class CardFilter {
   private static boolean allMatchMap(Map<Object, Object> mapCard, Map<Object, Object> mapFilter) {
     return mapFilter.entrySet().stream().allMatch(e -> {
       if(e.getValue() instanceof List) {
-        if(((List)mapCard.get(e.getKey())).contains(e.getValue())) {
+        if(((List)mapCard.get(e.getKey())).contains(e.getValue())) {    // NOSONAR
           return allMatchList((List)e.getValue(), (List)mapCard.get(e.getKey()));
         }
       }
@@ -195,7 +194,7 @@ public class CardFilter {
    * @param filter  - Card object that contains the filters criteria
    * @return        - Returns a map of functions that were found in the filters object
    */
-  private static Map<Supplier,Function<Card,Object>> generateFilterMap(Card filter) {
+  private static Map<Supplier,Function<Card,Object>> generateFilterMap(Card filter) { // NOSONAR
     final Map<Supplier,Function<Card,Object>> getterMethodMap = new HashMap<>();
 
     if(filter.getLayout() != null) getterMethodMap.put(filter::getLayout, Card::getLayout);
