@@ -1,7 +1,7 @@
-package io.github.cmansfield.simulator.turn.beginningSteps;
+package io.github.cmansfield.simulator.turn.beginningsteps;
 
 import io.github.cmansfield.simulator.actions.UntapAction;
-import io.github.cmansfield.simulator.gameManager.GameManager;
+import io.github.cmansfield.simulator.gamemanager.GameManager;
 import io.github.cmansfield.simulator.turn.BeginningPhase;
 
 

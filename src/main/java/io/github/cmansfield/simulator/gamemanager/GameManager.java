@@ -1,8 +1,8 @@
-package io.github.cmansfield.simulator.gameManager;
+package io.github.cmansfield.simulator.gamemanager;
 
 import io.github.cmansfield.simulator.actions.Action;
 import io.github.cmansfield.simulator.constants.Zone;
-import io.github.cmansfield.simulator.gameManager.constants.GameConstants;
+import io.github.cmansfield.simulator.gamemanager.constants.GameConstants;
 import io.github.cmansfield.simulator.turn.BeginningPhase;
 import io.github.cmansfield.validator.DeckValidator;
 import io.github.cmansfield.simulator.player.Player;

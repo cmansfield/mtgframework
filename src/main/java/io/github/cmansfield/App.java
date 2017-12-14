@@ -1,6 +1,6 @@
 package io.github.cmansfield;
 
-import io.github.cmansfield.simulator.gameManager.GameManager;
+import io.github.cmansfield.simulator.gamemanager.GameManager;
 import io.github.cmansfield.simulator.player.Player;
 import io.github.cmansfield.validator.DeckValidator;
 import io.github.cmansfield.io.web.TappedImporter;
@@ -85,7 +85,7 @@ public class App {
   }
 
 
-  private static void saveFormatCompliantFromTappedOut() throws IOException {
+  private static void saveFormatCompliantDecksFromTappedOut() throws IOException {
     List<Deck> decks = TappedImporter.importFilesFromTappedOut("TappedCrawler\\decks\\animar-soul-of-elements");
     decks.forEach(deck -> {
       try{
@@ -119,6 +119,6 @@ public class App {
 
 
   private static void usage() {
-    System.out.printf("Usage: mtgframework [-u | --update]");
+    System.out.println("Usage: mtgframework [-u | --update]");    // NOSONAR
   }
 }

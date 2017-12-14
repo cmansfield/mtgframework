@@ -1,6 +1,6 @@
-package io.github.cmansfield.simulator.turn.combatSteps;
+package io.github.cmansfield.simulator.turn.combatsteps;
 
-import io.github.cmansfield.simulator.gameManager.GameManager;
+import io.github.cmansfield.simulator.gamemanager.GameManager;
 import io.github.cmansfield.simulator.turn.CombatPhase;
 
 

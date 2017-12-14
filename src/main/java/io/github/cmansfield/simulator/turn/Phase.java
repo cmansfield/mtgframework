@@ -1,6 +1,6 @@
 package io.github.cmansfield.simulator.turn;
 
-import io.github.cmansfield.simulator.gameManager.GameManager;
+import io.github.cmansfield.simulator.gamemanager.GameManager;
 
 public interface Phase {
 

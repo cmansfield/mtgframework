@@ -1,7 +1,7 @@
 package io.github.cmansfield.simulator.actions;
 
 import io.github.cmansfield.simulator.player.constants.CardState;
-import io.github.cmansfield.simulator.gameManager.GameManager;
+import io.github.cmansfield.simulator.gamemanager.GameManager;
 import io.github.cmansfield.simulator.player.PlayerUtils;
 import io.github.cmansfield.simulator.player.PlayerCard;
 import io.github.cmansfield.simulator.constants.Zone;

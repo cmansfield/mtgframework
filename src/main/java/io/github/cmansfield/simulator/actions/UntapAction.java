@@ -2,12 +2,10 @@ package io.github.cmansfield.simulator.actions;
 
 import io.github.cmansfield.filters.PlayerCardFilter;
 import io.github.cmansfield.simulator.constants.Zone;
-import io.github.cmansfield.simulator.gameManager.GameManager;
+import io.github.cmansfield.simulator.gamemanager.GameManager;
 import io.github.cmansfield.simulator.player.Player;
 import io.github.cmansfield.simulator.player.PlayerCard;
 import io.github.cmansfield.simulator.player.constants.CardState;
-
-import java.util.List;
 
 
 public class UntapAction implements Action {

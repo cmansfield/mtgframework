@@ -1,8 +1,8 @@
-package io.github.cmansfield.simulator.turn.endingSteps;
+package io.github.cmansfield.simulator.turn.endingsteps;
 
 import io.github.cmansfield.simulator.actions.DiscardAction;
-import io.github.cmansfield.simulator.gameManager.constants.GameConstants;
-import io.github.cmansfield.simulator.gameManager.GameManager;
+import io.github.cmansfield.simulator.gamemanager.constants.GameConstants;
+import io.github.cmansfield.simulator.gamemanager.GameManager;
 import io.github.cmansfield.simulator.turn.EndingPhase;
 import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.simulator.player.Player;

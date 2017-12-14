@@ -1,8 +1,8 @@
 package io.github.cmansfield.simulator.turn;
 
-import io.github.cmansfield.simulator.gameManager.GameManager;
-import io.github.cmansfield.simulator.turn.combatSteps.BeginningOfCombatStep;
-import io.github.cmansfield.simulator.turn.combatSteps.CombatStep;
+import io.github.cmansfield.simulator.gamemanager.GameManager;
+import io.github.cmansfield.simulator.turn.combatsteps.BeginningOfCombatStep;
+import io.github.cmansfield.simulator.turn.combatsteps.CombatStep;
 
 
 public class CombatPhase implements Phase {

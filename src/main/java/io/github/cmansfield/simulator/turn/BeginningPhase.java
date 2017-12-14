@@ -1,8 +1,8 @@
 package io.github.cmansfield.simulator.turn;
 
-import io.github.cmansfield.simulator.gameManager.GameManager;
-import io.github.cmansfield.simulator.turn.beginningSteps.BeginningStep;
-import io.github.cmansfield.simulator.turn.beginningSteps.UntapStep;
+import io.github.cmansfield.simulator.gamemanager.GameManager;
+import io.github.cmansfield.simulator.turn.beginningsteps.BeginningStep;
+import io.github.cmansfield.simulator.turn.beginningsteps.UntapStep;
 
 
 public class BeginningPhase implements Phase {

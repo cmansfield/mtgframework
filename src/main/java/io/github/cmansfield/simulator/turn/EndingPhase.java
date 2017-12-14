@@ -1,8 +1,8 @@
 package io.github.cmansfield.simulator.turn;
 
-import io.github.cmansfield.simulator.gameManager.GameManager;
-import io.github.cmansfield.simulator.turn.endingSteps.EndStep;
-import io.github.cmansfield.simulator.turn.endingSteps.EndingStep;
+import io.github.cmansfield.simulator.gamemanager.GameManager;
+import io.github.cmansfield.simulator.turn.endingsteps.EndStep;
+import io.github.cmansfield.simulator.turn.endingsteps.EndingStep;
 
 
 public class EndingPhase implements Phase {

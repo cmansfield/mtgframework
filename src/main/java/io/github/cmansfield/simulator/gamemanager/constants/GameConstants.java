@@ -1,4 +1,4 @@
-package io.github.cmansfield.simulator.gameManager.constants;
+package io.github.cmansfield.simulator.gamemanager.constants;
 
 public enum GameConstants {
   STARTING_HAND_SIZE(7),
