@@ -44,10 +44,14 @@ public class App {
     }
 
     // Wrap method we want to test in a lambda
-    timeMethod(() -> {
-      CardFilter.filter(cards, new Card.CardBuilder().name("awol2").build());
-      return null;
-    });
+//    timeMethod(() -> {
+//      CardFilter.filter(cards, new Card.CardBuilder().name("awol2").build());
+//      return null;
+//    });
+
+    LOGGER.info("Pre layout");
+
+    playGame();
 
     LOGGER.info("End of App");
   }

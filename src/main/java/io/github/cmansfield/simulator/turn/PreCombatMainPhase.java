@@ -9,6 +9,8 @@ import io.github.cmansfield.simulator.player.Player;
 import io.github.cmansfield.filters.CardFilter;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.simulator.player.PlayerUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,16 +20,18 @@ import java.util.stream.Collectors;
 
 public class PreCombatMainPhase implements Phase {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(PreCombatMainPhase.class);
+
   @Override
   public void perform(GameManager gameManager) {
-    System.out.println("This is the Pre-Combat Main phase");
+    LOGGER.trace("This is the Pre-Combat Main phase");
 
     // Add MinMax logic here in the future
 
     gameManager.addToStack(new PlayLandAction(gameManager));
     gameManager.resolveStack();
 
-    while(castSpell(gameManager))
+    while(castSpell(gameManager));
 
     gameManager.setPhase(new CombatPhase());
   }

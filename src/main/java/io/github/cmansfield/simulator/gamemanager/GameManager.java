@@ -65,7 +65,7 @@ public final class GameManager {
       }
     }
 
-    LOGGER.info("%n{} won!", getActivePlayer().getPlayerName());
+    LOGGER.info("{} won!", getActivePlayer().getPlayerName());
     LOGGER.info("End of Game");
   }
 
