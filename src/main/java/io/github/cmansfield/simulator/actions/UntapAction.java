@@ -6,9 +6,12 @@ import io.github.cmansfield.simulator.gamemanager.GameManager;
 import io.github.cmansfield.simulator.player.Player;
 import io.github.cmansfield.simulator.player.PlayerCard;
 import io.github.cmansfield.simulator.player.constants.CardState;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class UntapAction implements Action {
+  private static final Logger LOGGER = LoggerFactory.getLogger(UntapAction.class);
 
   private GameManager gameManager;
 
@@ -26,12 +29,13 @@ public class UntapAction implements Action {
     Player activePlayer = this.gameManager.getActivePlayer();
 
     // TODO - Check these counts, the number of cards untapped seems off
-    System.out.println(String.format("\t\tCards Untapped: %d",
+    LOGGER.trace(
+            "Cards Untapped: {}",
             PlayerCardFilter.filter(
                     activePlayer.getZone(Zone.BATTLEFIELD),
                     new PlayerCard.PlayerCardBuilder()
                             .cardState(CardState.TAPPED)
-                            .build()).size()));
+                            .build()).size());
 
     activePlayer.getZone(Zone.BATTLEFIELD).forEach(card ->
       card.setCardState(CardState.UNTAPPED)

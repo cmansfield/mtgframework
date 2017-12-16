@@ -13,9 +13,6 @@ Create:
     card type constants (Maybe not. if I do I would have to update this program with each new set)
     DeckDeserializer (Mostly to ensure the commander isn't included in the deck list)
 
-Sonar:
-    Replace System.out.prints with logging (simulator package)
-
 Testing
     Add integration tests
         DeckAppraiser::appraiseHandDraw (Wait to create this)

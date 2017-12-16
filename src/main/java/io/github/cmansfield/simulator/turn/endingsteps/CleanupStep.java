@@ -6,13 +6,17 @@ import io.github.cmansfield.simulator.gamemanager.GameManager;
 import io.github.cmansfield.simulator.turn.EndingPhase;
 import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.simulator.player.Player;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class CleanupStep implements EndingStep {
+  private static final Logger LOGGER = LoggerFactory.getLogger(CleanupStep.class);
+  private static final Logger NEW_LINE_LOGGER = LoggerFactory.getLogger("newline");
 
   @Override
   public void perform(GameManager gameManager, EndingPhase endingPhase) {
-    System.out.printf("\tCleanup Step%n");
+    LOGGER.trace("Cleanup Step");
 
     Player activePlayer = gameManager.getActivePlayer();
     int amount = activePlayer.getZone(Zone.HAND).size() - GameConstants.MAX_HAND_SIZE.value();
@@ -25,5 +29,7 @@ public class CleanupStep implements EndingStep {
     gameManager.nextPlayersTurn();
 
     endingPhase.setEndingStep(null);
+
+    NEW_LINE_LOGGER.trace("");
   }
 }

@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 
 
 public class PreCombatMainPhase implements Phase {
-
   private static final Logger LOGGER = LoggerFactory.getLogger(PreCombatMainPhase.class);
 
   @Override

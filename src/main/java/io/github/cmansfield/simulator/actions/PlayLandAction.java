@@ -6,13 +6,15 @@ import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.simulator.player.Player;
 import io.github.cmansfield.filters.CardFilter;
 import io.github.cmansfield.card.Card;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Collections;
 import java.util.List;
 
 
 public class PlayLandAction implements Action {
-
+  private static final Logger LOGGER = LoggerFactory.getLogger(PlayLandAction.class);
   private GameManager gameManager;
 
   public PlayLandAction(GameManager gameManager) {
@@ -42,7 +44,7 @@ public class PlayLandAction implements Action {
         activePlayer.moveZone(Zone.HAND, Zone.BATTLEFIELD, (PlayerCard)land.get(0));
         gameManager.setActivePlayerPlayedLand(true);
 
-        System.out.println(String.format("\t\tLand Played: %s", ((PlayerCard)land.get(0)).getName()));
+        LOGGER.trace("Land Played: {}", ((PlayerCard)land.get(0)).getName());
       }
     }
   }

@@ -3,9 +3,12 @@ package io.github.cmansfield.simulator.turn;
 import io.github.cmansfield.simulator.gamemanager.GameManager;
 import io.github.cmansfield.simulator.turn.beginningsteps.BeginningStep;
 import io.github.cmansfield.simulator.turn.beginningsteps.UntapStep;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class BeginningPhase implements Phase {
+  private static final Logger LOGGER = LoggerFactory.getLogger(BeginningPhase.class);
 
   private BeginningStep beginningStep;
 
@@ -19,8 +22,7 @@ public class BeginningPhase implements Phase {
 
   @Override
   public void perform(GameManager gameManager) {
-    System.out.printf("%n-- %s's turn --%n", gameManager.getActivePlayer().getPlayerName());
-    System.out.println("This is the beginning phase");
+    LOGGER.trace("-- {}'s turn --", gameManager.getActivePlayer().getPlayerName());
 
     while(this.beginningStep != null) {
       this.beginningStep.perform(gameManager, this);

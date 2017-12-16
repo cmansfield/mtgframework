@@ -3,9 +3,12 @@ package io.github.cmansfield.simulator.turn;
 import io.github.cmansfield.simulator.gamemanager.GameManager;
 import io.github.cmansfield.simulator.turn.endingsteps.EndStep;
 import io.github.cmansfield.simulator.turn.endingsteps.EndingStep;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class EndingPhase implements Phase {
+  private static final Logger LOGGER = LoggerFactory.getLogger(EndingPhase.class);
 
   private EndingStep endingStep;
 
@@ -19,7 +22,7 @@ public class EndingPhase implements Phase {
 
   @Override
   public void perform(GameManager gameManager) {
-    System.out.println("This is the End phase");
+    LOGGER.trace("This is the End phase");
 
     while(this.endingStep != null) {
       this.endingStep.perform(gameManager, this);

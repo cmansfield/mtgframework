@@ -6,11 +6,14 @@ import io.github.cmansfield.simulator.player.PlayerUtils;
 import io.github.cmansfield.simulator.player.PlayerCard;
 import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.simulator.player.Player;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 
 public class CastSpellAction implements Action {
+  private static final Logger LOGGER = LoggerFactory.getLogger(CastSpellAction.class);
 
   private GameManager gameManager;
   private PlayerCard playerCard;
@@ -29,7 +32,7 @@ public class CastSpellAction implements Action {
   public void execute() {
     Player activePlayer = gameManager.getActivePlayer();
 
-    System.out.println(String.format("\t\tSpell Cast: %s", this.playerCard.getName()));
+    LOGGER.trace("Spell Cast: {}", this.playerCard.getName());
 
     // Get the land from the battlefield
     List<PlayerCard> availableMana = PlayerUtils.getUntappedMana(activePlayer);
