@@ -2,6 +2,7 @@ package io.github.cmansfield.simulator.turn;
 
 import io.github.cmansfield.simulator.actions.CastSpellAction;
 import io.github.cmansfield.simulator.actions.PlayLandAction;
+import io.github.cmansfield.simulator.exceptions.GameException;
 import io.github.cmansfield.simulator.gamemanager.GameManager;
 import io.github.cmansfield.simulator.player.PlayerCard;
 import io.github.cmansfield.simulator.constants.Zone;
@@ -22,7 +23,7 @@ public class PreCombatMainPhase implements Phase {
   private static final Logger LOGGER = LoggerFactory.getLogger(PreCombatMainPhase.class);
 
   @Override
-  public void perform(GameManager gameManager) {
+  public void perform(GameManager gameManager) throws GameException {
     LOGGER.trace("This is the Pre-Combat Main phase");
 
     // Add MinMax logic here in the future
@@ -36,7 +37,7 @@ public class PreCombatMainPhase implements Phase {
   }
 
 
-  private boolean castSpell(GameManager gameManager) {
+  private boolean castSpell(GameManager gameManager) throws GameException {
     Player activePlayer = gameManager.getActivePlayer();
     List<PlayerCard> availableMana = PlayerUtils.getUntappedMana(activePlayer);
     List<PlayerCard> cardsThatCanBeCast = new ArrayList<>(activePlayer.getZone(Zone.HAND));

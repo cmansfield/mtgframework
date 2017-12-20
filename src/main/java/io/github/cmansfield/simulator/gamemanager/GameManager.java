@@ -1,7 +1,9 @@
 package io.github.cmansfield.simulator.gamemanager;
 
 import io.github.cmansfield.simulator.actions.Action;
+import io.github.cmansfield.simulator.constants.GameEvent;
 import io.github.cmansfield.simulator.constants.Zone;
+import io.github.cmansfield.simulator.exceptions.GameException;
 import io.github.cmansfield.simulator.gamemanager.constants.GameConstants;
 import io.github.cmansfield.simulator.turn.BeginningPhase;
 import io.github.cmansfield.validator.DeckValidator;
@@ -52,8 +54,7 @@ public final class GameManager {
       try {
         perform();
       }
-      catch(Exception e) {
-        // TODO - improve this logic so not all exceptions are a game loss
+      catch(GameException e) {
         LOGGER.info("{} lost the game", this.getActivePlayer().getPlayerName());
         LOGGER.info(e.getMessage());
 
@@ -78,7 +79,7 @@ public final class GameManager {
     this.stack.add(action);
   }
 
-  public void resolveStack() {
+  public void resolveStack() throws GameException {
     Action action;
 
     while(!this.stack.isEmpty()) {
@@ -87,7 +88,7 @@ public final class GameManager {
     }
   }
 
-  private void perform() {
+  private void perform() throws GameException {
     this.phase.perform(this);
   }
 

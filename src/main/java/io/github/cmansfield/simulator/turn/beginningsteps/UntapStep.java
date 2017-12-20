@@ -1,6 +1,7 @@
 package io.github.cmansfield.simulator.turn.beginningsteps;
 
 import io.github.cmansfield.simulator.actions.UntapAction;
+import io.github.cmansfield.simulator.exceptions.GameException;
 import io.github.cmansfield.simulator.gamemanager.GameManager;
 import io.github.cmansfield.simulator.turn.BeginningPhase;
 import org.slf4j.Logger;
@@ -11,7 +12,7 @@ public class UntapStep implements BeginningStep {
   private static final Logger LOGGER = LoggerFactory.getLogger(UntapStep.class);
 
   @Override
-  public void perform(GameManager gameManager, BeginningPhase beginningPhase) {
+  public void perform(GameManager gameManager, BeginningPhase beginningPhase) throws GameException {
     LOGGER.trace("Untap Step");
 
     gameManager.addToStack(new UntapAction(gameManager));

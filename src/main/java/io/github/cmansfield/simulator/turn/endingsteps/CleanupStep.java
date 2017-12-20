@@ -1,6 +1,7 @@
 package io.github.cmansfield.simulator.turn.endingsteps;
 
 import io.github.cmansfield.simulator.actions.DiscardAction;
+import io.github.cmansfield.simulator.exceptions.GameException;
 import io.github.cmansfield.simulator.gamemanager.constants.GameConstants;
 import io.github.cmansfield.simulator.gamemanager.GameManager;
 import io.github.cmansfield.simulator.turn.EndingPhase;
@@ -15,7 +16,7 @@ public class CleanupStep implements EndingStep {
   private static final Logger NEW_LINE_LOGGER = LoggerFactory.getLogger("newline");
 
   @Override
-  public void perform(GameManager gameManager, EndingPhase endingPhase) {
+  public void perform(GameManager gameManager, EndingPhase endingPhase) throws GameException {
     LOGGER.trace("Cleanup Step");
 
     Player activePlayer = gameManager.getActivePlayer();

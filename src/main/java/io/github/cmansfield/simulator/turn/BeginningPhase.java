@@ -1,5 +1,6 @@
 package io.github.cmansfield.simulator.turn;
 
+import io.github.cmansfield.simulator.exceptions.GameException;
 import io.github.cmansfield.simulator.gamemanager.GameManager;
 import io.github.cmansfield.simulator.turn.beginningsteps.BeginningStep;
 import io.github.cmansfield.simulator.turn.beginningsteps.UntapStep;
@@ -21,7 +22,7 @@ public class BeginningPhase implements Phase {
   }
 
   @Override
-  public void perform(GameManager gameManager) {
+  public void perform(GameManager gameManager) throws GameException {
     LOGGER.trace("-- {}'s turn --", gameManager.getActivePlayer().getPlayerName());
 
     while(this.beginningStep != null) {

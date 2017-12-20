@@ -1,5 +1,7 @@
 package io.github.cmansfield.simulator.actions;
 
+import io.github.cmansfield.simulator.constants.GameEvent;
+import io.github.cmansfield.simulator.exceptions.GameException;
 import io.github.cmansfield.simulator.gamemanager.GameManager;
 import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.simulator.player.Player;
@@ -23,10 +25,15 @@ public class DrawAction implements Action {
   }
 
   @Override
-  public void execute() {
+  public void execute() throws GameException {
     Player activePlayer = gameManager.getActivePlayer();
 
-    this.gameManager.getActivePlayer().draw(this.amount);
+    try {
+      this.gameManager.getActivePlayer().draw(this.amount);
+    }
+    catch(IllegalStateException e) {
+      throw new GameException(GameEvent.PLAYER_LOSS, e);
+    }
 
     String message = this.amount == 1 ? "drew a card" : String.format("drew %d cards", this.amount);
     LOGGER.trace(
