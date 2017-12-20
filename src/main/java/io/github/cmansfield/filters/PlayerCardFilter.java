@@ -18,10 +18,10 @@ public class PlayerCardFilter extends CardFilter {
    */
   public static List<PlayerCard> filter(List<PlayerCard> cards, PlayerCard filter) {
     List<PlayerCard> playerCards = cards.stream().filter(card -> {
-      if(filter.getOwner() != null && card.getOwner() != filter.getOwner()) {
+      if(filter.getOwnerName() != null && !card.getOwnerName().equalsIgnoreCase(filter.getOwnerName())) {
         return false;
       }
-      if(filter.getController() != null && card.getController() != filter.getController()) {
+      if(filter.getControllerName() != null && !card.getControllerName().equalsIgnoreCase(filter.getControllerName())) {
         return false;
       }
 

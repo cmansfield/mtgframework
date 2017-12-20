@@ -15,11 +15,19 @@ public final class Deck {
   private List<Card> cards;
   private Format format;
 
+  public Deck() {}
+
+  public Deck(Deck deck) {
+    this.quantity = new HashMap<>(deck.quantity);
+    this.deckColors = new ArrayList<>(deck.deckColors);
+    this.featuredCards = new ArrayList<>(deck.featuredCards);
+    this.cards = new ArrayList<>(deck.cards);
+    this.format = deck.format;
+  }
+
   public Deck(List<Card> cards) {
     this(cards, null);
   }
-
-  public Deck() {}
 
   /**
    * Constructor that will remove duplicates from the card list

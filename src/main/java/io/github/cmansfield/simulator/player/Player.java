@@ -2,6 +2,8 @@ package io.github.cmansfield.simulator.player;
 
 import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.deck.Deck;
+import javafx.util.Pair;
+import org.apache.commons.lang.StringUtils;
 
 import java.util.stream.Collectors;
 import java.util.*;
@@ -15,13 +17,33 @@ public class Player {
   private Integer life;
   private Deck deck;
 
+  public Player(Player player) {
+    this.playerName = player.playerName;
+    this.life = player.life;
+    this.deck = new Deck(player.deck);
+    this.zones = player.zones.entrySet().stream()
+            .map(zoneEntry ->
+              new Pair<>(zoneEntry.getKey(), zoneEntry.getValue().stream()
+                .map(PlayerCard::new)
+                .collect(Collectors.toList())))
+            .collect(Collectors.toMap(Pair::getKey, Pair::getValue));
+  }
+
   public Player(Deck deck) {
+    this(deck, "Player1");
+  }
+
+  public Player(Deck deck, String playerName) {
     if(deck == null) {
       throw new NullPointerException("Deck must not be null");
     }
+    if(StringUtils.isEmpty(playerName)) {
+      throw new IllegalArgumentException("PlayerName cannot be empty");
+    }
 
-    this.life = 0;
+    this.playerName = playerName;
     this.deck = deck;
+    this.life = 0;
     resetZones();
   }
 
@@ -38,11 +60,15 @@ public class Player {
   }
 
   public String getPlayerName() {
-    return this.playerName;
+    return playerName;
+  }
+
+  public Integer getLife() {
+    return life;
   }
 
   public void setPlayerName(String playerName) {
-    if(playerName == null || playerName.length() < 1) {
+    if(StringUtils.isEmpty(playerName)) {
       throw new IllegalArgumentException("Invalid player name");
     }
 
@@ -153,7 +179,7 @@ public class Player {
             Zone.LIBRARY,
             this.deck.generateFullDeckList()
                     .stream()
-                    .map(card -> new PlayerCard(card, this))
+                    .map(card -> new PlayerCard(card, playerName))
                     .collect(Collectors.toList()));
     this.zones.put(Zone.HAND, new ArrayList<>());
     this.zones.put(Zone.GRAVEYARD, new ArrayList<>());
@@ -164,7 +190,7 @@ public class Player {
             this.deck.getFeaturedCards() == null ?
                     new ArrayList<>() :
                     this.deck.getFeaturedCards().stream()
-                            .map(card -> new PlayerCard(card, this))
+                            .map(card -> new PlayerCard(card, playerName))
                             .collect(Collectors.toList()));
     this.zones.put(Zone.ANTE, new ArrayList<>());
     this.zones.put(Zone.SCRAPYARD, new ArrayList<>());

@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.testng.Assert.*;
@@ -89,5 +90,24 @@ public class DeckTest {
     assertFalse(deck.getCards().contains(card));
     assertEquals((int)deck.getQuantity(card.getName()), 0);
     assertEquals(deck.generateFullDeckList().size(), Format.COMMANDER.getMaxDeckSize() - 2);
+  }
+
+  @Test
+  public void test_copyConstructor() throws IOException {
+    final String TEST_DECK_FILE = "CompleteCommanderDeck.json";
+    File file = new File(getClass().getClassLoader().getResource(TEST_DECK_FILE).getFile());
+    Deck deck = DeckReader.loadDeck(file.getAbsolutePath());
+
+    assertNotNull(deck);
+
+    Deck copyDeck = new Deck(deck);
+    copyDeck.setFeaturedCards(Collections.emptyList());
+    copyDeck.setFormat(Format.STANDARD);
+
+    assertEquals(deck.getFormat(), Format.COMMANDER);
+    assertEquals(deck.getFeaturedCards().size(), 1);
+    assertNotEquals(deck, copyDeck);
+    assertEquals(copyDeck.getFormat(), Format.STANDARD);
+    assertEquals(copyDeck.getFeaturedCards().size(), 0);
   }
 }

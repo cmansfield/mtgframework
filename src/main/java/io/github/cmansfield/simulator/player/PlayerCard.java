@@ -7,22 +7,29 @@ import io.github.cmansfield.simulator.player.constants.CardState;
 // This is a wrapper class for the Card class
 public class PlayerCard extends Card {
   private CardState cardState;
-  private Player controller;
-  private Player owner;
+  private String controllerName;
+  private String ownerName;
 
-  public PlayerCard(Card card, Player owner) {
+
+  public PlayerCard(PlayerCard playerCard) {
+    this.cardState = playerCard.cardState;
+    this.controllerName = playerCard.controllerName;
+    this.ownerName = playerCard.ownerName;
+  }
+
+  public PlayerCard(Card card, String ownerName) {
     super(card);
-    this.owner = owner;
-    this.controller = owner;
+    this.ownerName = ownerName;
+    this.controllerName = ownerName;
     this.cardState = CardState.UNTAPPED;
   }
 
-  public Player getController() {
-    return this.controller;
+  public String getControllerName() {
+    return this.controllerName;
   }
 
-  public Player getOwner() {
-    return this.owner;
+  public String getOwnerName() {
+    return this.ownerName;
   }
 
   public CardState getCardState() {
@@ -33,14 +40,14 @@ public class PlayerCard extends Card {
     this.cardState = cardState;
   }
 
-  public void setController(Player player) {
-    this.controller = player;
+  public void setControllerName(String controllerName) {
+    this.controllerName = controllerName;
   }
 
   public static class PlayerCardBuilder {
+    private String controllerName;
     private CardState cardState;
-    private Player controller;
-    private Player owner;
+    private String ownerName;
     private Card card;
 
     public PlayerCardBuilder() {
@@ -52,13 +59,13 @@ public class PlayerCard extends Card {
       return this;
     }
 
-    public PlayerCard.PlayerCardBuilder controller(Player controller) {
-      this.controller = controller;
+    public PlayerCard.PlayerCardBuilder controllerName(String controllerName) {
+      this.controllerName = controllerName;
       return this;
     }
 
-    public PlayerCard.PlayerCardBuilder owner(Player owner) {
-      this.owner = owner;
+    public PlayerCard.PlayerCardBuilder ownerName(String ownerName) {
+      this.ownerName = ownerName;
       return this;
     }
 
@@ -70,9 +77,9 @@ public class PlayerCard extends Card {
     public PlayerCard build() {
       PlayerCard playerCard = new PlayerCard(
               this.card == null ? new Card() : this.card,
-              this.owner);
+              this.ownerName);
 
-      playerCard.setController(this.controller);
+      playerCard.setControllerName(this.controllerName);
       playerCard.setCardState(this.cardState);
 
       return playerCard;

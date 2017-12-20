@@ -22,3 +22,6 @@ Testing
         simulator.action package
         simulator.turn package
         LoadCards::LookupCard
+        Copy constructors
+            Game
+            GameManager

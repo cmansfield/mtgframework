@@ -1,14 +1,13 @@
 package io.github.cmansfield.simulator.actions;
 
-import io.github.cmansfield.simulator.gamemanager.Game;
 import io.github.cmansfield.simulator.player.constants.CardState;
-import io.github.cmansfield.simulator.gamemanager.GameManager;
 import io.github.cmansfield.simulator.player.PlayerUtils;
 import io.github.cmansfield.simulator.player.PlayerCard;
+import io.github.cmansfield.simulator.gamemanager.Game;
 import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.simulator.player.Player;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 import java.util.List;
 
@@ -16,12 +15,12 @@ import java.util.List;
 public class CastSpellAction implements Action {
   private static final Logger LOGGER = LoggerFactory.getLogger(CastSpellAction.class);
 
-  private Game game;
   private PlayerCard playerCard;
+  private Game game;
 
   public CastSpellAction(Game game, PlayerCard playerCard) {
-    this.game = game;
     this.playerCard = playerCard;
+    this.game = game;
   }
 
   @Override

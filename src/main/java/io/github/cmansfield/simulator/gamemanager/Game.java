@@ -12,6 +12,7 @@ import io.github.cmansfield.simulator.turn.Phase;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
+import java.util.stream.Collectors;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Deque;
@@ -33,12 +34,21 @@ public class Game {
     this.stack = new LinkedList<>();
   }
 
+  // TODO - Finish this copy constructor
+  public Game(Game game) {
+    this();
+    this.players = game.players.stream()
+            .map(Player::new)
+            .collect(Collectors.toCollection(LinkedList::new));
+//    this.stack = game.stack.stream().map(action -> new )
+  }
+
   public void setPhase(Phase phase) {
     this.phase = phase;
   }
 
   public boolean hasActivePlayerPlayedLand() {
-    return this.activePlayerPlayedLand;
+    return activePlayerPlayedLand;
   }
 
   public void setActivePlayerPlayedLand(boolean hasPlayed) {
@@ -46,44 +56,44 @@ public class Game {
   }
 
   public Player getActivePlayer() {
-    return this.players.getFirst();
+    return players.getFirst();
   }
 
   public int getPlayerCount() {
-    return this.players.size();
+    return players.size();
   }
 
   public void removePlayer(Player player) {
     if(player == null) {
       throw new IllegalArgumentException("Player cannot be null");
     }
-    if(!this.players.contains(player)) {
+    if(!players.contains(player)) {
       throw new IllegalArgumentException("Player does not exist in the list of players");
     }
 
-    this.players.remove(player);
+    players.remove(player);
   }
 
   public void nextPlayersTurn() {
-    this.players.addLast(this.players.pollFirst());
-    this.activePlayerPlayedLand = false;
+    players.addLast(players.pollFirst());
+    activePlayerPlayedLand = false;
   }
 
   public void addToStack(Action action) {
-    this.stack.add(action);
+    stack.add(action);
   }
 
   public void resolveStack() throws GameException {
     Action action;
 
-    while(!this.stack.isEmpty()) {
+    while(!stack.isEmpty()) {
       action = stack.pollLast();
       action.execute();
     }
   }
 
   public void perform() throws GameException {
-    this.phase.perform(this);
+    phase.perform(this);
   }
 
 
@@ -94,7 +104,7 @@ public class Game {
     private Format format;
 
     public GameBuilder() {
-      this.players = new LinkedList<>();
+      players = new LinkedList<>();
     }
 
     public Game.GameBuilder player(Player player) {
@@ -102,23 +112,21 @@ public class Game {
         throw new IllegalArgumentException("Player object cannot be null");
       }
 
-      if(this.players.isEmpty()) {
-        this.format = player.getDeck().getFormat();
+      if(players.isEmpty()) {
+        format = player.getDeck().getFormat();
       }
-      else if(this.format != player.getDeck().getFormat()) {
+      else if(format != player.getDeck().getFormat()) {
         throw new IllegalArgumentException("Players entering the game must be playing the same format");
       }
 
-      if(this.format == Format.COMMANDER) {
+      if(format == Format.COMMANDER) {
         player.setLife(GameConstants.STARTING_LIFE_COMMANDER.value());
       }
       else {
         player.setLife(GameConstants.STARTING_LIFE_STANDARD.value());
       }
 
-      player.setPlayerName(String.format("Player%d", this.players.size() + 1));
-
-      this.players.add(player);
+      players.add(player);
 
       return this;
     }
@@ -126,11 +134,11 @@ public class Game {
     public Game build() {
       Game game = new Game();
 
-      if(this.players.size() < 2) {
+      if(players.size() < 2) {
         throw new IllegalStateException("There must be at least two players to play a game");
       }
 
-      this.players.forEach(player -> {
+      players.forEach(player -> {
         try {
           DeckValidator.isFormatCompliant(player.getDeck());
         }
@@ -141,18 +149,24 @@ public class Game {
         player.shuffle(Zone.LIBRARY);
       });
 
+      if(players.size() != players.stream()
+              .map(Player::getPlayerName)
+              .collect(Collectors.toSet()).size()) {
+        throw new IllegalStateException("Players within a game must not have the same name");
+      }
+
       // Shuffle the players to randomize who goes first
-      Collections.shuffle(this.players);
+      Collections.shuffle(players);
 
       setUp();
-      game.players = this.players;
+      game.players = players;
 
       return game;
     }
 
     private void setUp() {
       // Have the players draw their hands
-      this.players.forEach(player -> player.draw(GameConstants.STARTING_HAND_SIZE.value()));
+      players.forEach(player -> player.draw(GameConstants.STARTING_HAND_SIZE.value()));
     }
   }
 }

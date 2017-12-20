@@ -53,7 +53,7 @@ public class PlayerCardFilterTest {
     List<PlayerCard> player1Cards = player1.getZone(Zone.LIBRARY);
     PlayerCard playerCardFilter = new PlayerCard
             .PlayerCardBuilder()
-            .owner(player1)
+            .ownerName(player1.getPlayerName())
             .card(new Card
                     .CardBuilder()
                     .types(Collections.singletonList("Land"))

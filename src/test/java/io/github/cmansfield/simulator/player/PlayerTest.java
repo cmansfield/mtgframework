@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
 
+import static org.testng.Assert.assertNotEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertEquals;
 
@@ -66,5 +67,28 @@ public class PlayerTest {
     assertNotNull(graveyard);
     assertEquals(library.size(), 88);
     assertEquals(graveyard.size(), 11);
+  }
+
+  @Test
+  public void test_copyConstructor() {
+    String copyName = "Shape shifter";
+    int copyLife = 100_000;
+    player.setLife(40);
+    Player copyPlayer = new Player(player);
+    copyPlayer.setPlayerName(copyName);
+    copyPlayer.setLife(copyLife);
+    copyPlayer.getZone(Zone.LIBRARY).forEach(playerCard -> playerCard.setControllerName(null));
+    copyPlayer.moveZone(Zone.LIBRARY, Zone.GRAVEYARD, 30);
+
+    assertNotEquals(player, copyPlayer);
+    assertEquals(player.getZone(Zone.LIBRARY).size(), 99);
+    assertEquals((int)player.getLife(), 40);
+    assertNotEquals(player.getPlayerName(), copyName);
+    assertEquals(copyPlayer.getPlayerName(), copyName);
+    assertEquals(copyPlayer.getZone(Zone.GRAVEYARD).size(), 30);
+    assertEquals((int)copyPlayer.getLife(), copyLife);
+    player.getZone(Zone.LIBRARY).forEach(playerCard -> {
+      assertNotNull(playerCard.getControllerName());
+    });
   }
 }

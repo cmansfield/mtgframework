@@ -20,8 +20,8 @@ public final class GameManager {
     this.isPrimaryGm = isPrimaryGm;
   }
 
-  public GameManager(Game game, int numberOfTurns) {
-    this.game = game;
+  public GameManager(GameManager gameManager, int numberOfTurns) {
+    this.game = new Game(gameManager.game);
     this.numberOfTurns = numberOfTurns;
   }
 

@@ -110,10 +110,14 @@ public class App {
     Deck doranDeck = DeckReader.loadDeck("SavedCardLists/DoranDeck.json");
     Deck ghaveDeck = DeckReader.loadDeck("SavedCardLists/GhaveDeck.json");
 
-    Player player1 = new Player(doranDeck);
-    Player player2 = new Player(ghaveDeck);
-    Player player3 = new Player(ghaveDeck);
+    Player player1 = new Player(doranDeck, "Player1");
+    Player player2 = new Player(ghaveDeck, "Player2");
+    Player player3 = new Player(ghaveDeck, "Player3");
 
+//    Game game = new Game.GameBuilder().player(player1).player(player2).player(player3).build();
+//    Game game2 = new Game(game);
+
+//    System.out.println("testing");
     GameManager gameManager = new GameManager(
             new Game.GameBuilder()
             .player(player1)
