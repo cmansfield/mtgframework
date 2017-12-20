@@ -2,6 +2,7 @@ package io.github.cmansfield.simulator.actions;
 
 import io.github.cmansfield.filters.PlayerCardFilter;
 import io.github.cmansfield.simulator.constants.Zone;
+import io.github.cmansfield.simulator.gamemanager.Game;
 import io.github.cmansfield.simulator.gamemanager.GameManager;
 import io.github.cmansfield.simulator.player.Player;
 import io.github.cmansfield.simulator.player.PlayerCard;
@@ -12,11 +13,10 @@ import org.slf4j.LoggerFactory;
 
 public class UntapAction implements Action {
   private static final Logger LOGGER = LoggerFactory.getLogger(UntapAction.class);
+  private Game game;
 
-  private GameManager gameManager;
-
-  public UntapAction(GameManager gameManager) {
-    this.gameManager = gameManager;
+  public UntapAction(Game game) {
+    this.game = game;
   }
 
   @Override
@@ -26,7 +26,7 @@ public class UntapAction implements Action {
 
   @Override
   public void execute() {
-    Player activePlayer = this.gameManager.getActivePlayer();
+    Player activePlayer = game.getActivePlayer();
 
     // TODO - Check these counts, the number of cards untapped seems off
     LOGGER.trace(

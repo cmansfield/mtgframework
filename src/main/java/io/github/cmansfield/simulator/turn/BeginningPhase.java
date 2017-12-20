@@ -1,11 +1,11 @@
 package io.github.cmansfield.simulator.turn;
 
-import io.github.cmansfield.simulator.exceptions.GameException;
-import io.github.cmansfield.simulator.gamemanager.GameManager;
 import io.github.cmansfield.simulator.turn.beginningsteps.BeginningStep;
 import io.github.cmansfield.simulator.turn.beginningsteps.UntapStep;
-import org.slf4j.Logger;
+import io.github.cmansfield.simulator.exceptions.GameException;
+import io.github.cmansfield.simulator.gamemanager.Game;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 
 public class BeginningPhase implements Phase {
@@ -22,13 +22,13 @@ public class BeginningPhase implements Phase {
   }
 
   @Override
-  public void perform(GameManager gameManager) throws GameException {
-    LOGGER.trace("-- {}'s turn --", gameManager.getActivePlayer().getPlayerName());
+  public void perform(Game game) throws GameException {
+    LOGGER.trace("-- {}'s turn --", game.getActivePlayer().getPlayerName());
 
     while(this.beginningStep != null) {
-      this.beginningStep.perform(gameManager, this);
+      this.beginningStep.perform(game, this);
     }
 
-    gameManager.setPhase(new PreCombatMainPhase());
+    game.setPhase(new PreCombatMainPhase());
   }
 }

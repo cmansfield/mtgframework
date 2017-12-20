@@ -1,22 +1,22 @@
 package io.github.cmansfield.simulator.actions;
 
-import io.github.cmansfield.simulator.constants.GameEvent;
 import io.github.cmansfield.simulator.exceptions.GameException;
-import io.github.cmansfield.simulator.gamemanager.GameManager;
+import io.github.cmansfield.simulator.constants.GameEvent;
+import io.github.cmansfield.simulator.gamemanager.Game;
 import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.simulator.player.Player;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 
 public class DrawAction implements Action {
   private static final Logger LOGGER = LoggerFactory.getLogger(DrawAction.class);
-  private GameManager gameManager;
   private int amount;
+  private Game game;
 
-  public DrawAction(GameManager gameManager,int amount) {
-    this.gameManager = gameManager;
+  public DrawAction(Game game, int amount) {
     this.amount = amount;
+    this.game = game;
   }
 
   @Override
@@ -26,16 +26,16 @@ public class DrawAction implements Action {
 
   @Override
   public void execute() throws GameException {
-    Player activePlayer = gameManager.getActivePlayer();
+    Player activePlayer = game.getActivePlayer();
 
     try {
-      this.gameManager.getActivePlayer().draw(this.amount);
+      game.getActivePlayer().draw(this.amount);
     }
     catch(IllegalStateException e) {
-      throw new GameException(GameEvent.PLAYER_LOSS, e);
+      throw new GameException(GameEvent.PLAYER_LOSS, game.getActivePlayer(), e);
     }
 
-    String message = this.amount == 1 ? "drew a card" : String.format("drew %d cards", this.amount);
+    String message = amount == 1 ? "drew a card" : String.format("drew %d cards", amount);
     LOGGER.trace(
             "{} {}\tLibrary: {} Hand: {}",
             activePlayer.getPlayerName(),

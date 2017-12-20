@@ -1,5 +1,6 @@
 package io.github.cmansfield.simulator.actions;
 
+import io.github.cmansfield.simulator.gamemanager.Game;
 import io.github.cmansfield.simulator.player.constants.CardState;
 import io.github.cmansfield.simulator.gamemanager.GameManager;
 import io.github.cmansfield.simulator.player.PlayerUtils;
@@ -15,11 +16,11 @@ import java.util.List;
 public class CastSpellAction implements Action {
   private static final Logger LOGGER = LoggerFactory.getLogger(CastSpellAction.class);
 
-  private GameManager gameManager;
+  private Game game;
   private PlayerCard playerCard;
 
-  public CastSpellAction(GameManager gameManager, PlayerCard playerCard) {
-    this.gameManager = gameManager;
+  public CastSpellAction(Game game, PlayerCard playerCard) {
+    this.game = game;
     this.playerCard = playerCard;
   }
 
@@ -30,9 +31,9 @@ public class CastSpellAction implements Action {
 
   @Override
   public void execute() {
-    Player activePlayer = gameManager.getActivePlayer();
+    Player activePlayer = game.getActivePlayer();
 
-    LOGGER.trace("Spell Cast: {}", this.playerCard.getName());
+    LOGGER.trace("Spell Cast: {}", playerCard.getName());
 
     // Get the land from the battlefield
     List<PlayerCard> availableMana = PlayerUtils.getUntappedMana(activePlayer);

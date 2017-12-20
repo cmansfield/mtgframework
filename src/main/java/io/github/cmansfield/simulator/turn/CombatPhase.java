@@ -1,10 +1,10 @@
 package io.github.cmansfield.simulator.turn;
 
-import io.github.cmansfield.simulator.gamemanager.GameManager;
 import io.github.cmansfield.simulator.turn.combatsteps.BeginningOfCombatStep;
 import io.github.cmansfield.simulator.turn.combatsteps.CombatStep;
-import org.slf4j.Logger;
+import io.github.cmansfield.simulator.gamemanager.Game;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 
 public class CombatPhase implements Phase {
@@ -20,13 +20,13 @@ public class CombatPhase implements Phase {
   }
 
   @Override
-  public void perform(GameManager gameManager) {
+  public void perform(Game game) {
     LOGGER.trace("This is the Combat phase");
 
     while(this.combatStep != null) {
-      this.combatStep.perform(gameManager, this);
+      this.combatStep.perform(game, this);
     }
 
-    gameManager.setPhase(new PostCombatMainPhase());
+    game.setPhase(new PostCombatMainPhase());
   }
 }

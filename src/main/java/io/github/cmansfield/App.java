@@ -1,10 +1,10 @@
 package io.github.cmansfield;
 
+import io.github.cmansfield.simulator.gamemanager.Game;
 import io.github.cmansfield.simulator.gamemanager.GameManager;
 import io.github.cmansfield.simulator.player.Player;
 import io.github.cmansfield.validator.DeckValidator;
 import io.github.cmansfield.io.web.TappedImporter;
-import io.github.cmansfield.filters.CardFilter;
 import io.github.cmansfield.io.web.GetUpdates;
 import io.github.cmansfield.deck.DeckUtils;
 import io.github.cmansfield.card.Card;
@@ -114,13 +114,12 @@ public class App {
     Player player2 = new Player(ghaveDeck);
     Player player3 = new Player(ghaveDeck);
 
-    GameManager gameManager = new GameManager
-            .GameManagerBuilder()
+    GameManager gameManager = new GameManager(
+            new Game.GameBuilder()
             .player(player1)
             .player(player2)
             .player(player3)
-            .build();
-
+            .build());
     gameManager.startGame();
   }
 

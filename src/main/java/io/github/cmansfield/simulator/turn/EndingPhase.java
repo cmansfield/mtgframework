@@ -1,11 +1,11 @@
 package io.github.cmansfield.simulator.turn;
 
-import io.github.cmansfield.simulator.exceptions.GameException;
-import io.github.cmansfield.simulator.gamemanager.GameManager;
-import io.github.cmansfield.simulator.turn.endingsteps.EndStep;
 import io.github.cmansfield.simulator.turn.endingsteps.EndingStep;
-import org.slf4j.Logger;
+import io.github.cmansfield.simulator.turn.endingsteps.EndStep;
+import io.github.cmansfield.simulator.exceptions.GameException;
+import io.github.cmansfield.simulator.gamemanager.Game;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 
 public class EndingPhase implements Phase {
@@ -22,13 +22,13 @@ public class EndingPhase implements Phase {
   }
 
   @Override
-  public void perform(GameManager gameManager) throws GameException {
+  public void perform(Game game) throws GameException {
     LOGGER.trace("This is the End phase");
 
     while(this.endingStep != null) {
-      this.endingStep.perform(gameManager, this);
+      this.endingStep.perform(game, this);
     }
 
-    gameManager.setPhase(new BeginningPhase());
+    game.setPhase(new BeginningPhase());
   }
 }

@@ -1,21 +1,21 @@
 package io.github.cmansfield.simulator.actions;
 
-import io.github.cmansfield.simulator.gamemanager.GameManager;
+import io.github.cmansfield.simulator.gamemanager.Game;
 import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.simulator.player.Player;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 
 public class DiscardAction implements Action {
   private static final Logger LOGGER = LoggerFactory.getLogger(DiscardAction.class);
 
-  private GameManager gameManager;
   private int amount;
+  private Game game;
 
-  public DiscardAction(GameManager gameManager, int amount) {
-    this.gameManager = gameManager;
+  public DiscardAction(Game game, int amount) {
     this.amount = amount;
+    this.game = game;
   }
 
   @Override
@@ -25,15 +25,15 @@ public class DiscardAction implements Action {
 
   @Override
   public void execute() {
-    Player activePlayer = gameManager.getActivePlayer();
+    Player activePlayer = game.getActivePlayer();
 
-    if(activePlayer.getZone(Zone.HAND).size() < this.amount || this.amount < 1) {
-      throw new IllegalArgumentException(String.format("Player does not have %d cards in hand to discard", this.amount));
+    if(activePlayer.getZone(Zone.HAND).size() < amount || amount < 1) {
+      throw new IllegalArgumentException(String.format("Player does not have %d cards in hand to discard", amount));
     }
 
-    LOGGER.trace("Cards discarded from hand: {}", this.amount);
+    LOGGER.trace("Cards discarded from hand: {}", amount);
 
     activePlayer.shuffle(Zone.HAND);
-    activePlayer.moveZone(Zone.HAND, Zone.GRAVEYARD, this.amount);
+    activePlayer.moveZone(Zone.HAND, Zone.GRAVEYARD, amount);
   }
 }

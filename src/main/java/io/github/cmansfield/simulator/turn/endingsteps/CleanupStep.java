@@ -1,33 +1,33 @@
 package io.github.cmansfield.simulator.turn.endingsteps;
 
-import io.github.cmansfield.simulator.actions.DiscardAction;
-import io.github.cmansfield.simulator.exceptions.GameException;
 import io.github.cmansfield.simulator.gamemanager.constants.GameConstants;
-import io.github.cmansfield.simulator.gamemanager.GameManager;
+import io.github.cmansfield.simulator.exceptions.GameException;
+import io.github.cmansfield.simulator.actions.DiscardAction;
+import io.github.cmansfield.simulator.gamemanager.Game;
 import io.github.cmansfield.simulator.turn.EndingPhase;
 import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.simulator.player.Player;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 
 public class CleanupStep implements EndingStep {
-  private static final Logger LOGGER = LoggerFactory.getLogger(CleanupStep.class);
   private static final Logger NEW_LINE_LOGGER = LoggerFactory.getLogger("newline");
+  private static final Logger LOGGER = LoggerFactory.getLogger(CleanupStep.class);
 
   @Override
-  public void perform(GameManager gameManager, EndingPhase endingPhase) throws GameException {
+  public void perform(Game game, EndingPhase endingPhase) throws GameException {
     LOGGER.trace("Cleanup Step");
 
-    Player activePlayer = gameManager.getActivePlayer();
+    Player activePlayer = game.getActivePlayer();
     int amount = activePlayer.getZone(Zone.HAND).size() - GameConstants.MAX_HAND_SIZE.value();
 
     if(amount > 0) {
-      gameManager.addToStack(new DiscardAction(gameManager, amount));
-      gameManager.resolveStack();
+      game.addToStack(new DiscardAction(game, amount));
+      game.resolveStack();
     }
 
-    gameManager.nextPlayersTurn();
+    game.nextPlayersTurn();
 
     endingPhase.setEndingStep(null);
 
