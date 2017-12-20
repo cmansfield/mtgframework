@@ -18,6 +18,14 @@ public class CastSpellAction implements Action {
   private PlayerCard playerCard;
   private Game game;
 
+  public CastSpellAction(CastSpellAction castSpellAction, Game game) {
+    this.playerCard = new PlayerCard(castSpellAction.playerCard);
+    // This cannot be deep copied, it has to be passed into
+    // the method or else it will infinitely create objects
+    // until the stack fills up
+    this.game = game;
+  }
+
   public CastSpellAction(Game game, PlayerCard playerCard) {
     this.playerCard = playerCard;
     this.game = game;
@@ -55,5 +63,10 @@ public class CastSpellAction implements Action {
     }
 
     activePlayer.moveZone(Zone.HAND, Zone.BATTLEFIELD, playerCard);
+  }
+
+  @Override
+  public Action copy(Game game) {
+    return new CastSpellAction(this, game);
   }
 }

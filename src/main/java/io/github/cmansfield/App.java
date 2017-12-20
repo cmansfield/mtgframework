@@ -1,5 +1,7 @@
 package io.github.cmansfield;
 
+import io.github.cmansfield.simulator.actions.DiscardAction;
+import io.github.cmansfield.simulator.actions.DrawAction;
 import io.github.cmansfield.simulator.gamemanager.Game;
 import io.github.cmansfield.simulator.gamemanager.GameManager;
 import io.github.cmansfield.simulator.player.Player;
@@ -114,17 +116,19 @@ public class App {
     Player player2 = new Player(ghaveDeck, "Player2");
     Player player3 = new Player(ghaveDeck, "Player3");
 
-//    Game game = new Game.GameBuilder().player(player1).player(player2).player(player3).build();
-//    Game game2 = new Game(game);
+    Game game = new Game.GameBuilder().player(player1).player(player2).player(player3).build();
+    game.addToStack(new DrawAction(game, 5));
+    game.addToStack(new DiscardAction(game, 3));
+    Game game2 = new Game(game);
 
-//    System.out.println("testing");
-    GameManager gameManager = new GameManager(
-            new Game.GameBuilder()
-            .player(player1)
-            .player(player2)
-            .player(player3)
-            .build());
-    gameManager.startGame();
+    System.out.println("testing");
+//    GameManager gameManager = new GameManager(
+//            new Game.GameBuilder()
+//            .player(player1)
+//            .player(player2)
+//            .player(player3)
+//            .build());
+//    gameManager.startGame();
   }
 
 

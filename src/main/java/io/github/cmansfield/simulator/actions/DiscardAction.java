@@ -13,6 +13,10 @@ public class DiscardAction implements Action {
   private int amount;
   private Game game;
 
+  public DiscardAction(DiscardAction discardAction, Game game) {
+    this(game, discardAction.amount);
+  }
+
   public DiscardAction(Game game, int amount) {
     this.amount = amount;
     this.game = game;
@@ -35,5 +39,10 @@ public class DiscardAction implements Action {
 
     activePlayer.shuffle(Zone.HAND);
     activePlayer.moveZone(Zone.HAND, Zone.GRAVEYARD, amount);
+  }
+
+  @Override
+  public Action copy(Game game) {
+    return new DiscardAction(this, game);
   }
 }

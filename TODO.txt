@@ -7,13 +7,15 @@ GameManager
         on the stack and at what time
     Add a heuristic for evaluating board state
     Copy the game state to be manipulated separately
-
+    
 CastSpellAction::execute
     Check to make sure we are using the correct mana to cast spells
 
 Create:
     card type constants (Maybe not. if I do I would have to update this program with each new set)
     DeckDeserializer (Mostly to ensure the commander isn't included in the deck list)
+
+Add a copy method to Phases and Steps
 
 Testing
     Add integration tests

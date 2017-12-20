@@ -17,6 +17,10 @@ public class PlayLandAction implements Action {
   private static final Logger LOGGER = LoggerFactory.getLogger(PlayLandAction.class);
   private Game game;
 
+  public PlayLandAction(PlayLandAction playLandAction, Game game) {
+    this(game);
+  }
+
   public PlayLandAction(Game game) {
     this.game = game;
   }
@@ -47,5 +51,10 @@ public class PlayLandAction implements Action {
         LOGGER.trace("Land Played: {}", ((PlayerCard)land.get(0)).getName());
       }
     }
+  }
+
+  @Override
+  public Action copy(Game game) {
+    return new PlayLandAction(this, game);
   }
 }

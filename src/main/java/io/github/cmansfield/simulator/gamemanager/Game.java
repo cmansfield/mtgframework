@@ -40,7 +40,10 @@ public class Game {
     this.players = game.players.stream()
             .map(Player::new)
             .collect(Collectors.toCollection(LinkedList::new));
-//    this.stack = game.stack.stream().map(action -> new )
+    this.stack = game.stack.stream()
+            .map(action -> action.copy(this))
+            .collect(Collectors.toCollection(LinkedList::new));
+//    this.phase =
   }
 
   public void setPhase(Phase phase) {

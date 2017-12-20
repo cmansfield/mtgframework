@@ -14,6 +14,10 @@ public class DrawAction implements Action {
   private int amount;
   private Game game;
 
+  public DrawAction(DrawAction drawAction, Game game) {
+    this(game, drawAction.amount);
+  }
+
   public DrawAction(Game game, int amount) {
     this.amount = amount;
     this.game = game;
@@ -42,5 +46,10 @@ public class DrawAction implements Action {
             message,
             activePlayer.getZone(Zone.LIBRARY).size(),
             activePlayer.getZone(Zone.HAND).size());
+  }
+
+  @Override
+  public Action copy(Game game) {
+    return new DrawAction(this, game);
   }
 }

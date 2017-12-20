@@ -41,4 +41,9 @@ public class UntapAction implements Action {
       card.setCardState(CardState.UNTAPPED)
     );
   }
+
+  @Override
+  public Action copy(Game game) {
+    return new UntapAction(game);
+  }
 }
