@@ -22,6 +22,10 @@ public abstract class Phase implements Observer {
 
   public abstract void perform();
 
+  public boolean isEndPhase() {
+    return endPhase;
+  }
+
   @Override
   public void update(Observable o, Object arg) {
     Pair<String,Object> pair = (Pair<String,Object>)arg;

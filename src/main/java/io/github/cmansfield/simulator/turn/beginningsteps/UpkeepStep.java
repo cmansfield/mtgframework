@@ -11,6 +11,11 @@ public class UpkeepStep implements BeginningStep {
   @Override
   public void perform(Game game, BeginningPhase beginningPhase) {
     LOGGER.trace("Upkeep Step");
+
+    if(beginningPhase.isEndPhase()) {
+      return;
+    }
+
     beginningPhase.setBeginningStep(new DrawStep());
   }
 }

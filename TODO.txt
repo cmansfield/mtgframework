@@ -17,11 +17,11 @@ Create:
         GameManager
     copy method to Phases and Steps
 
-Make all steps into Observers and watch for END_TURN game events
+Move the appraiseHandDraw method and use the game heuristic to evaluate the hand
 
 Testing
     Add integration tests
-        DeckAppraiser::appraiseHandDraw (Wait to create this)
+        DeckAppraiser::appraiseHandDraw (will probably move this method)
         simulator.game.events package
         simulator.gameManager package
         simulator.action package

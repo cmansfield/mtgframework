@@ -31,6 +31,12 @@ public final class GameEventHandler {
     notifyObservers(eventKey, null);
   }
 
+  /**
+   * Let all Observers know that the Observable that matches to the eventKey has changed
+   *
+   * @param eventKey  - The key that maps to an Observable
+   * @param object    - The object to pass out to the Observers
+   */
   public void notifyObservers(String eventKey, Object object) {
     if(!events.containsKey(eventKey)) {
       return;

@@ -26,6 +26,10 @@ public class CleanupStep implements EndingStep {
       game.resolveStack();
     }
 
+    if(endingPhase.isEndPhase()) {
+      return;
+    }
+
     game.nextPlayersTurn();
 
     endingPhase.setEndingStep(null);

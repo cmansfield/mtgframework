@@ -12,6 +12,11 @@ public class CombatDamageStep implements CombatStep {
   @Override
   public void perform(Game game, CombatPhase combatPhase) {
     LOGGER.trace("Combat Damage Step");
+
+    if(combatPhase.isEndPhase()) {
+      return;
+    }
+
     combatPhase.setCombatStep(new EndOfCombatStep());
   }
 }

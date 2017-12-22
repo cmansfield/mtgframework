@@ -1,6 +1,5 @@
 package io.github.cmansfield.simulator.turn.beginningsteps;
 
-import io.github.cmansfield.simulator.exceptions.GameException;
 import io.github.cmansfield.simulator.turn.BeginningPhase;
 import io.github.cmansfield.simulator.actions.DrawAction;
 import io.github.cmansfield.simulator.gamemanager.Game;
@@ -16,6 +15,11 @@ public class DrawStep implements BeginningStep {
     LOGGER.trace("Draw Step");
 
     game.addToStack(new DrawAction(game, 1));
+
+    if(beginningPhase.isEndPhase()) {
+      return;
+    }
+
     game.resolveStack();
 
     beginningPhase.setBeginningStep(null);

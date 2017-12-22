@@ -99,6 +99,10 @@ public class Game {
     }
   }
 
+  public void clearStack() {
+    stack.clear();
+  }
+
   public void perform() {
     phase.perform();
   }

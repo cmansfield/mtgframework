@@ -12,6 +12,11 @@ public class EndStep implements EndingStep {
   @Override
   public void perform(Game game, EndingPhase endingPhase) {
     LOGGER.trace("End Step");
+
+    if(endingPhase.isEndPhase()) {
+      return;
+    }
+
     endingPhase.setEndingStep(new CleanupStep());
   }
 }
