@@ -22,7 +22,6 @@ Move the appraiseHandDraw method and use the game heuristic to evaluate the hand
 Testing
     Add integration tests
         DeckAppraiser::appraiseHandDraw (will probably move this method)
-        simulator.game.events package
         simulator.gameManager package
         simulator.action package
         simulator.turn package

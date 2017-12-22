@@ -13,6 +13,10 @@ public final class GameEventHandler {
     this.events = new HashMap<>();
   }
 
+  public GameEventHandler(Map<String,GameEvent> events) {
+    this.events = events;
+  }
+
   /**
    * This method is used to link observers with the subjects they are
    * interested in listening to

@@ -12,8 +12,8 @@ import io.github.cmansfield.simulator.turn.Phase;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
-import java.util.*;
 import java.util.stream.Collectors;
+import java.util.*;
 
 
 public class Game {
