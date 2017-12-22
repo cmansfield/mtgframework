@@ -23,7 +23,7 @@ Have the GameEventHandler notify all observers of actions taken
 Testing
     Add integration tests
         DeckAppraiser::appraiseHandDraw (will probably move this method)
-        simulator.action package
+        simulator.action UntapAction
         simulator.turn package
         simulator.gameManager package
         LoadCards::LookupCard
