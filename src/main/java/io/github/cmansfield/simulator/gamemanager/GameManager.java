@@ -1,7 +1,6 @@
 package io.github.cmansfield.simulator.gamemanager;
 
 import io.github.cmansfield.simulator.game.events.constants.GameEventType;
-import io.github.cmansfield.simulator.exceptions.GameException;
 import io.github.cmansfield.simulator.player.Player;
 import io.github.cmansfield.simulator.turn.BeginningPhase;
 import javafx.util.Pair;
@@ -37,8 +36,8 @@ public final class GameManager implements Observer {
   }
 
   public void startGame() {
-    game.subscribeToEvent(GameEventType.PLAYER_LOSS.toString(), this);
-    game.subscribeToEvent(GameEventType.PLAYER_DEATH.toString(), this);
+    game.getEventHandler().subscribeToEvent(GameEventType.PLAYER_LOSS.toString(), this);
+    game.getEventHandler().subscribeToEvent(GameEventType.PLAYER_DEATH.toString(), this);
 //    game.subscribeToEvent(GameEventType.TIE.toString(), this);
 
     for(int i = 0; i < numberOfTurns; ++i) {
@@ -74,5 +73,8 @@ public final class GameManager implements Observer {
     else {
       throw new IllegalStateException("The GameManager is subscribed to the wrong game event");
     }
+
+    // Notify the current phase and step to end the turn
+    game.getEventHandler().notifyObservers(GameEventType.END_TURN.toString());
   }
 }

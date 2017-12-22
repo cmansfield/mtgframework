@@ -9,15 +9,15 @@ CastSpellAction::execute
     Check to make sure we are using the correct mana to cast spells
 
 Create:
-    card type constants (Maybe not. if I do I would have to update this program with each new set)
     DeckDeserializer (Mostly to ensure the commander isn't included in the deck list)
+    Copy Constructors
+        GameEvent
+        GameEventHandler
+        Game
+        GameManager
+    copy method to Phases and Steps
 
-Add a copy method to Phases and Steps
-Fix the issue where when a player is removed from the game, the next player finishes that players
-    phases and then it switches to the next player's turn. This is because the phases/steps aren't
-    notified when a player is removed from the game.
 Make all phases and steps Observers and watch for END_TURN or END_PHASE game events
-Add a GameEventHandler to the Game class to manage all of the Observables
 
 Testing
     Add integration tests
@@ -29,5 +29,6 @@ Testing
         LoadCards::LookupCard
         Copy constructors
             GameEvent
+            GameEventHandler
             Game
             GameManager
