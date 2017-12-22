@@ -6,7 +6,9 @@ import io.github.cmansfield.constants.Constant;
 public enum GameEventType {
   PLAYER_DEATH("death"),
   PLAYER_LOSS("loss"),
-  TIE("tie");
+  TIE("tie"),
+  END_TURN("end turn"),
+  END_PHASE("end phase");
 
   private final String value;
 
