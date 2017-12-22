@@ -2,7 +2,7 @@ package io.github.cmansfield.deck.constants;
 
 import io.github.cmansfield.constants.Constant;
 
-public enum Legality implements Constant<Legality> {
+public enum Legality {
   FORMAT("format"),
   LEGALITY("legality");
 

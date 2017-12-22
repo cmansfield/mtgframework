@@ -60,7 +60,7 @@ public class Player {
   }
 
   public String getPlayerName() {
-    return playerName;
+    return this.playerName;
   }
 
   public Integer getLife() {
@@ -104,8 +104,8 @@ public class Player {
    *
    * @param drawAmount - Number of cards to draw
    */
-  public void draw(int drawAmount) {
-    moveZone(Zone.LIBRARY, Zone.HAND, drawAmount);
+  public boolean draw(int drawAmount) {
+    return moveZone(Zone.LIBRARY, Zone.HAND, drawAmount);
   }
 
   /**
@@ -115,7 +115,7 @@ public class Player {
    * @param to      - The zone to add to
    * @param amount  - The number of cards to move
    */
-  public void moveZone(Zone from, Zone to, int amount) {
+  public boolean moveZone(Zone from, Zone to, int amount) {
     if(!this.zones.containsKey(from)) {
       throw new IllegalArgumentException(String.format(ZONE_NOT_MANAGED_BY_PLAYER_MSG, from.toString()));
     }
@@ -128,12 +128,15 @@ public class Player {
 
     for(int x = 0; x < amount; ++x) {
       if(fromList.isEmpty()) {
-        throw new IllegalStateException(String.format("No more cards to pull from %s", from.toString()));
+//        throw new IllegalStateException(String.format("No more cards to pull from %s", from.toString()));
+        return false;
       }
 
       toList.add(fromList.get(0));
       fromList.remove(0);
     }
+
+    return true;
   }
 
   /**

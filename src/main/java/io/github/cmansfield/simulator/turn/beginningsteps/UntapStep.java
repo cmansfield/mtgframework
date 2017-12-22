@@ -12,7 +12,7 @@ public class UntapStep implements BeginningStep {
   private static final Logger LOGGER = LoggerFactory.getLogger(UntapStep.class);
 
   @Override
-  public void perform(Game game, BeginningPhase beginningPhase) throws GameException {
+  public void perform(Game game, BeginningPhase beginningPhase) {
     LOGGER.trace("Untap Step");
 
     game.addToStack(new UntapAction(game));

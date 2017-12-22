@@ -12,7 +12,7 @@ public class DrawStep implements BeginningStep {
   private static final Logger LOGGER = LoggerFactory.getLogger(DrawStep.class);
 
   @Override
-  public void perform(Game game, BeginningPhase beginningPhase) throws GameException{
+  public void perform(Game game, BeginningPhase beginningPhase) {
     LOGGER.trace("Draw Step");
 
     game.addToStack(new DrawAction(game, 1));

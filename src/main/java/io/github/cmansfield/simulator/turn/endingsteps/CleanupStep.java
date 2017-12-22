@@ -16,7 +16,7 @@ public class CleanupStep implements EndingStep {
   private static final Logger LOGGER = LoggerFactory.getLogger(CleanupStep.class);
 
   @Override
-  public void perform(Game game, EndingPhase endingPhase) throws GameException {
+  public void perform(Game game, EndingPhase endingPhase) {
     LOGGER.trace("Cleanup Step");
 
     Player activePlayer = game.getActivePlayer();

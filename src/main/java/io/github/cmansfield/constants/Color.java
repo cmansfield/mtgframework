@@ -1,6 +1,6 @@
 package io.github.cmansfield.constants;
 
-public enum Color implements Constant<Color> {
+public enum Color {
   WHITE("White"),
   BLACK("Black"),
   RED("Red"),

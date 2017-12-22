@@ -2,12 +2,9 @@
 Mtg Framework TODO list
 
 GameManager
-    Use the command pattern to add actions to the stack
-    Use the observer pattern to notify listeners when something is placed
-        on the stack and at what time
     Add a heuristic for evaluating board state
     Copy the game state to be manipulated separately
-    
+
 CastSpellAction::execute
     Check to make sure we are using the correct mana to cast spells
 
@@ -16,14 +13,19 @@ Create:
     DeckDeserializer (Mostly to ensure the commander isn't included in the deck list)
 
 Add a copy method to Phases and Steps
+Fix the issue where when a player is removed from the game, the next player finishes that players
+    phases and then it switches to the next player's turn. This is because the phases/steps aren't
+    notified when a player is removed from the game.
 
 Testing
     Add integration tests
         DeckAppraiser::appraiseHandDraw (Wait to create this)
+        simulator.game.events package
         simulator.gameManager package
         simulator.action package
         simulator.turn package
         LoadCards::LookupCard
         Copy constructors
+            GameEvent
             Game
             GameManager

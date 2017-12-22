@@ -5,7 +5,7 @@ import io.github.cmansfield.constants.Constant;
 
 import java.util.Collections;
 
-public enum Format implements Constant<Format> {
+public enum Format {
   SCARS_OF_MIRRODIN_BLOCK("Scars of Mirrodin Block", 60, Integer.MAX_VALUE, 4),
   ICE_AGE_BLOCK("Ice Age Block", 60, Integer.MAX_VALUE, 4),
   KHANS_OF_TARKIR_BLOCK("Khans of Tarkir Block", 60, Integer.MAX_VALUE, 4),

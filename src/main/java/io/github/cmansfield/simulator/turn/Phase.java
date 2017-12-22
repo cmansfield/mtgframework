@@ -6,5 +6,5 @@ import io.github.cmansfield.simulator.gamemanager.GameManager;
 
 public interface Phase {
 
-  public void perform(Game game) throws GameException;
+  public void perform(Game game);
 }

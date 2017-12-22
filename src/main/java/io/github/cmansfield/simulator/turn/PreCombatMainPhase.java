@@ -23,7 +23,7 @@ public class PreCombatMainPhase implements Phase {
   private static final Logger LOGGER = LoggerFactory.getLogger(PreCombatMainPhase.class);
 
   @Override
-  public void perform(Game game) throws GameException {
+  public void perform(Game game) {
     LOGGER.trace("This is the Pre-Combat Main phase");
 
     // Add MinMax logic here in the future
@@ -37,7 +37,7 @@ public class PreCombatMainPhase implements Phase {
   }
 
 
-  private boolean castSpell(Game game) throws GameException {
+  private boolean castSpell(Game game) {
     Player activePlayer = game.getActivePlayer();
     List<PlayerCard> availableMana = PlayerUtils.getUntappedMana(activePlayer);
     List<PlayerCard> cardsThatCanBeCast = new ArrayList<>(activePlayer.getZone(Zone.HAND));

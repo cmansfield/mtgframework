@@ -2,7 +2,7 @@ package io.github.cmansfield.simulator.constants;
 
 import io.github.cmansfield.constants.Constant;
 
-public enum ZoneProperty implements Constant<ZoneProperty> {
+public enum ZoneProperty {
   PUBLIC("Public"),
   SHARED("Shared"),
   ORDERED("Ordered");

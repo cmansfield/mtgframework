@@ -2,7 +2,7 @@ package io.github.cmansfield.card.constants;
 
 import io.github.cmansfield.constants.Constant;
 
-public enum CardConstants implements Constant<CardConstants> {
+public enum CardConstants {
   LAYOUT("layout"),
   NAME("name"),
   NAMES("names"),

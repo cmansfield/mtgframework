@@ -1,36 +1,36 @@
 package io.github.cmansfield.simulator.exceptions;
 
-import io.github.cmansfield.simulator.constants.GameEvent;
+import io.github.cmansfield.simulator.game.events.constants.GameEventType;
 import io.github.cmansfield.simulator.player.Player;
 
 
 public class GameException extends Exception {
 
   private Player player;
-  private GameEvent gameEvent;
+  private GameEventType gameEvent;
 
-  public GameException(GameEvent gameEvent) {
+  public GameException(GameEventType gameEvent) {
     super();
     this.gameEvent = gameEvent;
   }
 
-  public GameException(GameEvent gameEvent, Throwable cause) {
+  public GameException(GameEventType gameEvent, Throwable cause) {
     super(cause);
     this.gameEvent = gameEvent;
   }
 
-  public GameException(GameEvent gameEvent, Player player, Throwable cause) {
+  public GameException(GameEventType gameEvent, Player player, Throwable cause) {
     super(cause);
     this.gameEvent = gameEvent;
     this.player = player;
   }
 
-  public GameException(String message, GameEvent gameEvent){
+  public GameException(String message, GameEventType gameEvent){
     super(message);
     this.gameEvent = gameEvent;
   }
 
-  public GameEvent getGameEvent() {
+  public GameEventType getGameEvent() {
     return gameEvent;
   }
 

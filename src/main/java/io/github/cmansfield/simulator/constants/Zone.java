@@ -5,7 +5,7 @@ import io.github.cmansfield.constants.Constant;
 import java.util.EnumMap;
 import java.util.Map;
 
-public enum Zone implements Constant<Zone> {
+public enum Zone {
   LIBRARY("Library", false, false, true),
   HAND("Hand", false, false, false),
   BATTLEFIELD("Battlefield", true, true, false),

@@ -22,7 +22,7 @@ public class EndingPhase implements Phase {
   }
 
   @Override
-  public void perform(Game game) throws GameException {
+  public void perform(Game game) {
     LOGGER.trace("This is the End phase");
 
     while(this.endingStep != null) {

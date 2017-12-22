@@ -1,7 +1,7 @@
 package io.github.cmansfield.simulator.actions;
 
 import io.github.cmansfield.simulator.exceptions.GameException;
-import io.github.cmansfield.simulator.constants.GameEvent;
+import io.github.cmansfield.simulator.game.events.constants.GameEventType;
 import io.github.cmansfield.simulator.gamemanager.Game;
 import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.simulator.player.Player;
@@ -29,14 +29,13 @@ public class DrawAction implements Action {
   }
 
   @Override
-  public void execute() throws GameException {
+  public void execute() {
     Player activePlayer = game.getActivePlayer();
 
-    try {
-      game.getActivePlayer().draw(this.amount);
-    }
-    catch(IllegalStateException e) {
-      throw new GameException(GameEvent.PLAYER_LOSS, game.getActivePlayer(), e);
+    if(!activePlayer.draw(this.amount)) {
+      game.notifyObservers(GameEventType.PLAYER_LOSS.toString(), activePlayer);
+      LOGGER.trace("No more cards to pull from library");
+      return;
     }
 
     String message = amount == 1 ? "drew a card" : String.format("drew %d cards", amount);

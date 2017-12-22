@@ -22,7 +22,7 @@ public class BeginningPhase implements Phase {
   }
 
   @Override
-  public void perform(Game game) throws GameException {
+  public void perform(Game game) {
     LOGGER.trace("-- {}'s turn --", game.getActivePlayer().getPlayerName());
 
     while(this.beginningStep != null) {

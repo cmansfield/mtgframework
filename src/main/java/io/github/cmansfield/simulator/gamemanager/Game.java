@@ -2,6 +2,7 @@ package io.github.cmansfield.simulator.gamemanager;
 
 import io.github.cmansfield.simulator.gamemanager.constants.GameConstants;
 import io.github.cmansfield.simulator.exceptions.GameException;
+import io.github.cmansfield.simulator.game.events.GameEvent;
 import io.github.cmansfield.simulator.turn.BeginningPhase;
 import io.github.cmansfield.simulator.actions.Action;
 import io.github.cmansfield.simulator.constants.Zone;
@@ -12,15 +13,14 @@ import io.github.cmansfield.simulator.turn.Phase;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.Deque;
 
 
 public class Game {
   private static final Logger LOGGER = LoggerFactory.getLogger(Game.class);
 
+  private Map<String, GameEvent> events;
   private Deque<Player> players;
   private Deque<Action> stack;
   private Phase phase;
@@ -32,6 +32,7 @@ public class Game {
     this.phase = new BeginningPhase();
     this.activePlayerPlayedLand = false;
     this.stack = new LinkedList<>();
+    this.events = new HashMap<>();
   }
 
   // TODO - Finish this copy constructor
@@ -86,7 +87,7 @@ public class Game {
     stack.add(action);
   }
 
-  public void resolveStack() throws GameException {
+  public void resolveStack() {
     Action action;
 
     while(!stack.isEmpty()) {
@@ -95,9 +96,44 @@ public class Game {
     }
   }
 
-  public void perform() throws GameException {
+  /**
+   * This method is used to link observers with the subjects they are
+   * interested in listening to
+   *
+   * @param eventKey  - The event key we want to listen for
+   * @param observer  - The object that will listen for the specified observable
+   */
+  public void subscribeToEvent(String eventKey, Observer observer) {
+    if(!events.containsKey(eventKey)) {
+      events.put(eventKey, new GameEvent());
+    }
+    events.get(eventKey).addObserver(observer);
+  }
+
+  public void notifyObservers(String eventKey, Object object) {
+    if(!events.containsKey(eventKey)) {
+      throw new IllegalArgumentException(String.format("Event key '%s' was not in the list of events", eventKey));
+    }
+    events.get(eventKey).notifyOfGameEvent(eventKey, object);
+  }
+
+  /**
+   * This method removes a listener from the specified observable
+   *
+   * @param eventKey  - The event key we want to unsubscribe from
+   * @param observer  - The observer to remove
+   */
+  public void unsubscribeToEvent(String eventKey, Observer observer) {
+    if(!events.containsKey(eventKey)) {
+      return;
+    }
+    events.get(eventKey).deleteObserver(observer);
+  }
+
+  public void perform() {
     phase.perform(this);
   }
+
 
 
   // into a valid starting state
