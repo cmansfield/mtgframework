@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public final class GameEventHandler {
+public class GameEventHandler {
 
   private Map<String, GameEvent> events;
 
