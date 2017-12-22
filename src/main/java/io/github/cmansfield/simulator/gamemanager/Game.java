@@ -1,7 +1,7 @@
 package io.github.cmansfield.simulator.gamemanager;
 
-import io.github.cmansfield.simulator.game.events.GameEventHandler;
 import io.github.cmansfield.simulator.gamemanager.constants.GameConstants;
+import io.github.cmansfield.simulator.game.events.GameEventHandler;
 import io.github.cmansfield.simulator.turn.BeginningPhase;
 import io.github.cmansfield.simulator.actions.Action;
 import io.github.cmansfield.simulator.constants.Zone;
@@ -28,10 +28,10 @@ public class Game {
   private boolean activePlayerPlayedLand;
 
   private Game() {
-    this.phase = new BeginningPhase();
+    this.gameEventHandler = new GameEventHandler();
     this.activePlayerPlayedLand = false;
     this.stack = new LinkedList<>();
-    this.gameEventHandler = new GameEventHandler();
+    this.phase = new BeginningPhase(this);
   }
 
   // TODO - Finish this copy constructor
@@ -100,7 +100,7 @@ public class Game {
   }
 
   public void perform() {
-    phase.perform(this);
+    phase.perform();
   }
 
 

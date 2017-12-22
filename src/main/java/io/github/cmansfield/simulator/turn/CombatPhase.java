@@ -7,11 +7,12 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
 
-public class CombatPhase implements Phase {
+public class CombatPhase extends Phase {
   private static final Logger LOGGER = LoggerFactory.getLogger(CombatPhase.class);
   private CombatStep combatStep;
 
-  public CombatPhase() {
+  public CombatPhase(Game game) {
+    super(game);
     this.combatStep = new BeginningOfCombatStep();
   }
 
@@ -20,13 +21,17 @@ public class CombatPhase implements Phase {
   }
 
   @Override
-  public void perform(Game game) {
+  public void perform() {
     LOGGER.trace("This is the Combat phase");
 
     while(this.combatStep != null) {
       this.combatStep.perform(game, this);
+
+      if(endPhase) {
+        return;
+      }
     }
 
-    game.setPhase(new PostCombatMainPhase());
+    game.setPhase(new PostCombatMainPhase(game));
   }
 }

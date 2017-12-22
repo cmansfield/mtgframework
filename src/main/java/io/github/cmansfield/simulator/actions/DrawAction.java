@@ -1,6 +1,5 @@
 package io.github.cmansfield.simulator.actions;
 
-import io.github.cmansfield.simulator.exceptions.GameException;
 import io.github.cmansfield.simulator.game.events.constants.GameEventType;
 import io.github.cmansfield.simulator.gamemanager.Game;
 import io.github.cmansfield.simulator.constants.Zone;

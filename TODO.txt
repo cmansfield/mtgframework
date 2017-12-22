@@ -17,7 +17,7 @@ Create:
         GameManager
     copy method to Phases and Steps
 
-Make all phases and steps Observers and watch for END_TURN or END_PHASE game events
+Make all steps into Observers and watch for END_TURN game events
 
 Testing
     Add integration tests

@@ -1,7 +1,6 @@
 package io.github.cmansfield.simulator.turn.endingsteps;
 
 import io.github.cmansfield.simulator.gamemanager.constants.GameConstants;
-import io.github.cmansfield.simulator.exceptions.GameException;
 import io.github.cmansfield.simulator.actions.DiscardAction;
 import io.github.cmansfield.simulator.gamemanager.Game;
 import io.github.cmansfield.simulator.turn.EndingPhase;

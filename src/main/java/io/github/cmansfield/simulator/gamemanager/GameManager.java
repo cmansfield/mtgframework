@@ -1,11 +1,11 @@
 package io.github.cmansfield.simulator.gamemanager;
 
 import io.github.cmansfield.simulator.game.events.constants.GameEventType;
-import io.github.cmansfield.simulator.player.Player;
 import io.github.cmansfield.simulator.turn.BeginningPhase;
+import io.github.cmansfield.simulator.player.Player;
+import org.slf4j.LoggerFactory;
 import javafx.util.Pair;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -65,9 +65,8 @@ public final class GameManager implements Observer {
     if(gameEventType == GameEventType.PLAYER_DEATH || gameEventType == GameEventType.PLAYER_LOSS) {
       Player player = (Player)pair.getValue();
       game.removePlayer(player);
-      game.setPhase(new BeginningPhase());
       if(isPrimaryGm) {
-        LOGGER.info("{} lost the game", player);
+        LOGGER.info("{} lost the game", player.getPlayerName());
       }
     }
     else {
@@ -76,5 +75,6 @@ public final class GameManager implements Observer {
 
     // Notify the current phase and step to end the turn
     game.getEventHandler().notifyObservers(GameEventType.END_TURN.toString());
+    game.setPhase(new BeginningPhase(game));
   }
 }

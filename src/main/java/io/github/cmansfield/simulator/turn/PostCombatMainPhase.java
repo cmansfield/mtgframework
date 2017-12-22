@@ -5,12 +5,21 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
 
-public class PostCombatMainPhase implements Phase {
+public class PostCombatMainPhase extends Phase {
   private static final Logger LOGGER = LoggerFactory.getLogger(PostCombatMainPhase.class);
 
+  public PostCombatMainPhase(Game game) {
+    super(game);
+  }
+
   @Override
-  public void perform(Game game) {
+  public void perform() {
     LOGGER.trace("This is the Post-Combat Main phase");
-    game.setPhase(new EndingPhase());
+
+    if(endPhase) {
+      return;
+    }
+
+    game.setPhase(new EndingPhase(game));
   }
 }

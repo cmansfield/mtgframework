@@ -2,7 +2,6 @@ package io.github.cmansfield.simulator.turn;
 
 import io.github.cmansfield.simulator.actions.CastSpellAction;
 import io.github.cmansfield.simulator.actions.PlayLandAction;
-import io.github.cmansfield.simulator.exceptions.GameException;
 import io.github.cmansfield.simulator.player.PlayerUtils;
 import io.github.cmansfield.simulator.player.PlayerCard;
 import io.github.cmansfield.simulator.gamemanager.Game;
@@ -19,11 +18,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class PreCombatMainPhase implements Phase {
+public class PreCombatMainPhase extends Phase {
   private static final Logger LOGGER = LoggerFactory.getLogger(PreCombatMainPhase.class);
 
+  public PreCombatMainPhase(Game game) {
+    super(game);
+  }
+
   @Override
-  public void perform(Game game) {
+  public void perform() {
     LOGGER.trace("This is the Pre-Combat Main phase");
 
     // Add MinMax logic here in the future
@@ -31,11 +34,14 @@ public class PreCombatMainPhase implements Phase {
     game.addToStack(new PlayLandAction(game));
     game.resolveStack();
 
-    while(castSpell(game));
+    while(castSpell(game)) {
+      if(endPhase) {
+        return;
+      }
+    }
 
-    game.setPhase(new CombatPhase());
+    game.setPhase(new CombatPhase(game));
   }
-
 
   private boolean castSpell(Game game) {
     Player activePlayer = game.getActivePlayer();

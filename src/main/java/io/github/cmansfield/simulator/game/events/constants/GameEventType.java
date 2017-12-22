@@ -1,14 +1,13 @@
 package io.github.cmansfield.simulator.game.events.constants;
 
-
 import io.github.cmansfield.constants.Constant;
+
 
 public enum GameEventType {
   PLAYER_DEATH("death"),
   PLAYER_LOSS("loss"),
   TIE("tie"),
-  END_TURN("end turn"),
-  END_PHASE("end phase");
+  END_TURN("end turn");
 
   private final String value;
 
