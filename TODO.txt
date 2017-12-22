@@ -18,13 +18,14 @@ Create:
     copy method to Phases and Steps
 
 Move the appraiseHandDraw method and use the game heuristic to evaluate the hand
+Have the GameEventHandler notify all observers of actions taken
 
 Testing
     Add integration tests
         DeckAppraiser::appraiseHandDraw (will probably move this method)
-        simulator.gameManager package
         simulator.action package
         simulator.turn package
+        simulator.gameManager package
         LoadCards::LookupCard
         Copy constructors
             GameEvent
