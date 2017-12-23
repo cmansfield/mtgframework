@@ -32,8 +32,8 @@ public class DrawAction implements Action {
     Player activePlayer = game.getActivePlayer();
 
     if(!activePlayer.draw(this.amount)) {
-      game.getEventHandler().notifyObservers(GameEventType.PLAYER_LOSS.toString(), activePlayer);
       LOGGER.trace("No more cards to pull from library");
+      game.getEventHandler().notifyObservers(GameEventType.PLAYER_LOSS.toString(), activePlayer);
       return;
     }
 

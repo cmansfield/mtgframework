@@ -28,7 +28,6 @@ public class UntapAction implements Action {
   public void execute() {
     Player activePlayer = game.getActivePlayer();
 
-    // TODO - Check these counts, the number of cards untapped seems off
     LOGGER.trace(
             "Cards Untapped: {}",
             PlayerCardFilter.filter(

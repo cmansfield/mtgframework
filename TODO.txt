@@ -22,13 +22,12 @@ Create:
 Move the appraiseHandDraw method and use the game heuristic to evaluate the hand
 Have the GameEventHandler notify all observers of actions taken
 
-Testing
-    Add integration tests
-        DeckAppraiser::appraiseHandDraw (will probably move this method)
-        simulator.turn package
-        simulator.gameManager package
-        Copy constructors
-            GameEvent
-            GameEventHandler
-            Game
-            GameManager
+Integration tests
+    DeckAppraiser::appraiseHandDraw (will probably move this method)
+    simulator.turn package
+    simulator.gameManager package
+    Copy constructors
+        GameEvent
+        GameEventHandler
+        Game
+        GameManager
