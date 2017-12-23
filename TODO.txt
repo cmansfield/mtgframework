@@ -1,21 +1,23 @@
 
 Mtg Framework TODO list
 
+Deep copying game state
+    GameManager - Copy the game state to be manipulated separately
+    copy method to Phases and Steps
+    Copy Constructors
+            GameEvent
+            GameEventHandler
+            Game
+            GameManager
+
 GameManager
     Add a heuristic for evaluating board state
-    Copy the game state to be manipulated separately
 
 CastSpellAction::execute
     Check to make sure we are using the correct mana to cast spells
 
 Create:
     DeckDeserializer (Mostly to ensure the commander isn't included in the deck list)
-    Copy Constructors
-        GameEvent
-        GameEventHandler
-        Game
-        GameManager
-    copy method to Phases and Steps
 
 Move the appraiseHandDraw method and use the game heuristic to evaluate the hand
 Have the GameEventHandler notify all observers of actions taken
@@ -25,7 +27,6 @@ Testing
         DeckAppraiser::appraiseHandDraw (will probably move this method)
         simulator.turn package
         simulator.gameManager package
-        LoadCards::LookupCard
         Copy constructors
             GameEvent
             GameEventHandler

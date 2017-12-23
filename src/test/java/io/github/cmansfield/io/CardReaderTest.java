@@ -65,4 +65,42 @@ public class CardReaderTest {
 
     assertNull(card);
   }
+
+  @Test
+  public void test_lookupCard_partialName() throws IOException {
+    String fullName = "Doran, the Siege Tower";
+    String cardName = "Doran, the Si";
+    CardReader.loadCards();
+    Card doran = CardReader.lookupCard(fullName);
+
+    Card card = CardReader.lookupCard(cardName);
+
+    assertNotNull(card);
+    assertNotNull(doran);
+    assertEquals(card, doran);
+    assertEquals(card.getName(), fullName);
+  }
+
+  @Test
+  public void test_lookupCard_unicode() throws IOException {
+    String cardName = "Junún Efreet";
+    CardReader.loadCards();
+
+    Card card = CardReader.lookupCard(cardName);
+
+    assertNotNull(card);
+    assertEquals(card.getName(), cardName);
+  }
+
+  @Test
+  public void test_lookupCard_findWithUnicode() throws IOException {
+    String cardName = "Junún Efreet";
+    String wrongName = "Junun Efreet";
+    CardReader.loadCards();
+
+    Card card = CardReader.lookupCard(wrongName);
+
+    assertNotNull(card);
+    assertEquals(card.getName(), cardName);
+  }
 }
