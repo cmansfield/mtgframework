@@ -36,11 +36,13 @@ public class PreCombatMainPhase extends Phase {
 
     while(castSpell(game)) {
       if(endPhase) {
+        cleanUp();
         return;
       }
     }
 
     game.setPhase(new CombatPhase(game));
+    cleanUp();
   }
 
   private boolean castSpell(Game game) {

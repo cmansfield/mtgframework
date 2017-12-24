@@ -29,10 +29,12 @@ public class EndingPhase extends Phase {
       this.endingStep.perform(game, this);
 
       if(endPhase) {
+        cleanUp();
         return;
       }
     }
 
     game.setPhase(new BeginningPhase(game));
+    cleanUp();
   }
 }

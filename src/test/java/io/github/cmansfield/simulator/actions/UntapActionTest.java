@@ -43,7 +43,7 @@ public class UntapActionTest {
   }
 
   @Test
-  public void test_uptapAction_dontSetSicknessToUntapped() {
+  public void test_uptapAction_setSicknessToUntapped() {
     String playerName = "Player1";
     List<PlayerCard> mana = new ArrayList<>();
     mana.add(new PlayerCard(CardReader.lookupCard("Forest"), playerName));
@@ -62,9 +62,7 @@ public class UntapActionTest {
 
     // Verify changes
     assertEquals(mana.size(), 3);
-    assertEquals(mana.get(0).getCardState(), CardState.SUMMONING_SICKNESS);
-    assertEquals(mana.get(1).getCardState(), CardState.UNTAPPED);
-    assertEquals(mana.get(2).getCardState(), CardState.UNTAPPED);
+    mana.forEach(card -> assertEquals(card.getCardState(), CardState.UNTAPPED));
     verify(mockGame).getActivePlayer();
     verify(mockPlayer, times(2)).getZone(Zone.BATTLEFIELD);
   }

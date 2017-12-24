@@ -28,10 +28,12 @@ public class CombatPhase extends Phase {
       this.combatStep.perform(game, this);
 
       if(endPhase) {
+        cleanUp();
         return;
       }
     }
 
     game.setPhase(new PostCombatMainPhase(game));
+    cleanUp();
   }
 }

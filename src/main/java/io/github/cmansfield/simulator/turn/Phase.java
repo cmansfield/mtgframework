@@ -35,4 +35,8 @@ public abstract class Phase implements Observer {
       endPhase = true;
     }
   }
+
+  protected void cleanUp() {
+    game.getEventHandler().unsubscribeToEvent(GameEventType.END_TURN.toString(), this);
+  }
 }

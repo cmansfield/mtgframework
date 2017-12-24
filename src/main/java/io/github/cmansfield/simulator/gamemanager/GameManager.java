@@ -52,6 +52,9 @@ public final class GameManager implements Observer {
       LOGGER.info("{} won!", game.getActivePlayer().getPlayerName());
       LOGGER.info("End of Game");
     }
+
+    game.getEventHandler().unsubscribeToEvent(GameEventType.PLAYER_LOSS.toString(), this);
+    game.getEventHandler().unsubscribeToEvent(GameEventType.PLAYER_DEATH.toString(), this);
   }
 
   @Override

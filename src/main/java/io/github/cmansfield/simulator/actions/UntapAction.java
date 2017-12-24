@@ -37,7 +37,10 @@ public class UntapAction implements Action {
                             .build()).size());
 
     activePlayer.getZone(Zone.BATTLEFIELD).forEach(card -> {
-      if(card.getCardState() == CardState.TAPPED) {
+      if(card.getCardState() == CardState.SUMMONING_SICKNESS) {
+        card.setCardState(CardState.UNTAPPED);
+      }
+      else if(card.getCardState() == CardState.TAPPED) {
         card.setCardState(CardState.UNTAPPED);
       }
     });

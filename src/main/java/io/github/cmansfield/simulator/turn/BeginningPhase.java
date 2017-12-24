@@ -28,10 +28,12 @@ public class BeginningPhase extends Phase {
       this.beginningStep.perform(game, this);
 
       if(endPhase) {
+        cleanUp();
         return;
       }
     }
 
     game.setPhase(new PreCombatMainPhase(game));
+    cleanUp();
   }
 }

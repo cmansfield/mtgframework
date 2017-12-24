@@ -16,6 +16,8 @@ public class PostCombatMainPhase extends Phase {
   public void perform() {
     LOGGER.trace("This is the Post-Combat Main phase");
 
+    cleanUp();
+
     if(endPhase) {
       return;
     }
