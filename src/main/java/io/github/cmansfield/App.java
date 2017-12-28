@@ -1,7 +1,5 @@
 package io.github.cmansfield;
 
-import io.github.cmansfield.simulator.actions.DiscardAction;
-import io.github.cmansfield.simulator.actions.DrawAction;
 import io.github.cmansfield.simulator.gamemanager.Game;
 import io.github.cmansfield.simulator.gamemanager.GameManager;
 import io.github.cmansfield.simulator.player.Player;
@@ -12,9 +10,13 @@ import io.github.cmansfield.deck.DeckUtils;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
 import io.github.cmansfield.io.*;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
+import java.io.ByteArrayInputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.function.Supplier;
 import java.io.IOException;
 import java.util.*;
@@ -53,7 +55,15 @@ public class App {
 
     LOGGER.info("Pre layout");
 
-    playGame();
+//    playGame();
+
+//    String testStr = "hello world";
+//    TextGrammarLexer lexer = new TextGrammarLexer(
+//            CharStreams.fromStream(
+//                    new ByteArrayInputStream(testStr.getBytes(StandardCharsets.UTF_8)),
+//                    StandardCharsets.UTF_8));
+//    TextGrammarParser parser = new TextGrammarParser(new CommonTokenStream(lexer));
+
 
     LOGGER.info("End of App");
   }

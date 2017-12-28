@@ -18,6 +18,7 @@
     <jersey.version>1.19.3</jersey.version>
     <mockito.version>1.9.5</mockito.version>
     <slf4jVersion>1.7.25</slf4jVersion>
+    <antlrVersion>4.7</antlrVersion>
   </properties>
 
   <dependencies>
@@ -84,6 +85,12 @@
       <artifactId>slf4j-log4j12</artifactId>
       <version>${slf4jVersion}</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.antlr</groupId>
+      <artifactId>antlr4-runtime</artifactId>
+      <version>${antlrVersion}</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -124,6 +131,19 @@
             <phase>package</phase> <!-- bind to the packaging phase -->
             <goals>
               <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.antlr</groupId>
+        <artifactId>antlr4-maven-plugin</artifactId>
+        <version>${antlrVersion}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>antlr4</goal>
             </goals>
           </execution>
         </executions>
