@@ -64,12 +64,24 @@ public class Game {
     return activePlayerPlayedLand;
   }
 
+  public void setCombat(Combat combat) {
+    this.combat = combat;
+  }
+
+  public Combat getCombat() {
+    return combat;
+  }
+
   public Player getActivePlayer() {
     return players.getFirst();
   }
 
   public int getPlayerCount() {
     return players.size();
+  }
+
+  public List<Player> getPlayers() {
+    return new ArrayList<>(players);
   }
 
   public void removePlayer(Player player) {

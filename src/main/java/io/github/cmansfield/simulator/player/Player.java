@@ -4,6 +4,8 @@ import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.deck.Deck;
 import javafx.util.Pair;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.stream.Collectors;
 import java.util.*;
@@ -11,6 +13,7 @@ import java.util.*;
 
 public class Player {
   private static final String ZONE_NOT_MANAGED_BY_PLAYER_MSG = "Zone '%s' is not managed by the player";
+  private static final Logger LOGGER = LoggerFactory.getLogger(Player.class);
 
   private Map<Zone,List<PlayerCard>> zones;
   private String playerName;
@@ -87,6 +90,7 @@ public class Player {
   }
 
   public void dealDamage(int damage) {
+    LOGGER.trace("{} took {} damage", playerName, damage);
     this.life -= damage;
   }
 

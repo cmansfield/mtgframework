@@ -1,5 +1,6 @@
 package io.github.cmansfield.simulator.turn;
 
+import io.github.cmansfield.simulator.player.Player;
 import io.github.cmansfield.simulator.turn.beginningsteps.BeginningStep;
 import io.github.cmansfield.simulator.turn.beginningsteps.UntapStep;
 import io.github.cmansfield.simulator.gamemanager.Game;
@@ -22,7 +23,8 @@ public class BeginningPhase extends Phase {
 
   @Override
   public void perform() {
-    LOGGER.trace("-- {}'s turn --", game.getActivePlayer().getPlayerName());
+    Player activePlayer = game.getActivePlayer();
+    LOGGER.trace("-- {}'s turn ({} life)--", activePlayer.getPlayerName(), activePlayer.getLife());
 
     while(this.beginningStep != null) {
       this.beginningStep.perform(game, this);

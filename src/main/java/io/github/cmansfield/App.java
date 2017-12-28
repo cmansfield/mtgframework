@@ -55,7 +55,7 @@ public class App {
 
     LOGGER.info("Pre layout");
 
-//    playGame();
+    playGame();
 
 //    String testStr = "hello world";
 //    TextGrammarLexer lexer = new TextGrammarLexer(

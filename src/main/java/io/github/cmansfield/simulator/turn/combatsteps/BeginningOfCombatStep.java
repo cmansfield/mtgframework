@@ -17,6 +17,8 @@ public class BeginningOfCombatStep implements CombatStep {
       return;
     }
 
+    game.setCombat(null);
+
     combatPhase.setCombatStep(new DeclareAttackersStep());
   }
 }

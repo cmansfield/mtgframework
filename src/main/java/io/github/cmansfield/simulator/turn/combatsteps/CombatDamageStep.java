@@ -13,6 +13,10 @@ public class CombatDamageStep implements CombatStep {
   public void perform(Game game, CombatPhase combatPhase) {
     LOGGER.trace("Combat Damage Step");
 
+    if(game.getCombat() != null) {
+      game.getCombat().resolveCombat();
+    }
+
     if(combatPhase.isEndPhase()) {
       return;
     }

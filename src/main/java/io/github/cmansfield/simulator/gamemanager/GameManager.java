@@ -66,19 +66,26 @@ public final class GameManager implements Observer {
     }
 
     if(gameEventType == GameEventType.PLAYER_DEATH || gameEventType == GameEventType.PLAYER_LOSS) {
+      Player activePlayer = game.getActivePlayer();
       Player player = (Player)pair.getValue();
       game.removePlayer(player);
       if(isPrimaryGm) {
         LOGGER.info("{} lost the game", player.getPlayerName());
       }
+
+      // If the lossing player is not the active player then we don't want to
+      // end the current turn
+      if(player != activePlayer) {
+        return;
+      }
+
+      // Notify the current phase and step to end the turn
+      game.getEventHandler().notifyObservers(GameEventType.END_TURN.toString());
+      game.setPhase(new BeginningPhase(game));
+      game.clearStack();
     }
     else {
       throw new IllegalStateException("The GameManager is subscribed to the wrong game event");
     }
-
-    // Notify the current phase and step to end the turn
-    game.getEventHandler().notifyObservers(GameEventType.END_TURN.toString());
-    game.setPhase(new BeginningPhase(game));
-    game.clearStack();
   }
 }
