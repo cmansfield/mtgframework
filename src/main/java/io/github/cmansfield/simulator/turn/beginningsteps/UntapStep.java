@@ -14,7 +14,7 @@ public class UntapStep implements BeginningStep {
   public void perform(Game game, BeginningPhase beginningPhase) {
     LOGGER.trace("Untap Step");
 
-    game.addToStack(new UntapAction(game));
+    game.addToStack(new UntapAction(game, game.getActivePlayer()));
 
     if(beginningPhase.isEndPhase()) {
       return;

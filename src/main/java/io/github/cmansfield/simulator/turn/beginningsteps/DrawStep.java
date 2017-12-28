@@ -14,7 +14,7 @@ public class DrawStep implements BeginningStep {
   public void perform(Game game, BeginningPhase beginningPhase) {
     LOGGER.trace("Draw Step");
 
-    game.addToStack(new DrawAction(game, 1));
+    game.addToStack(new DrawAction(game, game.getActivePlayer(), 1));
 
     if(beginningPhase.isEndPhase()) {
       return;

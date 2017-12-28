@@ -34,12 +34,13 @@ Mtg Framework TODO list
 
     Other:
         Move the appraiseHandDraw method and use the game heuristic to evaluate the hand
-        Have the GameEventHandler notify all observers of actions taken
+        Make it so the Action classes only act on a single card, not a group of cards
 
     Integration tests
         DeckAppraiser::appraiseHandDraw (will probably move this method)
-        simulator.turn package
+        simulator.player.combat package
         simulator.gameManager package
+        simulator.turn package
         Copy constructors
             GameEvent
             GameEventHandler

@@ -1,5 +1,7 @@
 package io.github.cmansfield.simulator.actions;
 
+import io.github.cmansfield.simulator.game.events.GameEventHandler;
+import io.github.cmansfield.simulator.game.events.constants.GameEventType;
 import io.github.cmansfield.simulator.player.constants.CardState;
 import io.github.cmansfield.simulator.player.PlayerCard;
 import io.github.cmansfield.simulator.gamemanager.Game;
@@ -28,10 +30,12 @@ public class CastSpellActionTest {
     mana.add(new PlayerCard(CardReader.lookupCard("Forest"), playerName));
     mana.add(new PlayerCard(CardReader.lookupCard("Forest"), playerName));
     Player mockPlayer = mock(Player.class);
+    GameEventHandler mockEventHandler = mock(GameEventHandler.class);
     when(mockPlayer.getZone(any(Zone.class))).thenReturn(mana);
     PlayerCard playerCard = new PlayerCard(CardReader.lookupCard("Shimmer Myr"), playerName);
     Game mockGame = mock(Game.class);
     when(mockGame.getActivePlayer()).thenReturn(mockPlayer);
+    when(mockGame.getEventHandler()).thenReturn(mockEventHandler);
     CastSpellAction action = new CastSpellAction(mockGame, playerCard);
 
     // Check values before the test
@@ -51,6 +55,8 @@ public class CastSpellActionTest {
     verify(mockGame).getActivePlayer();
     verify(mockPlayer).getZone(Zone.BATTLEFIELD);
     verify(mockPlayer).moveZone(Zone.HAND, Zone.BATTLEFIELD, playerCard);
+    verify(mockGame).getEventHandler();
+    verify(mockEventHandler).notifyObservers(GameEventType.CAST_SPELL_ACTION.toString(), playerCard);
   }
 
   @Test (expectedExceptions = IllegalStateException.class)

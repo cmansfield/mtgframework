@@ -7,7 +7,12 @@ public enum GameEventType {
   PLAYER_DEATH("death"),
   PLAYER_LOSS("loss"),
   TIE("tie"),
-  END_TURN("end turn");
+  END_TURN("end turn"),
+  CAST_SPELL_ACTION("cast spell"),
+  DISCARD_ACTION("discard"),
+  DRAW_ACTION("draw"),
+  PLAY_LAND_ACTION("play land"),
+  UNTAP_ACTION("untap");
 
   private final String value;
 

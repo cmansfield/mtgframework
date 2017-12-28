@@ -1,5 +1,6 @@
 package io.github.cmansfield.simulator.actions;
 
+import io.github.cmansfield.simulator.game.events.constants.GameEventType;
 import io.github.cmansfield.simulator.player.constants.CardState;
 import io.github.cmansfield.simulator.player.PlayerUtils;
 import io.github.cmansfield.simulator.player.PlayerCard;
@@ -63,6 +64,7 @@ public class CastSpellAction implements Action {
     }
 
     activePlayer.moveZone(Zone.HAND, Zone.BATTLEFIELD, playerCard);
+    game.getEventHandler().notifyObservers(GameEventType.CAST_SPELL_ACTION.toString(), playerCard);
   }
 
   @Override

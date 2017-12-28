@@ -1,5 +1,7 @@
 package io.github.cmansfield.simulator.actions;
 
+import io.github.cmansfield.simulator.game.events.GameEventHandler;
+import io.github.cmansfield.simulator.game.events.constants.GameEventType;
 import io.github.cmansfield.simulator.player.PlayerCard;
 import io.github.cmansfield.simulator.gamemanager.Game;
 import io.github.cmansfield.simulator.constants.Zone;
@@ -28,7 +30,9 @@ public class PlayLandActionTest {
     Player mockPlayer = mock(Player.class);
     when(mockPlayer.getZone(any(Zone.class))).thenReturn(mana);
     Game mockGame = mock(Game.class);
+    GameEventHandler mockEventHandler = mock(GameEventHandler.class);
     when(mockGame.getActivePlayer()).thenReturn(mockPlayer);
+    when(mockGame.getEventHandler()).thenReturn(mockEventHandler);
     when(mockGame.hasActivePlayerPlayedLand()).thenReturn(false).thenReturn(true);
     PlayLandAction action = new PlayLandAction(mockGame);
 
@@ -40,6 +44,7 @@ public class PlayLandActionTest {
     verify(mockGame).setActivePlayerPlayedLand(true);
     verify(mockPlayer).getZone(Zone.HAND);
     verify(mockPlayer).moveZone(eq(Zone.HAND), eq(Zone.BATTLEFIELD), any(PlayerCard.class));
+    verify(mockEventHandler).notifyObservers(eq(GameEventType.PLAY_LAND_ACTION.toString()), any(PlayerCard.class));
   }
 
   @Test

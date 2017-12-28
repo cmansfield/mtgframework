@@ -22,7 +22,7 @@ public class CleanupStep implements EndingStep {
     int amount = activePlayer.getZone(Zone.HAND).size() - GameConstants.MAX_HAND_SIZE.value();
 
     if(amount > 0) {
-      game.addToStack(new DiscardAction(game, amount));
+      game.addToStack(new DiscardAction(game, activePlayer, amount));
       game.resolveStack();
     }
 

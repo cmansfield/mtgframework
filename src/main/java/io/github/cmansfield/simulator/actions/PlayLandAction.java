@@ -1,5 +1,6 @@
 package io.github.cmansfield.simulator.actions;
 
+import io.github.cmansfield.simulator.game.events.constants.GameEventType;
 import io.github.cmansfield.simulator.player.PlayerCard;
 import io.github.cmansfield.simulator.gamemanager.Game;
 import io.github.cmansfield.simulator.constants.Zone;
@@ -51,8 +52,11 @@ public class PlayLandAction implements Action {
 
       if(!land.isEmpty()) {
         Collections.shuffle(land);
-        activePlayer.moveZone(Zone.HAND, Zone.BATTLEFIELD, (PlayerCard)land.get(0));
+        PlayerCard selectedLand = (PlayerCard)land.get(0);
+        activePlayer.moveZone(Zone.HAND, Zone.BATTLEFIELD, selectedLand);
         game.setActivePlayerPlayedLand(true);
+
+        game.getEventHandler().notifyObservers(GameEventType.PLAY_LAND_ACTION.toString(), selectedLand);
 
         LOGGER.trace("Land Played: {}", ((PlayerCard)land.get(0)).getName());
       }

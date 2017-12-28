@@ -9,6 +9,7 @@ import io.github.cmansfield.simulator.player.Player;
 import io.github.cmansfield.io.CardReader;
 import io.github.cmansfield.io.DeckReader;
 import io.github.cmansfield.deck.Deck;
+import javafx.util.Pair;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -37,14 +38,16 @@ public class DrawActionTest {
     Game mockGame = mock(Game.class);
     when(mockGame.getActivePlayer()).thenReturn(mockPlayer);
     when(mockGame.getEventHandler()).thenReturn(mockEventHandler);
-    DrawAction action = new DrawAction(mockGame, 2);
+    DrawAction action = new DrawAction(mockGame, mockPlayer, 2);
 
     // Run the test
     action.execute();
 
     // Verify changes
-    verify(mockGame).getActivePlayer();
-    verify(mockGame, never()).getEventHandler();
+    verify(mockGame).getEventHandler();
+    verify(mockEventHandler).notifyObservers(
+            GameEventType.DRAW_ACTION.toString(),
+            new Pair<>(2, mockPlayer));
     verify(mockEventHandler, never()).notifyObservers(GameEventType.PLAYER_LOSS.toString(), mockPlayer);
     verify(mockPlayer).draw(2);
   }
@@ -60,7 +63,7 @@ public class DrawActionTest {
     Game mockGame = mock(Game.class);
     when(mockGame.getActivePlayer()).thenReturn(player);
     when(mockGame.getEventHandler()).thenReturn(mockEventHandler);
-    DrawAction action = new DrawAction(mockGame, 100);
+    DrawAction action = new DrawAction(mockGame, player, 100);
 
     // Run the test
     action.execute();

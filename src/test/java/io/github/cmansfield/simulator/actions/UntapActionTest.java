@@ -1,11 +1,14 @@
 package io.github.cmansfield.simulator.actions;
 
+import io.github.cmansfield.simulator.game.events.GameEventHandler;
+import io.github.cmansfield.simulator.game.events.constants.GameEventType;
 import io.github.cmansfield.simulator.player.constants.CardState;
 import io.github.cmansfield.simulator.player.PlayerCard;
 import io.github.cmansfield.simulator.gamemanager.Game;
 import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.simulator.player.Player;
 import io.github.cmansfield.io.CardReader;
+import javafx.util.Pair;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -29,8 +32,10 @@ public class UntapActionTest {
     Player mockPlayer = mock(Player.class);
     when(mockPlayer.getZone(any(Zone.class))).thenReturn(mana);
     Game mockGame = mock(Game.class);
+    GameEventHandler mockEventHandler = mock(GameEventHandler.class);
     when(mockGame.getActivePlayer()).thenReturn(mockPlayer);
-    UntapAction action = new UntapAction(mockGame);
+    when(mockGame.getEventHandler()).thenReturn(mockEventHandler);
+    UntapAction action = new UntapAction(mockGame, mockPlayer);
 
     // Run the test
     action.execute();
@@ -38,8 +43,10 @@ public class UntapActionTest {
     // Verify changes
     assertEquals(mana.size(), 3);
     mana.forEach(card -> assertEquals(card.getCardState(), CardState.UNTAPPED));
-    verify(mockGame).getActivePlayer();
     verify(mockPlayer, times(2)).getZone(Zone.BATTLEFIELD);
+    verify(mockEventHandler).notifyObservers(
+            GameEventType.UNTAP_ACTION.toString(),
+            new Pair<>(3, mockPlayer));
   }
 
   @Test
@@ -51,11 +58,14 @@ public class UntapActionTest {
     mana.add(new PlayerCard(CardReader.lookupCard("Forest"), playerName));
     mana.get(0).setCardState(CardState.SUMMONING_SICKNESS);
     mana.get(1).setCardState(CardState.UNTAPPED);
+    mana.get(1).setCardState(CardState.TAPPED);
     Player mockPlayer = mock(Player.class);
     when(mockPlayer.getZone(any(Zone.class))).thenReturn(mana);
     Game mockGame = mock(Game.class);
+    GameEventHandler mockEventHandler = mock(GameEventHandler.class);
     when(mockGame.getActivePlayer()).thenReturn(mockPlayer);
-    UntapAction action = new UntapAction(mockGame);
+    when(mockGame.getEventHandler()).thenReturn(mockEventHandler);
+    UntapAction action = new UntapAction(mockGame, mockPlayer);
 
     // Run the test
     action.execute();
@@ -63,7 +73,9 @@ public class UntapActionTest {
     // Verify changes
     assertEquals(mana.size(), 3);
     mana.forEach(card -> assertEquals(card.getCardState(), CardState.UNTAPPED));
-    verify(mockGame).getActivePlayer();
     verify(mockPlayer, times(2)).getZone(Zone.BATTLEFIELD);
+    verify(mockEventHandler).notifyObservers(
+            GameEventType.UNTAP_ACTION.toString(),
+            new Pair<>(2, mockPlayer));
   }
 }
