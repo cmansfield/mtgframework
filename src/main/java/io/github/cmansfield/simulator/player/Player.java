@@ -128,7 +128,6 @@ public class Player {
 
     for(int x = 0; x < amount; ++x) {
       if(fromList.isEmpty()) {
-//        throw new IllegalStateException(String.format("No more cards to pull from %s", from.toString()));
         return false;
       }
 

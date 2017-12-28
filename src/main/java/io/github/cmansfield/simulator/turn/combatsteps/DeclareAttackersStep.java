@@ -1,19 +1,18 @@
 package io.github.cmansfield.simulator.turn.combatsteps;
 
-import io.github.cmansfield.simulator.constants.Zone;
-import io.github.cmansfield.simulator.gamemanager.Game;
-import io.github.cmansfield.simulator.player.Player;
-import io.github.cmansfield.simulator.player.PlayerCard;
+import io.github.cmansfield.simulator.player.constants.CardState;
 import io.github.cmansfield.simulator.player.combat.Attacker;
 import io.github.cmansfield.simulator.player.combat.Combat;
-import io.github.cmansfield.simulator.player.constants.CardState;
+import io.github.cmansfield.simulator.gamemanager.Game;
 import io.github.cmansfield.simulator.turn.CombatPhase;
+import io.github.cmansfield.simulator.constants.Zone;
+import io.github.cmansfield.simulator.player.Player;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
-import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
+import java.util.Random;
+import java.util.List;
 
 
 public class DeclareAttackersStep implements CombatStep {
@@ -43,7 +42,7 @@ public class DeclareAttackersStep implements CombatStep {
             .map(card -> new Attacker(card, opponent))
             .collect(Collectors.toList());
 
-    if(attackers.size() > 0) {
+    if(!attackers.isEmpty()) {
       attackers.forEach(attacker -> attacker.getPlayerCard().setCardState(CardState.TAPPED));
       combat.setAttackers(attackers);
       game.setCombat(combat);

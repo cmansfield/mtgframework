@@ -4,7 +4,6 @@ import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.simulator.player.Player;
 import io.github.cmansfield.filters.CardFilter;
 import io.github.cmansfield.card.Card;
-import io.github.cmansfield.simulator.player.PlayerCard;
 
 import java.util.Collections;
 import java.util.List;

@@ -41,6 +41,10 @@ public class Attacker {
     return basePower;
   }
 
+  public int getTougness() {
+    return tougness;
+  }
+
   public Player getTargetPlayer() {
     return targetPlayer;
   }

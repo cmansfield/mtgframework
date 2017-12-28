@@ -35,6 +35,7 @@ Mtg Framework TODO list
     Other:
         Move the appraiseHandDraw method and use the game heuristic to evaluate the hand
         Make it so the Action classes only act on a single card, not a group of cards
+        Move logic from step classes in the turn package into new Action classes
 
     Integration tests
         DeckAppraiser::appraiseHandDraw (will probably move this method)

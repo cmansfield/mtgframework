@@ -38,7 +38,6 @@ public final class GameManager implements Observer {
   public void startGame() {
     game.getEventHandler().subscribeToEvent(GameEventType.PLAYER_LOSS.toString(), this);
     game.getEventHandler().subscribeToEvent(GameEventType.PLAYER_DEATH.toString(), this);
-//    game.subscribeToEvent(GameEventType.TIE.toString(), this);
 
     for(int i = 0; i < numberOfTurns; ++i) {
       game.perform();

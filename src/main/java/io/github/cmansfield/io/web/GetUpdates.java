@@ -8,9 +8,8 @@ import io.github.cmansfield.io.IoConstants;
 import com.sun.jersey.api.client.Client;
 import org.apache.commons.lang.Validate;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 import java.nio.charset.StandardCharsets;
 import java.net.MalformedURLException;
@@ -139,10 +138,12 @@ public final class GetUpdates {
   private static void downloadLatestCardList() throws IOException {
     int timeout = 500;
     File file = new File(IoConstants.CARD_LIST_FILE_NAME);
-    URL url = null;
+    String path = "";
+    URL url;
 
     try {
       url = new URL(GET_CARD_LIST_URL);
+      path = url.getPath();
       FileUtils.copyURLToFile(url, file, timeout, timeout);
     }
     catch(MalformedURLException e) {
@@ -150,7 +151,7 @@ public final class GetUpdates {
       throw e;
     }
     catch(IOException e) {
-      LOGGER.error(String.format("Unable to save '%s' to file '%s'%n", url.getPath(), IoConstants.CARD_LIST_FILE_NAME), e);
+      LOGGER.error(String.format("Unable to save '%s' to file '%s'%n", path, IoConstants.CARD_LIST_FILE_NAME), e);
       throw e;
     }
   }
@@ -163,25 +164,19 @@ public final class GetUpdates {
    */
   private static void saveNewVersion(final String version) throws IOException {
     File file = new File(VERSION_FILE_NAME);
-    FileWriter fileWriter = null;
 
     Validate.notEmpty(version);
 
-    try {
-      if(file.createNewFile()) {
-        LOGGER.info("File {} was created", file.getName());
-      }
-
-      fileWriter = new FileWriter(file);
+    if(file.createNewFile()) {
+      LOGGER.info("File {} was created", file.getName());
+    }
+    try(FileWriter fileWriter = new FileWriter(file)) {
       fileWriter.write(version);
       fileWriter.flush();
     }
     catch (IOException e) {
       LOGGER.error("Unable to create/save file '{}' at this time", VERSION_FILE_NAME, e);
       throw e;
-    }
-    finally {
-      IOUtils.closeQuietly(fileWriter);
     }
   }
 }
