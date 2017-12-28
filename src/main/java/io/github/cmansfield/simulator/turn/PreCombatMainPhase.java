@@ -1,7 +1,7 @@
 package io.github.cmansfield.simulator.turn;
 
-import io.github.cmansfield.simulator.actions.CastSpellAction;
-import io.github.cmansfield.simulator.actions.PlayLandAction;
+import io.github.cmansfield.simulator.actions.player.actions.CastSpellAction;
+import io.github.cmansfield.simulator.actions.game.actions.PlayLandAction;
 import io.github.cmansfield.simulator.player.PlayerUtils;
 import io.github.cmansfield.simulator.player.PlayerCard;
 import io.github.cmansfield.simulator.gamemanager.Game;
@@ -31,8 +31,8 @@ public class PreCombatMainPhase extends Phase {
 
     // Add MinMax logic here in the future
 
-    game.addToStack(new PlayLandAction(game));
-    game.resolveStack();
+    game.getGameStack().add(new PlayLandAction(game));
+    game.getGameStack().resolveStack();
 
     while(castSpell(game)) {
       if(endPhase) {
@@ -74,8 +74,8 @@ public class PreCombatMainPhase extends Phase {
 
     Collections.shuffle(creatureCards);
 
-    game.addToStack(new CastSpellAction(game, (PlayerCard)creatureCards.get(0)));
-    game.resolveStack();
+    game.getPlayerStack().add(new CastSpellAction(game, (PlayerCard)creatureCards.get(0)));
+    game.getPlayerStack().resolveStack();
 
     return creatureCards.size() > 1;
   }

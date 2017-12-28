@@ -81,7 +81,8 @@ public final class GameManager implements Observer {
       // Notify the current phase and step to end the turn
       game.getEventHandler().notifyObservers(GameEventType.END_TURN.toString());
       game.setPhase(new BeginningPhase(game));
-      game.clearStack();
+      game.getGameStack().clear();
+      game.getPlayerStack().clear();
     }
     else {
       throw new IllegalStateException("The GameManager is subscribed to the wrong game event");

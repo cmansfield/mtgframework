@@ -1,6 +1,6 @@
 package io.github.cmansfield.simulator.turn.beginningsteps;
 
-import io.github.cmansfield.simulator.actions.UntapAction;
+import io.github.cmansfield.simulator.actions.game.actions.UntapAction;
 import io.github.cmansfield.simulator.turn.BeginningPhase;
 import io.github.cmansfield.simulator.gamemanager.Game;
 import org.slf4j.LoggerFactory;
@@ -14,13 +14,13 @@ public class UntapStep implements BeginningStep {
   public void perform(Game game, BeginningPhase beginningPhase) {
     LOGGER.trace("Untap Step");
 
-    game.addToStack(new UntapAction(game, game.getActivePlayer()));
+    game.getGameStack().add(new UntapAction(game, game.getActivePlayer()));
 
     if(beginningPhase.isEndPhase()) {
       return;
     }
 
-    game.resolveStack();
+    game.getGameStack().resolveStack();
 
     beginningPhase.setBeginningStep(new UpkeepStep());
   }

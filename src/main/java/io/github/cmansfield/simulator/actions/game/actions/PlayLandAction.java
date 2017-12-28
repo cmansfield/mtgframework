@@ -1,9 +1,10 @@
-package io.github.cmansfield.simulator.actions;
+package io.github.cmansfield.simulator.actions.game.actions;
 
 import io.github.cmansfield.simulator.game.events.constants.GameEventType;
 import io.github.cmansfield.simulator.player.PlayerCard;
 import io.github.cmansfield.simulator.gamemanager.Game;
 import io.github.cmansfield.simulator.constants.Zone;
+import io.github.cmansfield.simulator.actions.Action;
 import io.github.cmansfield.simulator.player.Player;
 import io.github.cmansfield.filters.CardFilter;
 import io.github.cmansfield.card.Card;

@@ -1,5 +1,6 @@
-package io.github.cmansfield.simulator.actions;
+package io.github.cmansfield.simulator.actions.game.actions;
 
+import io.github.cmansfield.simulator.actions.game.actions.UntapAction;
 import io.github.cmansfield.simulator.game.events.GameEventHandler;
 import io.github.cmansfield.simulator.game.events.constants.GameEventType;
 import io.github.cmansfield.simulator.player.constants.CardState;

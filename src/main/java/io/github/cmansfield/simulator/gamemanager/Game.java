@@ -1,10 +1,10 @@
 package io.github.cmansfield.simulator.gamemanager;
 
+import io.github.cmansfield.simulator.actions.collections.ActionStack;
 import io.github.cmansfield.simulator.gamemanager.constants.GameConstants;
 import io.github.cmansfield.simulator.game.events.GameEventHandler;
 import io.github.cmansfield.simulator.player.combat.Combat;
 import io.github.cmansfield.simulator.turn.BeginningPhase;
-import io.github.cmansfield.simulator.actions.Action;
 import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.validator.DeckValidator;
 import io.github.cmansfield.simulator.player.Player;
@@ -22,7 +22,8 @@ public class Game {
 
   private GameEventHandler gameEventHandler;
   private Deque<Player> players;
-  private Deque<Action> stack;
+  private ActionStack playerStack;
+  private ActionStack gameStack;
   private Phase phase;
 
   // TODO - Revisit this to make sure this is where I want to store this
@@ -32,19 +33,18 @@ public class Game {
   private Game() {
     this.gameEventHandler = new GameEventHandler();
     this.activePlayerPlayedLand = false;
-    this.stack = new LinkedList<>();
+    this.playerStack = new ActionStack();
+    this.gameStack = new ActionStack();
     this.phase = new BeginningPhase(this);
   }
 
   // TODO - Finish this copy constructor
   public Game(Game game) {
-    this();
     this.players = game.players.stream()
             .map(Player::new)
             .collect(Collectors.toCollection(LinkedList::new));
-    this.stack = game.stack.stream()
-            .map(action -> action.copy(this))
-            .collect(Collectors.toCollection(LinkedList::new));
+    this.playerStack = new ActionStack(game.playerStack, this);
+    this.gameStack = new ActionStack(game.gameStack, this);
 //    this.phase =
   }
 
@@ -70,6 +70,14 @@ public class Game {
 
   public Combat getCombat() {
     return combat;
+  }
+
+  public ActionStack getGameStack() {
+    return gameStack;
+  }
+
+  public ActionStack getPlayerStack() {
+    return playerStack;
   }
 
   public Player getActivePlayer() {
@@ -98,23 +106,6 @@ public class Game {
   public void nextPlayersTurn() {
     players.addLast(players.pollFirst());
     activePlayerPlayedLand = false;
-  }
-
-  public void addToStack(Action action) {
-    stack.add(action);
-  }
-
-  public void resolveStack() {
-    Action action;
-
-    while(!stack.isEmpty()) {
-      action = stack.pollLast();
-      action.execute();
-    }
-  }
-
-  public void clearStack() {
-    stack.clear();
   }
 
   public void perform() {

@@ -1,11 +1,12 @@
-package io.github.cmansfield.simulator.actions;
+package io.github.cmansfield.simulator.actions.game.actions;
 
 import io.github.cmansfield.simulator.game.events.constants.GameEventType;
 import io.github.cmansfield.simulator.gamemanager.Game;
+import io.github.cmansfield.simulator.actions.Action;
 import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.simulator.player.Player;
-import javafx.util.Pair;
 import org.slf4j.LoggerFactory;
+import javafx.util.Pair;
 import org.slf4j.Logger;
 
 
@@ -17,7 +18,7 @@ public class DrawAction implements Action {
   private Game game;
 
   public DrawAction(DrawAction drawAction, Game game) {
-    this(game, drawAction.targetPlayer, drawAction.amount);
+    this(game, new Player(drawAction.targetPlayer), drawAction.amount);
   }
 
   public DrawAction(Game game, Player targetPlayer, int amount) {
