@@ -86,12 +86,8 @@ public class Player {
     this.life = life;
   }
 
-  public void damagePlayer(int damage) {
+  public void dealDamage(int damage) {
     this.life -= damage;
-
-    if(this.life < 1) {
-      throw new IllegalStateException("The player has lost the game!");
-    }
   }
 
   public void shuffle(Zone zone) {

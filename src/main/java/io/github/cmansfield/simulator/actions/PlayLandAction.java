@@ -17,6 +17,12 @@ public class PlayLandAction implements Action {
   private static final Logger LOGGER = LoggerFactory.getLogger(PlayLandAction.class);
   private Game game;
 
+  /**
+   * Copy Constructor
+   *
+   * @param playLandAction
+   * @param game
+   */
   public PlayLandAction(PlayLandAction playLandAction, Game game) {
     this(game);
   }

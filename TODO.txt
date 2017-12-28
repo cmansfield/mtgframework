@@ -8,6 +8,18 @@ Reminders
 
 Mtg Framework TODO list
 
+    Things Waiting on ANTLR grammar for card text
+        CastSpellAction::execute
+            Check to make sure we are using the correct mana to cast spells
+        GameManager
+                Add a heuristic for evaluating board state
+                When looking ahead to make a better AI, ensure none of the following happens
+                    Opponets playing cards (land, and non-land)
+                    Viewing library, except for tutoring
+                    Viewing Opponent's hand
+                    Card draw
+                    Scrying
+
     Deep copying game state
         GameManager - Copy the game state to be manipulated separately
         copy method to Phases and Steps
@@ -17,17 +29,12 @@ Mtg Framework TODO list
                 Game
                 GameManager
 
-    GameManager
-        Add a heuristic for evaluating board state
-
-    CastSpellAction::execute
-        Check to make sure we are using the correct mana to cast spells
-
     Create:
         DeckDeserializer (Mostly to ensure the commander isn't included in the deck list)
 
-    Move the appraiseHandDraw method and use the game heuristic to evaluate the hand
-    Have the GameEventHandler notify all observers of actions taken
+    Other:
+        Move the appraiseHandDraw method and use the game heuristic to evaluate the hand
+        Have the GameEventHandler notify all observers of actions taken
 
     Integration tests
         DeckAppraiser::appraiseHandDraw (will probably move this method)

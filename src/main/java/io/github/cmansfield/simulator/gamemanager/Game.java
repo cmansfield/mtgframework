@@ -2,6 +2,7 @@ package io.github.cmansfield.simulator.gamemanager;
 
 import io.github.cmansfield.simulator.gamemanager.constants.GameConstants;
 import io.github.cmansfield.simulator.game.events.GameEventHandler;
+import io.github.cmansfield.simulator.player.combat.Combat;
 import io.github.cmansfield.simulator.turn.BeginningPhase;
 import io.github.cmansfield.simulator.actions.Action;
 import io.github.cmansfield.simulator.constants.Zone;
@@ -26,6 +27,7 @@ public class Game {
 
   // TODO - Revisit this to make sure this is where I want to store this
   private boolean activePlayerPlayedLand;
+  private Combat combat;
 
   private Game() {
     this.gameEventHandler = new GameEventHandler();

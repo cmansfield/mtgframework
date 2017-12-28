@@ -17,6 +17,8 @@ public class DeclareAttackersStep implements CombatStep {
       return;
     }
 
+    // TODO - Add attackers here
+
     combatPhase.setCombatStep(new DeclareBlockersStep());
   }
 }
