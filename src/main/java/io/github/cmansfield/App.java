@@ -1,25 +1,24 @@
 package io.github.cmansfield;
 
+import io.github.cmansfield.card.Card;
+import io.github.cmansfield.deck.Deck;
+import io.github.cmansfield.deck.DeckUtils;
+import io.github.cmansfield.io.CardReader;
+import io.github.cmansfield.io.DeckReader;
+import io.github.cmansfield.io.DeckWriter;
+import io.github.cmansfield.io.IoConstants;
+import io.github.cmansfield.io.web.GetUpdates;
+import io.github.cmansfield.io.web.TappedImporter;
 import io.github.cmansfield.simulator.gamemanager.Game;
 import io.github.cmansfield.simulator.gamemanager.GameManager;
 import io.github.cmansfield.simulator.player.Player;
 import io.github.cmansfield.validator.DeckValidator;
-import io.github.cmansfield.io.web.TappedImporter;
-import io.github.cmansfield.io.web.GetUpdates;
-import io.github.cmansfield.deck.DeckUtils;
-import io.github.cmansfield.card.Card;
-import io.github.cmansfield.deck.Deck;
-import io.github.cmansfield.io.*;
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.io.ByteArrayInputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.function.Supplier;
 import java.io.IOException;
 import java.util.*;
+import java.util.function.Supplier;
 
 
 public class App {
@@ -53,9 +52,11 @@ public class App {
 //      return null;
 //    });
 
-    LOGGER.info("Pre layout");
 
-    playGame();
+    LOGGER.info("Pre Start");
+
+
+//    playGame();
 
 //    String testStr = "hello world";
 //    TextGrammarLexer lexer = new TextGrammarLexer(

@@ -140,6 +140,10 @@
         <groupId>org.antlr</groupId>
         <artifactId>antlr4-maven-plugin</artifactId>
         <version>${antlrVersion}</version>
+        <configuration>
+          <sourceDirectory>src/main/java</sourceDirectory>
+          <outputDirectory>src/main/generated-sources</outputDirectory>
+        </configuration>
         <executions>
           <execution>
             <goals>

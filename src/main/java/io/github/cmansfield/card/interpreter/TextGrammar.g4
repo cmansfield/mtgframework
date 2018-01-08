@@ -1,5 +1,9 @@
 grammar TextGrammar;
 
+start
+    : message
+    ;
+
 message
     : (WORD | WHITESPCE)+
     ;
