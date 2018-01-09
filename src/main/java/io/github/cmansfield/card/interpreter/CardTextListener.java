@@ -7,6 +7,11 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import java.util.List;
 
 public class CardTextListener extends TextGrammarBaseListener {
+
+  public CardTextListener() {
+    // init class fields
+  }
+
   @Override
   public void enterText(TextGrammarParser.TextContext ctx) {
     System.out.printf("Enter Text%n");
@@ -16,7 +21,7 @@ public class CardTextListener extends TextGrammarBaseListener {
   public void enterCommonAbility(TextGrammarParser.CommonAbilityContext ctx) {
 
     TerminalNode word = ctx.WORD();
-    System.out.printf("Enter Common Ability%n");
+    System.out.printf("Enter Common Ability - %s%n", ctx.getText());
   }
 
   @Override
@@ -24,7 +29,7 @@ public class CardTextListener extends TextGrammarBaseListener {
 
     List<TextGrammarParser.CountersContext> counters = ctx.counters();
     List<TerminalNode> words = ctx.WORD();
-    System.out.printf("Enter Common Ability%n");
+    System.out.printf("Enter Unique Ability - %s%n", ctx.getText());
   }
 
   @Override
@@ -32,6 +37,6 @@ public class CardTextListener extends TextGrammarBaseListener {
 
     List<TerminalNode> modifiers = ctx.MODIFIER();
     List<TerminalNode> numbers = ctx.NUMBER();
-    System.out.printf("Enter Common Ability%n");
+    System.out.printf("Enter Counters - %s%n", ctx.getText());
   }
 }

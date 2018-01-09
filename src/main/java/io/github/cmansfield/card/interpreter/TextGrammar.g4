@@ -11,7 +11,7 @@ commonAbility
     ;
 
 uniqueAbility
-    : (WORD | counters)+ '.'
+    : (WORD | counters | WHITESPCE | COMMA)+ '.'
     ;
 
 counters
@@ -37,9 +37,9 @@ NEWLINE
     ;
 
 COMMA
-    : ',' -> skip
+    : ','
     ;
 
 WHITESPCE
-    : [ \t\r]+ -> skip
+    : [ \t\r]+
     ;

@@ -140,7 +140,7 @@ public class TextGrammarParser extends Parser {
 				setState(12); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( _la==MODIFIER || _la==WORD );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << MODIFIER) | (1L << WORD) | (1L << COMMA) | (1L << WHITESPCE))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -210,6 +210,14 @@ public class TextGrammarParser extends Parser {
 		public CountersContext counters(int i) {
 			return getRuleContext(CountersContext.class,i);
 		}
+		public List<TerminalNode> WHITESPCE() { return getTokens(TextGrammarParser.WHITESPCE); }
+		public TerminalNode WHITESPCE(int i) {
+			return getToken(TextGrammarParser.WHITESPCE, i);
+		}
+		public List<TerminalNode> COMMA() { return getTokens(TextGrammarParser.COMMA); }
+		public TerminalNode COMMA(int i) {
+			return getToken(TextGrammarParser.COMMA, i);
+		}
 		public UniqueAbilityContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -236,12 +244,12 @@ public class TextGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(19); 
+			setState(21); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
-				setState(19);
+				setState(21);
 				_errHandler.sync(this);
 				switch (_input.LA(1)) {
 				case WORD:
@@ -256,15 +264,27 @@ public class TextGrammarParser extends Parser {
 					counters();
 					}
 					break;
+				case WHITESPCE:
+					{
+					setState(19);
+					match(WHITESPCE);
+					}
+					break;
+				case COMMA:
+					{
+					setState(20);
+					match(COMMA);
+					}
+					break;
 				default:
 					throw new NoViableAltException(this);
 				}
 				}
-				setState(21); 
+				setState(23); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( _la==MODIFIER || _la==WORD );
-			setState(23);
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << MODIFIER) | (1L << WORD) | (1L << COMMA) | (1L << WHITESPCE))) != 0) );
+			setState(25);
 			match(T__0);
 			}
 		}
@@ -313,15 +333,15 @@ public class TextGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(25);
-			match(MODIFIER);
-			setState(26);
-			match(NUMBER);
 			setState(27);
-			match(T__1);
-			setState(28);
 			match(MODIFIER);
+			setState(28);
+			match(NUMBER);
 			setState(29);
+			match(T__1);
+			setState(30);
+			match(MODIFIER);
+			setState(31);
 			match(NUMBER);
 			}
 		}
@@ -337,16 +357,17 @@ public class TextGrammarParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\n\"\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\3\2\3\2\6\2\r\n\2\r\2\16\2\16\3\3\3\3\3\3\3\4\3\4\6"+
-		"\4\26\n\4\r\4\16\4\27\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\2\2\6\2\4\6"+
-		"\b\2\2\2!\2\f\3\2\2\2\4\20\3\2\2\2\6\25\3\2\2\2\b\33\3\2\2\2\n\r\5\4\3"+
-		"\2\13\r\5\6\4\2\f\n\3\2\2\2\f\13\3\2\2\2\r\16\3\2\2\2\16\f\3\2\2\2\16"+
-		"\17\3\2\2\2\17\3\3\2\2\2\20\21\7\7\2\2\21\22\7\b\2\2\22\5\3\2\2\2\23\26"+
-		"\7\7\2\2\24\26\5\b\5\2\25\23\3\2\2\2\25\24\3\2\2\2\26\27\3\2\2\2\27\25"+
-		"\3\2\2\2\27\30\3\2\2\2\30\31\3\2\2\2\31\32\7\3\2\2\32\7\3\2\2\2\33\34"+
-		"\7\5\2\2\34\35\7\6\2\2\35\36\7\4\2\2\36\37\7\5\2\2\37 \7\6\2\2 \t\3\2"+
-		"\2\2\6\f\16\25\27";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\n$\4\2\t\2\4\3\t"+
+		"\3\4\4\t\4\4\5\t\5\3\2\3\2\6\2\r\n\2\r\2\16\2\16\3\3\3\3\3\3\3\4\3\4\3"+
+		"\4\3\4\6\4\30\n\4\r\4\16\4\31\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\2\2"+
+		"\6\2\4\6\b\2\2\2%\2\f\3\2\2\2\4\20\3\2\2\2\6\27\3\2\2\2\b\35\3\2\2\2\n"+
+		"\r\5\4\3\2\13\r\5\6\4\2\f\n\3\2\2\2\f\13\3\2\2\2\r\16\3\2\2\2\16\f\3\2"+
+		"\2\2\16\17\3\2\2\2\17\3\3\2\2\2\20\21\7\7\2\2\21\22\7\b\2\2\22\5\3\2\2"+
+		"\2\23\30\7\7\2\2\24\30\5\b\5\2\25\30\7\n\2\2\26\30\7\t\2\2\27\23\3\2\2"+
+		"\2\27\24\3\2\2\2\27\25\3\2\2\2\27\26\3\2\2\2\30\31\3\2\2\2\31\27\3\2\2"+
+		"\2\31\32\3\2\2\2\32\33\3\2\2\2\33\34\7\3\2\2\34\7\3\2\2\2\35\36\7\5\2"+
+		"\2\36\37\7\6\2\2\37 \7\4\2\2 !\7\5\2\2!\"\7\6\2\2\"\t\3\2\2\2\6\f\16\27"+
+		"\31";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
