@@ -16,13 +16,13 @@ public class TextGrammarBaseListener implements TextGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterText(TextGrammarParser.TextContext ctx) { }
+	@Override public void enterCardText(TextGrammarParser.CardTextContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitText(TextGrammarParser.TextContext ctx) { }
+	@Override public void exitCardText(TextGrammarParser.CardTextContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -52,6 +52,18 @@ public class TextGrammarBaseListener implements TextGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterTextOther(TextGrammarParser.TextOtherContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTextOther(TextGrammarParser.TextOtherContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterCounters(TextGrammarParser.CountersContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -59,6 +71,54 @@ public class TextGrammarBaseListener implements TextGrammarListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCounters(TextGrammarParser.CountersContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCost(TextGrammarParser.CostContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCost(TextGrammarParser.CostContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCostOther(TextGrammarParser.CostOtherContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCostOther(TextGrammarParser.CostOtherContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCostRequirement(TextGrammarParser.CostRequirementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCostRequirement(TextGrammarParser.CostRequirementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCostPrimary(TextGrammarParser.CostPrimaryContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCostPrimary(TextGrammarParser.CostPrimaryContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

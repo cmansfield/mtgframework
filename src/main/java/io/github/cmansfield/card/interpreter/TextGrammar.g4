@@ -2,23 +2,63 @@ grammar TextGrammar;
 
 // Parser
 
-text
+cardText
     : (commonAbility | uniqueAbility)+
     ;
 
 commonAbility
-    : (ABILITY_KEYWORD | COMMA | NEWLINE | WHITESPCE)+ NEWLINE
+    : (ABILITY_KEYWORD | ',' | NEWLINE | WHITESPCE)+ NEWLINE
     ;
 
 uniqueAbility
-    : (ACTION_KEYWORD | ABILITY_KEYWORD | WORD | counters | WHITESPCE | COMMA | NEWLINE)+ '.'
+    : textOther
+    | cost WHITESPCE? textOther
+    ;
+
+textOther
+    : (ACTION_KEYWORD | ABILITY_KEYWORD | WORD | counters | WHITESPCE | ',' | NEWLINE)+ '.' NEWLINE?
     ;
 
 counters
     : MODIFIER NUMBER '/' MODIFIER NUMBER
     ;
 
+cost
+    : costRequirement+ costOther? ':'?
+    | costOther ':'?
+    ;
+
+costOther
+    : costRequirement (',' WHITESPCE? costRequirement)+
+    ;
+
+costRequirement
+    : '{' (costPrimary | OTHER_IDENTIFIER) '}'
+    | '{' costPrimary '/' costPrimary '}'
+    ;
+
+costPrimary
+    : NUMBER+
+    | COLOR_IDENTIFIER
+    ;
+
+
 // Lexer
+
+OTHER_IDENTIFIER
+    : 'T'
+    | 'X'
+    | 'Y'
+    | 'Z'
+    ;
+
+COLOR_IDENTIFIER
+    : 'W'
+    | 'B'
+    | 'U'
+    | 'R'
+    | 'G'
+    ;
 
 ACTION_KEYWORD
     : [Aa]'ttach'
@@ -197,10 +237,6 @@ WORD
 
 NEWLINE
     : [\n]
-    ;
-
-COMMA
-    : ','
     ;
 
 WHITESPCE

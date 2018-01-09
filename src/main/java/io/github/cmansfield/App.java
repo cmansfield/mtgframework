@@ -106,7 +106,7 @@ public class App {
                     StandardCharsets.UTF_8));
     CommonTokenStream tokens = new CommonTokenStream(lexer);
     TextGrammarParser parser = new TextGrammarParser(tokens);
-    ParseTree tree = parser.text();
+    ParseTree tree = parser.cardText();
     ParseTreeWalker walker = new ParseTreeWalker();
     CardTextListener listener = new CardTextListener();
     walker.walk(listener, tree);

@@ -11,11 +11,11 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface TextGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link TextGrammarParser#text}.
+	 * Visit a parse tree produced by {@link TextGrammarParser#cardText}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitText(TextGrammarParser.TextContext ctx);
+	T visitCardText(TextGrammarParser.CardTextContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TextGrammarParser#commonAbility}.
 	 * @param ctx the parse tree
@@ -29,9 +29,39 @@ public interface TextGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitUniqueAbility(TextGrammarParser.UniqueAbilityContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link TextGrammarParser#textOther}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTextOther(TextGrammarParser.TextOtherContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link TextGrammarParser#counters}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitCounters(TextGrammarParser.CountersContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TextGrammarParser#cost}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCost(TextGrammarParser.CostContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TextGrammarParser#costOther}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCostOther(TextGrammarParser.CostOtherContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TextGrammarParser#costRequirement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCostRequirement(TextGrammarParser.CostRequirementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TextGrammarParser#costPrimary}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCostPrimary(TextGrammarParser.CostPrimaryContext ctx);
 }
