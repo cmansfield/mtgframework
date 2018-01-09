@@ -1,5 +1,5 @@
 // Generated from C:/Users/christopherjman/Documents/mtgframework/src/main/java/io/github/cmansfield/card/interpreter\TextGrammar.g4 by ANTLR 4.7
-package antlr;
+package io.github.cmansfield.card.interpreter.antlr;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -16,25 +16,49 @@ public class TextGrammarBaseListener implements TextGrammarListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStart(TextGrammarParser.StartContext ctx) { }
+	@Override public void enterText(TextGrammarParser.TextContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStart(TextGrammarParser.StartContext ctx) { }
+	@Override public void exitText(TextGrammarParser.TextContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMessage(TextGrammarParser.MessageContext ctx) { }
+	@Override public void enterCommonAbility(TextGrammarParser.CommonAbilityContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMessage(TextGrammarParser.MessageContext ctx) { }
+	@Override public void exitCommonAbility(TextGrammarParser.CommonAbilityContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterUniqueAbility(TextGrammarParser.UniqueAbilityContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitUniqueAbility(TextGrammarParser.UniqueAbilityContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCounters(TextGrammarParser.CountersContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCounters(TextGrammarParser.CountersContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

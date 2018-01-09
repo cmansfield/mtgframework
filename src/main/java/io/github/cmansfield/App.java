@@ -1,6 +1,10 @@
 package io.github.cmansfield;
 
 import io.github.cmansfield.card.Card;
+import io.github.cmansfield.card.interpreter.CardTextListener;
+import io.github.cmansfield.card.interpreter.antlr.TextGrammarLexer;
+import io.github.cmansfield.card.interpreter.antlr.TextGrammarListener;
+import io.github.cmansfield.card.interpreter.antlr.TextGrammarParser;
 import io.github.cmansfield.deck.Deck;
 import io.github.cmansfield.deck.DeckUtils;
 import io.github.cmansfield.io.CardReader;
@@ -13,10 +17,16 @@ import io.github.cmansfield.simulator.gamemanager.Game;
 import io.github.cmansfield.simulator.gamemanager.GameManager;
 import io.github.cmansfield.simulator.player.Player;
 import io.github.cmansfield.validator.DeckValidator;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Supplier;
 
@@ -58,12 +68,17 @@ public class App {
 
 //    playGame();
 
-//    String testStr = "hello world";
-//    TextGrammarLexer lexer = new TextGrammarLexer(
-//            CharStreams.fromStream(
-//                    new ByteArrayInputStream(testStr.getBytes(StandardCharsets.UTF_8)),
-//                    StandardCharsets.UTF_8));
-//    TextGrammarParser parser = new TextGrammarParser(new CommonTokenStream(lexer));
+    String testStr = "Flying\nWhenever you cycle or discard a card, Shadowstorm Vizier gets +1/+1 until end of turn.";
+    TextGrammarLexer lexer = new TextGrammarLexer(
+            CharStreams.fromStream(
+                    new ByteArrayInputStream(testStr.getBytes(StandardCharsets.UTF_8)),
+                    StandardCharsets.UTF_8));
+    CommonTokenStream tokens = new CommonTokenStream(lexer);
+    TextGrammarParser parser = new TextGrammarParser(tokens);
+    ParseTree tree = parser.text();
+    ParseTreeWalker walker = new ParseTreeWalker();
+    TextGrammarListener listener = new CardTextListener();
+    walker.walk(listener, tree);
 
 
     LOGGER.info("End of App");

@@ -1,5 +1,5 @@
 // Generated from C:/Users/christopherjman/Documents/mtgframework/src/main/java/io/github/cmansfield/card/interpreter\TextGrammar.g4 by ANTLR 4.7
-package antlr;
+package io.github.cmansfield.card.interpreter.antlr;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -8,23 +8,43 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface TextGrammarListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link TextGrammarParser#start}.
+	 * Enter a parse tree produced by {@link TextGrammarParser#text}.
 	 * @param ctx the parse tree
 	 */
-	void enterStart(TextGrammarParser.StartContext ctx);
+	void enterText(TextGrammarParser.TextContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link TextGrammarParser#start}.
+	 * Exit a parse tree produced by {@link TextGrammarParser#text}.
 	 * @param ctx the parse tree
 	 */
-	void exitStart(TextGrammarParser.StartContext ctx);
+	void exitText(TextGrammarParser.TextContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link TextGrammarParser#message}.
+	 * Enter a parse tree produced by {@link TextGrammarParser#commonAbility}.
 	 * @param ctx the parse tree
 	 */
-	void enterMessage(TextGrammarParser.MessageContext ctx);
+	void enterCommonAbility(TextGrammarParser.CommonAbilityContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link TextGrammarParser#message}.
+	 * Exit a parse tree produced by {@link TextGrammarParser#commonAbility}.
 	 * @param ctx the parse tree
 	 */
-	void exitMessage(TextGrammarParser.MessageContext ctx);
+	void exitCommonAbility(TextGrammarParser.CommonAbilityContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TextGrammarParser#uniqueAbility}.
+	 * @param ctx the parse tree
+	 */
+	void enterUniqueAbility(TextGrammarParser.UniqueAbilityContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TextGrammarParser#uniqueAbility}.
+	 * @param ctx the parse tree
+	 */
+	void exitUniqueAbility(TextGrammarParser.UniqueAbilityContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TextGrammarParser#counters}.
+	 * @param ctx the parse tree
+	 */
+	void enterCounters(TextGrammarParser.CountersContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TextGrammarParser#counters}.
+	 * @param ctx the parse tree
+	 */
+	void exitCounters(TextGrammarParser.CountersContext ctx);
 }

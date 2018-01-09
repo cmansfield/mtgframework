@@ -1,17 +1,45 @@
 grammar TextGrammar;
 
-start
-    : message
+// Parser
+
+text
+    : (commonAbility | uniqueAbility)+
     ;
 
-message
-    : (WORD | WHITESPCE)+
+commonAbility
+    : WORD NEWLINE
+    ;
+
+uniqueAbility
+    : (WORD | counters)+ '.'
+    ;
+
+counters
+    : MODIFIER NUMBER '/' MODIFIER NUMBER
+    ;
+
+// Lexer
+
+MODIFIER
+    : ('+'|'-')
+    ;
+
+NUMBER
+    : [0-9]+
     ;
 
 WORD
-    : [a-z]+
+    : [a-zA-Z]+
+    ;
+
+NEWLINE
+    : [\n]
+    ;
+
+COMMA
+    : ',' -> skip
     ;
 
 WHITESPCE
-    : ' '
+    : [ \t\r]+ -> skip
     ;
