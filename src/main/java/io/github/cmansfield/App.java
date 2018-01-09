@@ -1,9 +1,9 @@
 package io.github.cmansfield;
 
 import io.github.cmansfield.card.Card;
+import io.github.cmansfield.card.ability.CardAbility;
 import io.github.cmansfield.card.interpreter.CardTextListener;
 import io.github.cmansfield.card.interpreter.antlr.TextGrammarLexer;
-import io.github.cmansfield.card.interpreter.antlr.TextGrammarListener;
 import io.github.cmansfield.card.interpreter.antlr.TextGrammarParser;
 import io.github.cmansfield.deck.Deck;
 import io.github.cmansfield.deck.DeckUtils;
@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 
 public class App {
@@ -67,8 +68,38 @@ public class App {
 
 
 //    playGame();
+      parseCardText();
 
-    String testStr = "Flying\nWhenever you cycle or discard a card, Shadowstorm Vizier gets +1/+1 until end of turn.";
+
+    LOGGER.info("End of App");
+  }
+
+
+
+  private static void formatKeywordForGrammar() {
+    String input = "Deathtouch\n" +
+            "Defender\n" +
+            "Double strike\n" +
+            "Enchant";
+
+    List<String> inputs = Arrays.asList(input.split("\n"));
+    inputs = inputs.stream()
+            .map(val -> {
+              String first = val.substring(0, 1);
+              return String.format(
+                      "| [%s%s]'%s'",
+                      first.toUpperCase(),
+                      first.toLowerCase(),
+                      val.substring(1));
+            })
+            .collect(Collectors.toList());
+
+    inputs.forEach(System.out::println);
+  }
+
+
+  private static void parseCardText() throws IOException {
+    String testStr = "Flash\nDouble strike, vigilance, haste\nOther creatures you control have haste.\n{W}, {T}: Untap another target creature.";
     TextGrammarLexer lexer = new TextGrammarLexer(
             CharStreams.fromStream(
                     new ByteArrayInputStream(testStr.getBytes(StandardCharsets.UTF_8)),
@@ -77,11 +108,11 @@ public class App {
     TextGrammarParser parser = new TextGrammarParser(tokens);
     ParseTree tree = parser.text();
     ParseTreeWalker walker = new ParseTreeWalker();
-    TextGrammarListener listener = new CardTextListener();
+    CardTextListener listener = new CardTextListener();
     walker.walk(listener, tree);
 
-
-    LOGGER.info("End of App");
+    List<CardAbility> cardAbilities = listener.getCardAbilities();
+    System.out.println(cardAbilities.size());
   }
 
 
