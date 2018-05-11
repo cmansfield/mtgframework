@@ -1,16 +1,17 @@
 package io.github.cmansfield;
 
 import io.github.cmansfield.card.Card;
+import io.github.cmansfield.card.CardUtils;
 import io.github.cmansfield.card.ability.CardAbility;
 import io.github.cmansfield.card.interpreter.CardTextListener;
 import io.github.cmansfield.card.interpreter.antlr.TextGrammarLexer;
 import io.github.cmansfield.card.interpreter.antlr.TextGrammarParser;
+import io.github.cmansfield.constants.Color;
 import io.github.cmansfield.deck.Deck;
 import io.github.cmansfield.deck.DeckUtils;
-import io.github.cmansfield.io.CardReader;
-import io.github.cmansfield.io.DeckReader;
-import io.github.cmansfield.io.DeckWriter;
-import io.github.cmansfield.io.IoConstants;
+import io.github.cmansfield.deck.constants.Format;
+import io.github.cmansfield.filters.CardFilter;
+import io.github.cmansfield.io.*;
 import io.github.cmansfield.io.web.GetUpdates;
 import io.github.cmansfield.io.web.TappedImporter;
 import io.github.cmansfield.simulator.gamemanager.Game;
@@ -63,13 +64,7 @@ public class App {
 //      return null;
 //    });
 
-
-    LOGGER.info("Pre Start");
-
-
-//    playGame();
-      parseCardText();
-
+    importFromTappedOut();
 
     LOGGER.info("End of App");
   }
@@ -137,19 +132,63 @@ public class App {
   }
 
 
-  private static void importFromTappedOut() {
-//    List<Deck> decks = TappedImporter.importFilesFromTappedOut("TappedCrawler\\decks\\test");
-    List<Deck> decks = TappedImporter.importFilesFromTappedOut("TappedCrawler\\decks\\animar-soul-of-elements");
-//    List<Deck> decks = TappedImporter.importFilesFromTappedOut("TappedCrawler\\decks\\ghave-guru-of-spores");
-    Map<String,Integer> cardCounts = DeckUtils.getCardCount(decks);
+  private static void importFromTappedOut() throws IOException {
+    List<String> files = Arrays.asList(
+            "TappedCrawler\\decks\\brago-king-eternal",
+            "TappedCrawler\\decks\\ephara-god-of-the-polis",
+            "TappedCrawler\\decks\\lavinia-of-the-tenth");
+
+    List<Deck> decks = files.stream()
+            .map(TappedImporter::importFilesFromTappedOut)
+            .flatMap(Collection::stream)
+            .collect(Collectors.toList());
+    Map<String,Integer> cardCounts = DeckUtils.getCardCount(decks)
+            .entrySet().stream()
+            .filter(entry -> entry.getValue() > 2)
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     List<Map.Entry<String, Integer>> sorted = new ArrayList<>(cardCounts.entrySet());
     sorted.sort(Comparator.comparing(Map.Entry::getValue));
     Collections.reverse(sorted);
+
+    List<Card> cards = decks.stream()
+            .map(Deck::getCards)
+            .flatMap(Collection::stream)
+            .distinct()
+            .collect(Collectors.toList());
+    Card filter = new Card.CardBuilder()
+            .legalities(new CardUtils.LegalitiesBuilder()
+                    .format(Format.COMMANDER)
+                    .build())
+            .build();
+    cards = CardFilter.filter(cards, filter);
+    cards = cards.stream()
+            .filter(card -> {
+              if(card.getColors() == null) {
+                return true;
+              }
+
+              return !card.getColors().contains(Color.BLACK.toString())
+                      && !card.getColors().contains(Color.GREEN.toString());
+            })
+            .collect(Collectors.toList());
+
+    CardWriter.saveCards(cards);
+
+    sorted = removeFromSorted(cards, sorted);
     sorted.forEach(entry ->
-      System.out.printf("%d %s%n", entry.getValue(), entry.getKey())
+            System.out.printf("%d %s%n", entry.getValue(), entry.getKey())
     );
   }
 
+  private static List<Map.Entry<String, Integer>> removeFromSorted(List<Card> cards, List<Map.Entry<String, Integer>> sorted) {
+    return sorted.stream()
+            .filter(entry -> !CardFilter.filter(
+                    cards,
+                    new Card.CardBuilder()
+                            .name(entry.getKey())
+                            .build()).isEmpty())
+            .collect(Collectors.toList());
+  }
 
   private static void saveFormatCompliantDecksFromTappedOut() {
     List<Deck> decks = TappedImporter.importFilesFromTappedOut("TappedCrawler\\decks\\animar-soul-of-elements");
