@@ -1,6 +1,7 @@
 package io.github.cmansfield.filters;
 
 import io.github.cmansfield.io.DeckReader;
+import io.github.cmansfield.simulator.filters.PlayerCardFilter;
 import io.github.cmansfield.simulator.player.PlayerCard;
 import io.github.cmansfield.simulator.constants.Zone;
 import io.github.cmansfield.simulator.player.Player;

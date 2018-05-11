@@ -1,6 +1,7 @@
-package io.github.cmansfield.filters;
+package io.github.cmansfield.simulator.filters;
 
 import io.github.cmansfield.card.Card;
+import io.github.cmansfield.filters.CardFilter;
 import io.github.cmansfield.simulator.player.PlayerCard;
 
 import java.util.List;

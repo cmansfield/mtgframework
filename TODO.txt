@@ -1,49 +1,17 @@
 
-Reminders
-
-    !IMPORTANT! Memory Leak
-        All observers need to un-subscribe when they are no longer going to be used, or else
-        they are kept in memory because the Observable keeps them in memory.
-
 
 Mtg Framework TODO list
-
-    Things Waiting on ANTLR grammar for card text
-        CastSpellAction::execute
-            Check to make sure we are using the correct mana to cast spells
-        GameManager
-                Add a heuristic for evaluating board state
-                When looking ahead to make a better AI, ensure none of the following happens
-                    Opponets playing cards (land, and non-land)
-                    Viewing library, except for tutoring
-                    Viewing Opponent's hand
-                    Card draw
-                    Scrying
-
-    Deep copying game state
-        GameManager - Copy the game state to be manipulated separately
-        copy method to Phases and Steps
-        Copy Constructors
-                GameEvent
-                GameEventHandler
-                Game
-                GameManager
-
     Create:
         DeckDeserializer (Mostly to ensure the commander isn't included in the deck list)
-
-    Other:
-        Move the appraiseHandDraw method and use the game heuristic to evaluate the hand
-        Make it so the Action classes only act on a single card, not a group of cards
-        Move logic from step classes in the turn package into new Action classes
-
-    Integration tests
-        DeckAppraiser::appraiseHandDraw (will probably move this method)
-        simulator.player.combat package
-        simulator.gameManager package
-        simulator.turn package
-        Copy constructors
-            GameEvent
-            GameEventHandler
-            Game
-            GameManager
+    IO:
+        Download and store set data from MTGjson, this will supply card rarity and the card's
+            multiverseid (used for collection card images)
+        Tap into MTG's image api to download and store card images
+            http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=368970&type=card
+        Create a TappedOutFramework class to manage importing/exporting, converting, and
+            bulk processing of any data to and from tappedout.net
+    
+    CardFilter:
+        Fix the filterNot method when working with List<Color>
+        
+    

@@ -1,23 +1,24 @@
 package io.github.cmansfield;
 
-import io.github.cmansfield.simulator.gamemanager.Game;
 import io.github.cmansfield.simulator.gamemanager.GameManager;
+import io.github.cmansfield.simulator.gamemanager.Game;
 import io.github.cmansfield.simulator.player.Player;
 import io.github.cmansfield.validator.DeckValidator;
 import io.github.cmansfield.io.web.TappedImporter;
+import io.github.cmansfield.deck.constants.Format;
+import io.github.cmansfield.filters.CardFilter;
 import io.github.cmansfield.io.web.GetUpdates;
+import io.github.cmansfield.constants.Color;
 import io.github.cmansfield.deck.DeckUtils;
+import io.github.cmansfield.card.CardUtils;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
 import io.github.cmansfield.io.*;
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonTokenStream;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
-import java.io.ByteArrayInputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import java.io.IOException;
 import java.util.*;
 
@@ -37,33 +38,13 @@ public class App {
       }
     }
 
-    List<Card> cards;
-
     try {
-      cards = CardReader.loadCards();
+      CardReader.loadCards();
     }
     catch (Exception e) {
       LOGGER.error("Unable to load card list from file '{}'", IoConstants.ALL_CARDS_FILE_NAME, e);
       return;
     }
-
-    // Wrap method we want to test in a lambda
-//    timeMethod(() -> {
-//      CardFilter.filter(cards, new Card.CardBuilder().name("awol2").build());
-//      return null;
-//    });
-
-    LOGGER.info("Pre layout");
-
-    playGame();
-
-//    String testStr = "hello world";
-//    TextGrammarLexer lexer = new TextGrammarLexer(
-//            CharStreams.fromStream(
-//                    new ByteArrayInputStream(testStr.getBytes(StandardCharsets.UTF_8)),
-//                    StandardCharsets.UTF_8));
-//    TextGrammarParser parser = new TextGrammarParser(new CommonTokenStream(lexer));
-
 
     LOGGER.info("End of App");
   }
@@ -71,7 +52,14 @@ public class App {
 
   /**
    * Simple profiler to help optimize methods
-   *
+   * 
+   * Wrap method we want to test in a lambda
+   * 
+   * timeMethod(() -> {
+   *   CardFilter.filter(cards, new Card.CardBuilder().name("awol2").build());
+   *   return null;
+   * });
+   * 
    * @param supplier
    * @throws IOException
    */
@@ -90,19 +78,62 @@ public class App {
   }
 
 
-  private static void importFromTappedOut() {
-//    List<Deck> decks = TappedImporter.importFilesFromTappedOut("TappedCrawler\\decks\\test");
-    List<Deck> decks = TappedImporter.importFilesFromTappedOut("TappedCrawler\\decks\\animar-soul-of-elements");
-//    List<Deck> decks = TappedImporter.importFilesFromTappedOut("TappedCrawler\\decks\\ghave-guru-of-spores");
-    Map<String,Integer> cardCounts = DeckUtils.getCardCount(decks);
+  private static void importFromTappedOut() throws IOException {
+    List<String> files = Arrays.asList(
+            "TappedCrawler\\decks\\brago-king-eternal",
+            "TappedCrawler\\decks\\ephara-god-of-the-polis",
+            "TappedCrawler\\decks\\lavinia-of-the-tenth");
+
+    List<Deck> decks = files.stream()
+            .map(TappedImporter::importFilesFromTappedOut)
+            .flatMap(Collection::stream)
+            .collect(Collectors.toList());
+    Map<String,Integer> cardCounts = DeckUtils.getCardCount(decks)
+            .entrySet().stream()
+            .filter(entry -> entry.getValue() > 2)
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     List<Map.Entry<String, Integer>> sorted = new ArrayList<>(cardCounts.entrySet());
     sorted.sort(Comparator.comparing(Map.Entry::getValue));
     Collections.reverse(sorted);
+
+    List<Card> cards = decks.stream()
+            .map(Deck::getCards)
+            .flatMap(Collection::stream)
+            .distinct()
+            .collect(Collectors.toList());
+    Card filter = new Card.CardBuilder()
+            .legalities(new CardUtils.LegalitiesBuilder()
+                    .format(Format.COMMANDER)
+                    .build())
+            .build();
+    cards = CardFilter.filter(cards, filter);
+    cards = cards.stream()
+            .filter(card -> {
+              if(card.getColors() == null) {
+                return true;
+              }
+              return !card.getColors().contains(Color.BLACK.toString())
+                      && !card.getColors().contains(Color.GREEN.toString());
+            })
+            .collect(Collectors.toList());
+
+    CardWriter.saveCards(cards);
+
+    sorted = removeFromSorted(cards, sorted);
     sorted.forEach(entry ->
-      System.out.printf("%d %s%n", entry.getValue(), entry.getKey())
+            System.out.printf("%d %s%n", entry.getValue(), entry.getKey())
     );
   }
 
+  private static List<Map.Entry<String, Integer>> removeFromSorted(List<Card> cards, List<Map.Entry<String, Integer>> sorted) {
+    return sorted.stream()
+            .filter(entry -> !CardFilter.filter(
+                    cards,
+                    new Card.CardBuilder()
+                            .name(entry.getKey())
+                            .build()).isEmpty())
+            .collect(Collectors.toList());
+  }
 
   private static void saveFormatCompliantDecksFromTappedOut() {
     List<Deck> decks = TappedImporter.importFilesFromTappedOut("TappedCrawler\\decks\\animar-soul-of-elements");
@@ -117,7 +148,10 @@ public class App {
     });
   }
 
-
+  /**
+   * @deprecated (The entire simulator package is deprecated) 
+   */
+  @Deprecated
   private static void playGame() throws IOException {
     Deck doranDeck = DeckReader.loadDeck("SavedCardLists/DoranDeck.json");
     Deck ghaveDeck = DeckReader.loadDeck("SavedCardLists/GhaveDeck.json");
@@ -126,12 +160,6 @@ public class App {
     Player player2 = new Player(ghaveDeck, "Player2");
     Player player3 = new Player(ghaveDeck, "Player3");
 
-//    Game game = new Game.GameBuilder().player(player1).player(player2).player(player3).build();
-//    game.addToPlayerStack(new DrawAction(game, 5));
-//    game.addToPlayerStack(new DiscardAction(game, 3));
-//    Game game2 = new Game(game);
-
-//    System.out.println("testing");
     GameManager gameManager = new GameManager(
             new Game.GameBuilder()
             .player(player1)

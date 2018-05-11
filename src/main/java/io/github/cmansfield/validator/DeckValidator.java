@@ -32,6 +32,9 @@ public final class DeckValidator {
     if(deckFormat == Format.COMMANDER) {
       isCommanderCompliant(deck);
     }
+    else {
+      throw new UnsupportedOperationException("Only commander/EDH decks can be validated at this time");
+    }
 
     int deckCount = deck.generateFullDeckList().size()
             + (deck.getFeaturedCards() == null ? 0 : deck.getFeaturedCards().size());
