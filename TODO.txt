@@ -5,8 +5,6 @@ Mtg Framework TODO list
         DeckDeserializer (Mostly to ensure the commander isn't included in the deck list)
 
     IO:
-        Tap into MTG's image api to download and store card images
-            http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=368970&type=card
         Create a TappedOutFramework class to manage importing/exporting, converting, and
             bulk processing of any data to and from tappedout.net
     

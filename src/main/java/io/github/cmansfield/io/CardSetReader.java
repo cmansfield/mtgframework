@@ -14,11 +14,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class CardSetAdapter {
-  private static final Logger LOGGER = LoggerFactory.getLogger(CardSetAdapter.class);
+public class CardSetReader {
+  private static final Logger LOGGER = LoggerFactory.getLogger(CardSetReader.class);
   private static Map<String, MtgSet> setMap;
 
-  private CardSetAdapter() {}
+  private CardSetReader() {}
 
   public static Map<String, MtgSet> getSets() throws IOException {
     if(setMap == null) {

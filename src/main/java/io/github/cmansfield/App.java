@@ -9,6 +9,7 @@ import io.github.cmansfield.io.web.MtgJsonAdapter;
 import io.github.cmansfield.deck.constants.Format;
 import io.github.cmansfield.set.constants.Rarity;
 import io.github.cmansfield.filters.CardFilter;
+import io.github.cmansfield.io.web.MtgAdapter;
 import io.github.cmansfield.constants.Color;
 import io.github.cmansfield.deck.DeckUtils;
 import io.github.cmansfield.card.CardUtils;
@@ -47,7 +48,7 @@ public class App {
       LOGGER.error("Unable to load card list from file '{}'", IoConstants.ALL_CARDS_FILE_NAME, e);
       return;
     }
-
+    
     List<Card> cards = CardReader.loadCards("CardList5.json");
     Map<Card, Rarity> rarityMap = SetUtils.getLowestRarity(cards);
 
@@ -55,12 +56,16 @@ public class App {
             .filter(entry -> !entry.getValue().equals(Rarity.COMMON) 
                     && !entry.getValue().equals(Rarity.OTHER))
             .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-    Map<Card, Rarity> rares = rarityMap.entrySet().stream()
+    List<Card> rares = rarityMap.entrySet().stream()
             .filter(entry -> entry.getValue().equals(Rarity.RARE) || entry.getValue().equals(Rarity.MYTHIC_RARE))
-            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-    Map<Card, Rarity> uncommons = rarityMap.entrySet().stream()
+            .map(Map.Entry::getKey)
+            .collect(Collectors.toList());
+    List<Card> uncommons = rarityMap.entrySet().stream()
             .filter(entry -> entry.getValue().equals(Rarity.UNCOMMON))
-            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+            .map(Map.Entry::getKey)
+            .collect(Collectors.toList());
+    
+    MtgAdapter.saveCardImage(rares);
     
     LOGGER.info("End of App");
   }

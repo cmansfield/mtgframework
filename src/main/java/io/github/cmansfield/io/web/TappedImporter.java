@@ -87,20 +87,20 @@ public final class TappedImporter {
 
       if(obj0 instanceof String) {
         name = (String)obj0;
-        qty = (int)((Map)(obj1)).get(IoConstants.QUANTITY_KEY);
+        qty = (int)((Map)obj1).get(IoConstants.QUANTITY_KEY);
       }
       else {
         name = (String)obj1;
-        qty = (int)((Map)(obj0)).get(IoConstants.QUANTITY_KEY);
+        qty = (int)((Map)obj0).get(IoConstants.QUANTITY_KEY);
       }
 
       cardMap.put(name, qty);
     });
 
     List<Card> cards = new ArrayList<>();
-    cardMap.entrySet().forEach(entry -> {
-      for(int i = 0; i < entry.getValue(); ++i) {
-        Card foundCard = CardReader.lookupCard(entry.getKey());
+    cardMap.forEach((k, v) -> {
+      for(int i = 0; i < v; ++i) {
+        Card foundCard = CardReader.lookupCard(k);
         if(foundCard != null) {
           cards.add(foundCard);
         }

@@ -1,8 +1,9 @@
 package io.github.cmansfield.set;
 
+import io.github.cmansfield.set.constants.SetCardConstants;
 import org.apache.commons.collections4.CollectionUtils;
 import io.github.cmansfield.set.constants.Rarity;
-import io.github.cmansfield.io.CardSetAdapter;
+import io.github.cmansfield.io.CardSetReader;
 import io.github.cmansfield.card.Card;
 
 import java.util.stream.Collectors;
@@ -24,7 +25,10 @@ public class SetUtils {
   public static Map<Card, Rarity> getLowestRarity(List<Card> cards) {
     return cards.stream()
             .filter(Objects::nonNull)
-            .collect(Collectors.toMap(card -> card, SetUtils::getLowestRarity));
+            .collect(Collectors.toMap(card -> card, 
+                    card -> getSetCardProperty(card, SetCardConstants.RARITY.toString()).stream()
+                      .map(Rarity::find)
+                      .reduce(Rarity.OTHER, (a, b) -> a.getValue() > b.getValue() ? b : a)));
   }
 
   /**
@@ -34,30 +38,44 @@ public class SetUtils {
    * @param card    A card to search for its lowest found rarity
    * @return        A Rarity enum object
    */
-  private static Rarity getLowestRarity(Card card) {
-    List<Rarity> rarities = card.getPrintings().stream()
-            .map(CardSetAdapter::lookUpSet)
+  private static List<String> getSetCardProperty(Card card, String key) {
+    List<String> values = card.getPrintings().stream()
+            .map(CardSetReader::lookUpSet)
             .map(MtgSet::getCards)
             .map(cardList -> cardList.stream()
                     .filter(setCard ->
-                                    setCard.containsKey("name")
-                                    && card.getName().equals(setCard.get("name")))
+                                    setCard.containsKey(SetCardConstants.NAME.toString())
+                                    && card.getName().equals(setCard.get(SetCardConstants.NAME.toString())))
                     .findFirst()
                     .orElse(null))
             .filter(Objects::nonNull)
-            .filter(setCard -> setCard.containsKey("rarity"))
-            .map(setCard -> setCard.get("rarity"))
-            .map(value -> (String)value)
+            .filter(setCard -> setCard.containsKey(key))
+            .map(setCard -> setCard.get(key))
+            .map(Object::toString)
             .distinct()
-            .map(Rarity::find)
             .collect(Collectors.toList());
-    if(CollectionUtils.isEmpty(rarities)) {
+    if(CollectionUtils.isEmpty(values)) {
       throw new IllegalStateException(String.format(
-              "Could not find the rarity for card '%s'",
+              "Could not find the property '%s' for card '%s'",
+              key,
               card.getName()));
     }
 
-    return rarities.stream()
-            .reduce(Rarity.OTHER, (a, b) -> a.getValue() > b.getValue() ? b : a);
+    return values;
+  }
+
+  /**
+   * This method will map each card to one of their print image multiverse IDs
+   * 
+   * @param cards   Card to look up
+   * @return        A map of cards mapped to their multiverseId
+   */
+  public static Map<Card, String> getMultiVerseId(List<Card> cards) {
+    return cards.stream()
+            .filter(Objects::nonNull)
+            .collect(Collectors.toMap(card -> card, 
+                    card -> getSetCardProperty(card, SetCardConstants.MULTIVERSE_ID.toString()).stream()
+                      .findFirst()
+                      .orElse("")));
   }
 }

@@ -22,6 +22,7 @@ public final class MtgJsonAdapter {
   private static final String GET_CARD_LIST_URL = "https://mtgjson.com/json/AllCards-x.json.zip";
   private static final String GET_SET_LIST_URL = "https://mtgjson.com/json/AllSets-x.json.zip";
   private static final String GET_VER_URL = "https://mtgjson.com/json/version-full.json";
+  private static final String FILE_CREATED_MSG = "File {} was created";
   private static final String VERSION_FILE_NAME = "version.json";
   private static final String VERSION_KEY = "version";
   private MtgJsonAdapter() {}
@@ -137,7 +138,6 @@ public final class MtgJsonAdapter {
    * Downloads the latest card list from mtgjson.com
    */
   private static void downloadLatestLists() throws IOException {
-    int timeout = 1000;
     String path = "";
     URL url;
 
@@ -145,14 +145,14 @@ public final class MtgJsonAdapter {
       url = new URL(GET_CARD_LIST_URL);
       path = url.getPath();
       File file = new File(IoConstants.MTG_JSON_LISTS + IoConstants.CARDS_ZIP);
-      FileUtils.copyURLToFile(url, file, timeout, timeout);
-      LOGGER.info("File {} was created", file.getName());
+      FileUtils.copyURLToFile(url, file, IoConstants.TIMEOUT, IoConstants.TIMEOUT);
+      LOGGER.info(FILE_CREATED_MSG, file.getName());
       
       url = new URL (GET_SET_LIST_URL);
       path = url.getPath();
       file = new File(IoConstants.MTG_JSON_LISTS + IoConstants.SET_ZIP);
-      FileUtils.copyURLToFile(url, file, timeout, timeout);
-      LOGGER.info("File {} was created", file.getName());
+      FileUtils.copyURLToFile(url, file, IoConstants.TIMEOUT, IoConstants.TIMEOUT);
+      LOGGER.info(FILE_CREATED_MSG, file.getName());
     }
     catch(MalformedURLException e) {
       LOGGER.error("Unable create URL object with url: {}", GET_CARD_LIST_URL, e);
@@ -175,7 +175,7 @@ public final class MtgJsonAdapter {
     Validate.notEmpty(version);
 
     if(file.createNewFile()) {
-      LOGGER.info("File {} was created", file.getName());
+      LOGGER.info(FILE_CREATED_MSG, file.getName());
     }
     try(FileWriter fileWriter = new FileWriter(file)) {
       fileWriter.write(version);
