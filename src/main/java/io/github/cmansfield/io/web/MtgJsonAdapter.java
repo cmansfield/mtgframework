@@ -22,7 +22,7 @@ public final class MtgJsonAdapter {
   private static final String GET_CARD_LIST_URL = "https://mtgjson.com/json/AllCards-x.json.zip";
   private static final String GET_SET_LIST_URL = "https://mtgjson.com/json/AllSets-x.json.zip";
   private static final String GET_VER_URL = "https://mtgjson.com/json/version-full.json";
-  private static final String VERSION_FILE_NAME = "cardListVersion.json";
+  private static final String VERSION_FILE_NAME = "version.json";
   private static final String VERSION_KEY = "version";
   private MtgJsonAdapter() {}
 
@@ -91,7 +91,9 @@ public final class MtgJsonAdapter {
    * @return - String of the card list version the program currently has
    */
   private static String getMyVersion() {
-    File file = new File(VERSION_FILE_NAME);
+    File saveDir = new File(IoConstants.MTG_JSON_LISTS);
+    saveDir.mkdir();
+    File file = new File(IoConstants.MTG_JSON_LISTS + VERSION_FILE_NAME);
     String myVersion;
 
     if(!file.exists()) {
@@ -135,25 +137,29 @@ public final class MtgJsonAdapter {
    * Downloads the latest card list from mtgjson.com
    */
   private static void downloadLatestLists() throws IOException {
-    int timeout = 500;
-    File file = new File(IoConstants.MTG_JSON_LISTS_ZIP);
+    int timeout = 1000;
     String path = "";
     URL url;
 
     try {
       url = new URL(GET_CARD_LIST_URL);
       path = url.getPath();
+      File file = new File(IoConstants.MTG_JSON_LISTS + IoConstants.CARDS_ZIP);
       FileUtils.copyURLToFile(url, file, timeout, timeout);
+      LOGGER.info("File {} was created", file.getName());
+      
       url = new URL (GET_SET_LIST_URL);
       path = url.getPath();
+      file = new File(IoConstants.MTG_JSON_LISTS + IoConstants.SET_ZIP);
       FileUtils.copyURLToFile(url, file, timeout, timeout);
+      LOGGER.info("File {} was created", file.getName());
     }
     catch(MalformedURLException e) {
       LOGGER.error("Unable create URL object with url: {}", GET_CARD_LIST_URL, e);
       throw e;
     }
     catch(IOException e) {
-      LOGGER.error(String.format("Unable to save '%s' to file '%s'", path, IoConstants.MTG_JSON_LISTS_ZIP), e);
+      LOGGER.error(String.format("Unable to save '%s' to folder '%s'", path, IoConstants.MTG_JSON_LISTS), e);
       throw e;
     }
   }
@@ -164,7 +170,7 @@ public final class MtgJsonAdapter {
    * @param version - Version to save to a json file
    */
   private static void saveNewVersion(final String version) throws IOException {
-    File file = new File(VERSION_FILE_NAME);
+    File file = new File(IoConstants.MTG_JSON_LISTS + VERSION_FILE_NAME);
 
     Validate.notEmpty(version);
 

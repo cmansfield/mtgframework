@@ -52,9 +52,16 @@ public class App {
     Map<Card, Rarity> rarityMap = SetUtils.getLowestRarity(cards);
 
     rarityMap = rarityMap.entrySet().stream()
-            .filter(entry -> !entry.getValue().equals(Rarity.COMMON))
+            .filter(entry -> !entry.getValue().equals(Rarity.COMMON) 
+                    && !entry.getValue().equals(Rarity.OTHER))
             .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-
+    Map<Card, Rarity> rares = rarityMap.entrySet().stream()
+            .filter(entry -> entry.getValue().equals(Rarity.RARE) || entry.getValue().equals(Rarity.MYTHIC_RARE))
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    Map<Card, Rarity> uncommons = rarityMap.entrySet().stream()
+            .filter(entry -> entry.getValue().equals(Rarity.UNCOMMON))
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    
     LOGGER.info("End of App");
   }
 

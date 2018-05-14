@@ -31,14 +31,14 @@ public class CardSetAdapter {
    * This method will import the set information from the saved json file
    */
   private static void importSets() throws IOException {
-    ZipFile zip = new ZipFile(IoConstants.MTG_JSON_LISTS_ZIP);
+    ZipFile zip = new ZipFile(IoConstants.MTG_JSON_LISTS + IoConstants.SET_ZIP);
     ObjectMapper mapper = new ObjectMapper();
 
     try(InputStream inputstream = zip.getInputStream(zip.getEntry(IoConstants.ALL_SETS_FILE_NAME))) {
       setMap = mapper.readValue(inputstream, new TypeReference<Map<String,MtgSet>>(){});
     }
     catch (Exception e) {
-      throw new IOException("Unable to load file " + IoConstants.ALL_CARDS_FILE_NAME, e);
+      throw new IOException("Unable to load file " + IoConstants.ALL_SETS_FILE_NAME, e);
     }
     finally {
       zip.close();

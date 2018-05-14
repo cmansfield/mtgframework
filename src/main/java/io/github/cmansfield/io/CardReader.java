@@ -36,7 +36,7 @@ public final class CardReader {
       return new ArrayList<>(CardReader.cardMap.values());
     }
 
-    ZipFile zip = new ZipFile(IoConstants.MTG_JSON_LISTS_ZIP);
+    ZipFile zip = new ZipFile(IoConstants.MTG_JSON_LISTS + IoConstants.CARDS_ZIP);
     ObjectMapper mapper = new ObjectMapper();
 
     try(InputStream inputstream = zip.getInputStream(zip.getEntry(IoConstants.ALL_CARDS_FILE_NAME))) {
