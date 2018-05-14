@@ -1,13 +1,13 @@
 package io.github.cmansfield.validator;
 
-import io.github.cmansfield.card.CardUtils;
 import io.github.cmansfield.deck.constants.Format;
-import io.github.cmansfield.constants.Color;
 import io.github.cmansfield.filters.CardFilter;
+import io.github.cmansfield.constants.Color;
+import io.github.cmansfield.card.CardUtils;
 import io.github.cmansfield.io.CardReader;
+import io.github.cmansfield.io.DeckReader;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
-import io.github.cmansfield.io.DeckReader;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -131,7 +131,7 @@ public class DeckValidatorTest {
     DeckValidator.isFormatCompliant(badDeck);
   }
 
-  @Test
+  @Test (enabled = false)
   public void test_isFormatCompliant_block() throws IOException {
     List<Card> cards = CardReader.loadCards();
     List<Card> zendikarBlock = CardFilter.filter(
@@ -146,7 +146,7 @@ public class DeckValidatorTest {
     DeckValidator.isFormatCompliant(deck);
   }
 
-  @Test
+  @Test (enabled = false)
   public void test_isFormatCompliant_block_goodCounts() throws IOException {
     List<Card> cards = CardReader.loadCards();
     List<Card> zendikarBlock = CardFilter.filter(
@@ -195,7 +195,7 @@ public class DeckValidatorTest {
     DeckValidator.isFormatCompliant(deck);
   }
 
-  @Test
+  @Test (enabled = false)
   public void test_isFormatCompliant_block_goodDeckSize() throws IOException {
     List<Card> cards = CardReader.loadCards();
     List<Card> zendikarBlock = CardFilter.filter(
@@ -211,7 +211,7 @@ public class DeckValidatorTest {
     DeckValidator.isFormatCompliant(deck);
   }
 
-  @Test (expectedExceptions = IllegalStateException.class)
+  @Test (expectedExceptions = UnsupportedOperationException.class)
   public void test_isFormatCompliant_block_badDeckSize() throws IOException {
     List<Card> cards = CardReader.loadCards();
     List<Card> zendikarBlock = CardFilter.filter(

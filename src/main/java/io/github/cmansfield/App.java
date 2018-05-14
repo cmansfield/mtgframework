@@ -5,12 +5,14 @@ import io.github.cmansfield.simulator.gamemanager.Game;
 import io.github.cmansfield.simulator.player.Player;
 import io.github.cmansfield.validator.DeckValidator;
 import io.github.cmansfield.io.web.TappedImporter;
+import io.github.cmansfield.io.web.MtgJsonAdapter;
 import io.github.cmansfield.deck.constants.Format;
+import io.github.cmansfield.set.constants.Rarity;
 import io.github.cmansfield.filters.CardFilter;
-import io.github.cmansfield.io.web.GetUpdates;
 import io.github.cmansfield.constants.Color;
 import io.github.cmansfield.deck.DeckUtils;
 import io.github.cmansfield.card.CardUtils;
+import io.github.cmansfield.set.SetUtils;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
 import io.github.cmansfield.io.*;
@@ -31,7 +33,7 @@ public class App {
 
     if(args.length > 0) {
       if(args[0].equals("-u") || args[0].equals("--update")) {
-        GetUpdates.checkForUpdates();
+        MtgJsonAdapter.checkForUpdates();
       }
       else {
         usage();
@@ -45,6 +47,13 @@ public class App {
       LOGGER.error("Unable to load card list from file '{}'", IoConstants.ALL_CARDS_FILE_NAME, e);
       return;
     }
+
+    List<Card> cards = CardReader.loadCards("CardList5.json");
+    Map<Card, Rarity> rarityMap = SetUtils.getLowestRarity(cards);
+
+    rarityMap = rarityMap.entrySet().stream()
+            .filter(entry -> !entry.getValue().equals(Rarity.COMMON))
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
     LOGGER.info("End of App");
   }
@@ -61,11 +70,8 @@ public class App {
    * });
    * 
    * @param supplier
-   * @throws IOException
    */
   private static void timeMethod(Supplier supplier) throws IOException {
-    List<Card> cards = CardReader.loadCards();
-
     final int testIterations = 100;
     long startTime = System.nanoTime();
     for (int i = 0; i < testIterations; i++) {

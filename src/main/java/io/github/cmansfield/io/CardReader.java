@@ -7,8 +7,8 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.WordUtils;
 import io.github.cmansfield.card.Card;
 import org.apache.commons.io.IOUtils;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 import java.nio.charset.StandardCharsets;
 import java.io.FileInputStream;
@@ -30,14 +30,13 @@ public final class CardReader {
    * Loads a list of cards into a List object
    *
    * @return - Returns a List of card objects from the loaded file
-   * @throws IOException
    */
   public static List<Card> loadCards() throws IOException {
     if(CardReader.cardMap != null) {
       return new ArrayList<>(CardReader.cardMap.values());
     }
 
-    ZipFile zip = new ZipFile(IoConstants.CARD_LIST_FILE_NAME);
+    ZipFile zip = new ZipFile(IoConstants.MTG_JSON_LISTS_ZIP);
     ObjectMapper mapper = new ObjectMapper();
 
     try(InputStream inputstream = zip.getInputStream(zip.getEntry(IoConstants.ALL_CARDS_FILE_NAME))) {
@@ -58,7 +57,6 @@ public final class CardReader {
    *
    * @param fileName  - The filename of the file to load
    * @return          - Returns a List of card objects from the loaded file
-   * @throws IOException
    */
   public static List<Card> loadCards(final String fileName) throws IOException {
     ObjectMapper mapper = new ObjectMapper();
@@ -93,7 +91,6 @@ public final class CardReader {
    *
    * @param cardsStr  - The un-formatted string of card names
    * @return          - A list of cards produced from the file
-   * @throws IOException
    */
   private static List<Card> loadCardsFromString(final String cardsStr) throws IOException {
     List<String> cardsRaw = Arrays.asList(cardsStr.split("\n"));
@@ -141,7 +138,7 @@ public final class CardReader {
    * @return          - The card object if found, null if not
    */
   public static Card lookupCard(final String cardName) {
-    Card card = null;
+    Card card;
 
     if(CardReader.cardMap == null) {
       LOGGER.info("The complete list of cards has not been loaded yet, loading now.");
@@ -206,7 +203,7 @@ public final class CardReader {
    */
   private static Card getBestMatchingCard(final String cardName) {
     Card filter = new Card.CardBuilder().name(cardName).build();
-    List<Card> filteredList = null;
+    List<Card> filteredList;
 
     try {
       filteredList = CardFilter.filter(loadCards(), filter);
@@ -256,7 +253,7 @@ public final class CardReader {
       treatedCardName = match.group(1);
     }
 
-    Pattern splitPattern = Pattern.compile("\\s*([^\\s]+)\\s?\\/\\s?.*");
+    Pattern splitPattern = Pattern.compile("\\s*([^\\s]+)\\s?/\\s?.*");
     match = splitPattern.matcher(treatedCardName);
     if(match.find()) {
       treatedCardName = match.group(1);

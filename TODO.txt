@@ -3,9 +3,8 @@
 Mtg Framework TODO list
     Create:
         DeckDeserializer (Mostly to ensure the commander isn't included in the deck list)
+
     IO:
-        Download and store set data from MTGjson, this will supply card rarity and the card's
-            multiverseid (used for collection card images)
         Tap into MTG's image api to download and store card images
             http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=368970&type=card
         Create a TappedOutFramework class to manage importing/exporting, converting, and
@@ -14,4 +13,7 @@ Mtg Framework TODO list
     CardFilter:
         Fix the filterNot method when working with List<Color>
         
-    
+    Card
+        Make sure this class' Hash and equals methods are overridden
+
+    Create a SetCardConstants class

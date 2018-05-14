@@ -18,7 +18,6 @@ public final class DeckReader {
    *
    * @param fileName  - The filename of the file to load
    * @return          - Returns a Deck object loaded with cards from the specified file
-   * @throws IOException
    */
   public static Deck loadDeck(final String fileName) throws IOException {
     ObjectMapper mapper = new ObjectMapper();
