@@ -92,7 +92,7 @@ public final class CardReader {
    * @param cardsStr  - The un-formatted string of card names
    * @return          - A list of cards produced from the file
    */
-  private static List<Card> loadCardsFromString(final String cardsStr) throws IOException {
+  public static List<Card> loadCardsFromString(final String cardsStr) throws IOException {
     List<String> cardsRaw = Arrays.asList(cardsStr.split("\n"));
     Map<String,Integer> cardsToFind = new HashMap<>();
     List<Card> cards = new ArrayList<>();

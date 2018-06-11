@@ -20,7 +20,7 @@ public class MtgAdapter {
   
   private MtgAdapter() {}
 
-  public static void saveCardImage(List<Card> cards) {
+  public static void saveCardImages(List<Card> cards) {
     SetUtils.getMultiVerseId(cards)
             .forEach((k, v) -> saveImage(k.getName(), v));
   }

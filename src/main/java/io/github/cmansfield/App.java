@@ -20,7 +20,9 @@ import io.github.cmansfield.io.*;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
+import java.io.File;
 import java.util.function.Supplier;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.io.IOException;
 import java.util.*;
@@ -48,28 +50,31 @@ public class App {
       LOGGER.error("Unable to load card list from file '{}'", IoConstants.ALL_CARDS_FILE_NAME, e);
       return;
     }
-    
-    List<Card> cards = CardReader.loadCards("CardList5.json");
-    Map<Card, Rarity> rarityMap = SetUtils.getLowestRarity(cards);
 
-    rarityMap = rarityMap.entrySet().stream()
-            .filter(entry -> !entry.getValue().equals(Rarity.COMMON) 
-                    && !entry.getValue().equals(Rarity.OTHER))
-            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-    List<Card> rares = rarityMap.entrySet().stream()
-            .filter(entry -> entry.getValue().equals(Rarity.RARE) || entry.getValue().equals(Rarity.MYTHIC_RARE))
-            .map(Map.Entry::getKey)
-            .collect(Collectors.toList());
-    List<Card> uncommons = rarityMap.entrySet().stream()
-            .filter(entry -> entry.getValue().equals(Rarity.UNCOMMON))
-            .map(Map.Entry::getKey)
-            .collect(Collectors.toList());
-    
-    MtgAdapter.saveCardImage(rares);
-    
+//    importFromTappedOut("TappedCrawler\\decks\\keranos-god-of-storms");
+    List<Card> loadedCards = CardReader.loadCards(
+            IoConstants.SAVE_DIR
+                    + File.separator
+                    + "CardList3.json");
+    MtgAdapter.saveCardImages(loadedCards);
+
     LOGGER.info("End of App");
   }
 
+
+  public static List<String> listFilesForFolder(final File folder) {
+    List<String> cardNames = new ArrayList<>();
+
+    for (final File fileEntry : folder.listFiles()) {
+      if (fileEntry.isDirectory()) {
+        listFilesForFolder(fileEntry);
+      }
+      else {
+        cardNames.add(fileEntry.getName().replace(".jpg", ""));
+      }
+    }
+    return cardNames;
+  }
 
   /**
    * Simple profiler to help optimize methods
@@ -96,11 +101,9 @@ public class App {
   }
 
 
-  private static void importFromTappedOut() throws IOException {
-    List<String> files = Arrays.asList(
-            "TappedCrawler\\decks\\brago-king-eternal",
-            "TappedCrawler\\decks\\ephara-god-of-the-polis",
-            "TappedCrawler\\decks\\lavinia-of-the-tenth");
+  private static void importFromTappedOut(String... folders) throws IOException {
+    final int maxNumCards = 250;
+    List<String> files = Arrays.asList(folders);
 
     List<Deck> decks = files.stream()
             .map(TappedImporter::importFilesFromTappedOut)
@@ -114,10 +117,13 @@ public class App {
     sorted.sort(Comparator.comparing(Map.Entry::getValue));
     Collections.reverse(sorted);
 
-    List<Card> cards = decks.stream()
-            .map(Deck::getCards)
-            .flatMap(Collection::stream)
-            .distinct()
+    if(sorted.size() > maxNumCards) {
+      sorted = sorted.subList(0, maxNumCards);
+    }
+
+    List<Card> cards = sorted.stream()
+            .map(Map.Entry::getKey)
+            .map(CardReader::lookupCard)
             .collect(Collectors.toList());
     Card filter = new Card.CardBuilder()
             .legalities(new CardUtils.LegalitiesBuilder()
@@ -131,6 +137,7 @@ public class App {
                 return true;
               }
               return !card.getColors().contains(Color.BLACK.toString())
+                      && !card.getColors().contains(Color.WHITE.toString())
                       && !card.getColors().contains(Color.GREEN.toString());
             })
             .collect(Collectors.toList());
