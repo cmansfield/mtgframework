@@ -1,13 +1,15 @@
 package io.github.cmansfield.io.web;
 
+import io.github.cmansfield.validator.DeckValidator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cmansfield.deck.constants.Format;
 import io.github.cmansfield.io.IoConstants;
+import io.github.cmansfield.io.DeckWriter;
 import io.github.cmansfield.io.CardReader;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -116,5 +118,22 @@ public final class TappedImporter {
     return deck;
   }
 
-
+  /**
+   * This method will generate a List of Decks from the supplied directory's json files
+   * and then will save only the decks that are format compliant
+   * 
+   * @param directory     The folder directory where the json deck lists are stored
+   */
+  public static void saveFormatCompliantDecksFromTappedOut(String directory) {
+    List<Deck> decks = TappedImporter.importFilesFromTappedOut(directory);
+    decks.forEach(deck -> {
+      try{
+        DeckValidator.isFormatCompliant(deck);
+        DeckWriter.saveDeck(deck);
+      }
+      catch(Exception e) {
+        LOGGER.error("Unable to save decks from TappedOut deck lists", e);
+      }
+    });
+  }
 }

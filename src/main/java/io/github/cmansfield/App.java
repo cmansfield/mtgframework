@@ -1,46 +1,99 @@
 package io.github.cmansfield;
 
-import io.github.cmansfield.simulator.gamemanager.GameManager;
-import io.github.cmansfield.simulator.gamemanager.Game;
-import io.github.cmansfield.simulator.player.Player;
-import io.github.cmansfield.validator.DeckValidator;
 import io.github.cmansfield.io.web.TappedImporter;
 import io.github.cmansfield.io.web.MtgJsonAdapter;
 import io.github.cmansfield.deck.constants.Format;
-import io.github.cmansfield.set.constants.Rarity;
+import io.github.cmansfield.constants.CliOptions;
 import io.github.cmansfield.filters.CardFilter;
-import io.github.cmansfield.io.web.MtgAdapter;
 import io.github.cmansfield.constants.Color;
 import io.github.cmansfield.deck.DeckUtils;
 import io.github.cmansfield.card.CardUtils;
-import io.github.cmansfield.set.SetUtils;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
 import io.github.cmansfield.io.*;
+import org.apache.commons.cli.*;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
-import java.io.File;
-import java.util.function.Supplier;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.io.IOException;
+import java.io.File;
 import java.util.*;
 
 
 public class App {
-
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
-  public static void main(String[] args) throws IOException {
+  /**
+   * This method will create an Options object with all of the program's
+   * command line options
+   * 
+   * @return          The command line options
+   */
+  private static Options createOptions() {
+    Options options = new Options();
+    options.addOption(CliOptions.COMMANDER_ABBR, CliOptions.COMMANDER, true, "The name of the deck commander");
+    options.addOption(CliOptions.NUMBER_OF_CARDS, true, "The number of cards to save");
+    options.addOption(CliOptions.UPDATE_ABBR, CliOptions.UPDATE, false, "Check for card list updates");
+    return options;
+  }
 
-    if(args.length > 0) {
-      if(args[0].equals("-u") || args[0].equals("--update")) {
-        MtgJsonAdapter.checkForUpdates();
-      }
-      else {
-        usage();
-      }
+  /**
+   * This method will parse the command line arguments based on the supplied Options
+   * 
+   * @param args      The arguments passed into the program
+   * @param options   The command line options
+   * @return          The CommandLine object with the parsed arguments 
+   */
+  private static CommandLine parseArgs(String[] args, Options options) throws ParseException {
+    CommandLineParser parser = new DefaultParser();
+    return parser.parse(options, args);
+  }
+
+  /**
+   * This method will display the program's uage out to the user
+   * 
+   * @param options   The command line options
+   */
+  private static void usage(Options options) {
+    HelpFormatter helpFormatter = new HelpFormatter();
+    helpFormatter.printHelp("mtg-framework", options);
+  }
+
+  /**
+   * This method will make sure all of the required command line arguments have been supplied
+   * 
+   * @param cmd       The CommandLine object with the parsed arguments
+   * @param options   The command line options
+   */
+  private static void checkForRequiredOptions(CommandLine cmd, Options options) {
+    if(cmd == null) {
+      usage(options);
+      System.exit(-1);
+    }
+    if(!cmd.hasOption(CliOptions.COMMANDER) && !cmd.hasOption(CliOptions.COMMANDER_ABBR)) {
+      usage(options);
+      System.out.println(String.format("Missing command line argument -%s <%s>", CliOptions.COMMANDER, "CommanderName"));
+      System.exit(-1);
+    }
+  }
+  
+  public static void main(String[] args) throws IOException {
+    Options options = createOptions();
+    CommandLine cmd;
+    
+    try {
+      cmd = parseArgs(args, options);
+    }
+    catch (Exception e) {
+      usage(options);
+      System.err.println(e.getMessage());
+      return;
+    }
+    checkForRequiredOptions(cmd, options);    
+    
+    if(cmd.hasOption(CliOptions.UPDATE) || cmd.hasOption(CliOptions.UPDATE_ABBR)) {
+      MtgJsonAdapter.checkForUpdates();
     }
 
     try {
@@ -52,16 +105,16 @@ public class App {
     }
 
 //    importFromTappedOut("TappedCrawler\\decks\\keranos-god-of-storms");
-    List<Card> loadedCards = CardReader.loadCards(
-            IoConstants.SAVE_DIR
-                    + File.separator
-                    + "CardList3.json");
-    MtgAdapter.saveCardImages(loadedCards);
+//    List<Card> loadedCards = CardReader.loadCards(
+//            IoConstants.SAVE_DIR
+//                    + File.separator
+//                    + "CardList3.json");
+//    MtgAdapter.saveCardImages(loadedCards);
 
     LOGGER.info("End of App");
   }
 
-
+  // TODO - Clean this up and move it to the correct class
   public static List<String> listFilesForFolder(final File folder) {
     List<String> cardNames = new ArrayList<>();
 
@@ -76,31 +129,7 @@ public class App {
     return cardNames;
   }
 
-  /**
-   * Simple profiler to help optimize methods
-   * 
-   * Wrap method we want to test in a lambda
-   * 
-   * timeMethod(() -> {
-   *   CardFilter.filter(cards, new Card.CardBuilder().name("awol2").build());
-   *   return null;
-   * });
-   * 
-   * @param supplier
-   */
-  private static void timeMethod(Supplier supplier) throws IOException {
-    final int testIterations = 100;
-    long startTime = System.nanoTime();
-    for (int i = 0; i < testIterations; i++) {
-      supplier.get();
-    }
-    long endTime = System.nanoTime();
-    long averageTime = ((endTime - startTime) / 1000000 / testIterations);
-
-    LOGGER.info("{} ms", averageTime);
-  }
-
-
+  // TODO - Clean this method up before standardizing it
   private static void importFromTappedOut(String... folders) throws IOException {
     final int maxNumCards = 250;
     List<String> files = Arrays.asList(folders);
@@ -158,44 +187,5 @@ public class App {
                             .name(entry.getKey())
                             .build()).isEmpty())
             .collect(Collectors.toList());
-  }
-
-  private static void saveFormatCompliantDecksFromTappedOut() {
-    List<Deck> decks = TappedImporter.importFilesFromTappedOut("TappedCrawler\\decks\\animar-soul-of-elements");
-    decks.forEach(deck -> {
-      try{
-        DeckValidator.isFormatCompliant(deck);
-        DeckWriter.saveDeck(deck);
-      }
-      catch(Exception e) {
-        LOGGER.error("", e);
-      }
-    });
-  }
-
-  /**
-   * @deprecated (The entire simulator package is deprecated) 
-   */
-  @Deprecated
-  private static void playGame() throws IOException {
-    Deck doranDeck = DeckReader.loadDeck("SavedCardLists/DoranDeck.json");
-    Deck ghaveDeck = DeckReader.loadDeck("SavedCardLists/GhaveDeck.json");
-
-    Player player1 = new Player(doranDeck, "Player1");
-    Player player2 = new Player(ghaveDeck, "Player2");
-    Player player3 = new Player(ghaveDeck, "Player3");
-
-    GameManager gameManager = new GameManager(
-            new Game.GameBuilder()
-            .player(player1)
-            .player(player2)
-            .player(player3)
-            .build());
-    gameManager.startGame();
-  }
-
-
-  private static void usage() {
-    System.out.println("Usage: mtgframework [-u | --update]");    // NOSONAR
   }
 }
