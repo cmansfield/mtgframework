@@ -1,6 +1,7 @@
 package io.github.cmansfield.filters;
 
 import io.github.cmansfield.card.Card;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.text.Normalizer;
 import java.util.*;
@@ -199,27 +200,27 @@ public class CardFilter {
 
     if(filter.getLayout() != null) getterMethodMap.put(filter::getLayout, Card::getLayout);
     if(filter.getName() != null) getterMethodMap.put(filter::getName, Card::getName);
-    if(filter.getNames() != null) getterMethodMap.put(filter::getNames, Card::getNames);
+    if(CollectionUtils.isNotEmpty(filter.getNames())) getterMethodMap.put(filter::getNames, Card::getNames);
     if(filter.getManaCost() != null) getterMethodMap.put(filter::getManaCost, Card::getManaCost);
     if(filter.getCmc() != null) getterMethodMap.put(filter::getCmc, Card::getCmc);
-    if(filter.getColors() != null) getterMethodMap.put(filter::getColors, Card::getColors);
+    if(CollectionUtils.isNotEmpty(filter.getColors())) getterMethodMap.put(filter::getColors, Card::getColors);
     if(filter.getType() != null) getterMethodMap.put(filter::getType, Card::getType);
-    if(filter.getSupertypes() != null) getterMethodMap.put(filter::getSupertypes, Card::getSupertypes);
-    if(filter.getTypes() != null) getterMethodMap.put(filter::getTypes, Card::getTypes);
-    if(filter.getSubtypes() != null) getterMethodMap.put(filter::getSubtypes, Card::getSubtypes);
+    if(CollectionUtils.isNotEmpty(filter.getSupertypes())) getterMethodMap.put(filter::getSupertypes, Card::getSupertypes);
+    if(CollectionUtils.isNotEmpty(filter.getTypes())) getterMethodMap.put(filter::getTypes, Card::getTypes);
+    if(CollectionUtils.isNotEmpty(filter.getSubtypes())) getterMethodMap.put(filter::getSubtypes, Card::getSubtypes);
     if(filter.getText() != null) getterMethodMap.put(filter::getText, Card::getText);
     if(filter.getPower() != null) getterMethodMap.put(filter::getPower, Card::getPower);
     if(filter.getToughness() != null) getterMethodMap.put(filter::getToughness, Card::getToughness);
     if(filter.getLoyalty() != null) getterMethodMap.put(filter::getLoyalty, Card::getLoyalty);
     if(filter.getImageName() != null) getterMethodMap.put(filter::getImageName, Card::getImageName);
-    if(filter.getRulings() != null) getterMethodMap.put(filter::getRulings, Card::getRulings);
+    if(CollectionUtils.isNotEmpty(filter.getRulings())) getterMethodMap.put(filter::getRulings, Card::getRulings);
     if(filter.getHand() != null) getterMethodMap.put(filter::getHand, Card::getHand);
     if(filter.getLife() != null) getterMethodMap.put(filter::getLife, Card::getLife);
     if(filter.getStarter() != null) getterMethodMap.put(filter::getStarter, Card::getStarter);
-    if(filter.getPrintings() != null) getterMethodMap.put(filter::getPrintings, Card::getPrintings);
+    if(CollectionUtils.isNotEmpty(filter.getPrintings())) getterMethodMap.put(filter::getPrintings, Card::getPrintings);
     if(filter.getSource() != null) getterMethodMap.put(filter::getSource, Card::getSource);
-    if(filter.getLegalities() != null) getterMethodMap.put(filter::getLegalities, Card::getLegalities);
-    if(filter.getColorIdentity() != null) getterMethodMap.put(filter::getColorIdentity, Card::getColorIdentity);
+    if(CollectionUtils.isNotEmpty(filter.getLegalities())) getterMethodMap.put(filter::getLegalities, Card::getLegalities);
+    if(CollectionUtils.isNotEmpty(filter.getColorIdentity())) getterMethodMap.put(filter::getColorIdentity, Card::getColorIdentity);
 
     return getterMethodMap;
   }

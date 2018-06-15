@@ -66,10 +66,6 @@ public final class CardUtils {
     cards.forEach(card -> {
       List<Map<String,String>> listOfLegalities = card.getLegalities();
 
-      if(listOfLegalities == null) {
-        return;
-      }
-
       listOfLegalities.forEach(legalMap -> {
         String format = legalMap.get(Legality.FORMAT.toString());
         String legality = legalMap.get(Legality.LEGALITY.toString());

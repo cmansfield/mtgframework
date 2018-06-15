@@ -102,7 +102,7 @@ public final class DeckValidator {
     final int maxCopies = deck.getFormat().getMaxCopiesOfCard();
 
     deck.getCards().forEach(card -> {
-      if(card.getTypes() != null && card.getType().contains("Basic Land")) {
+      if(card.getType() != null && card.getType().contains("Basic Land")) {
         return;
       }
       if(deck.getQuantity(card.getName()) > maxCopies) {

@@ -43,28 +43,28 @@ public class Card {
 
   public Card(Card card) {
     this.name = card.getName();
-    this.names = card.getNames();
+    this.names = new ArrayList<>(card.getNames());
     this.layout = card.getLayout();
     this.manaCost = card.getManaCost();
     this.cmc = card.getCmc();
-    this.colors = card.getColors();
+    this.colors = new ArrayList<>(card.getColors());
     this.type = card.getType();
-    this.supertypes = card.getSupertypes();
-    this.types = card.getTypes();
-    this.subtypes = card.getSubtypes();
+    this.supertypes = new ArrayList<>(card.getSupertypes());
+    this.types = new ArrayList<>(card.getTypes());
+    this.subtypes = new ArrayList<>(card.getSubtypes());
     this.text = card.getText();
     this.power = card.getPower();
     this.toughness = card.getToughness();
     this.loyalty = card.getLoyalty();
     this.imageName = card.getImageName();
-    this.rulings = card.getRulings();
+    this.rulings = card.getRulings().stream().map(HashMap::new).collect(Collectors.toList());
     this.hand = card.getHand();
     this.life = card.getLife();
     this.starter = card.getStarter();
-    this.printings = card.getPrintings();
+    this.printings = new ArrayList<>(card.getPrintings());
     this.source = card.getSource();
-    this.legalities = card.getLegalities();
-    this.colorIdentity = card.getColorIdentity();
+    this.legalities = card.getLegalities().stream().map(HashMap::new).collect(Collectors.toList());
+    this.colorIdentity = new ArrayList<>(card.getColorIdentity());
   }
 
   public String getName() {
@@ -73,9 +73,9 @@ public class Card {
 
   public List<String> getNames() {
     if(this.names == null) {
-      return null;
+      return Collections.emptyList();
     }
-    return new ArrayList<>(this.names);
+    return this.names;
   }
 
   public String getLayout() {
@@ -92,9 +92,9 @@ public class Card {
 
   public List<String> getColors() {
     if(this.colors == null) {
-      return null;
+      return Collections.emptyList();
     }
-    return new ArrayList<>(this.colors);
+    return this.colors;
   }
 
   public String getType() {
@@ -103,23 +103,23 @@ public class Card {
 
   public List<String> getSupertypes() {
     if(this.supertypes == null) {
-      return null;
+      return Collections.emptyList();
     }
-    return new ArrayList<>(this.supertypes);
+    return this.supertypes;
   }
 
   public List<String> getTypes() {
     if(this.types == null) {
-      return null;
+      return Collections.emptyList();
     }
-    return new ArrayList<>(this.types);
+    return this.types;
   }
 
   public List<String> getSubtypes() {
     if(this.subtypes == null) {
-      return null;
+      return Collections.emptyList();
     }
-    return new ArrayList<>(this.subtypes);
+    return this.subtypes;
   }
 
   public String getText() {
@@ -144,9 +144,9 @@ public class Card {
 
   public List<Map<String,String>> getRulings() {
     if(this.rulings == null) {
-      return null;
+      return Collections.emptyList();
     }
-    return this.rulings.stream().map(HashMap::new).collect(Collectors.toList());
+    return this.rulings;
   }
 
   public Integer getHand() {
@@ -163,9 +163,9 @@ public class Card {
 
   public List<String> getPrintings() {
     if(this.printings == null) {
-      return null;
+      return Collections.emptyList();
     }
-    return new ArrayList<>(this.printings);
+    return this.printings;
   }
 
   public String getSource() {
@@ -174,21 +174,21 @@ public class Card {
 
   public List<Map<String,String>> getLegalities() {
     if(this.legalities == null) {
-      return null;
+      return Collections.emptyList();
     }
-    return this.legalities.stream().map(HashMap::new).collect(Collectors.toList());
+    return this.legalities;
   }
 
   public List<String> getColorIdentity() {
     if(this.colorIdentity == null) {
-      return null;
+      return Collections.emptyList();
     }
-    return new ArrayList<>(this.colorIdentity);
+    return this.colorIdentity;
   }
 
   @Override
   public String toString() {
-    return Arrays.asList(Card.class.getDeclaredFields()).stream()
+    return Arrays.stream(Card.class.getDeclaredFields())
             .filter(field -> {
               boolean isNull = false;
               try {

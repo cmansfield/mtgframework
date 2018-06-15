@@ -50,9 +50,6 @@ public final class Deck {
       }
       else {
         this.quantity.put(key, 1);
-        if(card.getColors() == null) {
-          return true;
-        }
 
         card.getColors().forEach(color -> {
           Color colorEnum = Color.find(color);

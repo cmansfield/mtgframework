@@ -12,6 +12,7 @@ import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
 import io.github.cmansfield.io.*;
 import org.apache.commons.cli.*;
+import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
@@ -183,9 +184,6 @@ public class App {
     cards = CardFilter.filter(cards, filter);
     cards = cards.stream()
             .filter(card -> {
-              if(card.getColors() == null) {
-                return true;
-              }
               return !card.getColors().contains(Color.BLACK.toString())
                       && !card.getColors().contains(Color.WHITE.toString())
                       && !card.getColors().contains(Color.GREEN.toString());
