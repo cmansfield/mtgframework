@@ -12,7 +12,6 @@ import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
 import io.github.cmansfield.io.*;
 import org.apache.commons.cli.*;
-import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
@@ -126,7 +125,7 @@ public class App {
       return;
     }
 
-//    importFromTappedOut("TappedCrawler\\decks\\keranos-god-of-storms");
+//    importFromTappedOut(250, "TappedCrawler\\decks\\keranos-god-of-storms");
 //    List<Card> loadedCards = CardReader.loadCards(
 //            IoConstants.SAVE_DIR
 //                    + File.separator
@@ -152,8 +151,7 @@ public class App {
   }
 
   // TODO - Clean this method up before standardizing it
-  private static void importFromTappedOut(String... folders) throws IOException {
-    final int maxNumCards = 250;
+  private static void importFromTappedOut(int maxNumCards, String... folders) throws IOException {
     List<String> files = Arrays.asList(folders);
 
     List<Deck> decks = files.stream()
@@ -183,18 +181,17 @@ public class App {
             .build();
     cards = CardFilter.filter(cards, filter);
     cards = cards.stream()
-            .filter(card -> {
-              return !card.getColors().contains(Color.BLACK.toString())
+            .filter(card -> 
+                    !card.getColors().contains(Color.BLACK.toString())
                       && !card.getColors().contains(Color.WHITE.toString())
-                      && !card.getColors().contains(Color.GREEN.toString());
-            })
+                      && !card.getColors().contains(Color.GREEN.toString()))
             .collect(Collectors.toList());
 
     CardWriter.saveCards(cards);
 
     sorted = removeFromSorted(cards, sorted);
     sorted.forEach(entry ->
-            System.out.printf("%d %s%n", entry.getValue(), entry.getKey())
+            LOGGER.info("{} {}", entry.getValue(), entry.getKey())
     );
   }
 

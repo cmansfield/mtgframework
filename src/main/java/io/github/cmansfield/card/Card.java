@@ -2,6 +2,7 @@ package io.github.cmansfield.card;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
@@ -186,6 +187,136 @@ public class Card {
     return this.colorIdentity;
   }
 
+  /**
+   * This method will compare the two supplied object against each other, would use
+   * equals by itself but there's a chance the objects could be null. 
+   * 
+   * @param lhs     Left hand side object
+   * @param rhs     Right hand side object
+   * @return        Boolean true if the two objects are equal
+   */
+  private <T> boolean compare(T lhs, T rhs) {
+    if(lhs == null && rhs == null) {
+      return true;
+    }
+    if(lhs == null) {
+      return false;
+    }
+    return lhs.equals(rhs);
+  }
+
+  @Override
+  public boolean equals(Object obj) {       // NOSONAR
+    if(obj == null) {
+      return false;
+    }
+    if(this == obj) {
+      return true;
+    }
+    if(!(obj instanceof Card)) {
+      return false;
+    }
+    
+    Card card = (Card)obj;
+    if(!compare(name, card.name)) {
+      return false;  
+    }
+    if(!compare(layout, card.layout)) {
+      return false;
+    }
+    if(!compare(manaCost, card.manaCost)) {
+      return false;
+    }
+    if(!compare(type, card.type)) {
+      return false;
+    }
+    if(!compare(text, card.text)) {
+      return false;
+    }
+    if(!compare(power, card.power)) {
+      return false;
+    }
+    if(!compare(toughness, card.toughness)) {
+      return false;
+    }
+    if(!compare(imageName, card.imageName)) {
+      return false;
+    }
+    if(!compare(source, card.source)) {
+      return false;
+    }
+    if(!compare(cmc, card.cmc)) {
+      return false;
+    }
+    if(!compare(hand, card.hand)) {
+      return false;
+    }
+    if(!compare(life, card.life)) {
+      return false;
+    }
+    if(!compare(loyalty, card.loyalty)) {
+      return false;
+    }
+    if(!compare(starter, card.starter)) {
+      return false;
+    }
+    if(!compare(names, card.names)) {
+      return false;
+    }
+    if(!compare(types, card.types)) {
+      return false;
+    }
+    if(!compare(colors, card.colors)) {
+      return false;
+    }
+    if(!compare(subtypes, card.subtypes)) {
+      return false;
+    }
+    if(!compare(printings, card.printings)) {
+      return false;
+    }
+    if(!compare(supertypes, card.supertypes)) {
+      return false;
+    }
+    if(!compare(colorIdentity, card.colorIdentity)) {
+      return false;
+    }
+    if(!compare(rulings, card.rulings)) {
+      return false;
+    }
+    return compare(starter, card.starter);
+  }
+  
+  @Override
+  public int hashCode() {
+    // Not including the symbolId in this check
+    return new HashCodeBuilder(17, 37)
+            .append(name)
+            .append(names.toString())
+            .append(layout)
+            .append(manaCost)
+            .append(cmc)
+            .append(colors.toString())
+            .append(type)
+            .append(supertypes.toString())
+            .append(types.toString())
+            .append(subtypes.toString())
+            .append(text)
+            .append(power)
+            .append(toughness)
+            .append(loyalty)
+            .append(imageName)
+            .append(rulings.toString())
+            .append(hand)
+            .append(life)
+            .append(starter)
+            .append(printings.toString())
+            .append(source)
+            .append(legalities.toString())
+            .append(colorIdentity.toString())
+            .toHashCode();
+  }
+  
   @Override
   public String toString() {
     return Arrays.stream(Card.class.getDeclaredFields())
