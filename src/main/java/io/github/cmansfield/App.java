@@ -32,9 +32,26 @@ public class App {
    */
   private static Options createOptions() {
     Options options = new Options();
-    options.addOption(CliOptions.COMMANDER_ABBR, CliOptions.COMMANDER, true, "The name of the deck commander");
-    options.addOption(CliOptions.NUMBER_OF_CARDS, true, "The number of cards to save");
+    
+    options.addOption(Option.builder(CliOptions.COMMANDER_ABBR)
+            .hasArg()
+            .argName("CommanderName")
+            .longOpt(CliOptions.COMMANDER)
+            .desc("The name of the deck commander")
+            .build());
+    options.addOption(Option.builder(CliOptions.NUMBER_OF_CARDS)
+            .hasArg()
+            .argName("number")
+            .desc("The number of cards to save")
+            .build());
+    options.addOption(Option.builder(CliOptions.GENERATE_CARD_LIST_FROM_DIR)
+            .hasArg()
+            .argName("directory")
+            .desc("This will generate and save a card list composed of all files with card names found in a directory")
+            .build());
     options.addOption(CliOptions.UPDATE_ABBR, CliOptions.UPDATE, false, "Check for card list updates");
+    options.addOption(CliOptions.SAVE_DECK_LISTS, false, "Save each downloaded deck list as a json file");
+    options.addOption(CliOptions.DOWNLOAD_IMAGES, false, "Download an image for each card in the deck lists");
     return options;
   }
 
@@ -59,7 +76,7 @@ public class App {
     HelpFormatter helpFormatter = new HelpFormatter();
     helpFormatter.printHelp("mtg-framework", options);
   }
-
+  
   /**
    * This method will make sure all of the required command line arguments have been supplied
    * 
@@ -71,9 +88,13 @@ public class App {
       usage(options);
       System.exit(-1);
     }
-    if(!cmd.hasOption(CliOptions.COMMANDER) && !cmd.hasOption(CliOptions.COMMANDER_ABBR)) {
+    if(cmd.getOptions().length == 0) {
       usage(options);
-      System.out.println(String.format("Missing command line argument -%s <%s>", CliOptions.COMMANDER, "CommanderName"));
+      System.exit(-1);
+    }
+    if(cmd.hasOption(CliOptions.GENERATE_CARD_LIST_FROM_DIR) && cmd.getOptions().length > 1) {
+      usage(options);
+      LOGGER.error("Cannot use option '{}' with any other option", CliOptions.GENERATE_CARD_LIST_FROM_DIR);
       System.exit(-1);
     }
   }
@@ -87,7 +108,7 @@ public class App {
     }
     catch (Exception e) {
       usage(options);
-      System.err.println(e.getMessage());
+      LOGGER.error(e.getMessage());
       return;
     }
     checkForRequiredOptions(cmd, options);    

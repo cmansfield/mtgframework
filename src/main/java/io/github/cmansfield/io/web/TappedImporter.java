@@ -99,11 +99,12 @@ public final class TappedImporter {
       cardMap.put(name, qty);
     });
 
+    // TODO - check to see if this can be refactored
     List<Card> cards = new ArrayList<>();
     cardMap.forEach((k, v) -> {
       for(int i = 0; i < v; ++i) {
-        Card foundCard = CardReader.lookupCard(k);
-        if(foundCard != null) {
+      Card foundCard = CardReader.lookupCard(k);
+      if(foundCard != null) {
           cards.add(foundCard);
         }
       }

@@ -110,15 +110,14 @@ public final class CardReader {
       }
 
       cardsToFind
-        .entrySet()
-        .forEach(e -> {
-          Card card = lookupCard(e.getKey());
+        .forEach((cardName, qty) -> {
+          Card card = lookupCard(cardName);
 
           if(card == null) {
-            throw new RuntimeException(String.format("Unable to load card: %s", e.getKey()));   // NOSONAR
+            throw new RuntimeException(String.format("Unable to load card: %s", cardName));   // NOSONAR
           }
 
-          for (int i = 0; i < cardsToFind.get(card.getName()); ++i) {
+          for (int i = 0; i < qty; ++i) {
             cards.add(card);
           }
         });

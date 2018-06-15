@@ -26,10 +26,11 @@ public class MtgAdapter {
   }
   
   /**
+   * This method will reach out to the mgt website and download the card image for the
+   * supplied name and card multiverseId
    * 
-   * 
-   * @param name
-   * @param multiverseId
+   * @param name          The name of the card who's image is being saved
+   * @param multiverseId  The mtg multiverseId matching to a specific image
    */
   public static void saveImage(String name, String multiverseId) {
     File saveDir = new File(IoConstants.MTG_IMAGE_DIR);
