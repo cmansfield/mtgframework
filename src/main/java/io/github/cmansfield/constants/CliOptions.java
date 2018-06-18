@@ -7,7 +7,7 @@ public class CliOptions {
   public static final String UPDATE = "update";
   public static final String UPDATE_ABBR = "u";
   public static final String NUMBER_OF_CARDS = "n";
-  public static final String SAVE_DECK_LISTS = "d";
+  public static final String SAVE_CARD_LIST = "s";
   public static final String DOWNLOAD_IMAGES = "i";
   public static final String GENERATE_CARD_LIST_FROM_DIR = "g";
 }

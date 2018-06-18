@@ -103,6 +103,12 @@
       <artifactId>antlr4-runtime</artifactId>
       <version>${antlrVersion}</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.python</groupId>
+      <artifactId>jython</artifactId>
+      <version>2.7.0</version>
+    </dependency>
   </dependencies>
 
   <build>

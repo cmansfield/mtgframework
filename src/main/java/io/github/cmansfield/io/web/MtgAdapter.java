@@ -20,6 +20,11 @@ public class MtgAdapter {
   
   private MtgAdapter() {}
 
+  /**
+   * This will save a list of card images
+   *
+   * @param cards         A list of cards to have their images downloaded and saved
+   */
   public static void saveCardImages(List<Card> cards) {
     SetUtils.getMultiVerseId(cards)
             .forEach((k, v) -> saveImage(k.getName(), v));
@@ -32,7 +37,7 @@ public class MtgAdapter {
    * @param name          The name of the card who's image is being saved
    * @param multiverseId  The mtg multiverseId matching to a specific image
    */
-  public static void saveImage(String name, String multiverseId) {
+  private static void saveImage(String name, String multiverseId) {
     File saveDir = new File(IoConstants.MTG_IMAGE_DIR);
     saveDir.mkdir();
     

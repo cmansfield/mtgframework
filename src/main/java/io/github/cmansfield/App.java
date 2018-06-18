@@ -1,17 +1,15 @@
 package io.github.cmansfield;
 
-import io.github.cmansfield.io.web.TappedImporter;
 import io.github.cmansfield.io.web.MtgJsonAdapter;
-import io.github.cmansfield.deck.constants.Format;
+import io.github.cmansfield.io.web.TappedImporter;
 import io.github.cmansfield.constants.CliOptions;
-import io.github.cmansfield.filters.CardFilter;
-import io.github.cmansfield.constants.Color;
-import io.github.cmansfield.deck.DeckUtils;
-import io.github.cmansfield.card.CardUtils;
+import io.github.cmansfield.io.web.MtgAdapter;
+import org.apache.commons.lang.StringUtils;
+import org.python.util.PythonInterpreter;
 import io.github.cmansfield.card.Card;
-import io.github.cmansfield.deck.Deck;
 import io.github.cmansfield.io.*;
 import org.apache.commons.cli.*;
+import org.python.core.PyObject;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
@@ -50,8 +48,8 @@ public class App {
             .desc("This will generate and save a card list composed of all files with card names found in a directory")
             .build());
     options.addOption(CliOptions.UPDATE_ABBR, CliOptions.UPDATE, false, "Check for card list updates");
-    options.addOption(CliOptions.SAVE_DECK_LISTS, false, "Save each downloaded deck list as a json file");
     options.addOption(CliOptions.DOWNLOAD_IMAGES, false, "Download an image for each card in the deck lists");
+    options.addOption(CliOptions.SAVE_CARD_LIST, false, "Will save the generated card list as a json file");
     return options;
   }
 
@@ -92,9 +90,12 @@ public class App {
       usage(options);
       System.exit(-1);
     }
-    if(cmd.hasOption(CliOptions.GENERATE_CARD_LIST_FROM_DIR) && cmd.getOptions().length > 1) {
+    if(cmd.hasOption(CliOptions.GENERATE_CARD_LIST_FROM_DIR) && cmd.hasOption(CliOptions.COMMANDER)) {
       usage(options);
-      LOGGER.error("Cannot use option '{}' with any other option", CliOptions.GENERATE_CARD_LIST_FROM_DIR);
+      LOGGER.error(
+              "Cannot use option '{}' with option '{}'",
+              CliOptions.GENERATE_CARD_LIST_FROM_DIR,
+              CliOptions.COMMANDER);
       System.exit(-1);
     }
   }
@@ -125,83 +126,102 @@ public class App {
       return;
     }
 
-//    importFromTappedOut(250, "TappedCrawler\\decks\\keranos-god-of-storms");
-//    List<Card> loadedCards = CardReader.loadCards(
-//            IoConstants.SAVE_DIR
-//                    + File.separator
-//                    + "CardList3.json");
-//    MtgAdapter.saveCardImages(loadedCards);
+    List<Card> cardList = Collections.emptyList();
+
+    if(cmd.hasOption(CliOptions.COMMANDER)) {
+      Map<Card, Integer> cardMap = commanderOption(cmd);
+      cardList = cardMap.entrySet().stream()
+              .map(Map.Entry::getKey)
+              .collect(Collectors.toList());
+      cardMap.forEach((card, qty) -> System.out.printf("%d %s%n", qty, card.getName()));      // NOSONAR
+    }
+    if(cmd.hasOption(CliOptions.GENERATE_CARD_LIST_FROM_DIR)) {
+      cardList = listFilesForFolder(cmd, null);
+    }
+    if(cmd.hasOption(CliOptions.SAVE_CARD_LIST)) {
+      CardWriter.saveCards(cardList);
+    }
+    if(cmd.hasOption(CliOptions.DOWNLOAD_IMAGES)) {
+      MtgAdapter.saveCardImages(cardList);
+    }
 
     LOGGER.info("End of App");
   }
 
-  // TODO - Clean this up and move it to the correct class
-  public static List<String> listFilesForFolder(final File folder) {
+  /**
+   * This method houses the logic for the command option
+   *
+   * @param cmd   The command line object
+   * @return      A map of cards and their quantities
+   */
+  private static Map<Card, Integer> commanderOption(CommandLine cmd) throws IOException {
+    String commanderName = cmd.getOptionValue(CliOptions.COMMANDER);
+    int numberOfCards = 250;
+    if(StringUtils.isBlank(commanderName)) {
+      LOGGER.error("The commander's name cannot be blank");
+      System.exit(-1);
+    }
+    if(cmd.hasOption(CliOptions.NUMBER_OF_CARDS)) {
+      try {
+        numberOfCards = Integer.parseInt(cmd.getOptionValue(CliOptions.NUMBER_OF_CARDS));
+      }
+      catch (NumberFormatException e) {
+        LOGGER.error("Unable to parse option '-{}' it must be an integer value", CliOptions.NUMBER_OF_CARDS, e);
+        System.exit(-1);
+      }
+    }
+
+    Card featuredCard = CardReader.lookupCard(commanderName);
+    if(featuredCard == null) {
+      LOGGER.error("Could not find the commander '{}'", commanderName);
+      System.exit(-1);
+    }
+
+    try(PythonInterpreter interpreter = new PythonInterpreter()) {
+      interpreter.execfile("/TappedCrawler/main.py");
+      PyObject str = interpreter.eval(String.format("main(%s,%d)", featuredCard.getName(), numberOfCards));
+      String test = str.toString();
+      System.out.println();
+    }
+    catch (Exception e) {
+      LOGGER.error("Unable to crawl for decks at this time", e);
+      System.exit(-1);
+    }
+
+    return TappedImporter.importFromTappedOutFolders(
+            numberOfCards,
+            featuredCard,
+            "TappedCrawler\\decks\\keranos-god-of-storms");     // TODO - get this from the python script
+  }
+
+  /**
+   *
+   *
+   * @param cmd         The command line object
+   * @param directory
+   * @return
+   */
+  private static List<Card> listFilesForFolder(CommandLine cmd, File directory) {
     List<String> cardNames = new ArrayList<>();
 
-    for (final File fileEntry : folder.listFiles()) {
+    File file = new File(directory == null
+            ? cmd.getOptionValue(CliOptions.GENERATE_CARD_LIST_FROM_DIR)
+            : directory.getAbsolutePath());
+    if(file.listFiles() == null) {
+      LOGGER.error("Unable to open directory '{}'", file.getAbsolutePath());
+      System.exit(-1);
+    }
+
+    for (final File fileEntry : file.listFiles()) {
       if (fileEntry.isDirectory()) {
-        listFilesForFolder(fileEntry);
+        listFilesForFolder(cmd, fileEntry);
       }
       else {
         cardNames.add(fileEntry.getName().replace(".jpg", ""));
       }
     }
-    return cardNames;
-  }
-
-  // TODO - Clean this method up before standardizing it
-  private static void importFromTappedOut(int maxNumCards, String... folders) throws IOException {
-    List<String> files = Arrays.asList(folders);
-
-    List<Deck> decks = files.stream()
-            .map(TappedImporter::importFilesFromTappedOut)
-            .flatMap(Collection::stream)
-            .collect(Collectors.toList());
-    Map<String,Integer> cardCounts = DeckUtils.getCardCount(decks)
-            .entrySet().stream()
-            .filter(entry -> entry.getValue() > 2)
-            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-    List<Map.Entry<String, Integer>> sorted = new ArrayList<>(cardCounts.entrySet());
-    sorted.sort(Comparator.comparing(Map.Entry::getValue));
-    Collections.reverse(sorted);
-
-    if(sorted.size() > maxNumCards) {
-      sorted = sorted.subList(0, maxNumCards);
-    }
-
-    List<Card> cards = sorted.stream()
-            .map(Map.Entry::getKey)
+    return cardNames.stream()
             .map(CardReader::lookupCard)
-            .collect(Collectors.toList());
-    Card filter = new Card.CardBuilder()
-            .legalities(new CardUtils.LegalitiesBuilder()
-                    .format(Format.COMMANDER)
-                    .build())
-            .build();
-    cards = CardFilter.filter(cards, filter);
-    cards = cards.stream()
-            .filter(card -> 
-                    !card.getColors().contains(Color.BLACK.toString())
-                      && !card.getColors().contains(Color.WHITE.toString())
-                      && !card.getColors().contains(Color.GREEN.toString()))
-            .collect(Collectors.toList());
-
-    CardWriter.saveCards(cards);
-
-    sorted = removeFromSorted(cards, sorted);
-    sorted.forEach(entry ->
-            LOGGER.info("{} {}", entry.getValue(), entry.getKey())
-    );
-  }
-
-  private static List<Map.Entry<String, Integer>> removeFromSorted(List<Card> cards, List<Map.Entry<String, Integer>> sorted) {
-    return sorted.stream()
-            .filter(entry -> !CardFilter.filter(
-                    cards,
-                    new Card.CardBuilder()
-                            .name(entry.getKey())
-                            .build()).isEmpty())
             .collect(Collectors.toList());
   }
 }

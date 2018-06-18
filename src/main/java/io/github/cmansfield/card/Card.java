@@ -216,75 +216,12 @@ public class Card {
     if(!(obj instanceof Card)) {
       return false;
     }
-    
+
     Card card = (Card)obj;
     if(!compare(name, card.name)) {
-      return false;  
-    }
-    if(!compare(layout, card.layout)) {
       return false;
     }
-    if(!compare(manaCost, card.manaCost)) {
-      return false;
-    }
-    if(!compare(type, card.type)) {
-      return false;
-    }
-    if(!compare(text, card.text)) {
-      return false;
-    }
-    if(!compare(power, card.power)) {
-      return false;
-    }
-    if(!compare(toughness, card.toughness)) {
-      return false;
-    }
-    if(!compare(imageName, card.imageName)) {
-      return false;
-    }
-    if(!compare(source, card.source)) {
-      return false;
-    }
-    if(!compare(cmc, card.cmc)) {
-      return false;
-    }
-    if(!compare(hand, card.hand)) {
-      return false;
-    }
-    if(!compare(life, card.life)) {
-      return false;
-    }
-    if(!compare(loyalty, card.loyalty)) {
-      return false;
-    }
-    if(!compare(starter, card.starter)) {
-      return false;
-    }
-    if(!compare(names, card.names)) {
-      return false;
-    }
-    if(!compare(types, card.types)) {
-      return false;
-    }
-    if(!compare(colors, card.colors)) {
-      return false;
-    }
-    if(!compare(subtypes, card.subtypes)) {
-      return false;
-    }
-    if(!compare(printings, card.printings)) {
-      return false;
-    }
-    if(!compare(supertypes, card.supertypes)) {
-      return false;
-    }
-    if(!compare(colorIdentity, card.colorIdentity)) {
-      return false;
-    }
-    if(!compare(rulings, card.rulings)) {
-      return false;
-    }
-    return compare(starter, card.starter);
+    return compare(names, card.names);
   }
   
   @Override
@@ -292,28 +229,7 @@ public class Card {
     // Not including the symbolId in this check
     return new HashCodeBuilder(17, 37)
             .append(name)
-            .append(names.toString())
-            .append(layout)
-            .append(manaCost)
-            .append(cmc)
-            .append(colors.toString())
-            .append(type)
-            .append(supertypes.toString())
-            .append(types.toString())
-            .append(subtypes.toString())
-            .append(text)
-            .append(power)
-            .append(toughness)
-            .append(loyalty)
-            .append(imageName)
-            .append(rulings.toString())
-            .append(hand)
-            .append(life)
-            .append(starter)
-            .append(printings.toString())
-            .append(source)
-            .append(legalities.toString())
-            .append(colorIdentity.toString())
+            .append(names == null ? "" : names.toString())
             .toHashCode();
   }
   

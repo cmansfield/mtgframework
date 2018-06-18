@@ -18,7 +18,6 @@ public final class CardWriter {
    *
    * @param cards - List of cards to save as a json file
    * @return      - Returns a string with the filepath and filename
-   * @throws IOException
    */
   public static String saveCards(List<Card> cards) throws IOException {
     final String cardListSaveName = "CardList%d.json";

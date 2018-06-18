@@ -122,6 +122,7 @@ public class CardFilter {
    * @param filterStr - Filter's string field
    * @return          - Boolean isMatch
    */
+  // TODO - this method needs to be refactored to improve speed
   private static boolean matchString(String cardStr, String filterStr) {
     String pattern = "[^a-zA-Z0-9]";      // Remove anything that isnt' a alpha-numeric character
 
