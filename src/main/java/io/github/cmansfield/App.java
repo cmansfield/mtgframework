@@ -3,9 +3,11 @@ package io.github.cmansfield;
 import io.github.cmansfield.io.web.MtgJsonAdapter;
 import io.github.cmansfield.io.web.TappedImporter;
 import io.github.cmansfield.constants.CliOptions;
+import io.github.cmansfield.set.constants.Rarity;
 import io.github.cmansfield.io.web.MtgAdapter;
 import org.apache.commons.lang.StringUtils;
 import org.python.util.PythonInterpreter;
+import io.github.cmansfield.set.SetUtils;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.io.*;
 import org.apache.commons.cli.*;
@@ -50,6 +52,7 @@ public class App {
     options.addOption(CliOptions.UPDATE_ABBR, CliOptions.UPDATE, false, "Check for card list updates");
     options.addOption(CliOptions.DOWNLOAD_IMAGES, false, "Download an image for each card in the deck lists");
     options.addOption(CliOptions.SAVE_CARD_LIST, false, "Will save the generated card list as a json file");
+    options.addOption(CliOptions.EXCLUDE_COMMONS, false, "This option will remove all commons from the card list");
     return options;
   }
 
@@ -136,7 +139,12 @@ public class App {
       cardMap.forEach((card, qty) -> System.out.printf("%d %s%n", qty, card.getName()));      // NOSONAR
     }
     if(cmd.hasOption(CliOptions.GENERATE_CARD_LIST_FROM_DIR)) {
-      cardList = listFilesForFolder(cmd, null);
+      cardList = createCardListFromFileNamesInFolder(cmd, null);
+    }
+    if(cmd.hasOption(CliOptions.EXCLUDE_COMMONS)) {
+      cardList = cardList.stream()
+              .filter(card -> SetUtils.getLowestRarity(card).getValue() != Rarity.COMMON)
+              .collect(Collectors.toList());
     }
     if(cmd.hasOption(CliOptions.SAVE_CARD_LIST)) {
       CardWriter.saveCards(cardList);
@@ -178,30 +186,38 @@ public class App {
     }
 
     try(PythonInterpreter interpreter = new PythonInterpreter()) {
-      interpreter.execfile("/TappedCrawler/main.py");
-      PyObject str = interpreter.eval(String.format("main(%s,%d)", featuredCard.getName(), numberOfCards));
-      String test = str.toString();
-      System.out.println();
+      File file = new File("TappedCrawler/main.py");
+      interpreter.execfile(file.getAbsolutePath());
+      PyObject str = interpreter.eval(String.format("main(\"%s\",%d)", featuredCard.getName(), numberOfCards));
+      String featuredCardSlug = str.toString();
+
+      if(StringUtils.isBlank(featuredCardSlug)) {
+        throw new IllegalArgumentException("Unable to download cards from TappedOut at this time. Be sure you have logged in recently");
+      }
+      
+      return TappedImporter.importFromTappedOutFolders(
+              numberOfCards,
+              featuredCard,
+              cmd.hasOption(CliOptions.EXCLUDE_COMMONS),
+              "TappedCrawler\\decks\\" + featuredCardSlug);
     }
     catch (Exception e) {
       LOGGER.error("Unable to crawl for decks at this time", e);
       System.exit(-1);
     }
-
-    return TappedImporter.importFromTappedOutFolders(
-            numberOfCards,
-            featuredCard,
-            "TappedCrawler\\decks\\keranos-god-of-storms");     // TODO - get this from the python script
+    
+    return Collections.emptyMap();
   }
 
   /**
-   *
+   * This method will iterate over all of the files in a directory and generate a card list
+   * from the file names
    *
    * @param cmd         The command line object
-   * @param directory
-   * @return
+   * @param directory   The directory to pull file names from
+   * @return            A Card list of all of the files with valid card names
    */
-  private static List<Card> listFilesForFolder(CommandLine cmd, File directory) {
+  private static List<Card> createCardListFromFileNamesInFolder(CommandLine cmd, File directory) {
     List<String> cardNames = new ArrayList<>();
 
     File file = new File(directory == null
@@ -214,10 +230,10 @@ public class App {
 
     for (final File fileEntry : file.listFiles()) {
       if (fileEntry.isDirectory()) {
-        listFilesForFolder(cmd, fileEntry);
+        createCardListFromFileNamesInFolder(cmd, fileEntry);
       }
       else {
-        cardNames.add(fileEntry.getName().replace(".jpg", ""));
+        cardNames.add(fileEntry.getName().replaceAll("\\..*", ""));
       }
     }
     return cardNames.stream()

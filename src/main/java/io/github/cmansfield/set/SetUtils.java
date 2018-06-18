@@ -7,6 +7,7 @@ import io.github.cmansfield.io.CardSetReader;
 import io.github.cmansfield.card.Card;
 
 import java.util.stream.Collectors;
+import java.util.AbstractMap;
 import java.util.Objects;
 import java.util.List;
 import java.util.Map;
@@ -25,12 +26,23 @@ public class SetUtils {
   public static Map<Card, Rarity> getLowestRarity(List<Card> cards) {
     return cards.stream()
             .filter(Objects::nonNull)
-            .collect(Collectors.toMap(card -> card, 
-                    card -> getSetCardProperty(card, SetCardConstants.RARITY.toString()).stream()
-                      .map(Rarity::find)
-                      .reduce(Rarity.OTHER, (a, b) -> a.getValue() > b.getValue() ? b : a)));
+            .map(SetUtils::getLowestRarity)
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
   }
 
+  /**
+   * This will find the lowest rarity for the card supplied
+   * 
+   * @param card    The card to find its lowest rarity
+   * @return        An entry value with the card as the key and its rarity as the value
+   */
+  public static Map.Entry<Card, Rarity> getLowestRarity(Card card) {
+    return new AbstractMap.SimpleEntry<>(card, 
+            getSetCardProperty(card, SetCardConstants.RARITY.toString()).stream()
+                    .map(Rarity::find)
+                    .reduce(Rarity.OTHER, (a, b) -> a.getValue() > b.getValue() ? b : a));
+  }
+  
   /**
    * This method will search all of the sets the supplied card was printed in and return
    * the lowest rarity found for that card

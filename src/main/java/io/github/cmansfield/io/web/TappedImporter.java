@@ -4,11 +4,13 @@ import io.github.cmansfield.deck.constants.Legality;
 import io.github.cmansfield.validator.DeckValidator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cmansfield.deck.constants.Format;
+import io.github.cmansfield.set.constants.Rarity;
 import io.github.cmansfield.constants.Color;
 import io.github.cmansfield.io.IoConstants;
 import io.github.cmansfield.io.CardWriter;
 import io.github.cmansfield.io.DeckWriter;
 import io.github.cmansfield.io.CardReader;
+import io.github.cmansfield.set.SetUtils;
 import io.github.cmansfield.card.Card;
 import io.github.cmansfield.deck.Deck;
 import org.slf4j.LoggerFactory;
@@ -203,7 +205,7 @@ public final class TappedImporter {
    * @param folders       The array of folders to import from
    * @return              A map of all of the imported cards and their quantities
    */
-  public static Map<Card, Integer> importFromTappedOutFolders(int maxNumCards, Card featuredCard, String... folders) throws IOException {
+  public static Map<Card, Integer> importFromTappedOutFolders(int maxNumCards, Card featuredCard, boolean excludeCommons, String... folders) throws IOException {
     LinkedHashMap<Card, Integer> cardMap = new LinkedHashMap<>();
 
     if(featuredCard == null) {
@@ -237,8 +239,10 @@ public final class TappedImporter {
             .filter(entry -> entry.getKey().getColors().stream()
                       .noneMatch(colors::contains))
             .filter(entry -> entry.getValue() > QUANTITY_THRESHOLD)
-            .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+            .filter(entry -> !excludeCommons 
+                    || SetUtils.getLowestRarity(entry.getKey()).getValue() != Rarity.COMMON)
             .limit(maxNumCards)
+            .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
             .collect(LinkedHashMap::new,
                     (map, entry) -> map.put(entry.getKey(), entry.getValue()),
                     Map::putAll);

@@ -19,6 +19,7 @@
     <jackson.version>2.7.8</jackson.version>
     <jersey.version>1.19.3</jersey.version>
     <mockito.version>1.9.5</mockito.version>
+    <jythonVersion>2.7.0</jythonVersion>
     <slf4jVersion>1.7.25</slf4jVersion>
     <antlrVersion>4.7</antlrVersion>
   </properties>
@@ -106,8 +107,8 @@
 
     <dependency>
       <groupId>org.python</groupId>
-      <artifactId>jython</artifactId>
-      <version>2.7.0</version>
+      <artifactId>jython-standalone</artifactId>
+      <version>${jythonVersion}</version>
     </dependency>
   </dependencies>
 
