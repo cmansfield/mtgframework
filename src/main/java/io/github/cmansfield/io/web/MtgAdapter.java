@@ -55,7 +55,8 @@ public class MtgAdapter {
       LOGGER.warn("Malformed URL exception for card '{}' muliverseId '{}'", name, multiverseId);
     }
     catch(IOException e) {
-      LOGGER.warn("Unable to save image for card '{}' muliverseId '{}'", name, multiverseId);
+      LOGGER.warn("Unable to save image for card '{}' muliverseId '{}'. Trying again.", name, multiverseId);
+      saveImage(name, multiverseId);
     }
   }
 }

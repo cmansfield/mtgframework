@@ -1,5 +1,6 @@
 package io.github.cmansfield.io.web;
 
+import org.apache.commons.collections4.CollectionUtils;
 import io.github.cmansfield.deck.constants.Legality;
 import io.github.cmansfield.validator.DeckValidator;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -229,6 +230,8 @@ public final class TappedImporter {
     colors.removeAll(featuredCard.getColors());
 
     cardMap = cardMap.entrySet().stream()
+            .filter(entry -> entry.getKey() != null)
+            .filter(entry -> CollectionUtils.isNotEmpty(entry.getKey().getLegalities()))
             .filter(entry -> entry.getKey().getLegalities().stream()
                     .anyMatch(map -> {
                       if(!Format.COMMANDER.toString().equals(map.get(Legality.FORMAT.toString()))) {
