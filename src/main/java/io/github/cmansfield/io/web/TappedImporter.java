@@ -84,6 +84,7 @@ public final class TappedImporter {
     LinkedHashMap<Card, Integer> cardMap = new LinkedHashMap<>();
 
     if(fileArray == null) {
+      LOGGER.warn("Could not open folder '{}' or find any files", directory);
       return cardMap;
     }
     ObjectMapper mapper = new ObjectMapper();

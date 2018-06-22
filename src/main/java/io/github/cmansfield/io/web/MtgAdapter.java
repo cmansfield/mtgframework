@@ -13,10 +13,11 @@ import java.util.List;
 import java.io.File;
 import java.net.URL;
 
+
 public class MtgAdapter {
   private static final Logger LOGGER = LoggerFactory.getLogger(MtgAdapter.class);
   private static final String MTG_GET_IMAGE_API = "http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=%s&type=card";
-  
+  private static final int IMAGE_SAVE_RETRY = 3;
   
   private MtgAdapter() {}
 
@@ -27,7 +28,7 @@ public class MtgAdapter {
    */
   public static void saveCardImages(List<Card> cards) {
     SetUtils.getMultiVerseId(cards)
-            .forEach((k, v) -> saveImage(k.getName(), v));
+            .forEach((k, v) -> saveImage(k.getName(), v, IMAGE_SAVE_RETRY));
   }
   
   /**
@@ -37,7 +38,11 @@ public class MtgAdapter {
    * @param name          The name of the card who's image is being saved
    * @param multiverseId  The mtg multiverseId matching to a specific image
    */
-  private static void saveImage(String name, String multiverseId) {
+  private static void saveImage(String name, String multiverseId, int retry) {
+    if(retry == 0) {
+      return;
+    }
+    
     File saveDir = new File(IoConstants.MTG_IMAGE_DIR);
     saveDir.mkdir();
     
@@ -56,7 +61,7 @@ public class MtgAdapter {
     }
     catch(IOException e) {
       LOGGER.warn("Unable to save image for card '{}' muliverseId '{}'. Trying again.", name, multiverseId);
-      saveImage(name, multiverseId);
+      saveImage(name, multiverseId, retry - 1);
     }
   }
 }
