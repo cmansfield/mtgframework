@@ -53,6 +53,7 @@ public class App {
     options.addOption(CliOptions.DOWNLOAD_IMAGES, false, "Download an image for each card in the deck lists");
     options.addOption(CliOptions.SAVE_CARD_LIST, false, "Will save the generated card list as a json file");
     options.addOption(CliOptions.EXCLUDE_COMMONS, false, "This option will remove all commons from the card list");
+    options.addOption(CliOptions.SAVE_IMAGES_ORGANIZED, false, "This will automatically organize saved images into folders");
     return options;
   }
 
@@ -99,6 +100,14 @@ public class App {
               "Cannot use option '{}' with option '{}'",
               CliOptions.GENERATE_CARD_LIST_FROM_DIR,
               CliOptions.COMMANDER);
+      System.exit(-1);
+    }
+    if(cmd.hasOption(CliOptions.SAVE_IMAGES_ORGANIZED) && !cmd.hasOption(CliOptions.DOWNLOAD_IMAGES)) {
+      usage(options);
+      LOGGER.error(
+              "Cannot use option '{}' without option '{}'",
+              CliOptions.SAVE_IMAGES_ORGANIZED,
+              CliOptions.DOWNLOAD_IMAGES);
       System.exit(-1);
     }
   }
@@ -150,7 +159,7 @@ public class App {
       CardWriter.saveCards(cardList);
     }
     if(cmd.hasOption(CliOptions.DOWNLOAD_IMAGES)) {
-      MtgAdapter.saveCardImages(cardList);
+      MtgAdapter.saveCardImages(cardList, cmd.hasOption(CliOptions.SAVE_IMAGES_ORGANIZED));
     }
 
     LOGGER.info("End of App");
@@ -178,6 +187,13 @@ public class App {
         System.exit(-1);
       }
     }
+    if(cmd.hasOption(CliOptions.EXCLUDE_COMMONS)) {
+      // This will help us download the correct number of cards if we are planning
+      // on excluding about 60% of the downloaded cards.
+      // n / 0.40 = desiredNumberOfCards
+      // n = desiredNumberOfCards * 0.40
+      numberOfCards /= .4;
+    }
 
     Card featuredCard = CardReader.lookupCard(commanderName);
     if(featuredCard == null) {
@@ -186,10 +202,11 @@ public class App {
     }
 
     try(PythonInterpreter interpreter = new PythonInterpreter()) {
-      File file = new File("TappedCrawler/main.py");
-      interpreter.execfile(file.getAbsolutePath());
-      PyObject str = interpreter.eval(String.format("main(\"%s\",%d)", featuredCard.getName(), numberOfCards));
-      String featuredCardSlug = str.toString();
+//      File file = new File("TappedCrawler/main.py");
+//      interpreter.execfile(file.getAbsolutePath());
+//      PyObject str = interpreter.eval(String.format("main(\"%s\",%d)", featuredCard.getName(), numberOfCards));
+//      String featuredCardSlug = str.toString();
+      String featuredCardSlug = "zedruu-the-greathearted";
 
       if(StringUtils.isBlank(featuredCardSlug)) {
         throw new IllegalArgumentException("Unable to download cards from TappedOut at this time. Be sure you have logged in recently");

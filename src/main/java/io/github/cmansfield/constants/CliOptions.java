@@ -10,5 +10,6 @@ public class CliOptions {
   public static final String SAVE_CARD_LIST = "s";
   public static final String DOWNLOAD_IMAGES = "i";
   public static final String EXCLUDE_COMMONS = "ec";
+  public static final String SAVE_IMAGES_ORGANIZED = "o";
   public static final String GENERATE_CARD_LIST_FROM_DIR = "g";
 }
